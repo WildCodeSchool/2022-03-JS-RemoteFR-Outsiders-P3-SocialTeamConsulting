@@ -7,7 +7,7 @@ import Page2 from "@pages/Page2";
 import NavBar from "@components/NavBar";
 import Footer from "@components/Footer";
 
-import "./style/App.css";
+import "@style/App.css";
 
 function App() {
   return (
