@@ -67,7 +67,7 @@ function NavBar() {
             </label>
           </div>
           <div className="form-example">
-            <input type="submit" value="Subscribe!" />
+            <input type="submit" value="Se connecter" />
           </div>
         </form>
       </div>
