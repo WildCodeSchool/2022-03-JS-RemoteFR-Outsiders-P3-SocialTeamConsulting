@@ -31,4 +31,5 @@ body{
 
 h1{
   font-family: var(--font-title);
+  font-weight: 700;
 }

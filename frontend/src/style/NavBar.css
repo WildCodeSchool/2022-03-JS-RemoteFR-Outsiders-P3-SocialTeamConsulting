@@ -1,0 +1,82 @@
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.navbar-logo{
+  height: 2.5rem;
+}
+
+/* **************************************
+**************** BURGER ****************
+************************************** */
+
+.navbar-burger {
+  display: flex;
+  align-items: center;
+  width: 2.5rem;
+}
+.navbar-burger:hover {
+  cursor: pointer;
+}
+
+.navbar-bar,
+.navbar-bar::before,
+.navbar-bar::after {
+  display: block;
+  width: 2.5rem;
+  height: 0.3rem;
+  position: relative;
+  background-color: var(--color-interaction);
+  transition: all 0.5s ease-in-out;
+}
+
+.navbar-bar::before,
+.navbar-bar::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+.navbar-bar::before {
+  transform: translateY(-0.75rem);
+}
+.navbar-bar::after {
+  transform: translateY(0.75rem);
+}
+.navbar-visible .navbar-bar::before {
+  transform: rotate(45deg);
+}
+
+.navbar-visible .navbar-bar::after {
+  transform: rotate(-45deg);
+}
+.navbar-visible .navbar-bar {
+  width: 0;
+  background: transparent;
+}
+
+/* **************************************
+**************** WRAPPER ****************
+************************************** */
+
+.navbar-visible .navbar-menu_wrapper{
+  width: 100vw;
+  right: 0;
+}
+
+.navbar-menu_wrapper {
+  position: fixed;
+  z-index: 9;
+  right: -100vw;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: var(--color-grey);
+  height: 100vh;
+  text-align: center;
+  transition: 0.6s;
+}
