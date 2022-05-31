@@ -47,14 +47,18 @@ nav {
 }
 .navbar-visible .navbar-bar::before {
   transform: rotate(45deg);
+  z-index: 19;
 }
 
 .navbar-visible .navbar-bar::after {
   transform: rotate(-45deg);
+  z-index: 19;
 }
+
 .navbar-visible .navbar-bar {
   width: 0;
   background: transparent;
+  z-index: 19;
 }
 
 /* **************************************
