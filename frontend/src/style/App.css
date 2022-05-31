@@ -24,3 +24,11 @@
   font-family: var(--font-paragraph);
   color: var(--color-black);
 }
+
+body{
+  background-color: var(--color-grey);
+}
+
+h1{
+  font-family: var(--font-title);
+}
