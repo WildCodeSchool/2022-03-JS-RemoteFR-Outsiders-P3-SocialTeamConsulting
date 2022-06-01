@@ -1,13 +1,38 @@
 
 nav {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
+  padding-right: 1rem;
+  padding-left: 1rem;
 }
 
 .navbar-logo{
   height: 2.5rem;
 }
+
+/* **************************************
+************** INLINE MENU **************
+************************************** */
+
+.navbar-inline{
+  display: none;
+}
+
+.navbar-inline ul{
+  list-style: none;
+}
+
+.navbar-inline li{
+  display: inline;
+}
+
+@media (min-width: 768px) {
+
+  .navbar-inline{
+    display: block;
+  }
+  }
 
 /* **************************************
 **************** BURGER ****************
@@ -69,6 +94,7 @@ nav {
 .navbar-visible .navbar-menu_wrapper{
   width: 100vw;
   right: 0;
+  padding: 3rem 0;
 }
 
 .navbar-menu_wrapper {
@@ -84,4 +110,53 @@ nav {
   height: 100vh;
   text-align: center;
   transition: 0.6s;
+}
+
+.navbar-hr{
+  content:"";
+  display: block;
+  width: 100vw;
+  height: 0.5rem;
+  position: relative;
+  background-color: var(--color-highlight);
+
+}
+
+/* **************************************
+**************** FORM *******************
+************************************** */
+
+.navbar-legend{
+  font-family: var(--font-title);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.navbar-form_members{
+  width: 80%;
+}
+
+.navbar-form_members input[type=email],
+.navbar-form_members input[type=password]{
+  border-color: var(--color-highlight);
+  width: 100%;
+  text-align: center;
+  border-radius: 0.6rem;
+}
+
+.navbar-input{
+  margin-top: 1.5rem;
+  width: auto;
+}
+
+/* **************************************
+************** DESKTOP ******************
+************************************** */
+
+
+@media (min-width: 768px) {
+
+.navbar-burger{
+  display: none;
+}
 }

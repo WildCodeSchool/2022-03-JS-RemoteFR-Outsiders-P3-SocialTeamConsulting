@@ -10,6 +10,9 @@ function NavBar() {
   const handleisMenuVisible = () => {
     setIsMenuVisible(!isMenuVisible);
   };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  };
   return (
     <nav className={`${isMenuVisible ? "navbar-visible" : "navbar-hiden"}`}>
       <div>
@@ -32,7 +35,15 @@ function NavBar() {
         <span className="navbar-bar" />
       </div>
 
+      <div className="navbar-inline">
+        <ul>
+          <li>Nous rejoindre</li>
+          <li>Se connecter</li>
+        </ul>
+      </div>
+
       <div className="navbar-menu_wrapper">
+        <hr className="navbar-hr" />
         <NavLink to="/">
           <div
             role="button"
@@ -43,6 +54,7 @@ function NavBar() {
             <h1>Devenir intervenant partenaire</h1>
           </div>
         </NavLink>
+        <hr className="navbar-hr" />
         <NavLink to="/">
           <div
             role="button"
@@ -53,21 +65,28 @@ function NavBar() {
             <h1>Devenir association partenaire</h1>
           </div>
         </NavLink>
+        <hr className="navbar-hr" />
         <form action="" method="post" className="navbar-form_members">
+          <legend className="navbar-legend">Déjà membre</legend>
           <div className="form-example">
             <label htmlFor="email">
-              Email :
-              <input type="text" name="name" id="name" required />
-            </label>
-          </div>
-          <div className="form-example">
-            <label htmlFor="mdp">
-              Mot de passe :
+              <p>Email :</p>
               <input type="email" name="email" id="email" required />
             </label>
           </div>
           <div className="form-example">
-            <input type="submit" value="Se connecter" />
+            <label htmlFor="mdp">
+              <p>Mot de passe :</p>
+              <input type="password" name="password" id="password" required />
+            </label>
+          </div>
+          <div className="form-example">
+            <input
+              className="button-blue navbar-input"
+              type="submit"
+              value="Se connecter"
+              onClick={(e) => handleSubmit(e)}
+            />
           </div>
         </form>
       </div>
