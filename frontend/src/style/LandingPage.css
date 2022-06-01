@@ -1,0 +1,17 @@
+.main-landingpage {
+  padding: 1rem;
+}
+
+header {
+  height: 200px;
+  background-color: var(--color-highlight);
+}
+
+li {
+  list-style: inside;
+}
+
+p {
+  display: block;
+  padding-top: 1rem;
+}
