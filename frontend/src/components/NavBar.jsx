@@ -8,16 +8,21 @@ import logo from "@assets/SocialTeamConsultingLogo.ico";
 
 function NavBar() {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
-  const handleisMenuVisible = () => {
-    setIsMenuVisible(!isMenuVisible);
+  const handleisMenuVisible = (isVisible) => {
+    setIsMenuVisible(isVisible);
   };
   const [isLinkVisible, setIsLinkVisible] = useState(false);
-  const showLink = () => {
-    setIsLinkVisible(true);
+  const showLink = (isVisible) => {
+    console.warn(isVisible);
+    setIsLinkVisible(isVisible);
+  };
+  const [isFormVisible, setIsFormVisible] = useState(false);
+  const showForm = (isVisible) => {
+    setIsFormVisible(isVisible);
   };
   return (
-    <nav className={`${isMenuVisible ? "navbar-visible" : "navbar-hiden"}`}>
-      <div>
+    <nav className={`${isMenuVisible ? "navbar-visible" : "navbar-hidden"}`}>
+      <div className="navbar-div_logo">
         <img
           className="navbar-logo"
           src={logo}
@@ -29,7 +34,7 @@ function NavBar() {
         className="navbar-burger"
         role="button"
         onClick={() => {
-          handleisMenuVisible();
+          handleisMenuVisible(!isMenuVisible);
         }}
         tabIndex={0}
       >
@@ -38,19 +43,47 @@ function NavBar() {
 
       <div className="navbar-inline">
         <ul>
-          <li onMouseEnter={() => showLink()}>
-            Nous rejoindre
+          <li
+            className={`${isLinkVisible ? "navbar-li_highlight" : ""}`}
+            onMouseOver={() => showLink(true)}
+            onFocus={() => showLink(true)}
+            onMouseOut={() => showLink(false)}
+            onBlur={() => showLink(false)}
+          >
+            <h2>Nous rejoindre</h2>
             <div
               className={`${
                 isLinkVisible
                   ? "navbar-navbarlink-visible"
-                  : "navbar-navbarlink-hiden"
+                  : "navbar-navbarlink-hidden"
               }`}
             >
-              <NavBarLinks handleisMenuVisible={handleisMenuVisible} />
+              <NavBarLinks
+                handleisMenuVisible={handleisMenuVisible}
+                showLink={showLink}
+              />
             </div>
           </li>
-          <li>Se connecter</li>
+          <li
+            className={`${isFormVisible ? "navbar-li_highlight" : ""}`}
+            onMouseOver={() => showForm(true)}
+            onFocus={() => showForm(true)}
+            onMouseLeave={() => showForm(false)}
+          >
+            <h2>Se connecter</h2>
+            <div
+              className={`${
+                isFormVisible
+                  ? "navbar-navbarform-visible"
+                  : "navbar-navbarform-hidden"
+              }`}
+            >
+              <NavBarForm
+                handleisMenuVisible={handleisMenuVisible}
+                showForm={showForm}
+              />
+            </div>
+          </li>
         </ul>
       </div>
 

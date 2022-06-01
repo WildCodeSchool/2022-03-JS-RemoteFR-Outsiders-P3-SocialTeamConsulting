@@ -6,11 +6,16 @@ nav {
   padding-right: 1rem;
   padding-left: 1rem;
 }
-
-.navbar-logo{
+.navbar-div_logo{
   height: 2.5rem;
 }
+.navbar-logo{
+  width: 2.5rem;
+}
 
+.title{
+  text-align: center;
+}
 
 @media (min-width: 768px) {
 
@@ -34,29 +39,62 @@ nav {
 }
 
 .navbar-inline li{
-  display: inline;
-  padding-right: 2rem;
+  float: left;
+  padding: 0.5rem 2rem;
+}
+
+/* Highlight menu */
+
+.navbar-li_highlight{
+  background-color: var(--color-highlight);
+  border-radius: 0.6rem 0.6rem 0 0;
+}
+
+.navbar-li_highlight h2{
+  color: white;
+}
+
+
+.navbar-navbarlink-visible,
+.navbar-navbarform-visible{
+  display: block;
+  position: absolute;
+  background-color: var(--color-highlight);
+  border: 0.125rem solid var(--color-highlight);
+  border-radius: 0.6rem 0 0.6rem 0.6rem;
 }
 
 .navbar-navbarlink-visible{
-  display: block;
+  right: 11.855rem;
+}
+
+.navbar-navbarform-visible{
+  width: 20rem;
+  padding: 1rem 0;
+  right: 1rem;
+}
+
+.navbar-navbarlink-visible h2,
+.navbar-navbarform-visible .navbar-legend
+{
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
+.navbar-navbarform-visible p
+{
+  color: white;
+  padding: 0 0.5rem;
 }
 
 .navbar-navbarlink-visible hr{
-  width: 100%;
-}
-
-.navbar-navbarlink-hiden{
   display: none;
 }
 
-
-@media (min-width: 768px) {
-
-  .navbar-inline{
-    display: block;
-  }
-  }
+.navbar-navbarlink-hidden,
+.navbar-navbarform-hidden{
+  display: none;
+}
 
 /* **************************************
 **************** BURGER ****************
@@ -65,7 +103,6 @@ nav {
 .navbar-burger {
   display: flex;
   align-items: center;
-  width: 2.5rem;
   height: 2.5rem;
 }
 .navbar-burger:hover {
@@ -106,7 +143,6 @@ nav {
 }
 
 .navbar-visible .navbar-bar {
-  width: 0;
   background: transparent;
   z-index: 19;
 }
@@ -118,7 +154,7 @@ nav {
 .navbar-visible .navbar-menu_wrapper{
   width: 100vw;
   right: 0;
-  padding: 2rem 0;
+  padding: 3rem 0;
 }
 
 .navbar-menu_wrapper {
@@ -158,13 +194,14 @@ nav {
 
 .navbar-form_members{
   width: 80%;
+  margin: 0 auto;
 }
 
 .navbar-form_members input[type=email],
 .navbar-form_members input[type=password]{
-  border-color: var(--color-highlight);
   width: 100%;
   text-align: center;
+  border: 0.125rem solid var(--color-highlight);
   border-radius: 0.6rem;
 }
 
@@ -180,7 +217,12 @@ nav {
 
 @media (min-width: 768px) {
 
-.navbar-burger{
-  display: none;
-}
-}
+  .navbar-burger,
+  .navbar-legend{
+    display: none;
+  }
+
+  .navbar-inline{
+    display: block;
+  }
+  }

@@ -1,6 +1,6 @@
 import React from "react";
 
-function NavBarForm() {
+function NavBarForm({ showForm }) {
   const handleSubmit = (event) => {
     event.preventDefault();
   };
@@ -25,7 +25,10 @@ function NavBarForm() {
           className="button-blue navbar-input"
           type="submit"
           value="Se connecter"
-          onClick={(e) => handleSubmit(e)}
+          onClick={(e) => {
+            handleSubmit(e);
+            showForm(false);
+          }}
         />
       </div>
     </form>

@@ -1,28 +1,34 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-function NavBarLinks({ handleisMenuVisible }) {
+function NavBarLinks({ handleisMenuVisible, showLink }) {
   return (
     <>
-      <NavLink to="/">
+      <NavLink to="/Page1">
         <div
           role="button"
           tabIndex={0}
           className="navbar-button"
-          onClick={() => handleisMenuVisible()}
+          onClick={() => {
+            handleisMenuVisible(false);
+            showLink(false);
+          }}
         >
-          <h1>Devenir intervenant partenaire</h1>
+          <h2>Devenir intervenant partenaire</h2>
         </div>
       </NavLink>
       <hr className="navbar-hr" />
-      <NavLink to="/">
+      <NavLink to="/Page2">
         <div
           role="button"
           tabIndex={0}
           className="navbar-button"
-          onClick={() => handleisMenuVisible()}
+          onClick={() => {
+            handleisMenuVisible(false);
+            showLink(false);
+          }}
         >
-          <h1>Devenir association partenaire</h1>
+          <h2>Devenir association partenaire</h2>
         </div>
       </NavLink>
     </>
