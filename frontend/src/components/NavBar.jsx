@@ -11,6 +11,10 @@ function NavBar() {
   const handleisMenuVisible = () => {
     setIsMenuVisible(!isMenuVisible);
   };
+  const [isLinkVisible, setIsLinkVisible] = useState(false);
+  const showLink = () => {
+    setIsLinkVisible(true);
+  };
   return (
     <nav className={`${isMenuVisible ? "navbar-visible" : "navbar-hiden"}`}>
       <div>
@@ -34,7 +38,18 @@ function NavBar() {
 
       <div className="navbar-inline">
         <ul>
-          <li>Nous rejoindre</li>
+          <li onMouseEnter={() => showLink()}>
+            Nous rejoindre
+            <div
+              className={`${
+                isLinkVisible
+                  ? "navbar-navbarlink-visible"
+                  : "navbar-navbarlink-hiden"
+              }`}
+            >
+              <NavBarLinks handleisMenuVisible={handleisMenuVisible} />
+            </div>
+          </li>
           <li>Se connecter</li>
         </ul>
       </div>

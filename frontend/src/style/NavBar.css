@@ -38,6 +38,19 @@ nav {
   padding-right: 2rem;
 }
 
+.navbar-navbarlink-visible{
+  display: block;
+}
+
+.navbar-navbarlink-visible hr{
+  width: 100%;
+}
+
+.navbar-navbarlink-hiden{
+  display: none;
+}
+
+
 @media (min-width: 768px) {
 
   .navbar-inline{
