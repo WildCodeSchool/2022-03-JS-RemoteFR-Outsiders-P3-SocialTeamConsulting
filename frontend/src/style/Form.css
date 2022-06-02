@@ -1,0 +1,193 @@
+.register_form {
+  text-align: center;
+}
+
+.register_form {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 10px auto;
+  max-width: 900px;
+  gap: 10px;
+}
+
+.register label, .register_asso label {
+  color: var(--color-black);
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+}
+
+.register input[type="text"],
+.register input[type="password"],
+.register textarea,
+.register_asso input[type="text"],
+.register_asso input[type="password"],
+.register_asso textarea {
+  width: 100%;
+  margin: 10px 0 15px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  padding: 5px;
+  outline: none;
+  transition: 0.7s;
+  border: 0.125rem solid var(--color-black);
+  border-radius: 0.6rem;
+}
+
+.register input[type="text"]:focus,
+.register input[type="password"]:focus,
+.register textarea:focus
+{
+  border: 0.125rem solid var(--color-highlight);
+}
+
+.register_asso input[type="text"]:focus,
+.register_asso input[type="password"]:focus,
+.register_asso textarea:focus {
+  border: 0.125rem solid var(--color-line-asso);
+}
+
+
+.register textarea, .register_asso textarea {
+  resize: none;
+  height: 180px;
+}
+
+.back {
+  padding-bottom: 5rem;
+}
+
+.register input[type="submit"], .register_asso input[type="submit"] {
+  margin: auto;
+  padding-top: 2px;
+  width: 100%;
+}
+
+.register h1, .register_asso h1 {
+  font-size: 1.8rem;
+  color: var(--color-black);
+}
+
+.form_upload {
+  background-color: white;
+}
+
+.upload_icon {
+  color: var(--color-highlight);
+  font-size: 50px;
+}
+
+.form_upload label {
+  cursor: pointer;
+
+  border-radius: 0.6rem;
+}
+
+.form_upload input {
+  display: none;
+}
+
+.green {
+  color: green;
+}
+
+.red {
+  color: red;
+}
+
+.form_upload h2 {
+  text-decoration: underline;
+}
+
+@media screen and (min-width: 768px) {
+  .nom_prenom {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .email_telephone {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .sign_form_password {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .register input[type="text"],
+  .register input[type="password"],
+  .register_asso input[type="text"],
+  .register_asso input[type="password"]
+  {
+    width: 20rem;
+  }
+
+  .register_asso input[type="text"]{
+    width: 100%;
+  }
+
+}
+
+@media screen and (min-width: 1200px) {
+  .nom_prenom {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .email_telephone {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .sign_form_password {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .register_asso .register_form {
+    background-color: var(--color-grey);
+    display: flex;
+    border: 0.125rem solid var(--color-line-asso);
+    border-radius: 0.6rem;
+  }
+
+  .register_form {
+    background-color: var(--color-grey);
+    display: flex;
+    border: 0.125rem solid var(--color-highlight);
+    border-radius: 0.6rem;
+  }
+
+  .register textarea,
+  .register_asso textarea {
+    resize: none;
+    height: 180px;
+    width: 86%;
+  }
+
+  .register input[type="text"],
+  .register input[type="password"],
+  .register_asso input[type="text"]
+  {
+    width: 20rem;
+  }
+
+  .register_asso input[type="text"]{
+    width: 86%;
+  }
+
+  .form_upload {
+    padding: 2rem 0 2rem;
+  }
+
+  .submit_button {
+    padding-bottom: 3rem ;
+  }
+
+  .register_form h1 {
+    padding-top: 2rem;
+  }
+
+}
