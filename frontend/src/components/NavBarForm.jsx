@@ -11,7 +11,13 @@ function NavBarForm({ showForm }) {
       <div className="form-example">
         <label htmlFor="email">
           <p>Email :</p>
-          <input type="email" name="email" id="email" required />
+          <input
+            type="email"
+            name="email"
+            id="email"
+            required
+            style={{ pointerEvents: "none" }}
+          />
         </label>
       </div>
       <div className="form-example">

@@ -7,6 +7,12 @@ import NavBarForm from "@components/NavBarForm";
 import logo from "@assets/SocialTeamConsultingLogo.ico";
 
 function NavBar() {
+  /*
+        disableRestoreFocus
+    style={{ pointerEvents: 'none'}}
+Anthony Gorski09:45
+onmouseleave popover
+*/
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   const handleisMenuVisible = (isVisible) => {
     setIsMenuVisible(isVisible);
@@ -69,6 +75,7 @@ function NavBar() {
             onMouseOver={() => showForm(true)}
             onFocus={() => showForm(true)}
             onMouseLeave={() => showForm(false)}
+            disableRestoreFocus
           >
             <h2>Se connecter</h2>
             <div
