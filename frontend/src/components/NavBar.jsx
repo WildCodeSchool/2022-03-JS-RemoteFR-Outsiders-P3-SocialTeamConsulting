@@ -53,8 +53,7 @@ onmouseleave popover
             className={`${isLinkVisible ? "navbar-li_highlight" : ""}`}
             onMouseOver={() => showLink(true)}
             onFocus={() => showLink(true)}
-            onMouseOut={() => showLink(false)}
-            onBlur={() => showLink(false)}
+            onMouseLeave={() => showLink(false)}
           >
             <h2>Nous rejoindre</h2>
             <div

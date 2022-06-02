@@ -25,7 +25,6 @@ nav {
   }
   }
 
-
 /* **************************************
 ************** INLINE MENU **************
 ************************************** */
@@ -61,25 +60,55 @@ nav {
   position: absolute;
   background-color: var(--color-highlight);
   border: 0.125rem solid var(--color-highlight);
-  border-radius: 0.6rem 0 0.6rem 0.6rem;
+  border-radius: 0 0 0.6rem 0.6rem;
+}
+
+.navbar-navbarlink-visible,
+.navbar-navbarform-visible{
+  width: 22.6rem;
+  padding: 1rem 0;
+  right: 1.01rem;
+  animation: fadein 1.5s;
+  overflow: hidden;
 }
 
 .navbar-navbarlink-visible{
-  right: 11.855rem;
+  height: 8.75rem;
+  animation: fadeinlink 1.5s;
+}
+
+@keyframes fadeinlink {
+  from {
+      height: 0rem;
+      padding: 0;
+  }
+  to {
+      height: 8.75rem;
+  }
 }
 
 .navbar-navbarform-visible{
-  width: 20rem;
-  padding: 1rem 0;
-  right: 1rem;
+  height: 16rem;
+  animation: fadeinform 1.5s;
 }
+
+@keyframes fadeinform {
+  from {
+      height: 0rem;
+      padding: 0;
+  }
+  to {
+      height: 16rem;
+  }
+}
+
 
 .navbar-navbarlink-visible h2,
 .navbar-navbarform-visible .navbar-legend
 {
   color: white;
   text-align: center;
-  padding: 1rem;
+  padding: 1.01rem;  
 }
 .navbar-navbarform-visible p
 {
@@ -182,6 +211,11 @@ nav {
 
 }
 
+.navbar-menu_wrapper h2{
+  text-decoration: none;
+  color: black;
+}
+
 /* **************************************
 **************** FORM *******************
 ************************************** */
@@ -215,7 +249,10 @@ nav {
 ************************************** */
 
 
-@media (min-width: 768px) {
+@media (min-width: 845px) {
+  .navbar{
+    height: 3.5rem;
+  }
 
   .navbar-burger,
   .navbar-legend{
@@ -225,4 +262,9 @@ nav {
   .navbar-inline{
     display: block;
   }
+  
+  .navbar-button h2:hover{
+    text-decoration: underline;
   }
+
+}
