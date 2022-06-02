@@ -103,41 +103,42 @@ function FormInterv() {
                 justificatives suivantes :
               </h2>
 
-              <label htmlFor="upload_files">
-                Une copie de votre statut d&apos;auto entrepreneur
+              <label htmlFor="upload_statut_ae" className="btn">
+                Une copie de votre statut d&apos;autoentrepreneur{" "}
                 <div>
                   <FaCloudUploadAlt className="upload_icon" />
                 </div>
                 {fileAutoE ? fooAutoEntr() : noFile()}
                 <input
+                  id="upload_statut_ae"
                   type="file"
                   onChange={handleChangeAutoEntr}
                   className="inputfile"
                 />
               </label>
 
-              <label htmlFor="upload_files">
-                <input type="radio" aria-label="fixbug" />
+              <label htmlFor="upload_carte_vitale" className="btn">
                 Une copie de votre carte vitale
                 <div>
                   <FaCloudUploadAlt className="upload_icon" />
                 </div>
                 {fileCarteVitale ? fooCarteVitale() : noFile()}
                 <input
+                  id="upload_carte_vitale"
                   type="file"
                   onChange={handleChangeCarteVitale}
                   className="inputfile"
                 />
               </label>
 
-              <label htmlFor="upload_files">
-                <input type="radio" aria-label="fixbug" />
+              <label htmlFor="upload_cv" className="btn">
                 Votre CV
                 <div>
                   <FaCloudUploadAlt className="upload_icon" />
                 </div>
                 {fileCv ? fooCv() : noFile()}
                 <input
+                  id="upload_cv"
                   type="file"
                   onChange={handleChangeCv}
                   className="inputfile"

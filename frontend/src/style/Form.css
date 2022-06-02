@@ -11,7 +11,8 @@
   gap: 10px;
 }
 
-.register label, .register_asso label {
+.register label,
+.register_asso label {
   color: var(--color-black);
   font-weight: 600;
   font-size: 0.8rem;
@@ -37,8 +38,7 @@
 
 .register input[type="text"]:focus,
 .register input[type="password"]:focus,
-.register textarea:focus
-{
+.register textarea:focus {
   border: 0.125rem solid var(--color-highlight);
 }
 
@@ -48,8 +48,8 @@
   border: 0.125rem solid var(--color-line-asso);
 }
 
-
-.register textarea, .register_asso textarea {
+.register textarea,
+.register_asso textarea {
   resize: none;
   height: 180px;
 }
@@ -58,13 +58,15 @@
   padding-bottom: 5rem;
 }
 
-.register input[type="submit"], .register_asso input[type="submit"] {
+.register input[type="submit"],
+.register_asso input[type="submit"] {
   margin: auto;
   padding-top: 2px;
   width: 100%;
 }
 
-.register h1, .register_asso h1 {
+.register h1,
+.register_asso h1 {
   font-size: 1.8rem;
   color: var(--color-black);
 }
@@ -76,6 +78,10 @@
 .upload_icon {
   color: var(--color-highlight);
   font-size: 50px;
+}
+
+#upload_files {
+  visibility: "hidden";
 }
 
 .form_upload label {
@@ -119,15 +125,13 @@
   .register input[type="text"],
   .register input[type="password"],
   .register_asso input[type="text"],
-  .register_asso input[type="password"]
-  {
+  .register_asso input[type="password"] {
     width: 20rem;
   }
 
-  .register_asso input[type="text"]{
+  .register_asso input[type="text"] {
     width: 100%;
   }
-
 }
 
 @media screen and (min-width: 1200px) {
@@ -169,12 +173,11 @@
 
   .register input[type="text"],
   .register input[type="password"],
-  .register_asso input[type="text"]
-  {
+  .register_asso input[type="text"] {
     width: 20rem;
   }
 
-  .register_asso input[type="text"]{
+  .register_asso input[type="text"] {
     width: 86%;
   }
 
@@ -183,11 +186,10 @@
   }
 
   .submit_button {
-    padding-bottom: 3rem ;
+    padding-bottom: 3rem;
   }
 
   .register_form h1 {
     padding-top: 2rem;
   }
-
 }
