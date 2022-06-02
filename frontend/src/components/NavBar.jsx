@@ -7,19 +7,12 @@ import NavBarForm from "@components/NavBarForm";
 import logo from "@assets/SocialTeamConsultingLogo.ico";
 
 function NavBar() {
-  /*
-        disableRestoreFocus
-    style={{ pointerEvents: 'none'}}
-Anthony Gorski09:45
-onmouseleave popover
-*/
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   const handleisMenuVisible = (isVisible) => {
     setIsMenuVisible(isVisible);
   };
   const [isLinkVisible, setIsLinkVisible] = useState(false);
   const showLink = (isVisible) => {
-    console.warn(isVisible);
     setIsLinkVisible(isVisible);
   };
   const [isFormVisible, setIsFormVisible] = useState(false);
@@ -74,7 +67,6 @@ onmouseleave popover
             onMouseOver={() => showForm(true)}
             onFocus={() => showForm(true)}
             onMouseLeave={() => showForm(false)}
-            disableRestoreFocus
           >
             <h2>Se connecter</h2>
             <div
@@ -84,10 +76,14 @@ onmouseleave popover
                   : "navbar-navbarform-hidden"
               }`}
             >
-              <NavBarForm
-                handleisMenuVisible={handleisMenuVisible}
-                showForm={showForm}
-              />
+              {isFormVisible ? (
+                <NavBarForm
+                  handleisMenuVisible={handleisMenuVisible}
+                  showForm={showForm}
+                />
+              ) : (
+                ""
+              )}
             </div>
           </li>
         </ul>
@@ -97,7 +93,7 @@ onmouseleave popover
         <hr className="navbar-hr" />
         <NavBarLinks handleisMenuVisible={handleisMenuVisible} />
         <hr className="navbar-hr" />
-        <NavBarForm />
+        {isMenuVisible ? <NavBarForm /> : ""}
       </div>
     </nav>
   );
