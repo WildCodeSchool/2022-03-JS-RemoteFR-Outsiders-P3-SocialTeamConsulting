@@ -1,0 +1,67 @@
+footer{
+  text-align: center;
+}
+
+.footer-hr{
+  content:"";
+  display: block;
+  width: 100vw;
+  border: 0;
+  height: 0.2rem;
+  position: relative;
+  background-color: var(--color-highlight);
+  margin-bottom: 1rem;
+}
+
+footer h2{
+  margin: 1.2rem auto;
+}
+
+.footer-toogle-title{
+  display: none;
+}
+
+footer p{
+  line-height: 1.2rem;
+}
+
+.footer-contect-icon{
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+}
+
+.wildcodeschool{
+  margin: 1.5rem 0;
+}
+
+.red{
+  color: red;
+}
+
+.footer-middle-icon{
+  vertical-align: middle;
+}
+
+footer a{
+  color: var(--color-black);
+  text-decoration: underline;
+}
+
+@media (min-width: 845px) {
+  .footer-text{
+    width: 60%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .footer-bloc{
+    text-align: left;
+  }
+
+  .footer-toogle-title{
+    display: block;
+  }
+}
