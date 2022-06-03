@@ -14,13 +14,6 @@ function LandingPage() {
         <h1>Nos services</h1>
         <div className="section-inner-content">
           <div>
-            {/* <img
-              src={img4}
-              alt="Une spécialité, le médico-social"
-              className="img4"
-            /> */}
-          </div>
-          <div>
             <div className="argumentaire">
               <ul className="list">
                 <li>
@@ -52,7 +45,11 @@ function LandingPage() {
       <section>
         <h1>Un accompagnement de qualité</h1>
         <div className="regular-section" id="even_section">
-          <img src={img3} alt="un accompagnement de qualité" className="img3" />
+          <img
+            src={img3}
+            alt="un accompagnement de qualité"
+            className="img3 img"
+          />
           <div>
             {`Par son réseau de professionnel•les, Social Team Consulting s’attache à
         assurer une `}
@@ -75,7 +72,7 @@ function LandingPage() {
             <img
               src={img1}
               alt="l humain, plus qu une priorité"
-              className="img1"
+              className="img1 img"
             />
             <div>
               {`Le développement de Social Team Consulting est fondé sur le `}
@@ -96,7 +93,7 @@ function LandingPage() {
       <section>
         <h1>Qui sommes nous ?</h1>
         <div className="regular-section" id="even_section">
-          <img src={img2} alt="Qui sommes nous" className="img2" />
+          <img src={img2} alt="Qui sommes nous" className="img2 img" />
           <div>
             L’agence est fondée par des professionnel•les issu•es du
             <span>milieu médico-social</span> depuis près de <span>20 ans</span>

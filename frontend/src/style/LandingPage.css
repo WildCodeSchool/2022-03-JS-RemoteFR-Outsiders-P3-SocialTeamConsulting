@@ -18,7 +18,7 @@ header h1 {
   background-color: var(--color-highlight);
   margin: 1rem 0rem;
   padding: 0.5rem;
-  border-radius: 10px;
+  border-radius: 0.63rem;
 }
 
 #services h1,
@@ -26,7 +26,7 @@ header h1 {
   color: white;
 }
 
-span {
+.main-landingpage span {
   font-weight: bold;
   color: var(--color-interaction);
   font-size: 1rem;
@@ -48,22 +48,39 @@ span {
   flex-direction: row;
 }
 
+#services {
+  background-color: var(--color-highlight);
+  margin: 1rem 0rem;
+  padding: 0.5rem;
+  border-radius: 0.63rem;
+}
+
+#services h1,
+.argumentaire ul li {
+  color: white;
+}
+
+#even_section {
+  flex-direction: row-reverse;
+}
+
+.regular-section {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
 .list li {
   list-style: inside;
 }
 
-h1 {
+.main-landingpage h1 {
   text-align: center;
 }
 
-img {
-  width: 250px;
+.img {
+  width: 15.6rem;
   margin: 1rem;
-}
-
-p {
-  display: block;
-  padding-top: 1rem;
 }
 
 .quote {
@@ -72,7 +89,7 @@ p {
   padding: 1rem;
   font-weight: bolder;
   background-color: var(--color-interaction);
-  border-radius: 10px;
+  border-radius: 0.63rem;
   color: white;
 }
 
