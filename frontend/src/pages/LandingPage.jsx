@@ -14,13 +14,6 @@ function LandingPage() {
         <h1>Nos services</h1>
         <div className="section-inner-content">
           <div>
-            {/* <img
-              src={img4}
-              alt="Une spécialité, le médico-social"
-              className="img4"
-            /> */}
-          </div>
-          <div>
             <div className="argumentaire">
               <ul className="list">
                 <li>
