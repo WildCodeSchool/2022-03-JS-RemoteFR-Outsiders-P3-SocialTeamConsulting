@@ -21,7 +21,7 @@ function FormInterv() {
 
   function noFile() {
     return (
-      <div className="red">Vous n&apos;avez pas encore ajouté de fichier</div>
+      <div className="red">{`Vous n'avez pas encore ajouté de fichier`}</div>
     );
   }
 
@@ -42,56 +42,55 @@ function FormInterv() {
       <div className="back">
         <form action="#">
           <div className="register_form">
-            <h1>Demande d&apos;inscription pour les intervenants</h1>
-            <div className="nom_prenom">
+            <h1>{`Demande d'inscription pour les intervenants`}</h1>
+            <div className="box_form">
               <div className="form_nom">
                 <label htmlFor="interv_nom">
-                  Nom
-                  <br />
+                  <p>Nom</p>
+
                   <input type="text" id="interv_nom" />
                 </label>
               </div>
 
               <div className="form_prenom">
                 <label htmlFor="interv_prenom">
-                  Prénom
-                  <br />
+                  <p>Prénom</p>
+
                   <input type="text" id="interv_prenom" />
                 </label>
               </div>
             </div>
 
-            <div className="email_telephone">
+            <div className="box_form">
               <div className="form_email">
                 <label htmlFor="interv_email">
-                  Email
-                  <br />
+                  <p>Email</p>
+
                   <input type="text" id="interv_email" />
                 </label>
               </div>
 
               <div className="form_telephone">
                 <label htmlFor="interv_tel">
-                  Téléphone
-                  <br />
+                  <p>Téléphone</p>
+
                   <input type="text" id="interv_tel" />
                 </label>
               </div>
             </div>
 
-            <div className="sign_form_password">
+            <div className="box_form">
               <div className="form_password">
                 <label htmlFor="interv_mdp">
-                  Choix un mot de passe
-                  <br />
+                  <p>Choix un mot de passe</p>
                   <input type="password" id="interv_mdp" />
                 </label>
               </div>
 
               <div className="form_check_password">
                 <label htmlFor="interv_mdp">
-                  Retapez votre mot de passe
-                  <br />
+                  <p>Retapez votre mot de passe</p>
+
                   <input type="password" id="interv_mdp" />
                 </label>
               </div>
@@ -104,7 +103,7 @@ function FormInterv() {
               </h2>
 
               <label htmlFor="upload_statut_ae" className="btn">
-                Une copie de votre statut d&apos;autoentrepreneur{" "}
+                <p>{`Une copie de votre statut d'autoentrepreneur`}</p>
                 <div>
                   <FaCloudUploadAlt className="upload_icon" />
                 </div>
@@ -118,7 +117,7 @@ function FormInterv() {
               </label>
 
               <label htmlFor="upload_carte_vitale" className="btn">
-                Une copie de votre carte vitale
+                <p>Une copie de votre carte vitale</p>
                 <div>
                   <FaCloudUploadAlt className="upload_icon" />
                 </div>
@@ -132,7 +131,7 @@ function FormInterv() {
               </label>
 
               <label htmlFor="upload_cv" className="btn">
-                Votre CV
+                <p>Votre CV</p>
                 <div>
                   <FaCloudUploadAlt className="upload_icon" />
                 </div>
@@ -147,8 +146,7 @@ function FormInterv() {
             </div>
             <div className="form_textarea">
               <label htmlFor="message">
-                Votre message
-                <br />
+                <p>Votre message</p>
                 <textarea id="message" />
               </label>
             </div>

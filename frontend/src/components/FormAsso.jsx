@@ -7,33 +7,32 @@ function FormAsso() {
         <form action="#">
           <div className="register_form">
             <h1>
-              Vous êtes une association et vous <br /> souhaitez nous rejoindre
-              ?
+              <p>Vous êtes une association et vous</p>
+              <p>souhaitez nous rejoindre ?</p>
             </h1>
             <h1>Nous vous invitons à remplir ce formulaire</h1>
             <div>
               <label htmlFor="asso_name">
-                Nom de votre association <br />
+                <p>Nom de votre association</p>
                 <input type="text" id="asso_name" />
               </label>
             </div>
             <div>
               <label htmlFor="asso_email">
-                Email
-                <br />
+                <p>Email</p>
                 <input type="text" id="asso_email" />
               </label>
             </div>
             <div>
               <label htmlFor="asso_tel">
-                Téléphone <br />
+                <p>Téléphone</p>
                 <input type="text" id="asso_tel" />
               </label>
             </div>
             <div className="form_textarea">
               <label htmlFor="message">
-                Votre message
-                <br />
+                <p>Votre message</p>
+
                 <textarea id="message" />
               </label>
             </div>

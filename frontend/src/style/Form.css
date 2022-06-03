@@ -6,9 +6,9 @@
   display: flex;
   flex-direction: column;
   width: 90%;
-  margin: 10px auto;
+  margin: 0.625rem auto;
   max-width: 900px;
-  gap: 10px;
+  gap: 0.625rem;
 }
 
 .register label,
@@ -16,7 +16,7 @@
   color: var(--color-black);
   font-weight: 600;
   font-size: 0.8rem;
-  letter-spacing: 1px;
+  letter-spacing: 0.063rem;
 }
 
 .register input[type="text"],
@@ -26,10 +26,10 @@
 .register_asso input[type="password"],
 .register_asso textarea {
   width: 100%;
-  margin: 10px 0 15px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  padding: 5px;
+  margin: 0.625rem 0 0.938rem;
+  border-radius: 0.25rem;
+  border: 0.063rem solid #ccc;
+  padding: 0.313rem;
   outline: none;
   transition: 0.7s;
   border: 0.125rem solid var(--color-black);
@@ -51,7 +51,7 @@
 .register textarea,
 .register_asso textarea {
   resize: none;
-  height: 180px;
+  height: 11.25rem;
 }
 
 .back {
@@ -61,7 +61,7 @@
 .register input[type="submit"],
 .register_asso input[type="submit"] {
   margin: auto;
-  padding-top: 2px;
+  padding-top: 0.125rem;
   width: 100%;
 }
 
@@ -77,7 +77,7 @@
 
 .upload_icon {
   color: var(--color-highlight);
-  font-size: 50px;
+  font-size: 3.125rem;
 }
 
 #upload_files {
@@ -135,17 +135,7 @@
 }
 
 @media screen and (min-width: 1200px) {
-  .nom_prenom {
-    display: flex;
-    justify-content: space-around;
-  }
-
-  .email_telephone {
-    display: flex;
-    justify-content: space-around;
-  }
-
-  .sign_form_password {
+  .box_form {
     display: flex;
     justify-content: space-around;
   }
@@ -167,7 +157,7 @@
   .register textarea,
   .register_asso textarea {
     resize: none;
-    height: 180px;
+    height: 11.25rem;
     width: 86%;
   }
 
