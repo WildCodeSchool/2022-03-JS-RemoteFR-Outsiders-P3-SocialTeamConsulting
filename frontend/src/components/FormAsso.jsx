@@ -20,7 +20,7 @@ function FormAsso() {
             <div>
               <label htmlFor="asso_email">
                 <p>Email</p>
-                <input type="text" id="asso_email" />
+                <input type="email" id="asso_email" />
               </label>
             </div>
             <div>

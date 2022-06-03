@@ -21,14 +21,14 @@
 
 .register input[type="text"],
 .register input[type="password"],
+.register input[type="email"],
 .register textarea,
 .register_asso input[type="text"],
 .register_asso input[type="password"],
+.register_asso input[type="email"],
 .register_asso textarea {
   width: 100%;
   margin: 0.625rem 0 0.938rem;
-  border-radius: 0.25rem;
-  border: 0.063rem solid #ccc;
   padding: 0.313rem;
   outline: none;
   transition: 0.7s;
@@ -37,15 +37,17 @@
 }
 
 .register input[type="text"]:focus,
+.register input[type="email"]:focus,
 .register input[type="password"]:focus,
 .register textarea:focus {
-  border: 0.125rem solid var(--color-highlight);
+  border-color: var(--color-highlight);
 }
 
 .register_asso input[type="text"]:focus,
 .register_asso input[type="password"]:focus,
+.register_asso input[type="email"]:focus,
 .register_asso textarea:focus {
-  border: 0.125rem solid var(--color-line-asso);
+  border-color: var(--color-line-asso);
 }
 
 .register textarea,
@@ -86,7 +88,6 @@
 
 .form_upload label {
   cursor: pointer;
-
   border-radius: 0.6rem;
 }
 
@@ -107,51 +108,36 @@
 }
 
 @media screen and (min-width: 768px) {
-  .nom_prenom {
-    display: flex;
-    justify-content: space-around;
-  }
-
-  .email_telephone {
-    display: flex;
-    justify-content: space-around;
-  }
-
-  .sign_form_password {
+  .box_form {
     display: flex;
     justify-content: space-around;
   }
 
   .register input[type="text"],
   .register input[type="password"],
+  .register input[type="email"],
   .register_asso input[type="text"],
+  .register_asso input[type="email"],
   .register_asso input[type="password"] {
     width: 20rem;
   }
 
-  .register_asso input[type="text"] {
+  .register_asso input[type="text"],
+  .register_asso input[type="email"] {
     width: 100%;
   }
 }
 
 @media screen and (min-width: 1200px) {
-  .box_form {
-    display: flex;
-    justify-content: space-around;
-  }
-
-  .register_asso .register_form {
-    background-color: var(--color-grey);
-    display: flex;
-    border: 0.125rem solid var(--color-line-asso);
-    border-radius: 0.6rem;
-  }
-
   .register_form {
     background-color: var(--color-grey);
     display: flex;
     border: 0.125rem solid var(--color-highlight);
     border-radius: 0.6rem;
+  }
+
+  .register_asso .register_form {
+    border-color: var(--color-line-asso);
   }
 
   .register textarea,
@@ -161,13 +147,8 @@
     width: 86%;
   }
 
-  .register input[type="text"],
-  .register input[type="password"],
-  .register_asso input[type="text"] {
-    width: 20rem;
-  }
-
-  .register_asso input[type="text"] {
+  .register_asso input[type="text"],
+  .register_asso input[type="email"] {
     width: 86%;
   }
 

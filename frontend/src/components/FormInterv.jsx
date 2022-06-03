@@ -44,7 +44,7 @@ function FormInterv() {
           <div className="register_form">
             <h1>{`Demande d'inscription pour les intervenants`}</h1>
             <div className="box_form">
-              <div className="form_nom">
+              <div>
                 <label htmlFor="interv_nom">
                   <p>Nom</p>
 
@@ -52,7 +52,7 @@ function FormInterv() {
                 </label>
               </div>
 
-              <div className="form_prenom">
+              <div>
                 <label htmlFor="interv_prenom">
                   <p>Prénom</p>
 
@@ -62,15 +62,15 @@ function FormInterv() {
             </div>
 
             <div className="box_form">
-              <div className="form_email">
+              <div>
                 <label htmlFor="interv_email">
                   <p>Email</p>
 
-                  <input type="text" id="interv_email" />
+                  <input type="email" id="interv_email" />
                 </label>
               </div>
 
-              <div className="form_telephone">
+              <div>
                 <label htmlFor="interv_tel">
                   <p>Téléphone</p>
 
@@ -80,14 +80,14 @@ function FormInterv() {
             </div>
 
             <div className="box_form">
-              <div className="form_password">
+              <div>
                 <label htmlFor="interv_mdp">
                   <p>Choix un mot de passe</p>
                   <input type="password" id="interv_mdp" />
                 </label>
               </div>
 
-              <div className="form_check_password">
+              <div>
                 <label htmlFor="interv_mdp">
                   <p>Retapez votre mot de passe</p>
 
