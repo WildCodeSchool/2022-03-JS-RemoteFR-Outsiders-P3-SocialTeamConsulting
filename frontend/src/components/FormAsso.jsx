@@ -7,8 +7,8 @@ function FormAsso() {
         <form action="#">
           <div className="register_form">
             <h1>
-              <p>Vous êtes une association et vous</p>
-              <p>souhaitez nous rejoindre ?</p>
+              Vous êtes une association et vous <br />
+              souhaitez nous rejoindre ?
             </h1>
             <h1>Nous vous invitons à remplir ce formulaire</h1>
             <div>
