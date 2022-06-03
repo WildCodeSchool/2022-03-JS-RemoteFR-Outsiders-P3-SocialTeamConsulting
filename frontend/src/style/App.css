@@ -45,7 +45,7 @@ h2 {
 .app-main-container {
   width: clamp(375px, 70%, 1200px);
   margin: 0 auto;
-  padding: 1rem;
+  padding: 3.5rem 1rem 0 1rem;
 }
 
 .button-blue {
