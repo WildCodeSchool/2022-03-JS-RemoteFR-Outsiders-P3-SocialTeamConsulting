@@ -38,6 +38,10 @@ header h1 {
   color: white;
 }
 
+div > section > h1:nth-child(2n + 1) {
+  text-align: left;
+}
+
 #even_section {
   flex-direction: row-reverse;
 }
