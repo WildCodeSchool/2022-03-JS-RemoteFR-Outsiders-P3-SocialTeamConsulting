@@ -48,6 +48,40 @@ span {
   flex-direction: row;
 }
 
+#services {
+  background-color: var(--color-highlight);
+  margin: 1rem 0rem;
+  padding: 0.5rem;
+  border-radius: 10px;
+}
+
+#services h1,
+.argumentaire ul li {
+  color: white;
+}
+
+span {
+  font-weight: bold;
+  color: var(--color-interaction);
+  font-size: 1rem;
+}
+
+.section-inner-content {
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+#even_section {
+  flex-direction: row-reverse;
+}
+
+.regular-section {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
 .list li {
   list-style: inside;
 }
