@@ -22,7 +22,6 @@
   font: inherit;
   scroll-behavior: smooth;
   font-family: var(--font-paragraph);
-  color: var(--color-black);
 }
 a {
   text-decoration: none;
