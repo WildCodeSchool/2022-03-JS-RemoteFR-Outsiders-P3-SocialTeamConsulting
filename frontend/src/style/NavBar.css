@@ -20,6 +20,7 @@ nav {
 }
 .navbar-logo {
   width: 2.5rem;
+  cursor: pointer;
 }
 
 .title {
@@ -46,13 +47,17 @@ nav {
 }
 
 .navbar-inline li {
+  text-decoration: underline;
+  text-decoration-color: black;
   float: left;
   padding: 0.5rem 2rem;
+  cursor: pointer;
 }
 
 /* Highlight menu */
 
 .navbar-li_highlight {
+  text-decoration: none !important;
   background-color: var(--color-highlight);
   border-radius: 0.6rem 0.6rem 0 0;
 }
@@ -67,7 +72,6 @@ nav {
   position: absolute;
   top: 3rem;
   background-color: var(--color-highlight);
-  border: 0.125rem solid var(--color-highlight);
   border-radius: 0 0 0.6rem 0.6rem;
 }
 
