@@ -7,7 +7,7 @@
 .assoTitle {
   display: flex;
   position: absolute;
-  padding: 10px;
+  padding: 0.625rem;
 }
 
 .imgAsso {
@@ -20,7 +20,7 @@
 img {
   display: flex;
   width: 90vw;
-  padding-top: 40px;
+  padding-top: 2.5rem;
 }
 
 .data {
@@ -28,7 +28,7 @@ img {
   justify-content: space-around;
   height: 12rem;
   flex: 1 1 1;
-  margin: 0px 15px 0px 15px;
+  margin: 0 0.9rem 0 0.9rem;
 }
 
 .keyData {
@@ -41,10 +41,10 @@ img {
   .data {
     flex-direction: column;
     align-items: center;
-    height: 400px;
+    height: 25rem;
   }
   .keyData {
-    height: 100px;
+    height: 6.25rem;
     width: 90%;
   }
 }
@@ -56,7 +56,7 @@ img {
 }
 
 .joinUs {
-  padding: 40px;
+  padding: 2.5rem;
   display: flex;
   justify-content: center;
 }
