@@ -1,0 +1,288 @@
+nav {
+  height: 3.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  overflow: hidden;
+}
+
+.fixed{
+  position: fixed;
+  top: 0rem;
+  background-color: white;
+  z-index: 2;
+}
+
+.navbar-div_logo {
+  height: 2.5rem;
+}
+.navbar-logo {
+  width: 2.5rem;
+}
+
+.title {
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .title {
+    padding-left: 1rem;
+    margin-right: auto;
+  }
+}
+
+/* **************************************
+************** INLINE MENU **************
+************************************** */
+
+.navbar-inline {
+  display: none;
+}
+
+.navbar-inline ul {
+  list-style: none;
+}
+
+.navbar-inline li {
+  float: left;
+  padding: 0.5rem 2rem;
+}
+
+/* Highlight menu */
+
+.navbar-li_highlight {
+  background-color: var(--color-highlight);
+  border-radius: 0.6rem 0.6rem 0 0;
+}
+
+.navbar-li_highlight h2 {
+  color: white;
+}
+
+.navbar-navbarlink-visible,
+.navbar-navbarform-visible {
+  display: block;
+  position: absolute;
+  top: 3rem;
+  background-color: var(--color-highlight);
+  border: 0.125rem solid var(--color-highlight);
+  border-radius: 0 0 0.6rem 0.6rem;
+}
+
+.navbar-navbarlink-visible,
+.navbar-navbarform-visible {
+  width: 22.6rem;
+  padding: 1rem 0;
+  right: 1rem;
+  animation: fadein 1s;
+  overflow: hidden;
+}
+
+.navbar-navbarlink-visible {
+  height: 8.75rem;
+  animation: fadeinlink 1s;
+}
+
+@keyframes fadeinlink {
+  from {
+    height: 0rem;
+    padding: 0;
+  }
+  to {
+    height: 8.75rem;
+  }
+}
+
+.navbar-navbarform-visible {
+  height: 16rem;
+  animation: fadeinform 1.5s;
+}
+
+@keyframes fadeinform {
+  from {
+    height: 0rem;
+    padding: 0;
+  }
+  to {
+    height: 16rem;
+  }
+}
+
+.navbar-navbarlink-visible h2,
+.navbar-navbarform-visible .navbar-legend {
+  color: white;
+  text-align: center;
+  padding: 1.01rem;
+}
+.navbar-navbarform-visible p {
+  color: white;
+  padding: 0 0.5rem;
+}
+
+.navbar-navbarlink-visible hr {
+  display: none;
+}
+
+.navbar-navbarlink-hidden,
+.navbar-navbarform-hidden {
+  display: none;
+}
+
+.navbar-bottom-hr{
+  content: "";
+  display: block;
+  width: 100vw;
+  height: 0.2rem;
+  border: 0;
+  position: relative;
+  background-color: var(--color-highlight);
+}
+
+/* **************************************
+**************** BURGER ****************
+************************************** */
+
+.navbar-burger {
+  display: flex;
+  align-items: center;
+  height: 2.5rem;
+}
+.navbar-burger:hover {
+  cursor: pointer;
+}
+
+.navbar-bar,
+.navbar-bar::before,
+.navbar-bar::after {
+  display: block;
+  width: 2.5rem;
+  height: 0.5rem;
+  position: relative;
+  background-color: var(--color-interaction);
+  transition: transform 0.5s ease-in-out;
+}
+
+.navbar-bar::before,
+.navbar-bar::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+.navbar-bar::before {
+  transform: translateY(-0.75rem);
+}
+.navbar-bar::after {
+  transform: translateY(0.75rem);
+}
+.navbar-visible .navbar-bar::before {
+  transform: rotate(45deg);
+  z-index: 19;
+  position: fixed;
+  left: calc(100vw - 2.5rem - 1rem);
+}
+
+.navbar-visible .navbar-bar::after {
+  transform: rotate(-45deg);
+  z-index: 19;
+  position: fixed;
+  left: calc(100vw - 2.5rem - 1rem);
+}
+
+.navbar-visible .navbar-bar {
+  background: transparent;
+  z-index: 19;
+  position: fixed;
+  left: calc(100vw - 2.5rem - 1rem);
+}
+
+/* **************************************
+**************** WRAPPER ****************
+************************************** */
+
+.navbar-visible .navbar-menu_wrapper {
+  width: 100vw;
+  right: 0;
+  padding: 3rem 0;
+}
+
+.navbar-menu_wrapper {
+  position: fixed;
+  z-index: 9;
+  right: -100vw;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: var(--color-grey);
+  height: 100vh;
+  text-align: center;
+  transition: 0.6s;
+}
+
+.navbar-hr {
+  content: "";
+  display: block;
+  width: 100vw;
+  height: 0.5rem;
+  position: relative;
+  background-color: var(--color-highlight);
+}
+
+.navbar-menu_wrapper h2 {
+  text-decoration: none;
+  color: black;
+}
+
+/* **************************************
+**************** FORM *******************
+************************************** */
+
+.navbar-legend {
+  font-family: var(--font-title);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.navbar-form_members {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.navbar-form_members input[type="email"],
+.navbar-form_members input[type="password"] {
+  width: 100%;
+  text-align: center;
+  border: 0.125rem solid var(--color-highlight);
+  border-radius: 0.6rem;
+}
+
+.navbar-input {
+  margin-top: 1.5rem;
+  width: auto;
+}
+
+/* **************************************
+************** DESKTOP ******************
+************************************** */
+
+@media (min-width: 845px) {
+  .navbar {
+    height: 3.5rem;
+  }
+
+  .navbar-burger,
+  .navbar-legend {
+    display: none;
+  }
+
+  .navbar-inline {
+    display: block;
+  }
+
+  .navbar-button h2:hover {
+    text-decoration: underline;
+  }
+}

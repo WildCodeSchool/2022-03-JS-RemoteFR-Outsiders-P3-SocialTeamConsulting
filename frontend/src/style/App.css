@@ -1,0 +1,67 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Hind+Guntur:wght@300;400;500;600;700&display=swap");
+
+:root {
+  --color-grey: #f0f2f5;
+  --color-black: #050505;
+  --color-highlight: #f15a2b;
+  --color-interaction: #1973bf;
+  --color-line-asso: #8dc73b;
+  --color-line-inter: #f79a33;
+  --color-line-admin: #7f4197;
+  --font-title: "Montserrat", sans-serif;
+  --font-paragraph: "Hind Guntur", sans-serif;
+  --font-size-title: 2rem;
+  --font-size-paragraph: 1rem;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  scroll-behavior: smooth;
+  font-family: var(--font-paragraph);
+}
+a {
+  text-decoration: none;
+}
+body {
+  background-color: var(--color-grey);
+}
+
+h1 {
+  font-family: var(--font-title);
+  font-weight: 700;
+  font-size: var(--font-size-title);
+  padding: 0.5rem 0;
+}
+
+h2 {
+  font-family: var(--font-title);
+  font-weight: 700;
+}
+
+.app-main-container {
+  width: clamp(375px, 70%, 1200px);
+  margin: 0 auto;
+  padding: 3.5rem 1rem 0 1rem;
+}
+
+.button-blue {
+  padding-right: 1rem;
+  padding-left: 1rem;
+  color: var(--color-interaction);
+  background-color: var(--color-grey);
+  border-radius: 0.6rem;
+  border: 0.125rem solid var(--color-interaction);
+  text-align: center;
+  font-weight: 500;
+}
+
+.button-blue:hover {
+  cursor: pointer;
+  transition: all 0.25s ease;
+  background-color: var(--color-interaction);
+  color: var(--color-grey);
+}
