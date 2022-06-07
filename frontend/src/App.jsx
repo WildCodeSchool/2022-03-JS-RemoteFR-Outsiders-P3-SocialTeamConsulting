@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 
-import Page1 from "@pages/Page1";
-import Page2 from "@pages/Page2";
 import LandingPage from "@pages/LandingPage";
+import AccueilAsso from "@pages/AccueilAsso";
+import AccueilIntervenant from "@pages/AccueilIntervenant";
 
 import NavBar from "@components/NavBar";
 import Footer from "@components/Footer";
+import FormInterv from "@components/FormInterv";
+import FormAsso from "@components/FormAsso";
 
 import "@style/App.css";
 
@@ -39,8 +41,10 @@ function App() {
       >
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/page1" element={<Page1 />} />
-          <Route path="/page2" element={<Page2 />} />
+          <Route path="/AccueilAssociation" element={<AccueilAsso />} />
+          <Route path="/FormulaireIntervenant" element={<FormInterv />} />
+          <Route path="/AccueilIntervenant" element={<AccueilIntervenant />} />
+          <Route path="/FormulaireAssociation" element={<FormAsso />} />
         </Routes>
       </div>
       <Footer />
