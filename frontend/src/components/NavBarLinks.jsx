@@ -14,7 +14,7 @@ function NavBarLinks({ handleisMenuVisible, showLink }) {
             showLink(false);
           }}
         >
-          <h2>Devenir intervenant partenaire</h2>
+          <h2>Vous êtes un intervenant</h2>
         </div>
       </NavLink>
       <hr className="navbar-hr" />
@@ -28,7 +28,7 @@ function NavBarLinks({ handleisMenuVisible, showLink }) {
             showLink(false);
           }}
         >
-          <h2>Devenir association partenaire</h2>
+          <h2>Vous êtes une association</h2>
         </div>
       </NavLink>
     </>
