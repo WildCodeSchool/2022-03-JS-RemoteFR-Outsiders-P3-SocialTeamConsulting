@@ -65,7 +65,7 @@ nav {
 .navbar-navbarform-visible {
   display: block;
   position: absolute;
-  top: 3rem;
+  top: 2.9rem;
   background-color: var(--color-highlight);
   border: 0.125rem solid var(--color-highlight);
   border-radius: 0 0 0.6rem 0.6rem;
