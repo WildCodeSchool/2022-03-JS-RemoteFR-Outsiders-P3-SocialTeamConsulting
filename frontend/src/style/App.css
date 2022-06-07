@@ -38,12 +38,12 @@ h1 {
   padding: 0.5rem 0;
 }
 
-h2{
+h2 {
   font-family: var(--font-title);
   font-weight: 700;
 }
 
-.app-main-container{
+.app-main-container {
   width: clamp(600px, 70%, 1200px);
   margin: 0 auto;
   padding: 1rem;
