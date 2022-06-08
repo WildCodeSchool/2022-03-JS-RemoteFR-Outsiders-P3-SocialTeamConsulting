@@ -63,11 +63,16 @@ function NavBar({ isLinkVisible, showLink, isFormVisible, showForm }) {
             <li
               className={`${isFormVisible ? "navbar-li_highlight" : ""}`}
               onClick={() => {
-                showForm(!isFormVisible);
                 showLink(false);
               }}
             >
-              <h2>Se connecter</h2>
+              <h2
+                onClick={() => {
+                  showForm(!isFormVisible);
+                }}
+              >
+                Se connecter
+              </h2>
               <div
                 className={`${
                   isFormVisible

@@ -4,19 +4,18 @@ import { NavLink } from "react-router-dom";
 import "@style/App.css";
 import "@style/AccueilAsso.css";
 
-export default function AccueilAsso() {
+export default function AccueilIntervenant() {
   return (
     <div>
       <header>
-        <h1>Association</h1>
+        <h1>Intervenant</h1>
       </header>
       <div className="presentationText">
         <p>
-          {" "}
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores,
           molestias quisquam eum laboriosam mollitia voluptates! Accusantium
-          pariatur ipsum accusamus laboriosam quam aspernatur, perferendis magni
-          quod non qui unde eligendi ipsa.
+          pariatur ipsum accusamus laboriosam quam aspernatur, perferendis
+          magniquod non qui unde eligendi ipsa.
         </p>
       </div>
       <div className="data">
@@ -25,7 +24,7 @@ export default function AccueilAsso() {
         <div className="keyData" />
       </div>
       <div className="joinUs">
-        <NavLink to="/FormulaireAssociation">
+        <NavLink to="/FormulaireIntervenant">
           <input
             id="button_preinscription"
             className="button-blue"
