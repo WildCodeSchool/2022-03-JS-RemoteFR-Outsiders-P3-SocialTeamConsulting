@@ -66,27 +66,25 @@ function LandingPage() {
         </div>
       </section>
       <section>
-        <div>
-          <h1>{`L'humain, plus qu'une priorité`}</h1>
-          <div className="regular-section">
-            <img
-              src={img1}
-              alt="l humain, plus qu une priorité"
-              className="img1 img"
-            />
-            <div>
-              {`Le développement de Social Team Consulting est fondé sur le `}
-              <span>{`respect de l'autre`}</span>
-              {` et des singularités qui composent notre société. L'humain est
+        <h1>{`L'humain, plus qu'une priorité`}</h1>
+        <div className="regular-section">
+          <img
+            src={img1}
+            alt="l humain, plus qu une priorité"
+            className="img1 img"
+          />
+          <div>
+            {`Le développement de Social Team Consulting est fondé sur le `}
+            <span>{`respect de l'autre`}</span>
+            {` et des singularités qui composent notre société. L'humain est
           `}
-              <span>au cœur</span>
-              {` des actions portées par nos collaborateurs.`}
-              <ul className="list">
-                <li> {`Respect de l'autre`}</li>
-                <li> {`L'écoute`}</li>
-                <li> Adaptation</li>
-              </ul>
-            </div>
+            <span>au cœur</span>
+            {` des actions portées par nos collaborateurs.`}
+            <ul className="list">
+              <li> {`Respect de l'autre`}</li>
+              <li> {`L'écoute`}</li>
+              <li> Adaptation</li>
+            </ul>
           </div>
         </div>
       </section>
