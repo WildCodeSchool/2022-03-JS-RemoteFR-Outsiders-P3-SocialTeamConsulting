@@ -1,20 +1,16 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
+
 import "@style/App.css";
 import "@style/AccueilAsso.css";
 
 export default function AccueilIntervenant() {
   return (
     <div>
-      <div className="imgAsso">
-        <img
-          src="https://images.pexels.com/photos/6476254/pexels-photo-6476254.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-          alt="intervenant"
-        />
-        <div className="assoTitle">
-          <h1>ASSOCIATION</h1>
-        </div>
-      </div>
-      <div className="presentationText">
+      <header>
+        <h1>Intervenant</h1>
+      </header>
+     <div className="presentationText">
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores,
           molestias quisquam eum laboriosam mollitia voluptates! Accusantium
@@ -28,9 +24,13 @@ export default function AccueilIntervenant() {
         <div className="keyData" />
       </div>
       <div className="joinUs">
-        <button type="button" className="button-blue">
-          <p>Nous rejoindre</p>
-        </button>
+        <NavLink to="/FormulaireIntervenant">
+          <input
+            id="button_preinscription"
+            className="button-blue"
+            value="Nous rejoindre"
+          />
+        </NavLink>
       </div>
     </div>
   );

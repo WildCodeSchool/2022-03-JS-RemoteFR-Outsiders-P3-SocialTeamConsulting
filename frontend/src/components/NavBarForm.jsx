@@ -16,7 +16,7 @@ function NavBarForm({ showForm }) {
             name="email"
             id="email"
             required
-            style={{ pointerEvents: "none" }}
+            onClick={() => showForm(true)}
           />
         </label>
       </div>

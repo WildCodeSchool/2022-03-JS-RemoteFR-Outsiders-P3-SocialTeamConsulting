@@ -1,19 +1,15 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
+
 import "@style/App.css";
 import "@style/AccueilAsso.css";
 
 export default function AccueilAsso() {
   return (
     <div>
-      <div className="imgAsso">
-        <img
-          src="https://images.pexels.com/photos/6476254/pexels-photo-6476254.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-          alt="association"
-        />
-        <div className="assoTitle">
-          <h1>ASSOCIATION</h1>
-        </div>
-      </div>
+      <header>
+        <h1>Association</h1>
+      </header>
       <div className="presentationText">
         <p>
           {" "}
@@ -29,9 +25,13 @@ export default function AccueilAsso() {
         <div className="keyData" />
       </div>
       <div className="joinUs">
-        <button type="button" className="button-blue">
-          <p>Nous rejoindre</p>
-        </button>
+        <NavLink to="/FormulaireAssociation">
+          <input
+            id="button_preinscription"
+            className="button-blue"
+            value="Nous rejoindre"
+          />
+        </NavLink>
       </div>
     </div>
   );

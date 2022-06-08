@@ -130,19 +130,21 @@ function FormInterv() {
                 />
               </label>
 
-              <label htmlFor="upload_cv" className="btn">
-                <p>Votre CV</p>
-                <div>
-                  <FaCloudUploadAlt className="upload_icon" />
-                </div>
-                {fileCv ? fooCv() : noFile()}
-                <input
-                  id="upload_cv"
-                  type="file"
-                  onChange={handleChangeCv}
-                  className="inputfile"
-                />
-              </label>
+              <div>
+                <label htmlFor="upload_cv" className="btn">
+                  <p>Votre CV</p>
+                  <div>
+                    <FaCloudUploadAlt className="upload_icon" />
+                  </div>
+                  {fileCv ? fooCv() : noFile()}
+                  <input
+                    id="upload_cv"
+                    type="file"
+                    onChange={handleChangeCv}
+                    className="inputfile"
+                  />
+                </label>
+              </div>
             </div>
             <div className="form_textarea">
               <label htmlFor="message">
