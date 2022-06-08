@@ -1,0 +1,166 @@
+.register_form {
+  text-align: center;
+}
+
+.register_form {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 0.625rem auto;
+  max-width: 900px;
+  gap: 0.625rem;
+}
+
+.register label,
+.register_asso label {
+  color: var(--color-black);
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.063rem;
+}
+
+.register input[type="text"],
+.register input[type="password"],
+.register input[type="email"],
+.register textarea,
+.register_asso input[type="text"],
+.register_asso input[type="password"],
+.register_asso input[type="email"],
+.register_asso textarea {
+  width: 100%;
+  margin: 0.625rem 0 0.938rem;
+  padding: 0.313rem;
+  outline: none;
+  transition: 0.7s;
+  border: 0.125rem solid var(--color-black);
+  border-radius: 0.6rem;
+}
+
+.register input[type="text"]:focus,
+.register input[type="email"]:focus,
+.register input[type="password"]:focus,
+.register textarea:focus {
+  border-color: var(--color-highlight);
+}
+
+.register_asso input[type="text"]:focus,
+.register_asso input[type="password"]:focus,
+.register_asso input[type="email"]:focus,
+.register_asso textarea:focus {
+  border-color: var(--color-line-asso);
+}
+
+.register textarea,
+.register_asso textarea {
+  resize: none;
+  height: 11.25rem;
+}
+
+.back {
+  padding-bottom: 5rem;
+}
+
+.register input[type="submit"],
+.register_asso input[type="submit"] {
+  margin: auto;
+  padding-top: 0.125rem;
+  width: 100%;
+}
+
+.register h1,
+.register_asso h1 {
+  font-size: 1.8rem;
+  color: var(--color-black);
+}
+
+.form_upload {
+  background-color: white;
+}
+
+.upload_icon {
+  color: var(--color-highlight);
+  font-size: 3.125rem;
+}
+
+#upload_files {
+  visibility: "hidden";
+}
+
+.form_upload label {
+  cursor: pointer;
+  border-radius: 0.6rem;
+}
+
+.form_upload input {
+  display: none;
+}
+
+.green {
+  color: green;
+}
+
+.red {
+  color: red;
+}
+
+.form_upload h2 {
+  text-decoration: underline;
+}
+
+@media screen and (min-width: 768px) {
+  .box_form {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .register input[type="text"],
+  .register input[type="password"],
+  .register input[type="email"],
+  .register_asso input[type="text"],
+  .register_asso input[type="email"],
+  .register_asso input[type="password"] {
+    width: 20rem;
+  }
+
+  .register_asso input[type="text"],
+  .register_asso input[type="email"] {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .register_form {
+    background-color: var(--color-grey);
+    display: flex;
+    border: 0.125rem solid var(--color-highlight);
+    border-radius: 0.6rem;
+  }
+
+  .register_asso .register_form {
+    border-color: var(--color-line-asso);
+  }
+
+  .register textarea,
+  .register_asso textarea {
+    resize: none;
+    height: 11.25rem;
+    width: 86%;
+  }
+
+  .register_asso input[type="text"],
+  .register_asso input[type="email"] {
+    width: 86%;
+  }
+
+  .form_upload {
+    padding: 2rem 0 2rem;
+  }
+
+  .submit_button {
+    padding-bottom: 3rem;
+  }
+
+  .register_form h1 {
+    padding-top: 2rem;
+  }
+}

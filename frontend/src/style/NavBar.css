@@ -1,19 +1,31 @@
 nav {
+  height: 3.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-right: 1rem;
   padding-left: 1rem;
+  overflow: hidden;
 }
+
+.fixed{
+  position: fixed;
+  top: 0rem;
+  background-color: white;
+  z-index: 2;
+}
+
 .navbar-div_logo {
   height: 2.5rem;
 }
 .navbar-logo {
   width: 2.5rem;
+  cursor: pointer;
 }
 
 .title {
   text-align: center;
+  font-size: 1.2rem;
 }
 
 @media (min-width: 768px) {
@@ -36,13 +48,17 @@ nav {
 }
 
 .navbar-inline li {
+  text-decoration: underline;
+  text-decoration-color: black;
   float: left;
   padding: 0.5rem 2rem;
+  cursor: pointer;
 }
 
 /* Highlight menu */
 
 .navbar-li_highlight {
+  text-decoration: none !important;
   background-color: var(--color-highlight);
   border-radius: 0.6rem 0.6rem 0 0;
 }
@@ -55,8 +71,8 @@ nav {
 .navbar-navbarform-visible {
   display: block;
   position: absolute;
+  top: 3rem;
   background-color: var(--color-highlight);
-  border: 0.125rem solid var(--color-highlight);
   border-radius: 0 0 0.6rem 0.6rem;
 }
 
@@ -64,14 +80,14 @@ nav {
 .navbar-navbarform-visible {
   width: 22.6rem;
   padding: 1rem 0;
-  right: 1.01rem;
-  animation: fadein 1.5s;
+  right: 1rem;
+  animation: fadein 1s;
   overflow: hidden;
 }
 
 .navbar-navbarlink-visible {
   height: 8.75rem;
-  animation: fadeinlink 1.5s;
+  animation: fadeinlink 1s;
 }
 
 @keyframes fadeinlink {
@@ -119,6 +135,16 @@ nav {
   display: none;
 }
 
+.navbar-bottom-hr{
+  content: "";
+  display: block;
+  width: 100vw;
+  height: 0.2rem;
+  border: 0;
+  position: relative;
+  background-color: var(--color-highlight);
+}
+
 /* **************************************
 **************** BURGER ****************
 ************************************** */
@@ -140,7 +166,7 @@ nav {
   height: 0.5rem;
   position: relative;
   background-color: var(--color-interaction);
-  transition: all 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out;
 }
 
 .navbar-bar::before,
@@ -158,16 +184,22 @@ nav {
 .navbar-visible .navbar-bar::before {
   transform: rotate(45deg);
   z-index: 19;
+  position: fixed;
+  left: calc(100vw - 2.5rem - 1rem);
 }
 
 .navbar-visible .navbar-bar::after {
   transform: rotate(-45deg);
   z-index: 19;
+  position: fixed;
+  left: calc(100vw - 2.5rem - 1rem);
 }
 
 .navbar-visible .navbar-bar {
   background: transparent;
   z-index: 19;
+  position: fixed;
+  left: calc(100vw - 2.5rem - 1rem);
 }
 
 /* **************************************
