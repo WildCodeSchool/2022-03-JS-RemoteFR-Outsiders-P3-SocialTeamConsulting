@@ -1,9 +1,9 @@
-footer{
+footer {
   text-align: center;
 }
 
-.footer-hr{
-  content:"";
+.footer-hr {
+  content: "";
   display: block;
   width: 100vw;
   border: 0;
@@ -13,55 +13,55 @@ footer{
   margin-bottom: 1rem;
 }
 
-footer h2{
+footer h2 {
   margin: 1.2rem auto;
 }
 
-.footer-toogle-title{
+.footer-toogle-title {
   display: none;
 }
 
-footer p{
+footer p {
   line-height: 1.2rem;
 }
 
-.footer-contect-icon{
+.footer-contect-icon {
   width: 50%;
   margin: 0 auto;
   display: flex;
   justify-content: space-around;
 }
 
-.wildcodeschool{
+.wildcodeschool {
   margin: 1.5rem 0;
 }
 
-.red{
+.red {
   color: red;
 }
 
-.footer-middle-icon{
+.footer-middle-icon {
   vertical-align: middle;
 }
 
-footer a{
+footer a {
   color: var(--color-black);
   text-decoration: underline;
 }
 
 @media (min-width: 845px) {
-  .footer-text{
+  .footer-text {
     width: 60%;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
   }
 
-  .footer-bloc{
+  .footer-bloc {
     text-align: left;
   }
 
-  .footer-toogle-title{
+  .footer-toogle-title {
     display: block;
   }
 }

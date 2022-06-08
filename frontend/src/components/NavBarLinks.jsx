@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 function NavBarLinks({ handleisMenuVisible, showLink }) {
   return (
     <>
-      <NavLink to="/Page1">
+      <NavLink to="/AccueilIntervenant">
         <div
           role="button"
           tabIndex={0}
@@ -18,7 +18,7 @@ function NavBarLinks({ handleisMenuVisible, showLink }) {
         </div>
       </NavLink>
       <hr className="navbar-hr" />
-      <NavLink to="/Page2">
+      <NavLink to="/AccueilAssociation">
         <div
           role="button"
           tabIndex={0}

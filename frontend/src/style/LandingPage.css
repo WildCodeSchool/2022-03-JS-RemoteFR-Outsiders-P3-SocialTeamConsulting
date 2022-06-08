@@ -3,7 +3,7 @@ header {
   background-image: url("../assets/header.jpeg");
   background-position: center;
   background-size: cover;
-  border-radius: 10px;
+  border-radius: 0.625rem;
   display: flex;
   align-items: center;
   justify-content: center;

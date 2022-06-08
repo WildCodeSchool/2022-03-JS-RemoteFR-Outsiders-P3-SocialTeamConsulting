@@ -1,0 +1,30 @@
+.card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.mission {
+  border: 1px solid black;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 0.66rem;
+}
+
+.section1 {
+  display: flex;
+  align-items: flex-end;
+}
+
+.inline {
+  display: inline;
+}
+
+.fullscreen img {
+  width: 3rem;
+}
+@media screen and (min-width: 600px) {
+  .mission {
+    width: 23rem;
+  }
+}

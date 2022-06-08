@@ -8,7 +8,7 @@ nav {
   overflow: hidden;
 }
 
-.fixed{
+.fixed {
   position: fixed;
   top: 0rem;
   background-color: white;
@@ -71,7 +71,7 @@ nav {
 .navbar-navbarform-visible {
   display: block;
   position: absolute;
-  top: 2.9rem;
+  top: 3rem;
   background-color: var(--color-highlight);
   border-radius: 0 0 0.6rem 0.6rem;
 }
@@ -135,7 +135,7 @@ nav {
   display: none;
 }
 
-.navbar-bottom-hr{
+.navbar-bottom-hr {
   content: "";
   display: block;
   width: 100vw;
