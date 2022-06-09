@@ -1,53 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { Route, Routes } from "react-router-dom";
 
-import LandingPage from "@pages/LandingPage";
-import AccueilAsso from "@pages/AccueilAsso";
-import AccueilIntervenant from "@pages/AccueilIntervenant";
-
-import NavBar from "@components/NavBar";
-import Footer from "@components/Footer";
-import FormInterv from "@components/FormInterv";
-import FormAsso from "@components/FormAsso";
+import Home from "@pages/Home";
+import BackOffice from "@pages/BackOffice";
 
 import "@style/App.css";
 
 function App() {
-  const [isLinkVisible, setIsLinkVisible] = useState(false);
-  const showLink = (isVisible) => {
-    setIsLinkVisible(isVisible);
-  };
-  const [isFormVisible, setIsFormVisible] = useState(false);
-  const showForm = (isVisible) => {
-    setIsFormVisible(isVisible);
-  };
-
   return (
     <div className="App">
-      <NavBar
-        isLinkVisible={isLinkVisible}
-        showLink={showLink}
-        isFormVisible={isFormVisible}
-        showForm={showForm}
-      />
-      <div
-        className="app-main-container"
-        role="button"
-        tabIndex={0}
-        onClick={() => {
-          showForm(false);
-          showLink(false);
-        }}
-      >
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/AccueilAssociation" element={<AccueilAsso />} />
-          <Route path="/FormulaireIntervenant" element={<FormInterv />} />
-          <Route path="/AccueilIntervenant" element={<AccueilIntervenant />} />
-          <Route path="/FormulaireAssociation" element={<FormAsso />} />
-        </Routes>
-      </div>
-      <Footer />
+      <Routes>
+        <Route path="/BackOffice" element={<BackOffice />} />
+        <Route path="/*" element={<Home />} />
+      </Routes>
     </div>
   );
 }
