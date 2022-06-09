@@ -10,7 +10,7 @@ export default function AccueilIntervenant() {
       <header>
         <h1>Intervenant</h1>
       </header>
-     <div className="presentationText">
+      <div className="presentationText">
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores,
           molestias quisquam eum laboriosam mollitia voluptates! Accusantium
