@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import fullscreen from "@assets/fullscreen.png";
+import triangle from "@assets/triangle.png";
 // import MissionSynthesis from "./MissionSynthesis";
 import "@style/ValidatedMissions.css";
 
@@ -81,6 +82,9 @@ function ValidatedMissions() {
       date_fin: "07/08/2023",
     },
   ];
+
+  const [showDescription, setShowDescription] = useState(false);
+
   return (
     <div className="card">
       {missions.map((mission) => {
@@ -94,7 +98,7 @@ function ValidatedMissions() {
         return (
           <div className="mission">
             <div className="section1">
-              <div>
+              <div className="synthesis">
                 <div>
                   <h2 className="inline">Association : </h2>
                   {mission.association}
@@ -119,8 +123,19 @@ function ValidatedMissions() {
                   {mission.ville}
                 </div>
                 <div className="description">
-                  <h2>Description de la mission : </h2>
-                  {mission.description}
+                  <div>
+                    <img
+                      src={triangle}
+                      alt="Voir la description complète"
+                      onClick={() => {
+                        setShowDescription(!showDescription);
+                      }}
+                    />
+                    <h2>Description de la mission : </h2>
+                  </div>
+                  <div className={showDescription ? "not-masked" : "masked"}>
+                    {mission.description}
+                  </div>
                 </div>
               </div>
               <div className="fullscreen">

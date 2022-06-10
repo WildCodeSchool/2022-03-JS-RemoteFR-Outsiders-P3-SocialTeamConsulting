@@ -7,29 +7,43 @@
 
 .mission {
   border: 1px solid black;
-  padding: 1rem;
+  padding: 0.5rem;
   margin: 1rem;
   border-radius: 0.66rem;
+  width: 23rem;
 }
 
 .section1 {
   display: flex;
   align-items: flex-end;
+  justify-content: space-between;
 }
 
 .inline {
   display: inline;
 }
 
-.description {
-  display: none;
+.masked {
+  display: none !important;
+}
+
+.description div {
+  display: flex;
+}
+
+.fullscreen {
+  display: flex;
+  align-items: flex-end;
+}
+
+.description img {
+  pointer-events: initial;
+  width: 0.5rem;
+  margin-right: 0.5rem;
 }
 
 .fullscreen img {
-  width: 3rem;
+  width: 2rem;
 }
 @media screen and (min-width: 600px) {
-  .mission {
-    width: 23rem;
-  }
 }
