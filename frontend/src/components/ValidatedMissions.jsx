@@ -1,6 +1,6 @@
-import React from "react";
-import fullscreen from "@assets/fullscreen.png";
-// import MissionSynthesis from "./MissionSynthesis";
+import React, { useState } from "react";
+
+import MissionSynthesis from "./MissionSynthesis";
 import "@style/ValidatedMissions.css";
 
 function ValidatedMissions() {
@@ -81,53 +81,19 @@ function ValidatedMissions() {
       date_fin: "07/08/2023",
     },
   ];
+
+  const [showDescription, setShowDescription] = useState(false);
+
   return (
     <div className="card">
       {missions.map((mission) => {
-        const heureDebut = new Date(`
-          ${mission.date_debut}, ${mission.horaire_debut}`);
-        const heureFin = new Date(
-          `${mission.date_fin}, ${mission.horaire_fin}`
-        );
-        const duration = heureDebut.getHours() - heureFin.getHours();
-
         return (
-          <div className="mission">
-            <div className="section1">
-              <div>
-                <div>
-                  <h2 className="inline">Association : </h2>
-                  {mission.association}
-                </div>
-                <div>
-                  <h2 className="inline">Métier : </h2>
-                  {mission.metier}
-                </div>
-                <div>
-                  <h2>Nom de la mission :</h2> {mission.intitule}
-                </div>
-                <div>
-                  <h2 className="inline">Date de la mission : </h2>
-                  {mission.date_debut}
-                </div>
-                <div>
-                  <h2 className="inline">Horaires : </h2>
-                  {mission.horaire_debut}-{mission.horaire_fin} ({duration} h)
-                </div>
-                <div>
-                  <h2 className="inline">Ville : </h2>
-                  {mission.ville}
-                </div>
-                <div className="description">
-                  <h2>Description de la mission : </h2>
-                  {mission.description}
-                </div>
-              </div>
-              <div className="fullscreen">
-                <img src={fullscreen} alt="full screen button" />
-              </div>
-            </div>
-          </div>
+          <MissionSynthesis
+            mission={mission}
+            showDescription={showDescription}
+            setShowDescription={setShowDescription}
+            key={missions.id}
+          />
         );
       })}
     </div>
