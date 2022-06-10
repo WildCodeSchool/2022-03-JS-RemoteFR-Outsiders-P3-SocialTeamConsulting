@@ -80,7 +80,6 @@ CREATE TABLE `INTERVENANTS` (
   `adresse` VARCHAR(255),
   `code_postal` VARCHAR(5),
   `ville` VARCHAR(255),
-  `image_carte` VARCHAR(255),
   `image_diplomes` VARCHAR(255),
   `image_iban` VARCHAR(255),
   `image_siret` VARCHAR(255),
@@ -143,20 +142,28 @@ ALTER TABLE `ACCEPTE` ADD FOREIGN KEY (`missions_id`) REFERENCES `MISSIONS` (`id
 ALTER TABLE `ACCEPTE` ADD FOREIGN KEY (`intervenants_id`) REFERENCES `INTERVENANTS` (`id`);
 
 INSERT INTO `ASSOCIATIONS` (`id`, `nom`, `adresse`, `code_postal`, `ville`, `email`, `telephone`, `password`, `etat`) VALUES
-('asso1', 'INS', '17 rue Jean Jaures', 63000, 'Clermont-ferrand', 'asso@test.fr', 'qwerty', 'pré-inscrit'),
-('asso2', 'ABC', '4 rue Florence', 63530, 'Sayat', 'abc@test.fr', 'abc', 'pré-inscrit'),
-('asso3', 'test', '2 rue testland', 62000, 'Test', 'test@test.fr', 'test', 'pré-inscrit'),
+('asso1', 'INS', '17 rue Jean Jaures', 63000, 'Clermont-ferrand', 'asso@test.fr', 0123456789, 'qwerty', 'pré-inscrit'),
+('asso2', 'ABC', '4 rue Florence', 63530, 'Sayat', 'abc@test.fr', 0234567891, 'abc', 'pré-inscrit'),
+('asso3', 'test', '2 rue testland', 62000, 'Test', 'test@test.fr', 0369258147, 'test', 'pré-inscrit');
 
-INSERT INTO `MISSIONS` (`intitule`, `metier`, `adresse`, `code_postal`, `ville`, `description`, `horaire_debut`, `horaire_fin`, `date_debut`, `date_fin`, `total_heure`, `etat`,) VALUES
-(`Recherche assistante de service social`, `assistante de service social`, `2 avenue Julien`, 33000, `Bordeaux`,
-`description`, `07:30:00`, `14:00:00`, '2022-06-15', '2022-06-15', `5`, `en attente`)
+INSERT INTO `MISSIONS` (`intitule`, `metier`, `adresse`, `code_postal`, `ville`, `description`, `horaire_debut`, `horaire_fin`, `date_debut`, `date_fin`, `total_heure`, `etat`, `associations_id`) VALUES
+("Recherche assistante de service social", "Assistante de service social", "2 avenue Julien", 33000, "Bordeaux",
+"Suite à la réouverture vous serez amené à gérer l'accueil client et répondre aux questions des clients", "07:30:00", "14:00:00", '2022-06-15', '2022-06-15', 5, "en attente", "asso1"),
+("Encadrement d'un groupe de jeunes", "Educateur spécialisé", "4 rue Lambert", 15000, "Cantal",
+"Vous aiderez à surveiller ponctuellement, diriger un groupe de jeunes, agés de 7 à 15 ans", "09:00:00", "19:00:00", '2022-06-17', '2022-06-17', 8, "Validé", "asso1"),
+("Recherche un chef de service", "Chef de service", "15 rue de la Wild", 75000, "Paris",
+"Vous serez en autonomie", "09:30:00", "17:30:00", '2022-06-18', '2022-06-18', 7, "en attente","asso1");
 
 INSERT INTO `ADMINISTRATEURS` (`id`, `nom`, `prenom`, `telephone`, `email`, `password`) VALUES
 ('a1', 'Doe', 'John', 0123456789, 'john.doe@gmail.com', 'azerty'),
-('b2', 'McFly', 'Marty', 9876543210, 'marty.macfly@lonepine.com', 'dolorean'),
+('b2', 'McFly', 'Marty', 0987654321, 'marty.macfly@lonepine.com', 'dolorean'),
 ('c3', 'Gump', 'Forrest', 0147258369, 'forrest.gump@bubbagump.com', 'runrunrun');
 
+INSERT INTO `INTERVENANTS` (`id`, `nom`, `prenom`, `email`, `password`, `telephone`, `image_cv`, `image_carte_vitale`, `image_statut_autoentrepreneur`, `etat`, `pre_inscription_message`, `adresse`, `code_postal`, `ville`,  `image_diplomes`, `image_iban`,`image_siret`, `image_identite`, `image_justificatif_de_domicile`, `modifications_id`) VALUES
+('A1', 'Wayne', 'Bruce', 'batman@wayneco.com', 'joker', 0123456789, "https://pbs.twimg.com/media/Cx9GQDoUQAEQhYh.jpg", 'https://secu-jeunes.fr/wp-content/uploads/2016/09/carte-vitale-300x292.png', 'https://teleservices-greffe.fr/static/img/sample-kbis.jpg', 'validé', 'je veux vous rejoindre car je sais plus quoi faire de mes nuits', '1007 Mountain Drive', '12345', 'Gotham City', 'https://hansen-hypnose.com/wp-content/uploads/2017/11/DIPLOME-PRATICIEN-HYPNOSE-SPECIMEN.jpg', 'https://dk85klopn8z0j.cloudfront.net/wp-content/uploads/2015/11/specimen-rib.png','https://www.anafagc.fr/webroot/uploads/fraude%20n%C2%B0SIRET.jpg', 'https://i.servimg.com/u/f62/17/60/83/74/tm/cibatm10.jpg', 'https://www.maitriser-mon-energie.fr/wp-content/uploads/sites/8/2020/01/attestation-de-domicile-page-001_censored-724x1024.jpg',""),
+('B4', 'Stark', 'Tony', 'ironman@starkco.com', 'elonmusk', 0123456789, "https://mir-s3-cdn-cf.behance.net/projects/404/1b6c6293552649.Y3JvcCwxMjAwLDkzOCwwLDA.jpg", 'https://secu-jeunes.fr/wp-content/uploads/2016/09/carte-vitale-300x292.png', 'https://teleservices-greffe.fr/static/img/sample-kbis.jpg', 'pré-inscrit',"","","","","","","","","","");
 
-
-
+INSERT INTO `MESSAGES` (`nom`, `prenom`, `email`, `telephone`, `message`, `ishandled`) VALUES
+('Association', '', 'asso@asso.com', 0123458697, 'Bonjour, j aimerais avoir plus d information sur votre structure et les moyens d affectations d intervenants', false),
+('Doe', 'John', 'john@autoentrepreneur.com', 0123458697, 'Bonjour, j aimerais comment je peux choisir une mission', true);
 
