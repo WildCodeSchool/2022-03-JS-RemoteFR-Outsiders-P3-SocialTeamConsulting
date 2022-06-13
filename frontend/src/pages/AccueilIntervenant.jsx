@@ -23,14 +23,16 @@ export default function AccueilIntervenant() {
         <div className="keyData" />
         <div className="keyData" />
       </div>
-      <div className="joinUs">
-        <NavLink to="/FormulaireIntervenant">
-          <input
-            id="button_preinscription"
-            className="button-blue"
-            value="Nous rejoindre"
-          />
-        </NavLink>
+      <div className="contactUsjoinUs">
+        <div>
+          <NavLink to="/FormulaireIntervenant">
+            <input
+              id="button_preinscription"
+              className="button-blue"
+              value="Nous rejoindre"
+            />
+          </NavLink>
+        </div>
       </div>
     </div>
   );
