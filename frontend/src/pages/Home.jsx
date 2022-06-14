@@ -1,18 +1,59 @@
-import React from "react";
+import React, { useState } from "react";
+import { Route, Routes } from "react-router-dom";
 
-import { NavLink } from "react-router-dom";
+import LandingPage from "@pages/LandingPage";
+import AccueilAsso from "@pages/AccueilAsso";
+import AccueilIntervenant from "@pages/AccueilIntervenant";
+import NavBar from "@components/NavBar";
+import Footer from "@components/Footer";
+import FormInterv from "@components/FormInterv";
+import FormAsso from "@components/FormAsso";
+import ValidatedMissions from "@components/ValidatedMissions";
 
-export default function Home() {
+import "@style/App.css";
+
+function App() {
+  const [isLinkVisible, setIsLinkVisible] = useState(false);
+  const showLink = (isVisible) => {
+    setIsLinkVisible(isVisible);
+  };
+  const [isFormVisible, setIsFormVisible] = useState(false);
+  const showForm = (isVisible) => {
+    setIsFormVisible(isVisible);
+  };
+
   return (
-    <main className="app-main">
-      <h1>Social Team Consulting</h1>
-      <div>
-        <NavLink to="/page1">Page 1</NavLink> -
-        <NavLink to="/page1">Page 2</NavLink>
+    <div className="App">
+      <NavBar
+        isLinkVisible={isLinkVisible}
+        showLink={showLink}
+        isFormVisible={isFormVisible}
+        showForm={showForm}
+      />
+      <div
+        className="app-main-container"
+        role="button"
+        tabIndex={0}
+        onClick={() => {
+          showForm(false);
+          showLink(false);
+        }}
+      >
+        <Routes>
+          <Route path="/AccueilAssociation" element={<AccueilAsso />} />
+          <Route path="/FormulaireIntervenant" element={<FormInterv />} />
+          <Route path="/AccueilIntervenant" element={<AccueilIntervenant />} />
+          <Route path="/FormulaireAssociation" element={<FormAsso />} />
+          <Route path="/*" element={<LandingPage />} />
+          <Route
+            path="/MissionValideesIntervenant"
+            element={<ValidatedMissions />}
+          />
+        </Routes>
       </div>
-      <button className="button-blue" type="button">
-        Click me
-      </button>
-    </main>
+      <Footer />
+    </div>
   );
 }
+
+export default App;

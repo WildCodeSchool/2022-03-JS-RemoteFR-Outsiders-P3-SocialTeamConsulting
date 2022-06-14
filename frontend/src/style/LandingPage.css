@@ -32,10 +32,18 @@ header h1 {
   font-size: 1rem;
 }
 
+#services span {
+  color: var(--color-black);
+}
+
 .section-inner-content {
   display: flex;
   align-items: center;
   color: white;
+}
+
+div > section > h1:nth-child(2n + 1) {
+  text-align: left;
 }
 
 #even_section {
