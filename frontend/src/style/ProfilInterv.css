@@ -1,0 +1,24 @@
+.profil > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+label {
+  font-weight: bolder;
+  margin-top: 0.5rem;
+}
+
+input {
+  border: 0.125rem solid #f79a33;
+}
+
+.button-blue {
+  margin-top: 1rem;
+  width: auto;
+}
+
+.buttonModif {
+  display: flex;
+  align-items: center;
+}
