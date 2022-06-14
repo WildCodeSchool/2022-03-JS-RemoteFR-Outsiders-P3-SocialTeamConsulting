@@ -33,6 +33,17 @@ header h1 {
   border: 0.1em solid black;
   width: clamp(18%, 25%, 30%);
 }
+  
+.contactUsjoinUs {
+  margin: 0 auto;
+  padding: 2.5rem;
+}
+
+.contactUsjoinUs div{
+  text-align: center;
+  margin: 1rem 0;
+}
+
 
 @media screen and (max-width: 600px) {
   .data {
@@ -50,10 +61,11 @@ header h1 {
   .data {
     height: 14rem;
   }
+  
+.contactUsjoinUs {
+  padding-bottom: 2.5rem;
+  display: flex;
+  justify-content: space-between;
+}
 }
 
-.joinUs {
-  padding: 2.5rem;
-  display: flex;
-  justify-content: center;
-}
