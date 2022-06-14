@@ -1,7 +1,7 @@
 import React from "react";
 import "@style/Form.css";
 
-function FormAsso() {
+function FormAssoContact() {
   return (
     <div className="register_asso">
       <div className="back">
@@ -9,7 +9,7 @@ function FormAsso() {
           <div className="register_form">
             <h1>
               Vous êtes une association et vous <br />
-              souhaitez nous rejoindre ?
+              souhaitez nous contacter ?
             </h1>
             <h1>Nous vous invitons à remplir ce formulaire</h1>
             <div>
@@ -51,4 +51,4 @@ function FormAsso() {
   );
 }
 
-export default FormAsso;
+export default FormAssoContact;

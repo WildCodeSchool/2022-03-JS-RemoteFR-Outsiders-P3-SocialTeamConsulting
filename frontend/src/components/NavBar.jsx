@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import "@style/NavBar.css";
 
@@ -6,19 +7,14 @@ import NavBarLinks from "@components/NavBarLinks";
 import NavBarForm from "@components/NavBarForm";
 import logo from "@assets/SocialTeamConsultingLogo.ico";
 
-function NavBar() {
+function NavBar({ isLinkVisible, showLink, isFormVisible, showForm }) {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   const handleisMenuVisible = (isVisible) => {
     setIsMenuVisible(isVisible);
   };
-  const [isLinkVisible, setIsLinkVisible] = useState(false);
-  const showLink = (isVisible) => {
-    setIsLinkVisible(isVisible);
-  };
-  const [isFormVisible, setIsFormVisible] = useState(false);
-  const showForm = (isVisible) => {
-    setIsFormVisible(isVisible);
-  };
+
+  const navigate = useNavigate();
+
   return (
     <div className="fixed">
       <nav className={`${isMenuVisible ? "navbar-visible" : "navbar-hidden"}`}>
@@ -27,6 +23,7 @@ function NavBar() {
             className="navbar-logo"
             src={logo}
             alt="logo de la Social Team Consulting"
+            onClick={() => navigate("/")}
           />
         </div>
         <h1 className="title">Social Team Consulting</h1>
@@ -44,9 +41,10 @@ function NavBar() {
           <ul>
             <li
               className={`${isLinkVisible ? "navbar-li_highlight" : ""}`}
-              onMouseOver={() => showLink(true)}
-              onFocus={() => showLink(true)}
-              onMouseLeave={() => showLink(false)}
+              onClick={() => {
+                showLink(!isLinkVisible);
+                showForm(false);
+              }}
             >
               <h2>Nous rejoindre</h2>
               <div
@@ -64,11 +62,17 @@ function NavBar() {
             </li>
             <li
               className={`${isFormVisible ? "navbar-li_highlight" : ""}`}
-              onMouseOver={() => showForm(true)}
-              onFocus={() => showForm(true)}
-              onMouseLeave={() => showForm(false)}
+              onClick={() => {
+                showLink(false);
+              }}
             >
-              <h2>Se connecter</h2>
+              <h2
+                onClick={() => {
+                  showForm(!isFormVisible);
+                }}
+              >
+                Se connecter
+              </h2>
               <div
                 className={`${
                   isFormVisible
