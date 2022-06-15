@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import "@style/NavBar.css";
-import "@style/NavBarBackOffice.css";
+import "@style/BackOffice.css";
 
 import NavBarBackOfficeLinks from "@components/NavBarBackOfficeLinks";
 import logo from "@assets/SocialTeamConsultingLogo.ico";
