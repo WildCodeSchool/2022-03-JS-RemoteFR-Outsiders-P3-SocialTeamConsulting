@@ -7,7 +7,7 @@ import "@style/NavBarBackOffice.css";
 import NavBarBackOfficeLinks from "@components/NavBarBackOfficeLinks";
 import logo from "@assets/SocialTeamConsultingLogo.ico";
 
-function NavBarBackOffice() {
+function NavBarBackOfficeMobile() {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   const handleisMenuVisible = (isVisible) => {
     setIsMenuVisible(isVisible);
@@ -62,4 +62,4 @@ function NavBarBackOffice() {
   );
 }
 
-export default NavBarBackOffice;
+export default NavBarBackOfficeMobile;

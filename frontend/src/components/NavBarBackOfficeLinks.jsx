@@ -1,14 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import linksIntervenants from "@services/linksIntervenants";
 
 function NavBarBackOfficeLinks({ handleisMenuVisible, showLink }) {
-  const linksIntervenants = [
-    { section: "Accueil", link: "/BackOffice" },
-    { section: "Missions validées", link: "/BackOffice" },
-    { section: "Offres de missions", link: "/BackOffice" },
-    { section: "Gestion du profil", link: "/BackOffice" },
-  ];
-
   return (
     <>
       {linksIntervenants.map((el) => (
