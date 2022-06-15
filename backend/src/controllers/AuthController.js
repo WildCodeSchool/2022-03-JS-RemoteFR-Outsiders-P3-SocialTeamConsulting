@@ -1,34 +1,26 @@
-const models = require("../models");
 const { JWTTokenCreator } = require("../helpers/auth");
 const auth = require("../helpers/auth");
 
 class AuthController {
   static session = (req, res) => {
-    let model = "";
-    switch (req.body.userType) {
-      case "association":
-        model = models.associations;
-        break;
-      case "intervenant":
-        model = models.intervenants;
-        break;
-      case "administrateur":
-        model = models.administrateurs;
-        break;
-      default:
-        res.status(501).res("Problème de serveur");
-    }
+    const { model } = req.body;
     model.findByEmail(req.body.email).then((user) => {
-      if (auth.verifyPassword(req.body.password, user[0][0].password)) {
-        const token = JWTTokenCreator(user);
-        res.cookie("user_token", token, {
-          httpOnly: true,
-          expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
+      const { email, password } = user[0][0];
+      auth
+        .verifyPassword(req.body.password, password)
+        .then(() => {
+          const token = JWTTokenCreator(email, req.body.userType);
+          res
+            .status(201)
+            .cookie("user_token", token, {
+              httpOnly: true,
+              expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
+            })
+            .json({ message: "Le mot de passe est correct", cookie: token });
+        })
+        .catch(() => {
+          res.status(401).send("Email ou mot de passe incorect");
         });
-        res.status(201).send("Le mot de passe est correct");
-      } else {
-        res.status(401).send("Email ou mot de passe incorect");
-      }
     });
   };
 }

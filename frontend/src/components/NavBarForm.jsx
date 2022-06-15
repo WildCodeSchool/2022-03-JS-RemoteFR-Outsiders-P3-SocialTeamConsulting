@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import authentification from "@services/services";
+import { authentification } from "@services/services";
 
 function NavBarForm({ showForm }) {
   const [isLog, setIsLog] = useState(false);

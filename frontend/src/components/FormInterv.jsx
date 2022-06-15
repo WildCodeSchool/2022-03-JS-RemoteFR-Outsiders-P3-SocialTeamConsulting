@@ -1,8 +1,15 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import "@style/Form.css";
+import { notifySuccess, notifyError } from "@services/services";
 
 function FormInterv() {
+  const [intervenant, setIntervenant] = useState({
+    image_cv: "cv",
+    image_carte_vitale: "carte vitale",
+    image_statut_autoentrepreneur: "autoentrepreneur",
+  });
   const [fileAutoE, setFileAutoE] = useState(false);
   const [fileCarteVitale, setFileCarteVitale] = useState(false);
   const [fileCv, setFileCv] = useState(false);
@@ -17,6 +24,13 @@ function FormInterv() {
 
   function handleChangeCv(event) {
     setFileCv(event.target.files[0]);
+  }
+
+  function handleChange(event) {
+    setIntervenant({
+      ...intervenant,
+      [event.target.name]: event.target.value,
+    });
   }
 
   function noFile() {
@@ -37,10 +51,24 @@ function FormInterv() {
     return <div className="green">{fileCv.name}</div>;
   }
 
+  const ENDPOINT = "http://localhost:5000/intervenants";
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post(ENDPOINT, intervenant)
+      .then((res) => {
+        notifySuccess(res.data);
+      })
+      .catch((err) => {
+        notifyError(err.data);
+      });
+  };
+
   return (
     <div className="register">
       <div className="back">
-        <form action="#">
+        <form onSubmit={handleSubmit}>
           <div className="register_form">
             <h1>{`Demande d'inscription pour les intervenants`}</h1>
             <div className="box_form">
@@ -48,7 +76,12 @@ function FormInterv() {
                 <label htmlFor="interv_nom">
                   <p>Nom</p>
 
-                  <input type="text" id="interv_nom" />
+                  <input
+                    type="text"
+                    id="interv_nom"
+                    name="nom"
+                    onChange={handleChange}
+                  />
                 </label>
               </div>
 
@@ -56,7 +89,12 @@ function FormInterv() {
                 <label htmlFor="interv_prenom">
                   <p>Prénom</p>
 
-                  <input type="text" id="interv_prenom" />
+                  <input
+                    type="text"
+                    id="interv_prenom"
+                    name="prenom"
+                    onChange={handleChange}
+                  />
                 </label>
               </div>
             </div>
@@ -66,7 +104,12 @@ function FormInterv() {
                 <label htmlFor="interv_email">
                   <p>Email</p>
 
-                  <input type="email" id="interv_email" />
+                  <input
+                    type="email"
+                    id="interv_email"
+                    name="email"
+                    onChange={handleChange}
+                  />
                 </label>
               </div>
 
@@ -74,7 +117,12 @@ function FormInterv() {
                 <label htmlFor="interv_tel">
                   <p>Téléphone</p>
 
-                  <input type="text" id="interv_tel" />
+                  <input
+                    type="text"
+                    id="interv_tel"
+                    name="telephone"
+                    onChange={handleChange}
+                  />
                 </label>
               </div>
             </div>
@@ -83,7 +131,12 @@ function FormInterv() {
               <div>
                 <label htmlFor="interv_mdp">
                   <p>Choix un mot de passe</p>
-                  <input type="password" id="interv_mdp" />
+                  <input
+                    type="password"
+                    id="interv_mdp"
+                    name="password"
+                    onChange={handleChange}
+                  />
                 </label>
               </div>
 
@@ -149,16 +202,21 @@ function FormInterv() {
             <div className="form_textarea">
               <label htmlFor="message">
                 <p>Votre message</p>
-                <textarea id="message" />
+                <textarea
+                  id="message"
+                  name="pre_inscription_message"
+                  onChange={handleChange}
+                />
               </label>
             </div>
             <div className="submit_button">
-              <input
+              <button
                 id="button_preinscription"
                 className="button-blue"
-                value="Envoyer la pré-inscription"
                 type="submit"
-              />
+              >
+                Envoyer la pré-inscription
+              </button>
             </div>
           </div>
         </form>
