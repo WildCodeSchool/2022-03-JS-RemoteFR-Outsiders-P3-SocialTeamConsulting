@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import MissionSynthesis from "./MissionSynthesis";
 import "@style/ValidatedMissions.css";
@@ -82,19 +82,10 @@ function ValidatedMissions() {
     },
   ];
 
-  const [showDescription, setShowDescription] = useState(false);
-
   return (
     <div className="card">
       {missions.map((mission) => {
-        return (
-          <MissionSynthesis
-            mission={mission}
-            showDescription={showDescription}
-            setShowDescription={setShowDescription}
-            key={missions.id}
-          />
-        );
+        return <MissionSynthesis mission={mission} key={missions.id} />;
       })}
     </div>
   );

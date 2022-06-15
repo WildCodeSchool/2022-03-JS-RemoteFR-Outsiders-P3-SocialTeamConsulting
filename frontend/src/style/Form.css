@@ -64,7 +64,6 @@
 .register_asso input[type="submit"] {
   margin: auto;
   padding-top: 0.125rem;
-  width: 100%;
 }
 
 .register h1,

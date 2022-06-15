@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import fullscreen from "@assets/fullscreen.png";
 import triangle from "@assets/triangle.png";
 import "@style/ValidatedMissions.css";
 
-function MissionSynthesis({ mission, showDescription, setShowDescription }) {
+function MissionSynthesis({ mission, key }) {
   const heureDebut = new Date(`
           ${mission.date_debut}, ${mission.horaire_debut}`);
   const heureFin = new Date(`${mission.date_fin}, ${mission.horaire_fin}`);
   const duration = heureDebut.getHours() - heureFin.getHours();
+
+  const [showDescription, setShowDescription] = useState(false);
+
+  const handleShow = () => {
+    setShowDescription(!showDescription);
+  };
 
   return (
     <div className="mission">
@@ -41,13 +47,14 @@ function MissionSynthesis({ mission, showDescription, setShowDescription }) {
               <img
                 src={triangle}
                 alt="Voir la description complète"
-                onClick={() => {
-                  setShowDescription(!showDescription);
-                }}
+                onClick={handleShow}
               />
               <h2>Description de la mission : </h2>
             </div>
-            <div className={showDescription ? "not-masked" : "masked"}>
+            <div
+              key={key}
+              className={showDescription ? "not-masked" : "masked"}
+            >
               {mission.description}
             </div>
           </div>
