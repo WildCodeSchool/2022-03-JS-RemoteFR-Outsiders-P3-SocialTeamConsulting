@@ -82,7 +82,7 @@ function FormInterv() {
             <div className="box_form">
               <div>
                 <label htmlFor="interv_mdp">
-                  <p>Choix un mot de passe</p>
+                  <p>Choisir un mot de passe</p>
                   <input type="password" id="interv_mdp" />
                 </label>
               </div>
