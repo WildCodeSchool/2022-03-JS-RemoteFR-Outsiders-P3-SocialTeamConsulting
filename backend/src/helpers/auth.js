@@ -1,4 +1,6 @@
+/* eslint-disable camelcase */
 const argon2 = require("argon2");
+const Joi = require("joi");
 const jwt = require("jsonwebtoken");
 const models = require("../models");
 
@@ -53,9 +55,49 @@ const JWTTokenCreator = (userEmail, userType) => {
   );
 };
 
+const IntervenantJoiVerification = (intervenant) => {
+  const {
+    nom,
+    prenom,
+    email,
+    telephone,
+    password,
+    image_cv,
+    image_carte_vitale,
+    image_statut_autoentrepreneur,
+    pre_inscription_message,
+  } = intervenant;
+  const { error } = Joi.object({
+    nom: Joi.string().max(100).required(),
+    prenom: Joi.string().max(100).required(),
+    email: Joi.string().email().max(255).required(),
+    telephone: Joi.string().min(10).max(10).required(),
+    password: Joi.string().max(255).required(),
+    image_cv: Joi.string().max(255).required(),
+    image_carte_vitale: Joi.string().max(255).required(),
+    image_statut_autoentrepreneur: Joi.string().max(255).required(),
+    pre_inscription_message: Joi.string().max(500).required(),
+  }).validate(
+    {
+      nom,
+      prenom,
+      email,
+      telephone,
+      password,
+      image_cv,
+      image_carte_vitale,
+      image_statut_autoentrepreneur,
+      pre_inscription_message,
+    },
+    { abortEarly: false }
+  );
+  return error;
+};
+
 module.exports = {
   userTypeCheck,
   verifyPassword,
   JWTTokenCreator,
   hashPassword,
+  IntervenantJoiVerification,
 };

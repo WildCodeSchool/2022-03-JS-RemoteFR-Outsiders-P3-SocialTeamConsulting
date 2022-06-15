@@ -1,7 +1,7 @@
 const { v4: uuidv4 } = require("uuid");
 const models = require("../models");
 const etat = require("../JSON/UserStates.json");
-const { hashPassword } = require("../helpers/auth");
+const { hashPassword, IntervenantJoiVerification } = require("../helpers/auth");
 
 class IntervenantController {
   static browse = (req, res) => {
@@ -64,18 +64,21 @@ class IntervenantController {
         etat: etat[0],
       };
       const intervenant = req.body;
-
+      const error = IntervenantJoiVerification(intervenant);
       // TODO validations (length, format...)
-
-      models.intervenants
-        .insert(intervenant)
-        .then(() => {
-          res.status(201).send("utilisateur enregistré");
-        })
-        .catch((err) => {
-          console.error(err);
-          res.sendStatus(500);
-        });
+      if (error) {
+        res.status(422).json({ validationErrors: error.details });
+      } else {
+        models.intervenants
+          .insert(intervenant)
+          .then(() => {
+            res.status(201).send("utilisateur enregistré");
+          })
+          .catch((err) => {
+            console.error(err);
+            res.sendStatus(500);
+          });
+      }
     });
   };
 

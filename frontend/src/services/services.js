@@ -1,12 +1,12 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const notifySuccess = () => {
-  toast.success(`Bravo : connecté`);
+const notifySuccess = (message) => {
+  toast.success(`Bravo : ${message}`);
 };
 
-const notifyError = () => {
-  toast.error(`Erreur : problème de connection`);
+const notifyError = (message) => {
+  toast.error(`Erreur : ${message}`);
 };
 
 const authentification = (user, setIsLog) => {
@@ -15,10 +15,12 @@ const authentification = (user, setIsLog) => {
     .post(ENDPOINT, user)
     .then(() => {
       setIsLog(true);
-      notifySuccess();
+      notifySuccess("La connection a réussi");
     })
     .catch(() => {
-      notifyError();
+      notifyError(
+        "Un problème est survenu lors de votre tentative de connection"
+      );
     });
 };
 

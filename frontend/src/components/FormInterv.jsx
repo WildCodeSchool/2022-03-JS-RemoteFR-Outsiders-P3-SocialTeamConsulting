@@ -3,6 +3,8 @@ import axios from "axios";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import "@style/Form.css";
 import { notifySuccess, notifyError } from "@services/services";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function FormInterv() {
   const [intervenant, setIntervenant] = useState({
@@ -57,11 +59,15 @@ function FormInterv() {
     e.preventDefault();
     axios
       .post(ENDPOINT, intervenant)
-      .then((res) => {
-        notifySuccess(res.data);
+      .then(() => {
+        notifySuccess(
+          "Votre pré-inscription a été enregistrée. Un administrateur vous contactera bientôt pour vous informer de l'avancement de votre dossier"
+        );
       })
-      .catch((err) => {
-        notifyError(err.data);
+      .catch(() => {
+        notifyError(
+          "Votre pré-inscription n'a pas pu aboutir. Veuillez vérifier les champs à remplir avant de soumettre à nouveau votre pré-inscription"
+        );
       });
   };
 
@@ -221,6 +227,7 @@ function FormInterv() {
           </div>
         </form>
       </div>
+      <ToastContainer />
     </div>
   );
 }
