@@ -150,7 +150,7 @@ function FormInterv() {
                 <label htmlFor="interv_mdp">
                   <p>Retapez votre mot de passe</p>
 
-                  <input type="password" id="interv_mdp" />
+                  <input type="password" id="interv_mdp2" />
                 </label>
               </div>
             </div>

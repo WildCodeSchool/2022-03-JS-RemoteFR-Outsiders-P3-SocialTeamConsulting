@@ -5,11 +5,11 @@ class AuthController {
   static session = (req, res) => {
     const { model } = req.body;
     model.findByEmail(req.body.email).then((user) => {
-      const { email, password } = user[0][0];
+      const { email, password, etat } = user[0][0];
       auth
         .verifyPassword(req.body.password, password)
         .then(() => {
-          const token = JWTTokenCreator(email, req.body.userType);
+          const token = JWTTokenCreator(email, req.body.userType, etat);
           res
             .status(201)
             .cookie("user_token", token, {
