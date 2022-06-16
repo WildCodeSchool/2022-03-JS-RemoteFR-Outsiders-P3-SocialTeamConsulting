@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 import Home from "@pages/Home";
 import BackOffice from "@pages/BackOffice";
@@ -13,6 +14,7 @@ function App() {
         <Route path="/BackOffice" element={<BackOffice />} />
         <Route path="/*" element={<Home />} />
       </Routes>
+      <ToastContainer />
     </div>
   );
 }
