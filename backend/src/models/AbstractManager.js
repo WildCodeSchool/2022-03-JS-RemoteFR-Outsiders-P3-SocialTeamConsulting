@@ -14,6 +14,13 @@ class AbstractManager {
     return this.connection.query(`select * from  ${this.table}`);
   }
 
+  findByEmail(email) {
+    return this.connection.query(
+      `select * from  ${this.table} where email = ?`,
+      [email]
+    );
+  }
+
   delete(id) {
     return this.connection.query(`delete from ${this.table} where id = ?`, [
       id,

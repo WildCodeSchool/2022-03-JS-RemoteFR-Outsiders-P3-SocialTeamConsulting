@@ -4,11 +4,13 @@ import { Route, Routes } from "react-router-dom";
 import LandingPage from "@pages/LandingPage";
 import AccueilAsso from "@pages/AccueilAsso";
 import AccueilIntervenant from "@pages/AccueilIntervenant";
+import Page1 from "@pages/Page1";
+import Page2 from "@pages/Page2";
 
 import NavBar from "@components/NavBar";
 import Footer from "@components/Footer";
 import FormInterv from "@components/FormInterv";
-import FormAsso from "@components/FormAsso";
+import FormAssoContact from "@components/FormAssoContact";
 
 import "@style/App.css";
 
@@ -35,7 +37,13 @@ function App() {
           <Route path="/AccueilAssociation" element={<AccueilAsso />} />
           <Route path="/FormulaireIntervenant" element={<FormInterv />} />
           <Route path="/AccueilIntervenant" element={<AccueilIntervenant />} />
-          <Route path="/FormulaireAssociation" element={<FormAsso />} />
+          <Route
+            path="/FormulaireContactAssociation"
+            element={<FormAssoContact />}
+          />
+          <Route path="/FormulaireAssociation" element={<Page1 />} />
+          <Route path="/page1" element={<Page1 />} />
+          <Route path="/page2" element={<Page2 />} />
           <Route path="/*" element={<LandingPage />} />
         </Routes>
       </div>
