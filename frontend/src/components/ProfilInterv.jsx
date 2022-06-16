@@ -5,48 +5,80 @@ import "@style/ProfilInterv.css";
 
 export default function ProfilInterv() {
   return (
-    <div className="profil">
-      <div className="identity">
-        <label htmlFor="identity">
-          <p>Nom Prénom</p>
-          <input type="text" value="BENOIT Benoît" />
-        </label>
+    <div>
+      <div className="firstLast">
+        <div className="identity">
+          <label htmlFor="name" className="regles">
+            <p>Nom</p>
+            <input
+              className="rules"
+              type="text"
+              name="name"
+              value="BENOIT Benoît"
+            />
+          </label>
+        </div>
+
+        <div className="firstname">
+          <label htmlFor="firstname">
+            <p>Prénom</p>
+            <input className="rules" type="text" value="John" />
+          </label>
+        </div>
       </div>
 
       <div className="company">
         <label htmlFor="company">
           <p>SIREN/SIRET</p>
-          <input type="text" value="RFA00009877" />
+          <input className="otherinput" type="text" value="RAFD453678" />
         </label>
       </div>
 
-      <div className="address">
+      <div className="localisation">
         <label htmlFor="address">
           <p>Adresse</p>
-          <input type="text" value="12 rue de 00000 Ville" />
+          <input
+            className="otherinput"
+            type="text"
+            value="12 rue de la République"
+          />
         </label>
       </div>
 
-      <div className="email">
-        <label htmlFor="email">
-          <p>Email</p>
-          <input type="email" value="yoyo@mail.com" />
-        </label>
+      <div className="codepostal">
+        <div className="zip">
+          <label htmlFor="zip">
+            <p>Code Postal</p>
+            <input className="rules" type="text" value="75000" />
+          </label>
+        </div>
+        <div className="city">
+          <label htmlFor="city">
+            <p>Ville</p>
+            <input className="rules" type="text" value="Paris" />
+          </label>
+        </div>
       </div>
 
-      <div className="phone">
-        <label htmlFor="phone">
-          <p>Téléphone</p>
-          <input type="text" value="06 06 06 06 06" />
-        </label>
+      <div className="contact">
+        <div className="mail">
+          <label htmlFor="email">
+            <p>Email</p>
+            <input className="rules" type="email" value="yoyo@mail.com" />
+          </label>
+        </div>
+        <div className="phone">
+          <label htmlFor="phone">
+            <p>Téléphone</p>
+            <input className="rules" type="text" value="06 06 06 06 06" />
+          </label>
+        </div>
       </div>
 
-      <div className="buttonModif">
-        <input
-          type="text"
-          className="button-blue"
-          value="Demander une modification"
-        />
+      <div className="bouton">
+        <button className="button-blue" type="button">
+          Demander une modification
+        </button>
       </div>
     </div>
   );
