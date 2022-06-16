@@ -1,11 +1,14 @@
 const express = require("express");
 
+const { userTypeCheck } = require("./helpers/auth");
+
 const {
   ItemController,
   IntervenantsController,
   AssociationsController,
   AdministrateursController,
   MissionsController,
+  AuthController,
 } = require("./controllers");
 
 const router = express.Router();
@@ -39,5 +42,7 @@ router.get("/missions/:id", MissionsController.read);
 router.put("/missions/:id", MissionsController.edit);
 router.post("/missions", MissionsController.add);
 router.delete("/missions/:id", MissionsController.delete);
+
+router.post("/auth", userTypeCheck, AuthController.session);
 
 module.exports = router;
