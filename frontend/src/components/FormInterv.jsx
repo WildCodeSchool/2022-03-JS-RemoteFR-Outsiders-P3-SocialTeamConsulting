@@ -3,6 +3,9 @@ import { FaCloudUploadAlt } from "react-icons/fa";
 import "@style/Form.css";
 
 function FormInterv() {
+  const [password, setPassword] = useState("");
+  const [passCheck, setPassCheck] = useState("");
+
   const [fileAutoE, setFileAutoE] = useState(false);
   const [fileCarteVitale, setFileCarteVitale] = useState(false);
   const [fileCv, setFileCv] = useState(false);
@@ -48,7 +51,7 @@ function FormInterv() {
                 <label htmlFor="interv_nom">
                   <p>Nom</p>
 
-                  <input type="text" id="interv_nom" />
+                  <input type="text" id="interv_nom" required />
                 </label>
               </div>
 
@@ -56,7 +59,7 @@ function FormInterv() {
                 <label htmlFor="interv_prenom">
                   <p>Prénom</p>
 
-                  <input type="text" id="interv_prenom" />
+                  <input type="text" id="interv_prenom" required />
                 </label>
               </div>
             </div>
@@ -66,7 +69,7 @@ function FormInterv() {
                 <label htmlFor="interv_email">
                   <p>Email</p>
 
-                  <input type="email" id="interv_email" />
+                  <input type="email" id="interv_email" required />
                 </label>
               </div>
 
@@ -74,7 +77,7 @@ function FormInterv() {
                 <label htmlFor="interv_tel">
                   <p>Téléphone</p>
 
-                  <input type="text" id="interv_tel" />
+                  <input type="text" id="interv_tel" required />
                 </label>
               </div>
             </div>
@@ -83,7 +86,16 @@ function FormInterv() {
               <div>
                 <label htmlFor="interv_mdp">
                   <p>Choisir un mot de passe</p>
-                  <input type="password" id="interv_mdp" />
+                  <input
+                    type="password"
+                    name="password"
+                    id="interv_mdp"
+                    required
+                    placeholder="********"
+                    onChange={(e) => setPassword(e.target.value)}
+                    autoComplete="off"
+                    value={password}
+                  />
                 </label>
               </div>
 
@@ -91,7 +103,16 @@ function FormInterv() {
                 <label htmlFor="interv_mdp">
                   <p>Retapez votre mot de passe</p>
 
-                  <input type="password" id="interv_mdp" />
+                  <input
+                    type="password"
+                    name="passCheck"
+                    id="interv_mdp2"
+                    required
+                    placeholder="********"
+                    onChange={(e) => setPassCheck(e.target.value)}
+                    autoComplete="off"
+                    value={passCheck}
+                  />
                 </label>
               </div>
             </div>
@@ -113,6 +134,7 @@ function FormInterv() {
                   type="file"
                   onChange={handleChangeAutoEntr}
                   className="inputfile"
+                  required
                 />
               </label>
 
@@ -127,6 +149,7 @@ function FormInterv() {
                   type="file"
                   onChange={handleChangeCarteVitale}
                   className="inputfile"
+                  required
                 />
               </label>
 
@@ -142,6 +165,7 @@ function FormInterv() {
                     type="file"
                     onChange={handleChangeCv}
                     className="inputfile"
+                    required
                   />
                 </label>
               </div>
@@ -158,6 +182,7 @@ function FormInterv() {
                 className="button-blue"
                 value="Envoyer la pré-inscription"
                 type="submit"
+                required
               />
             </div>
           </div>

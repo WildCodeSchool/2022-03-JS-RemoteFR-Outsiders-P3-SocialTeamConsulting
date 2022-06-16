@@ -1,24 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import "@style/Form.css";
 
 export default function FormAsso() {
-  // const [associations, setAssociations] = useState({});
+  const [password, setPassword] = useState("");
+  const [passCheck, setPassCheck] = useState("");
+  const [buttonText, setButtonText] = useState("Envoyer ma pré-inscription");
 
-  // si la valeur de l'input 1 et egale a la valeur de l'input 2 alors les mdp sont identiques, sinon bloque.
-  const handleChange = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (password === passCheck) {
+      setButtonText("Merci, votre pré-inscription a bien été prise en compte");
+    } else {
+      setButtonText(
+        "Erreur, vérifier si toutes vos informations sont correctes"
+      );
+    }
   };
-
-  // if (input.id.value === input.id.value) {
-  //   console.log("ok");
-  // } else {
-  //   console.log("not ok");
-  // }
 
   return (
     <div className="register">
       <div className="back">
-        <form action="#">
+        <form action="#" onSubmit={handleSubmit} method="post">
           <div className="register_form">
             <h1>Demande d'inscription pour les associations</h1>
             <div className="box_form">
@@ -30,7 +32,6 @@ export default function FormAsso() {
                     id="form_asso_name"
                     required
                     placeholder="ex: ASSOCIATION LES VALLIERES"
-                    onChange={handleChange}
                   />
                 </label>
               </div>
@@ -42,7 +43,6 @@ export default function FormAsso() {
                     id="form_asso_email"
                     required
                     placeholder="votreemail@gmail.com"
-                    onChange={handleChange}
                   />
                 </label>
               </div>
@@ -53,11 +53,13 @@ export default function FormAsso() {
                   <p>Choisir un mot de passe</p>
                   <input
                     type="password"
+                    name="password"
                     id="form_asso_mdp"
                     required
                     placeholder="********"
-                    onChange={handleChange}
+                    onChange={(e) => setPassword(e.target.value)}
                     autoComplete="off"
+                    value={password}
                   />
                 </label>
               </div>
@@ -68,11 +70,13 @@ export default function FormAsso() {
 
                   <input
                     type="password"
+                    name="passCheck"
                     id="form_asso_mdp2"
                     required
                     placeholder="********"
-                    onChange={handleChange}
+                    onChange={(e) => setPassCheck(e.target.value)}
                     autoComplete="off"
+                    value={passCheck}
                   />
                 </label>
               </div>
@@ -86,7 +90,6 @@ export default function FormAsso() {
                     id="form_asso_adresse"
                     required
                     placeholder="3 rue du Limousin"
-                    onChange={handleChange}
                   />
                 </label>
               </div>
@@ -98,7 +101,6 @@ export default function FormAsso() {
                     id="form_asso_code_postale"
                     required
                     placeholder="33000"
-                    onChange={handleChange}
                   />
                 </label>
               </div>
@@ -112,7 +114,6 @@ export default function FormAsso() {
                     id="form_asso_ville"
                     required
                     placeholder="Bordeaux"
-                    onChange={handleChange}
                   />
                 </label>
               </div>
@@ -124,7 +125,6 @@ export default function FormAsso() {
                     id="form_asso_tel"
                     required
                     placeholder="0772980819"
-                    onChange={handleChange}
                   />
                 </label>
               </div>
@@ -133,15 +133,11 @@ export default function FormAsso() {
               <label htmlFor="form_message">
                 <p>Votre message</p>
 
-                <textarea id="form_message" required onChange={handleChange} />
+                <textarea id="form_message" required />
               </label>
             </div>
             <div className="submit_button">
-              <input
-                type="submit"
-                className="button-blue"
-                value="Envoyer la pré-inscription"
-              />
+              <input type="submit" className="button-blue" value={buttonText} />
             </div>
           </div>
         </form>
