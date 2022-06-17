@@ -29,21 +29,21 @@ export default function ProfilInterv() {
 
       <div className="password">
         <label htmlFor="password">
-          <p>Mot de Passe</p>
+          <p>Mot de Passe actuel</p>
           <input className="otherinput" type="text" value="" />
         </label>
       </div>
 
       <div className="secret">
         <label htmlFor="newPassword" className="regles">
-          <p>Nouveau Mot de Passe</p>
+          <p>Nouveau mot de Passe</p>
           <input className="otherinput" type="text" name="name" value="" />
         </label>
       </div>
 
       <div className="confirmedNewPassword">
         <label htmlFor="confirmedNewPassword">
-          <p>Confirmer Mot de Passe</p>
+          <p>Confirmer le nouveau mot de Passe</p>
           <input className="otherinput" type="text" value="" />
         </label>
       </div>
