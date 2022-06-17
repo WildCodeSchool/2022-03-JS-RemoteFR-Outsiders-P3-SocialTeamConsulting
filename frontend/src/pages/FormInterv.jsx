@@ -1,20 +1,22 @@
 import React, { useState } from "react";
 import axios from "axios";
+
 import { FaCloudUploadAlt } from "react-icons/fa";
 import "@style/Form.css";
-import { notifySuccess, notifyError } from "@services/services";
+
 import { ToastContainer } from "react-toastify";
+import { notifySuccess, notifyError } from "@services/services";
 import "react-toastify/dist/ReactToastify.css";
 
 function FormInterv() {
-  // !TODO tu dois revoir la logique pour les passwords setPassword & setPassCheck
-  const [password] = useState("");
-  const [passCheck] = useState("");
+  const [buttonText, setButtonText] = useState("Envoyer ma pré-inscription");
 
   const [intervenant, setIntervenant] = useState({
     image_cv: "cv",
     image_carte_vitale: "carte vitale",
     image_statut_autoentrepreneur: "autoentrepreneur",
+    password: "",
+    passCheck: "",
   });
   const [fileAutoE, setFileAutoE] = useState(false);
   const [fileCarteVitale, setFileCarteVitale] = useState(false);
@@ -64,11 +66,24 @@ function FormInterv() {
     axios
       .post(ENDPOINT, intervenant)
       .then(() => {
-        notifySuccess(
-          "Votre pré-inscription a été enregistrée. Un administrateur vous contactera bientôt pour vous informer de l'avancement de votre dossier"
-        );
+        if (intervenant.password === intervenant.passCheck) {
+          setButtonText(
+            "Merci, votre pré-inscription a bien été prise en compte"
+          );
+
+          notifySuccess(
+            "Votre pré-inscription a été enregistrée. Un administrateur vous contactera bientôt pour vous informer de l'avancement de votre dossier"
+          );
+        } else {
+          notifyError(
+            "Votre pré-inscription n'a pas pu aboutir. Veuillez vérifier les champs à remplir avant de soumettre à nouveau votre pré-inscription"
+          );
+        }
       })
       .catch(() => {
+        setButtonText(
+          "Erreur, vérifier si toutes vos informations sont correctes"
+        );
         notifyError(
           "Votre pré-inscription n'a pas pu aboutir. Veuillez vérifier les champs à remplir avant de soumettre à nouveau votre pré-inscription"
         );
@@ -78,7 +93,7 @@ function FormInterv() {
   return (
     <div className="register">
       <div className="back">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} method="post">
           <div className="register_form">
             <h1>{`Demande d'inscription pour les intervenants`}</h1>
             <div className="box_form">
@@ -153,7 +168,7 @@ function FormInterv() {
                     placeholder="********"
                     onChange={handleChange}
                     autoComplete="off"
-                    value={password}
+                    value={intervenant.password}
                   />
                 </label>
               </div>
@@ -170,7 +185,7 @@ function FormInterv() {
                     placeholder="********"
                     onChange={handleChange}
                     autoComplete="off"
-                    value={passCheck}
+                    value={intervenant.passCheck}
                   />
                 </label>
               </div>
@@ -246,7 +261,7 @@ function FormInterv() {
                 type="submit"
                 required
               >
-                Envoyer la pré-inscription
+                {buttonText}
               </button>
             </div>
           </div>

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 
 import { notifySuccess, notifyError } from "@services/services";
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "@style/Form.css";
 
@@ -195,7 +194,6 @@ export default function FormAsso() {
           </div>
         </form>
       </div>
-      <ToastContainer />
     </div>
   );
 }
