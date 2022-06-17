@@ -5,11 +5,11 @@ import LandingPage from "@pages/LandingPage";
 import AccueilAsso from "@pages/AccueilAsso";
 import AccueilIntervenant from "@pages/AccueilIntervenant";
 import FormAsso from "@pages/FormAsso";
+import FormAssoContact from "@pages/FormAssoContact";
+import FormInterv from "@pages/FormInterv";
 
 import NavBar from "@components/NavBar";
 import Footer from "@components/Footer";
-import FormInterv from "@components/FormInterv";
-import FormAssoContact from "@components/FormAssoContact";
 
 import "@style/App.css";
 
