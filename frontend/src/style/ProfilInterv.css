@@ -1,0 +1,88 @@
+.firstLast {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+}
+
+.identity {
+  padding: 1vw;
+}
+
+.firstname {
+  padding: 1vw;
+}
+
+.password {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
+.secret {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
+.confirmedNewPassword {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
+.localisation {
+  display: flex;
+  justify-content: center;
+}
+
+.codepostal {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+}
+
+.zip {
+  padding: 1vw;
+}
+
+.city {
+  padding: 1vw;
+}
+
+.contact {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+}
+
+.mail {
+  padding: 1vw;
+}
+
+.phone {
+  padding: 1vw;
+}
+
+input {
+  border: 0.125rem solid #f79a33;
+  border-radius: 0.6rem;
+  text-align: center;
+}
+
+input.rules {
+  width: 40vw;
+}
+
+input.otherinput {
+  width: 82vw;
+}
+
+.bouton {
+  display: flex;
+  justify-content: center;
+  padding-top: 1rem;
+}
+
+p {
+  font-weight: bolder;
+}
