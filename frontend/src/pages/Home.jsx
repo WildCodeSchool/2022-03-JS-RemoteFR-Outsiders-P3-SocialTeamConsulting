@@ -31,15 +31,7 @@ function App() {
         isFormVisible={isFormVisible}
         showForm={showForm}
       />
-      <div
-        className="app-main-container"
-        role="button"
-        tabIndex={0}
-        onClick={() => {
-          showForm(false);
-          showLink(false);
-        }}
-      >
+      <div className="app-main-container">
         <Routes>
           <Route path="/AccueilAssociation" element={<AccueilAsso />} />
           <Route path="/FormulaireIntervenant" element={<FormInterv />} />
