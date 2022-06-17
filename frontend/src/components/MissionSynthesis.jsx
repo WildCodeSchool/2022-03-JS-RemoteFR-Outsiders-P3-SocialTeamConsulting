@@ -8,11 +8,17 @@ function MissionSynthesis({ mission, key }) {
           ${mission.date_debut}, ${mission.horaire_debut}`);
   const heureFin = new Date(`${mission.date_fin}, ${mission.horaire_fin}`);
   const duration = heureDebut.getHours() - heureFin.getHours();
+  // console.error(getFullYear(mission.date_debut));
+
+  const date1 = new Date(mission.date_debut);
+  console.error(date1.toDateString());
 
   const [showDescription, setShowDescription] = useState(false);
+  const [isRotated, setIsRotated] = useState(false);
 
   const handleShow = () => {
     setShowDescription(!showDescription);
+    setIsRotated(!isRotated);
   };
 
   return (
@@ -21,7 +27,7 @@ function MissionSynthesis({ mission, key }) {
         <div className="synthesis">
           <div>
             <h2 className="inline">Association : </h2>
-            {mission.association}
+            {mission.nom}
           </div>
           <div>
             <h2 className="inline">Métier : </h2>
@@ -48,6 +54,7 @@ function MissionSynthesis({ mission, key }) {
                 src={triangle}
                 alt="Voir la description complète"
                 onClick={handleShow}
+                className={isRotated ? "expand-button" : null}
               />
               <h2>Description de la mission : </h2>
             </div>
