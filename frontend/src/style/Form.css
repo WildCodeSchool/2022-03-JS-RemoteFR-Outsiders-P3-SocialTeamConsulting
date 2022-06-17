@@ -106,6 +106,13 @@
   text-decoration: underline;
 }
 
+.show {
+  visibility: visible;
+}
+.hide {
+  visibility: hidden;
+}
+
 @media screen and (min-width: 768px) {
   .box_form {
     display: flex;
@@ -119,6 +126,7 @@
   .register_asso input[type="email"],
   .register_asso input[type="password"] {
     width: 20rem;
+    padding: 0.3rem 1.2rem;
   }
 
   .register_asso input[type="text"],

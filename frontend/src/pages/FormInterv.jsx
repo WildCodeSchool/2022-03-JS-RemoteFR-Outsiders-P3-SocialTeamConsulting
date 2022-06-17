@@ -7,6 +7,9 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function FormInterv() {
+  const [password, setPassword] = useState("");
+  const [passCheck, setPassCheck] = useState("");
+
   const [intervenant, setIntervenant] = useState({
     image_cv: "cv",
     image_carte_vitale: "carte vitale",
@@ -82,12 +85,16 @@ function FormInterv() {
                 <label htmlFor="interv_nom">
                   <p>Nom</p>
 
+<<<<<<< HEAD:frontend/src/pages/FormInterv.jsx
+                  <input type="text" id="interv_nom" required />
+=======
                   <input
                     type="text"
                     id="interv_nom"
                     name="nom"
                     onChange={handleChange}
                   />
+>>>>>>> dev:frontend/src/components/FormInterv.jsx
                 </label>
               </div>
 
@@ -95,12 +102,16 @@ function FormInterv() {
                 <label htmlFor="interv_prenom">
                   <p>Prénom</p>
 
+<<<<<<< HEAD:frontend/src/pages/FormInterv.jsx
+                  <input type="text" id="interv_prenom" required />
+=======
                   <input
                     type="text"
                     id="interv_prenom"
                     name="prenom"
                     onChange={handleChange}
                   />
+>>>>>>> dev:frontend/src/components/FormInterv.jsx
                 </label>
               </div>
             </div>
@@ -110,12 +121,16 @@ function FormInterv() {
                 <label htmlFor="interv_email">
                   <p>Email</p>
 
+<<<<<<< HEAD:frontend/src/pages/FormInterv.jsx
+                  <input type="email" id="interv_email" required />
+=======
                   <input
                     type="email"
                     id="interv_email"
                     name="email"
                     onChange={handleChange}
                   />
+>>>>>>> dev:frontend/src/components/FormInterv.jsx
                 </label>
               </div>
 
@@ -123,12 +138,16 @@ function FormInterv() {
                 <label htmlFor="interv_tel">
                   <p>Téléphone</p>
 
+<<<<<<< HEAD:frontend/src/pages/FormInterv.jsx
+                  <input type="text" id="interv_tel" required />
+=======
                   <input
                     type="text"
                     id="interv_tel"
                     name="telephone"
                     onChange={handleChange}
                   />
+>>>>>>> dev:frontend/src/components/FormInterv.jsx
                 </label>
               </div>
             </div>
@@ -136,12 +155,25 @@ function FormInterv() {
             <div className="box_form">
               <div>
                 <label htmlFor="interv_mdp">
+<<<<<<< HEAD:frontend/src/pages/FormInterv.jsx
+                  <p>Choisir un mot de passe</p>
+                  <input
+                    type="password"
+                    name="password"
+                    id="interv_mdp"
+                    required
+                    placeholder="********"
+                    onChange={(e) => setPassword(e.target.value)}
+                    autoComplete="off"
+                    value={password}
+=======
                   <p>Choix un mot de passe</p>
                   <input
                     type="password"
                     id="interv_mdp"
                     name="password"
                     onChange={handleChange}
+>>>>>>> dev:frontend/src/components/FormInterv.jsx
                   />
                 </label>
               </div>
@@ -150,7 +182,20 @@ function FormInterv() {
                 <label htmlFor="interv_mdp">
                   <p>Retapez votre mot de passe</p>
 
+<<<<<<< HEAD:frontend/src/pages/FormInterv.jsx
+                  <input
+                    type="password"
+                    name="passCheck"
+                    id="interv_mdp2"
+                    required
+                    placeholder="********"
+                    onChange={(e) => setPassCheck(e.target.value)}
+                    autoComplete="off"
+                    value={passCheck}
+                  />
+=======
                   <input type="password" id="interv_mdp2" />
+>>>>>>> dev:frontend/src/components/FormInterv.jsx
                 </label>
               </div>
             </div>
@@ -172,6 +217,7 @@ function FormInterv() {
                   type="file"
                   onChange={handleChangeAutoEntr}
                   className="inputfile"
+                  required
                 />
               </label>
 
@@ -186,6 +232,7 @@ function FormInterv() {
                   type="file"
                   onChange={handleChangeCarteVitale}
                   className="inputfile"
+                  required
                 />
               </label>
 
@@ -201,6 +248,7 @@ function FormInterv() {
                     type="file"
                     onChange={handleChangeCv}
                     className="inputfile"
+                    required
                   />
                 </label>
               </div>
@@ -220,9 +268,14 @@ function FormInterv() {
                 id="button_preinscription"
                 className="button-blue"
                 type="submit"
+<<<<<<< HEAD:frontend/src/pages/FormInterv.jsx
+                required
+              />
+=======
               >
                 Envoyer la pré-inscription
               </button>
+>>>>>>> dev:frontend/src/components/FormInterv.jsx
             </div>
           </div>
         </form>
