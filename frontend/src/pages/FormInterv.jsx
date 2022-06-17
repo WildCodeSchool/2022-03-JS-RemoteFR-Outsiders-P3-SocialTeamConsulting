@@ -4,7 +4,6 @@ import axios from "axios";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import "@style/Form.css";
 
-import { ToastContainer } from "react-toastify";
 import { notifySuccess, notifyError } from "@services/services";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -267,7 +266,6 @@ function FormInterv() {
           </div>
         </form>
       </div>
-      <ToastContainer />
     </div>
   );
 }
