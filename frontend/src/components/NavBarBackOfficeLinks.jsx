@@ -1,11 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import linksIntervenants from "@services/linksIntervenants";
+import DataLinksIntervenants from "@services/linksIntervenants.json";
 
 function NavBarBackOfficeLinks({ handleisMenuVisible, showLink }) {
   return (
     <>
-      {linksIntervenants.map((el) => (
+      {DataLinksIntervenants.map((el) => (
         <React.Fragment key={el.id}>
           <NavLink to={el.link}>
             <div

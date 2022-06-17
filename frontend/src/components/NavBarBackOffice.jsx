@@ -1,10 +1,10 @@
-import linksIntervenants from "@services/linksIntervenants";
 import logo from "@assets/SocialTeamConsultingLogo.ico";
 import { NavLink, useNavigate } from "react-router-dom";
 import "@style/BackOffice.css";
 import React, { useState } from "react";
 
 import "@style/NavBar.css";
+import DataLinksIntervenants from "@services/linksIntervenants.json";
 
 import NavBarBackOfficeLinks from "@components/NavBarBackOfficeLinks";
 
@@ -40,7 +40,7 @@ function NavBarBackOffice() {
         </div>
 
         <div className="nav-part-two">
-          {linksIntervenants.map((el) => (
+          {DataLinksIntervenants.map((el) => (
             <div>
               <NavLink to={el.link}>
                 <div role="button" tabIndex={0} className="navbar-button">
