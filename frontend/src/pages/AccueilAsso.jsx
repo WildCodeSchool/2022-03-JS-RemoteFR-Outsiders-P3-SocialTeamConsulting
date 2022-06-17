@@ -27,20 +27,24 @@ export default function AccueilAsso() {
       <div className="contactUsjoinUs">
         <div>
           <NavLink to="/FormulaireContactAssociation">
-            <input
+            <button
+              type="button"
               id="button_preinscription"
               className="button-blue"
-              value="Nous contacter"
-            />
+            >
+              Nous contacter
+            </button>
           </NavLink>
         </div>
         <div>
           <NavLink to="/FormulaireAssociation">
-            <input
+            <button
+              type="button"
               id="button_preinscription"
               className="button-blue"
-              value="Nous rejoindre"
-            />
+            >
+              Nous rejoindre
+            </button>
           </NavLink>
         </div>
       </div>

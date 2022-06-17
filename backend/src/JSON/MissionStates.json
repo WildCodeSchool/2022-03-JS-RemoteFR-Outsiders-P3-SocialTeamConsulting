@@ -1,8 +1,1 @@
-[
-    "en attente",
-    "acceptée",
-    "refusée",
-    "pourvue",
-    "terminée",
-    "archivée"
-]
+["en attente", "acceptée", "refusée", "pourvue", "terminée", "archivée"]
