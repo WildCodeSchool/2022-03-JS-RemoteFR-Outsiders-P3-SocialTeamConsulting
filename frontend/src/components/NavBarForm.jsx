@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { authentification } from "@services/services";
@@ -16,6 +15,7 @@ function NavBarForm({ showForm }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     authentification(user, setIsLog);
+    showForm(false);
   };
 
   React.useEffect(() => {
@@ -71,7 +71,6 @@ function NavBarForm({ showForm }) {
           Se connecter
         </button>
       </div>
-      <ToastContainer />
     </form>
   );
 }
