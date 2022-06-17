@@ -12,7 +12,19 @@
   padding: 1vw;
 }
 
-.company {
+.password {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
+.secret {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
+.confirmedNewPassword {
   width: 100vw;
   display: flex;
   justify-content: center;
