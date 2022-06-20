@@ -86,6 +86,12 @@
     margin-left: 1rem;
   }
 
+  .nav-part-one {    
+    height: 30%;
+    background-color: var(--color-highlight);
+    border-radius: 20px 20px 0 0;
+  }
+
   .navbar-desk-logo {
     display: flex;
     align-items: center;
@@ -139,7 +145,7 @@
 
   .nav-part-two {
     background-color: var(--color-highlight);
-    height: 35rem;
+    height: 60%;
     border-radius: 0px 0px 20px 20px;
   }
 }
