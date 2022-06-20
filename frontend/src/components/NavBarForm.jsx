@@ -16,7 +16,7 @@ function NavBarForm({ showForm }) {
     if (isLog) {
       navigate("/back_office");
     } else {
-      navigate("/home");
+      navigate("/");
     }
   }, [isLog]);
 
