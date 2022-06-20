@@ -1,12 +1,15 @@
 import logo from "@assets/SocialTeamConsultingLogo.ico";
 import { NavLink, useNavigate } from "react-router-dom";
-import "@style/BackOffice.css";
 import React, { useState } from "react";
 
-import "@style/NavBar.css";
+import NavBarBackOfficeLinks from "@components/NavBarBackOfficeLinks";
+
+import genericavatar from "@assets/genericavatar.png";
+
 import DataLinksIntervenants from "@services/linksIntervenants.json";
 
-import NavBarBackOfficeLinks from "@components/NavBarBackOfficeLinks";
+import "@style/BackOffice.css";
+import "@style/NavBar.css";
 
 function NavBarBackOffice() {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
@@ -29,10 +32,7 @@ function NavBarBackOffice() {
             <h1>Social Team Consulting</h1>
           </div>
           <div className="navbar-desk-img-profile">
-            <img
-              src="https://randomuser.me/api/portraits/women/90.jpg"
-              alt="profile"
-            />
+            <img src={genericavatar} alt="profile" />
           </div>
           <div className="navbar-desk-name">
             <h1>Laura Dupond</h1>
@@ -42,11 +42,15 @@ function NavBarBackOffice() {
         <div className="nav-part-two">
           {DataLinksIntervenants.map((el) => (
             <div>
-              <NavLink to={el.link}>
-                <div role="button" tabIndex={0} className="navbar-button">
-                  <li>{el.section}</li>
-                </div>
-              </NavLink>
+              <ul>
+                <NavLink to={el.link}>
+                  <div role="button" tabIndex={0} className="navbar-button">
+                    <li className="navbar-li_highlight">
+                      <h2>{el.section}</h2>
+                    </li>
+                  </div>
+                </NavLink>
+              </ul>
             </div>
           ))}
         </div>
@@ -90,12 +94,13 @@ function NavBarBackOffice() {
             <div className="profile-desc">
               <div className="profile-desc-picture">
                 <img
-                  src="https://randomuser.me/api/portraits/women/90.jpg"
+                  className="avatarprofilimg"
+                  src={genericavatar}
                   alt="profile"
                 />
               </div>
               <div className="profile-desc-name">
-                <h2>Kevin PESET</h2>
+                <h2>Laura Dupont</h2>
               </div>
             </div>
           </div>

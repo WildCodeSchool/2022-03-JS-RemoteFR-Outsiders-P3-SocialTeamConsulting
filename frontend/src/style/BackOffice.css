@@ -22,6 +22,9 @@
   position: relative;
   top: -70px;
   left: 10px;
+  height: 8rem;
+  background-color: white;
+
 }
 
 .profile-desc h2 {
@@ -30,9 +33,9 @@
   color: white;
 }
 
-.app-main-container {
+.app-backoffice-container {
   padding: 20rem 1rem 0 1rem;
-  width: 100vw;
+  width: 60vw;
   display: block;
 }
 
@@ -58,8 +61,7 @@
     flex-direction: column;
     justify-content: flex-start;
     height: 100vh;
-    min-width: 20rem;
-    width: auto;
+    width: 30vw;
   }
 
   .navbar-desktop-backoffice li {
@@ -76,7 +78,7 @@
     display: flex;
   }
 
-  .app-main-container {
+  .app-backoffice-container {
     padding: 4rem 1rem 0 1rem;
   }
 
@@ -84,6 +86,12 @@
   .nav-part-two {
     margin-top: 1rem;
     margin-left: 1rem;
+  }
+
+  .nav-part-one {    
+    height: 30%;
+    background-color: var(--color-highlight);
+    border-radius: 20px 20px 0 0;
   }
 
   .navbar-desk-logo {
@@ -102,6 +110,10 @@
   .navbar-desk-logo img {
     height: 4rem;
     width: auto;
+  }
+
+  .avatarprofilimg {
+    height: 8rem;
   }
 
   .navbar-desk-img-profile {
@@ -129,6 +141,8 @@
   }
 
   .navbar-desk-img-profile img {
+    height: 10rem;
+    background-color: white;
     border-radius: 50%;
     border: 8px solid white;
     position: relative;
@@ -137,7 +151,7 @@
 
   .nav-part-two {
     background-color: var(--color-highlight);
-    height: 35rem;
+    height: 60%;
     border-radius: 0px 0px 20px 20px;
   }
 }
