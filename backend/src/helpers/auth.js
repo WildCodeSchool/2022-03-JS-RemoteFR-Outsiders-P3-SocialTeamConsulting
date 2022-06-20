@@ -94,10 +94,47 @@ const IntervenantJoiVerification = (intervenant) => {
   return error;
 };
 
+const AssociationJoiVerification = (association) => {
+  const {
+    nom,
+    email,
+    telephone,
+    password,
+    adresse,
+    code_postal,
+    ville,
+    pre_inscription_message,
+  } = association;
+  const { error } = Joi.object({
+    nom: Joi.string().max(100).required(),
+    email: Joi.string().email().max(255).required(),
+    telephone: Joi.string().min(10).max(10).required(),
+    password: Joi.string().max(255).required(),
+    adresse: Joi.string().max(255).required(),
+    code_postal: Joi.string().max(5).required(),
+    ville: Joi.string().max(255).required(),
+    pre_inscription_message: Joi.string().max(500).required(),
+  }).validate(
+    {
+      nom,
+      email,
+      telephone,
+      password,
+      adresse,
+      code_postal,
+      ville,
+      pre_inscription_message,
+    },
+    { abortEarly: false }
+  );
+  return error;
+};
+
 module.exports = {
   userTypeCheck,
   verifyPassword,
   JWTTokenCreator,
   hashPassword,
   IntervenantJoiVerification,
+  AssociationJoiVerification,
 };

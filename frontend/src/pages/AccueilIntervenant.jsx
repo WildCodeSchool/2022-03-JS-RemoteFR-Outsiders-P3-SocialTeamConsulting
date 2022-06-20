@@ -25,7 +25,7 @@ export default function AccueilIntervenant() {
       </div>
       <div className="contactUsjoinUs">
         <div>
-          <NavLink to="/FormulaireIntervenant">
+          <NavLink to="/formulaire_intervenant">
             <input
               id="button_preinscription"
               className="button-blue"

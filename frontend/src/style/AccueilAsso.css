@@ -64,6 +64,7 @@ header h1 {
   .contactUsjoinUs {
     padding-bottom: 2.5rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 5rem;
   }
 }
