@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import LandingPage from "@pages/LandingPage";
 import AccueilAsso from "@pages/AccueilAsso";
 import AccueilIntervenant from "@pages/AccueilIntervenant";
+
 import FormAsso from "@pages/FormAsso";
 import FormAssoContact from "@pages/FormAssoContact";
 import FormInterv from "@pages/FormInterv";
@@ -42,6 +43,10 @@ function App() {
           />
           <Route path="/FormulaireAssociation" element={<FormAsso />} />
           <Route path="/*" element={<LandingPage />} />
+          <Route
+            path="/MissionValideesIntervenant"
+            element={<ValidatedMissions />}
+          />
         </Routes>
       </div>
       <Footer />
