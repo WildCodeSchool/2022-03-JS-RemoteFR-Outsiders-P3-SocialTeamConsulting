@@ -1,20 +1,52 @@
 import React, { useState } from "react";
+import axios from "axios";
+
+import { notifySuccess, notifyError } from "@services/services";
+import "react-toastify/dist/ReactToastify.css";
 import "@style/Form.css";
 
 export default function FormAsso() {
-  const [password, setPassword] = useState("");
-  const [passCheck, setPassCheck] = useState("");
   const [buttonText, setButtonText] = useState("Envoyer ma pré-inscription");
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (password === passCheck) {
-      setButtonText("Merci, votre pré-inscription a bien été prise en compte");
-    } else {
-      setButtonText(
-        "Erreur, vérifier si toutes vos informations sont correctes"
-      );
-    }
+  const [association, setAssociation] = useState({
+    password: "",
+    passCheck: "",
+  });
+  function handleChange(e) {
+    setAssociation({
+      ...association,
+      [e.target.name]: e.target.value,
+    });
+  }
+
+  const ENDPOINT = "http://localhost:5000/associations";
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post(ENDPOINT, association)
+      .then(() => {
+        if (association.password === association.passCheck) {
+          setButtonText(
+            "Merci, votre pré-inscription a bien été prise en compte"
+          );
+
+          notifySuccess(
+            "Votre pré-inscription a été enregistrée. Un administrateur vous contactera bientôt pour vous informer de l'avancement de votre dossier"
+          );
+        } else {
+          notifyError(
+            "Votre pré-inscription n'a pas pu aboutir. Veuillez vérifier les champs à remplir avant de soumettre à nouveau votre pré-inscription"
+          );
+        }
+      })
+      .catch(() => {
+        setButtonText(
+          "Erreur, vérifier si toutes vos informations sont correctes"
+        );
+        notifyError(
+          "Votre pré-inscription n'a pas pu aboutir. Veuillez vérifier les champs à remplir avant de soumettre à nouveau votre pré-inscription"
+        );
+      });
   };
 
   return (
@@ -32,6 +64,8 @@ export default function FormAsso() {
                     id="form_asso_name"
                     required
                     placeholder="ex: ASSOCIATION LES VALLIERES"
+                    onChange={handleChange}
+                    name="nom"
                   />
                 </label>
               </div>
@@ -43,6 +77,8 @@ export default function FormAsso() {
                     id="form_asso_email"
                     required
                     placeholder="votreemail@gmail.com"
+                    onChange={handleChange}
+                    name="email"
                   />
                 </label>
               </div>
@@ -57,9 +93,9 @@ export default function FormAsso() {
                     id="form_asso_mdp"
                     required
                     placeholder="********"
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={handleChange}
                     autoComplete="off"
-                    value={password}
+                    value={association.password}
                   />
                 </label>
               </div>
@@ -74,9 +110,9 @@ export default function FormAsso() {
                     id="form_asso_mdp2"
                     required
                     placeholder="********"
-                    onChange={(e) => setPassCheck(e.target.value)}
                     autoComplete="off"
-                    value={passCheck}
+                    value={association.passCheck}
+                    onChange={handleChange}
                   />
                 </label>
               </div>
@@ -90,6 +126,8 @@ export default function FormAsso() {
                     id="form_asso_adresse"
                     required
                     placeholder="3 rue du Limousin"
+                    onChange={handleChange}
+                    name="adresse"
                   />
                 </label>
               </div>
@@ -101,6 +139,8 @@ export default function FormAsso() {
                     id="form_asso_code_postale"
                     required
                     placeholder="33000"
+                    onChange={handleChange}
+                    name="code_postal"
                   />
                 </label>
               </div>
@@ -114,6 +154,8 @@ export default function FormAsso() {
                     id="form_asso_ville"
                     required
                     placeholder="Bordeaux"
+                    onChange={handleChange}
+                    name="ville"
                   />
                 </label>
               </div>
@@ -125,6 +167,8 @@ export default function FormAsso() {
                     id="form_asso_tel"
                     required
                     placeholder="0772980819"
+                    onChange={handleChange}
+                    name="telephone"
                   />
                 </label>
               </div>
@@ -133,11 +177,19 @@ export default function FormAsso() {
               <label htmlFor="form_message">
                 <p>Votre message</p>
 
-                <textarea id="form_message" required />
+                <textarea
+                  id="form_message"
+                  name="pre_inscription_message"
+                  required
+                  onChange={handleChange}
+                />
               </label>
             </div>
             <div className="submit_button">
-              <input type="submit" className="button-blue" value={buttonText} />
+              <button type="submit" className="button-blue">
+                {" "}
+                {buttonText}
+              </button>
             </div>
           </div>
         </form>
