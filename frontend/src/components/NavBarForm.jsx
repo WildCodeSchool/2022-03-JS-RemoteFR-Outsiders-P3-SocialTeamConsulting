@@ -20,7 +20,7 @@ function NavBarForm({ showForm }) {
 
   React.useEffect(() => {
     if (isLog) {
-      navigate("/page1");
+      navigate("/back_office");
     } else {
       navigate("/home");
     }

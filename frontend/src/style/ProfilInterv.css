@@ -1,4 +1,3 @@
-
 .backoffice-bloc {
   width: 100%;
   display: flex;
@@ -16,13 +15,13 @@ input {
   width: 100%;
 }
 
-.backoffice_profilinterv_submit_button{
+.backoffice_profilinterv_submit_button {
   width: 100%;
   display: flex;
   justify-content: center;
 }
 
-.backoffice_profilinterv_submit_button .button-blue{
+.backoffice_profilinterv_submit_button .button-blue {
   margin: 2rem auto;
 }
 

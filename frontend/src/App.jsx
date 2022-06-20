@@ -9,15 +9,13 @@ import "@style/App.css";
 
 function App() {
   return (
-
     <div className="App">
       <Routes>
-        <Route path="/BackOffice" element={<BackOffice />} />
+        <Route path="/back_office" element={<BackOffice />} />
         <Route path="/*" element={<Home />} />
       </Routes>
       <ToastContainer />
     </div>
-
   );
 }
 

@@ -133,7 +133,7 @@ export default function FormAsso() {
               </div>
               <div>
                 <label htmlFor="form_asso_code_postale">
-                  <p>Code Postale</p>
+                  <p>Code Postal</p>
                   <input
                     type="text"
                     id="form_asso_code_postale"
