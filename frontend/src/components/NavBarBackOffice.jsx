@@ -42,11 +42,15 @@ function NavBarBackOffice() {
         <div className="nav-part-two">
           {DataLinksIntervenants.map((el) => (
             <div>
-              <NavLink to={el.link}>
-                <div role="button" tabIndex={0} className="navbar-button">
-                  <li>{el.section}</li>
-                </div>
-              </NavLink>
+              <ul>
+                <NavLink to={el.link}>
+                  <div role="button" tabIndex={0} className="navbar-button">
+                    <li className="navbar-li_highlight">
+                      <h2>{el.section}</h2>
+                    </li>
+                  </div>
+                </NavLink>
+              </ul>
             </div>
           ))}
         </div>
