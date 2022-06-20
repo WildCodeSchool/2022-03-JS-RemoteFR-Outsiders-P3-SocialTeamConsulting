@@ -94,12 +94,13 @@ function NavBarBackOffice() {
             <div className="profile-desc">
               <div className="profile-desc-picture">
                 <img
-                  src="https://randomuser.me/api/portraits/women/90.jpg"
+                  className="avatarprofilimg"
+                  src={genericavatar}
                   alt="profile"
                 />
               </div>
               <div className="profile-desc-name">
-                <h2>Kevin PESET</h2>
+                <h2>Laura Dupont</h2>
               </div>
             </div>
           </div>
