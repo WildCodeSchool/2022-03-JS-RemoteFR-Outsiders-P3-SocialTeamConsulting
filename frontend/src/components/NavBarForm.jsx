@@ -12,12 +12,6 @@ function NavBarForm({ showForm }) {
   });
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    authentification(user, setIsLog);
-    showForm(false);
-  };
-
   React.useEffect(() => {
     if (isLog) {
       navigate("/back_office");
@@ -31,6 +25,11 @@ function NavBarForm({ showForm }) {
       ...user,
       [e.target.name]: e.target.value,
     });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    authentification(user, setIsLog);
   };
 
   return (
