@@ -11,6 +11,7 @@ import FormInterv from "@pages/FormInterv";
 
 import NavBar from "@components/NavBar";
 import Footer from "@components/Footer";
+import ValidatedMissions from "@components/ValidatedMissions";
 
 import "@style/App.css";
 
@@ -34,17 +35,17 @@ function App() {
       />
       <div className="app-main-container">
         <Routes>
-          <Route path="/AccueilAssociation" element={<AccueilAsso />} />
-          <Route path="/FormulaireIntervenant" element={<FormInterv />} />
-          <Route path="/AccueilIntervenant" element={<AccueilIntervenant />} />
+          <Route path="/accueil_association" element={<AccueilAsso />} />
+          <Route path="/formulaire_intervenant" element={<FormInterv />} />
+          <Route path="/accueil_intervenant" element={<AccueilIntervenant />} />
           <Route
-            path="/FormulaireContactAssociation"
+            path="/formulaire_contact_association"
             element={<FormAssoContact />}
           />
-          <Route path="/FormulaireAssociation" element={<FormAsso />} />
+          <Route path="/formulaire_association" element={<FormAsso />} />
           <Route path="/*" element={<LandingPage />} />
           <Route
-            path="/MissionValideesIntervenant"
+            path="/mission_validees_intervenant"
             element={<ValidatedMissions />}
           />
         </Routes>

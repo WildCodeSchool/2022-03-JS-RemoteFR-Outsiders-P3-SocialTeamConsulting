@@ -28,6 +28,7 @@ function NavBarBackOffice() {
               className="navbar-logo"
               src={logo}
               alt="logo de la Social Team Consulting"
+              onClick={() => navigate("/back_office")}
             />
             <h1>Social Team Consulting</h1>
           </div>
@@ -66,7 +67,7 @@ function NavBarBackOffice() {
                 className="navbar-logo"
                 src={logo}
                 alt="logo de la Social Team Consulting"
-                onClick={() => navigate("/")}
+                onClick={() => navigate("/back_office")}
               />
             </div>
             <h1 className="title">Social Team Consulting</h1>
