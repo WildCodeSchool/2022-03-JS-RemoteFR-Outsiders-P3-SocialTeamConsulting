@@ -52,14 +52,11 @@ class AssociationsController {
   };
 
   static add = (req, res) => {
-    const item = req.body;
-
-    // TODO validations (length, format...)
-
+    const association = req.body;
     models.associations
-      .insert(item)
+      .insert(association)
       .then(([result]) => {
-        res.status(201).send({ ...item, id: result.insertId });
+        res.status(201).send({ ...association, id: result.insertId });
       })
       .catch((err) => {
         console.error(err);

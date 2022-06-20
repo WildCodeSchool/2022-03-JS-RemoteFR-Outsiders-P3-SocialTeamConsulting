@@ -4,14 +4,13 @@ import { Route, Routes } from "react-router-dom";
 import LandingPage from "@pages/LandingPage";
 import AccueilAsso from "@pages/AccueilAsso";
 import AccueilIntervenant from "@pages/AccueilIntervenant";
-// import FormAsso from "@components/FormAsso";
-import ValidatedMissions from "@components/ValidatedMissions";
-import Page1 from "@pages/Page1";
+
+import FormAsso from "@pages/FormAsso";
+import FormAssoContact from "@pages/FormAssoContact";
+import FormInterv from "@pages/FormInterv";
 
 import NavBar from "@components/NavBar";
 import Footer from "@components/Footer";
-import FormInterv from "@components/FormInterv";
-import FormAssoContact from "@components/FormAssoContact";
 
 import "@style/App.css";
 
@@ -33,15 +32,7 @@ function App() {
         isFormVisible={isFormVisible}
         showForm={showForm}
       />
-      <div
-        className="app-main-container"
-        role="button"
-        tabIndex={0}
-        onClick={() => {
-          showForm(false);
-          showLink(false);
-        }}
-      >
+      <div className="app-main-container">
         <Routes>
           <Route path="/AccueilAssociation" element={<AccueilAsso />} />
           <Route path="/FormulaireIntervenant" element={<FormInterv />} />
@@ -50,7 +41,7 @@ function App() {
             path="/FormulaireContactAssociation"
             element={<FormAssoContact />}
           />
-          <Route path="/FormulaireAssociation" element={<Page1 />} />
+          <Route path="/FormulaireAssociation" element={<FormAsso />} />
           <Route path="/*" element={<LandingPage />} />
           <Route
             path="/MissionValideesIntervenant"
