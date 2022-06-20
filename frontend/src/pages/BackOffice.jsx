@@ -7,7 +7,7 @@ function BackOffice() {
   return (
     <div className="arch-backoffice">
       <NavBarBackOffice />
-      <div className="app-main-container">
+      <div className="app-backoffice-container">
         {/* LES ROUTES SERONT ICI */} ICI S'AFFICHERONT LES PAGES
       </div>
     </div>
