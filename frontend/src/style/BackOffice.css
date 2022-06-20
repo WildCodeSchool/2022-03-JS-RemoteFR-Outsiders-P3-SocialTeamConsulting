@@ -129,6 +129,8 @@
   }
 
   .navbar-desk-img-profile img {
+    height: 10rem;
+    background-color: white;
     border-radius: 50%;
     border: 8px solid white;
     position: relative;

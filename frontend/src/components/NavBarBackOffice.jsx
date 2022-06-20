@@ -1,12 +1,15 @@
 import logo from "@assets/SocialTeamConsultingLogo.ico";
 import { NavLink, useNavigate } from "react-router-dom";
-import "@style/BackOffice.css";
 import React, { useState } from "react";
 
-import "@style/NavBar.css";
+import NavBarBackOfficeLinks from "@components/NavBarBackOfficeLinks";
+
+import genericavatar from "@assets/genericavatar.png";
+
 import DataLinksIntervenants from "@services/linksIntervenants.json";
 
-import NavBarBackOfficeLinks from "@components/NavBarBackOfficeLinks";
+import "@style/BackOffice.css";
+import "@style/NavBar.css";
 
 function NavBarBackOffice() {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
@@ -29,10 +32,7 @@ function NavBarBackOffice() {
             <h1>Social Team Consulting</h1>
           </div>
           <div className="navbar-desk-img-profile">
-            <img
-              src="https://randomuser.me/api/portraits/women/90.jpg"
-              alt="profile"
-            />
+            <img src={genericavatar} alt="profile" />
           </div>
           <div className="navbar-desk-name">
             <h1>Laura Dupond</h1>
