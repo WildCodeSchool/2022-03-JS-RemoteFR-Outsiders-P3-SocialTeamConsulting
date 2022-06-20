@@ -4,14 +4,15 @@ import triangle from "@assets/triangle.png";
 import "@style/ValidatedMissions.css";
 
 function MissionSynthesis({ mission, key }) {
-  const heureDebut = new Date(`
-          ${mission.date_debut}, ${mission.horaire_debut}`);
-  const heureFin = new Date(`${mission.date_fin}, ${mission.horaire_fin}`);
-  const duration = heureDebut.getHours() - heureFin.getHours();
-  // console.error(getFullYear(mission.date_debut));
-
-  const date1 = new Date(mission.date_debut);
-  console.error(date1.toDateString());
+  const dateDebut = new Date(mission.date_debut);
+  const dateFin = new Date(mission.date_fin);
+  const duration = 1;
+  const options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
 
   const [showDescription, setShowDescription] = useState(false);
   const [isRotated, setIsRotated] = useState(false);
@@ -38,7 +39,8 @@ function MissionSynthesis({ mission, key }) {
           </div>
           <div>
             <h2 className="inline">Date de la mission : </h2>
-            {mission.date_debut}
+            Du {dateDebut.toLocaleDateString("fr-FR", options)} au{" "}
+            {dateFin.toLocaleDateString("fr-FR", options)}
           </div>
           <div>
             <h2 className="inline">Horaires : </h2>
