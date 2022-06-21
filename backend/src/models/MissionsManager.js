@@ -9,6 +9,12 @@ class MissionsManager extends AbstractManager {
       `SELECT m.*, a.nom FROM missions AS m INNER JOIN associations AS a ON m.associations_id = a.id`
     );
   }
+
+  findValidatedMissions() {
+    return this.connection.query(
+      'SELECT * FROM MISSIONS WHERE etat = ("Validé")'
+    );
+  }
 }
 
 module.exports = MissionsManager;

@@ -12,6 +12,7 @@ import FormAsso from "@pages/FormAsso";
 import FormAssoContact from "@pages/FormAssoContact";
 import FormInterv from "@pages/FormInterv";
 import ProfilInterv from "@components/ProfilInterv";
+import BacklogValidatedMissions from "@components/BacklogValidatedMissions";
 
 import ValidatedMissions from "@components/ValidatedMissions";
 
@@ -38,6 +39,10 @@ function App() {
           />
           <Route path="accueil_intervenant" element={<AccueilIntervenant />} />
           <Route path="formulaire_intervenant" element={<FormInterv />} />
+          <Route
+            path="backlog_validated_missions"
+            element={<BacklogValidatedMissions />}
+          />
         </Route>
       </Routes>
       <ToastContainer />
