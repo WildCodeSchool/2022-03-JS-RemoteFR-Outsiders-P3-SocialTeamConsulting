@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import axios from "axios";
 
 import { FaCloudUploadAlt } from "react-icons/fa";
 import "@style/Form.css";
 
-import { notifySuccess, notifyError } from "@services/services";
+import { notifySuccess, notifyError, api } from "@services/services";
 import "react-toastify/dist/ReactToastify.css";
 
 function FormInterv() {
@@ -58,11 +57,11 @@ function FormInterv() {
     return <div className="green">{fileCv.name}</div>;
   }
 
-  const ENDPOINT = "http://localhost:5000/intervenants";
+  const ENDPOINT = "/intervenants";
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios
+    api
       .post(ENDPOINT, intervenant)
       .then(() => {
         if (intervenant.password === intervenant.passCheck) {
