@@ -13,6 +13,7 @@ import FormAssoContact from "@pages/FormAssoContact";
 import FormInterv from "@pages/FormInterv";
 import ProfilInterv from "@components/ProfilInterv";
 import BacklogValidatedMissions from "@components/BacklogValidatedMissions";
+import HistoryMissions from "@components/HistoryMissions";
 
 import ValidatedMissions from "@components/ValidatedMissions";
 
@@ -28,6 +29,11 @@ function App() {
             path="modification_profil_intervenant"
             element={<ProfilInterv />}
           />
+          <Route
+            path="backlog_validated_missions"
+            element={<BacklogValidatedMissions />}
+          />
+          <Route path="missions_history" element={<HistoryMissions />} />
         </Route>
         <Route path="/" element={<Home />}>
           <Route index element={<LandingPage />} />
@@ -38,12 +44,8 @@ function App() {
             element={<FormAssoContact />}
           />
           <Route path="accueil_intervenant" element={<AccueilIntervenant />} />
-          <Route path="formulaire_intervenant" element={<FormInterv />} />
-          <Route
-            path="backlog_validated_missions"
-            element={<BacklogValidatedMissions />}
-          />
         </Route>
+        <Route path="formulaire_intervenant" element={<FormInterv />} />
       </Routes>
       <ToastContainer />
     </div>

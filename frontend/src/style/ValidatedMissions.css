@@ -13,6 +13,22 @@
   width: 23rem;
 }
 
+.pending-validation {
+  background-color: orange;
+}
+
+.is-validated {
+  background-color: green;
+}
+
+.is-refused {
+  background-color: red;
+}
+
+.finished {
+  background-color: light-grey;
+}
+
 .section1 {
   display: flex;
   align-items: flex-end;

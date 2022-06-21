@@ -22,8 +22,17 @@ function MissionSynthesis({ mission, key }) {
     setIsRotated(!isRotated);
   };
 
+  let missionTheme = "mission";
+  if (mission.isvalidated === 1) {
+    missionTheme += " is-validated";
+  } else if (mission.isvalidated === 2) {
+    missionTheme += " mission is-refused";
+  } else if (mission.isvalidated === 0) {
+    missionTheme += " pending-validation";
+  }
+
   return (
-    <div className="mission">
+    <div className={missionTheme}>
       <div className="section1">
         <div className="synthesis">
           <div>

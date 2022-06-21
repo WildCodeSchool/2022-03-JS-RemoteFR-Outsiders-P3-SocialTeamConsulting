@@ -19,6 +19,7 @@ function BacklogValidatedMissions() {
 
   return (
     <div className="card">
+      <h1>Ensemble des missions ouvertes à candidature</h1>
       {missions.map((mission) => {
         return <MissionSynthesis mission={mission} key={mission.id} />;
       })}

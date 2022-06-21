@@ -37,6 +37,18 @@ class MissionsController {
       });
   };
 
+  static browseMissionsHistory = (req, res) => {
+    models.missions
+      .findMyMissions()
+      .then(([rows]) => {
+        res.send(rows);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(500);
+      });
+  };
+
   static read = (req, res) => {
     models.missions
       .find(req.params.id)

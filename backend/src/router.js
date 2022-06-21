@@ -40,6 +40,7 @@ router.delete("/associations/:id", AssociationsController.delete);
 // router.get("/missions", MissionsController.browse);
 router.get("/missions", MissionsController.browseWithAssociation);
 router.get("/missions/validated", MissionsController.browseValidatedMissions);
+router.get("/missions/history", MissionsController.browseMissionsHistory);
 router.get("/missions/:id", MissionsController.read);
 router.put("/missions/:id", MissionsController.edit);
 router.post("/missions", MissionsController.add);
