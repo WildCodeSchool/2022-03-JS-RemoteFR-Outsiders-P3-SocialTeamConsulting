@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import { notifySuccess, notifyError, api } from "@services/services";
 import MissionSynthesis from "./MissionSynthesis";
+
 import "@style/ValidatedMissions.css";
 
 function BackOfficeAdminMissionValidation() {
+  const [update, setUpdate] = useState(false);
   const validateMission = (missionId, isAccepted) => {
-    const ENDPOINTVALIDATION = `${
-      import.meta.env.VITE_BACKEND_URL
-    }/missions/${missionId}`;
+    const ENDPOINTVALIDATION = `/missions/${missionId}`;
 
-    axios
+    api
       .put(ENDPOINTVALIDATION, { isValidated: isAccepted })
       .then(() => {
-        window.location.reload();
+        notifySuccess("le statut de la mission a été mis à jour");
+        setUpdate(!update);
       })
+
       .catch((err) => {
-        console.error(err);
+        console.error(notifyError(err));
       });
   };
   const validationArea = (missionId) => {
@@ -41,32 +43,41 @@ function BackOfficeAdminMissionValidation() {
     );
   };
 
-  const API = "http://localhost:5000/missions";
+  const ENDPOINT = "/missions";
   const [missions, setMissions] = useState([]);
   useEffect(() => {
-    axios
-      .get(API)
+    api
+      .get(ENDPOINT)
       .then((res) => {
         setMissions(res.data);
       })
       .catch((err) => {
         console.error(err);
       });
-  }, []);
+  }, [update]);
 
+  /*
+
+  si aucune mission a valider : afficher un message
+
+  */
   return (
     <div className="card">
-      {missions
-        .filter((e) => e.etat === "en attente")
-        .map((mission) => {
-          return (
-            <MissionSynthesis
-              mission={mission}
-              key={mission.id}
-              validationArea={validationArea}
-            />
-          );
-        })}
+      {missions.filter((e) => e.etat === "en attente").length === 0 ? (
+        <h2>Il n'y a aucune mission à valider pour l'instant</h2>
+      ) : (
+        missions
+          .filter((e) => e.etat === "en attente")
+          .map((mission) => {
+            return (
+              <MissionSynthesis
+                mission={mission}
+                key={mission.id}
+                validationArea={validationArea}
+              />
+            );
+          })
+      )}
     </div>
   );
 }
