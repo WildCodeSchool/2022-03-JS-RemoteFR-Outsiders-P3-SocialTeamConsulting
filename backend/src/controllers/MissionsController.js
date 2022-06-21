@@ -42,14 +42,12 @@ class MissionsController {
   };
 
   static edit = (req, res) => {
-    const intervenant = req.body;
+    const { isValidated } = req.body;
 
-    // TODO validations (length, format...)
-
-    intervenant.id = parseInt(req.params.id, 10);
+    const missionId = parseInt(req.params.id, 10);
 
     models.missions
-      .update(intervenant)
+      .updateEtat(missionId, isValidated)
       .then(([result]) => {
         if (result.affectedRows === 0) {
           res.sendStatus(404);
