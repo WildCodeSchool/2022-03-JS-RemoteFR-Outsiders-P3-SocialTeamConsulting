@@ -41,7 +41,7 @@ function FormAssoContact() {
               <input
                 type="submit"
                 className="button-blue"
-                value="Envoyer la pré-inscription"
+                value="Envoyer le message"
               />
             </div>
           </div>

@@ -1,0 +1,30 @@
+.backoffice-bloc {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.backoffice-input-half {
+  width: 40%;
+}
+
+input {
+  border: 0.125rem solid #f79a33;
+  border-radius: 0.6rem;
+  text-align: center;
+  width: 100%;
+}
+
+.backoffice_profilinterv_submit_button {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.backoffice_profilinterv_submit_button .button-blue {
+  margin: 2rem auto;
+}
+
+p {
+  font-weight: bolder;
+}

@@ -1,4 +1,7 @@
+const { v4: uuidv4 } = require("uuid");
 const models = require("../models");
+const etat = require("../JSON/UserStates.json");
+const { hashPassword, AssociationJoiVerification } = require("../helpers/auth");
 
 class AssociationsController {
   static browse = (req, res) => {
@@ -52,19 +55,30 @@ class AssociationsController {
   };
 
   static add = (req, res) => {
-    const item = req.body;
-
-    // TODO validations (length, format...)
-
-    models.associations
-      .insert(item)
-      .then(([result]) => {
-        res.status(201).send({ ...item, id: result.insertId });
-      })
-      .catch((err) => {
-        console.error(err);
-        res.sendStatus(500);
-      });
+    const uuid = uuidv4();
+    hashPassword(req.body.password).then((hashedPassword) => {
+      req.body.password = hashedPassword;
+      req.body = {
+        ...req.body,
+        id: uuid,
+        etat: etat[0],
+      };
+      const association = req.body;
+      const error = AssociationJoiVerification(association);
+      if (error) {
+        res.status(422).json({ validationErrors: error.details });
+      } else {
+        models.associations
+          .insert(association)
+          .then(() => {
+            res.status(201).send("utilisateur enregistré");
+          })
+          .catch((err) => {
+            console.error(err);
+            res.sendStatus(500);
+          });
+      }
+    });
   };
 
   static delete = (req, res) => {
