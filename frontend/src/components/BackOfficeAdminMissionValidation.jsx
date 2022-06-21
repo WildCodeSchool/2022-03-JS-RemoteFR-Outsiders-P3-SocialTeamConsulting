@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { notifySuccess, notifyError, api } from "@services/services";
-import MissionSynthesis from "./MissionSynthesis";
+import MissionSynthesis from "@components/MissionSynthesis";
 
 import "@style/ValidatedMissions.css";
 
@@ -56,11 +56,6 @@ function BackOfficeAdminMissionValidation() {
       });
   }, [update]);
 
-  /*
-
-  si aucune mission a valider : afficher un message
-
-  */
   return (
     <div className="card">
       {missions.filter((e) => e.etat === "en attente").length === 0 ? (
