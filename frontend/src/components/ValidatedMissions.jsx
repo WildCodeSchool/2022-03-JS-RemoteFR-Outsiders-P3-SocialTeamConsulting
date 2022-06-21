@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+
+import { api } from "@services/services";
 
 import MissionSynthesis from "./MissionSynthesis";
 import "@style/ValidatedMissions.css";
 
 function ValidatedMissions() {
-  const API = "http://localhost:5000/missions";
+  const API = "/missions";
   const [missions, setMissions] = useState([]);
   useEffect(() => {
-    axios
+    api
       .get(API)
       .then((res) => {
         setMissions(res.data);

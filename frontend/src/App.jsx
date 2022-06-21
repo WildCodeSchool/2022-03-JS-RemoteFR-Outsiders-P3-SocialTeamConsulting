@@ -12,6 +12,7 @@ import FormAsso from "@pages/FormAsso";
 import FormAssoContact from "@pages/FormAssoContact";
 import FormInterv from "@pages/FormInterv";
 import ProfilInterv from "@components/ProfilInterv";
+import BackOfficeAdminMissionValidation from "@components/BackOfficeAdminMissionValidation";
 
 import ValidatedMissions from "@components/ValidatedMissions";
 
@@ -29,6 +30,10 @@ function App() {
             element={<ProfilInterv />}
           />
           <Route path="post_mission" element={<PostMission />} />
+          <Route
+            path="validation_mission"
+            element={<BackOfficeAdminMissionValidation />}
+          />
         </Route>
         <Route path="/" element={<Home />}>
           <Route index element={<LandingPage />} />
