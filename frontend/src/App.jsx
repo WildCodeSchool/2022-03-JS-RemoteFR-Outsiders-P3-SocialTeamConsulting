@@ -16,6 +16,7 @@ import ProfilInterv from "@components/ProfilInterv";
 import ValidatedMissions from "@components/ValidatedMissions";
 
 import "@style/App.css";
+import PostMission from "@pages/PostMission";
 
 function App() {
   return (
@@ -27,13 +28,14 @@ function App() {
             path="modification_profil_intervenant"
             element={<ProfilInterv />}
           />
+          <Route path="post_mission" element={<PostMission />} />
         </Route>
         <Route path="/" element={<Home />}>
           <Route index element={<LandingPage />} />
           <Route path="accueil_association" element={<AccueilAsso />} />
           <Route path="formulaire_association" element={<FormAsso />} />
           <Route
-            path="formulaire_conact_association"
+            path="formulaire_contact_association"
             element={<FormAssoContact />}
           />
           <Route path="accueil_intervenant" element={<AccueilIntervenant />} />

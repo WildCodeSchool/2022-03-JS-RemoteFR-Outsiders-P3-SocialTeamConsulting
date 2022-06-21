@@ -1,0 +1,9 @@
+.post-mission-job {
+  display: flex;
+  flex-direction: column;
+  padding-top: 1rem;
+}
+
+#post_mission_desc {
+  height: 30vh;
+}
