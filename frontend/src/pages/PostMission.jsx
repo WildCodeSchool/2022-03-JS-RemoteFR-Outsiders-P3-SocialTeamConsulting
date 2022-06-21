@@ -1,10 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import "../style/PostMission.css";
 
+import { notifySuccess, notifyError, api } from "@services/services";
+
 function PostMission() {
+  const [mission, setMissions] = useState({});
+  const assoID = "18679c5f-dc33-475e-8630-45c971d38cab";
+  function handleChange(e) {
+    setMissions({
+      ...mission,
+      [e.target.name]: e.target.value,
+      associations_id: assoID,
+    });
+  }
+
+  const ENDPOINT = "/missions";
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    api
+      .post(ENDPOINT, mission)
+      .then(() => {
+        notifySuccess(
+          "Votre pré-inscription a été enregistrée. Un administrateur vous contactera bientôt pour vous informer de l'avancement de votre dossier"
+        );
+      })
+      .catch(() => {
+        notifyError(
+          "Votre pré-inscription n'a pas pu aboutir. Veuillez vérifier les champs à remplir avant de soumettre à nouveau votre pré-inscription"
+        );
+      });
+  };
+
   return (
     <div>
-      <form action="#" method="post">
+      <form action="#" method="post" onSubmit={handleSubmit}>
         <div className="">
           <h1>Créer une mission</h1>
           <div className="">
@@ -17,6 +46,7 @@ function PostMission() {
                   required
                   placeholder="Nous recherchons un travailleur social"
                   name="intitule"
+                  onChange={handleChange}
                 />
               </label>
             </div>
@@ -32,6 +62,7 @@ function PostMission() {
                 required
                 placeholder="3 rue jules verne"
                 name="adresse"
+                onChange={handleChange}
               />
             </label>
             <div className="backoffice-bloc">
@@ -46,6 +77,7 @@ function PostMission() {
                   required
                   placeholder="63000"
                   name="code_postal"
+                  onChange={handleChange}
                 />
               </label>
               <label
@@ -59,6 +91,7 @@ function PostMission() {
                   required
                   placeholder="Clermont-fd"
                   name="ville"
+                  onChange={handleChange}
                 />
               </label>
             </div>
@@ -74,6 +107,7 @@ function PostMission() {
                     id="post_mission_date-deb"
                     required
                     name="date_debut"
+                    onChange={handleChange}
                   />
                 </label>
                 <label
@@ -86,6 +120,7 @@ function PostMission() {
                     id="post_mission_date-fin"
                     required
                     name="date_fin"
+                    onChange={handleChange}
                   />
                 </label>
               </div>
@@ -101,6 +136,7 @@ function PostMission() {
                     required
                     placeholder="8h"
                     name="horaire_debut"
+                    onChange={handleChange}
                   />
                 </label>
                 <label
@@ -114,28 +150,38 @@ function PostMission() {
                     required
                     placeholder="17h"
                     name="horaire_fin"
+                    onChange={handleChange}
                   />
                 </label>
               </div>
 
               <div className="post-mission-job">
-                {/* <label for="job_select">Poste general:</label> */}
-
-                <select name="pets" id="job_select">
+                <select id="job_select" name="metier" onChange={handleChange}>
                   <option value="">--Choisir un type de travail--</option>
-                  <option value="moniteurs">moniteurs </option>
-                  <option value="éducateurs">éducateurs</option>
-                  <option value="éducateursspécialisé">
+                  <option value="moniteurs" name="metier">
+                    moniteurs{" "}
+                  </option>
+                  <option value="éducateurs" name="metier">
+                    éducateurs
+                  </option>
+                  <option value="éducateurs spécialisé" name="metier">
                     éducateurs spécialisé
                   </option>
-                  <option value="assistantedeservicesocial">
+                  <option value="assistante de service social" name="metier">
                     assistante de service social
                   </option>
-                  <option value="conseillèreenéconomiesocialetfamiliale">
+                  <option
+                    value="conseillère en économie social et familiale"
+                    name="metier"
+                  >
                     conseillère en économie social et familiale
                   </option>
-                  <option value="chefdeservice">chef de service</option>
-                  <option value="Autre">Autre</option>
+                  <option value="chef de service" name="metier">
+                    chef de service
+                  </option>
+                  <option value="Autre" name="metier">
+                    Autre
+                  </option>
                 </select>
 
                 <label htmlFor="post_mission_horaire-totale">
@@ -145,20 +191,22 @@ function PostMission() {
                     id="post_mission_horaire-totale"
                     required
                     placeholder="35h"
-                    name="email"
+                    name="total_heure"
                     className="backoffice-input-half"
+                    onChange={handleChange}
                   />
                 </label>
               </div>
               <div>
                 <label htmlFor="post_mission_desc">
                   <p>DESCRIPTION</p>
-                  <input
-                    type="email"
+                  <textarea
+                    type="text"
                     id="post_mission_desc"
                     required
                     placeholder="contenu de la mission"
-                    name="email"
+                    name="description"
+                    onChange={handleChange}
                   />
                 </label>
               </div>

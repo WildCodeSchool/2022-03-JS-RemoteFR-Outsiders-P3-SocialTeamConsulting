@@ -4,6 +4,27 @@ const MissionStates = require("../JSON/MissionStates.json");
 class MissionsManager extends AbstractManager {
   static table = "missions";
 
+  insert(mission) {
+    return this.connection.query(
+      `insert into ${MissionsManager.table} (intitule, metier, adresse, code_postal, ville, description, horaire_debut, horaire_fin, date_debut, date_fin, total_heure, etat, associations_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        mission.intitule,
+        mission.metier,
+        mission.adresse,
+        mission.code_postal,
+        mission.ville,
+        mission.description,
+        mission.horaire_debut,
+        mission.horaire_fin,
+        mission.date_debut,
+        mission.date_fin,
+        mission.total_heure,
+        mission.etat,
+        mission.associations_id,
+      ]
+    );
+  }
+
   findAllWithAssociation() {
     // return this.connection.query(`select * from  ${this.table}`);
     return this.connection.query(

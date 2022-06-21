@@ -1,4 +1,5 @@
 const models = require("../models");
+const etat = require("../JSON/MissionStates.json");
 
 class MissionsController {
   static browse = (req, res) => {
@@ -62,14 +63,15 @@ class MissionsController {
   };
 
   static add = (req, res) => {
-    const intervenant = req.body;
-
-    // TODO validations (length, format...)
-
+    req.body = {
+      ...req.body,
+      etat: etat[0],
+    };
+    const mission = req.body;
     models.missions
-      .insert(intervenant)
-      .then(([result]) => {
-        res.status(201).send({ ...intervenant, id: result.insertId });
+      .insert(mission)
+      .then(() => {
+        res.status(201).send("Mission enregistrée");
       })
       .catch((err) => {
         console.error(err);
