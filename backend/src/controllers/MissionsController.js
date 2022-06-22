@@ -39,7 +39,7 @@ class MissionsController {
 
   static browseMissionsHistory = (req, res) => {
     models.missions
-      .findMyMissions()
+      .findMyMissions(req.params.id)
       .then(([rows]) => {
         res.send(rows);
       })

@@ -61,7 +61,7 @@ h2 {
 
 .button-blue {
   color: var(--color-interaction);
-  border-color:var(--color-interaction);
+  border-color: var(--color-interaction);
 }
 
 .button-orange {

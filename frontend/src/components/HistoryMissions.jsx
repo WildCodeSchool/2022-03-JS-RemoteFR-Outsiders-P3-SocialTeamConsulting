@@ -1,22 +1,45 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { api } from "@services/services";
 import MissionSynthesis from "./MissionSynthesis";
 import "@style/ValidatedMissions.css";
 
 function HistoryMissions() {
-  const API = "http://localhost:5000/missions/history";
+  const [user, setUser] = useState("C3");
+  const [users, setUsers] = useState([]);
+  const ENDPOINT = `/missions/history/${user}`;
+  const INTERVENANTS = `/intervenants`;
   const [missions, setMissions] = useState([]);
   useEffect(() => {
-    axios
-      .get(API)
+    api
+      .get(ENDPOINT)
       .then((res) => {
         setMissions(res.data);
       })
       .catch((err) => console.error(err));
+  }, [user]);
+
+  useEffect(() => {
+    api
+      .get(INTERVENANTS)
+      .then((res) => {
+        setUsers(res.data);
+      })
+      .catch((err) => console.error(err));
   }, []);
+
+  const handleChange = (event) => {
+    setUser(event.target.value);
+  };
 
   return (
     <>
+      <form>
+        <select onChange={handleChange}>
+          {users.map((userdata) => {
+            return <option value={userdata.id}>{userdata.id}</option>;
+          })}
+        </select>
+      </form>
       <h2>
         Ensemble des missions pour lesquelles j'ai postulé, en cours et
         effectuées
