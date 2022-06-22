@@ -5,11 +5,11 @@ const Context = createContext();
 function Provider({ children }) {
   const [infoUser, setInfoUser] = useState("");
 
-
   return (
     <Context.Provider
       value={{
-        infoUser, setInfoUser
+        infoUser,
+        setInfoUser,
       }}
     >
       {children}
@@ -19,7 +19,7 @@ function Provider({ children }) {
 
 const ExportContext = {
   Context,
-  Provider
+  Provider,
 };
 
 export default ExportContext;
