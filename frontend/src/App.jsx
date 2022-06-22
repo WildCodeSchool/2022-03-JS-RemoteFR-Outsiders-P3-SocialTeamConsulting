@@ -14,6 +14,7 @@ import FormInterv from "@pages/FormInterv";
 import ProfilInterv from "@components/ProfilInterv";
 import BacklogValidatedMissions from "@components/BacklogValidatedMissions";
 import HistoryMissions from "@components/HistoryMissions";
+import BackOfficeAdminMissionValidation from "@components/BackOfficeAdminMissionValidation";
 
 import ValidatedMissions from "@components/ValidatedMissions";
 
@@ -34,6 +35,10 @@ function App() {
             element={<BacklogValidatedMissions />}
           />
           <Route path="missions_history" element={<HistoryMissions />} />
+          <Route
+            path="validation_mission"
+            element={<BackOfficeAdminMissionValidation />}
+          />
         </Route>
         <Route path="/" element={<Home />}>
           <Route index element={<LandingPage />} />

@@ -3,7 +3,7 @@ import fullscreen from "@assets/fullscreen.png";
 import triangle from "@assets/triangle.png";
 import "@style/ValidatedMissions.css";
 
-function MissionSynthesis({ mission, key }) {
+function MissionSynthesis({ mission, key, validationArea }) {
   const dateDebut = new Date(mission.date_debut);
   const dateFin = new Date(mission.date_fin);
   const duration = 1;
@@ -76,6 +76,7 @@ function MissionSynthesis({ mission, key }) {
               {mission.description}
             </div>
           </div>
+          {/* {validationArea(mission.id)} */}
         </div>
         <div className="fullscreen">
           <img src={fullscreen} alt="full screen button" />

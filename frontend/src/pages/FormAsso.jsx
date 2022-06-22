@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import axios from "axios";
 
-import { notifySuccess, notifyError } from "@services/services";
+import { notifySuccess, notifyError, api } from "@services/services";
 import "react-toastify/dist/ReactToastify.css";
 import "@style/Form.css";
 
@@ -19,10 +18,10 @@ export default function FormAsso() {
     });
   }
 
-  const ENDPOINT = "http://localhost:5000/associations";
+  const ENDPOINT = "/associations";
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios
+    api
       .post(ENDPOINT, association)
       .then(() => {
         if (association.password === association.passCheck) {

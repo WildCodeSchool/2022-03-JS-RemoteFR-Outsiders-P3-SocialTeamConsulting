@@ -20,6 +20,7 @@ function ValidatedMissions() {
 
   return (
     <div className="card">
+      <h1>Ensemble des missions auxquelles j'ai candidaté et </h1>
       {missions.map((mission) => {
         return <MissionSynthesis mission={mission} key={mission.id} />;
       })}
