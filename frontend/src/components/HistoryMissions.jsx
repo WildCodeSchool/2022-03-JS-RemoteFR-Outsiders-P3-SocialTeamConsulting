@@ -33,6 +33,7 @@ function HistoryMissions() {
 
   return (
     <>
+      <span>Utilisateur : </span>
       <form>
         <select onChange={handleChange}>
           {users.map((userdata) => {
