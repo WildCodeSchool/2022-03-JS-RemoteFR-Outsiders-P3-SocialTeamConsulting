@@ -1,17 +1,15 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState } from "react";
 
 const Context = createContext();
 
 function Provider({ children }) {
-  const [example, setExample] = useState("");
+  const [infoUser, setInfoUser] = useState("");
 
-  useEffect(() => {
-    setExample("test");
-  }, [example]);
+
   return (
     <Context.Provider
       value={{
-        example,
+        infoUser, setInfoUser
       }}
     >
       {children}
@@ -21,7 +19,7 @@ function Provider({ children }) {
 
 const ExportContext = {
   Context,
-  Provider,
+  Provider
 };
 
 export default ExportContext;

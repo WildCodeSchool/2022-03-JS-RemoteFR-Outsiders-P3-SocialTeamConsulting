@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
+import ExportContext from "../contexts/Context";
 
 import { authentification } from "@services/services";
 
 function NavBarForm({ showForm }) {
+  const {infoUser, setInfoUser} = useContext(ExportContext.Context)
   const [isLog, setIsLog] = useState(false);
   const [user, setUser] = useState({
     email: "",
@@ -29,7 +31,8 @@ function NavBarForm({ showForm }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    authentification(user, setIsLog);
+    authentification(user, setIsLog, setInfoUser);
+    console.log(infoUser)
   };
 
   return (

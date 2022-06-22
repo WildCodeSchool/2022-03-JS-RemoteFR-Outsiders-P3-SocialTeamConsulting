@@ -1,3 +1,5 @@
+import React, { useContext } from "react";
+import ExportContext from "../contexts/Context"
 import axios from "axios";
 import { toast } from "react-toastify";
 
@@ -13,13 +15,18 @@ const notifyError = (message) => {
   toast.error(`Erreur : ${message}`);
 };
 
-const authentification = (user, setIsLog) => {
+const authentification = (user, setIsLog, setInfoUser, infoUser) => {
   const ENDPOINT = "/auth";
   api
     .post(ENDPOINT, user)
-    .then(() => {
+    .then((response) => {  
+
+      setInfoUser({"role":response.data.role,
+    "email":response.data.email,
+  "etat":response.data.etat})
       setIsLog(true);
       notifySuccess("La connection a réussi");
+      console.log(infoUser)
     })
     .catch(() => {
       notifyError(
