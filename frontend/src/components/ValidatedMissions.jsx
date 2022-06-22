@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { api } from "@services/services";
 
-import MissionSynthesis from "./MissionSynthesis";
+import MissionSynthesis from "@components/MissionSynthesis";
 import "@style/ValidatedMissions.css";
 
 function ValidatedMissions() {
