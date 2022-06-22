@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import { api } from "@services/services";
 import "@style/ValidatedMissions.css";
 import MissionSynthesis from "./MissionSynthesis";
 
 function BacklogValidatedMissions() {
-  const API = "http://localhost:5000/missions/validated";
+  const ENDPOINT = "/missions/validated";
   const [missions, setMissions] = useState([]);
   useEffect(() => {
-    axios
-      .get(API)
+    api
+      .get(ENDPOINT)
       .then((res) => {
         setMissions(res.data);
       })

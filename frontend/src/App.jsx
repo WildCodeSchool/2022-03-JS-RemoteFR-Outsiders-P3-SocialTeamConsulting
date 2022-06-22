@@ -37,6 +37,7 @@ function App() {
             path="validation_mission"
             element={<BackOfficeAdminMissionValidation />}
           />
+          <Route path="historique_missions" element={<HistoryMissions />} />
         </Route>
         <Route path="/" element={<Home />}>
           <Route index element={<LandingPage />} />
@@ -47,8 +48,8 @@ function App() {
             element={<FormAssoContact />}
           />
           <Route path="accueil_intervenant" element={<AccueilIntervenant />} />
+          <Route path="formulaire_intervenant" element={<FormInterv />} />
         </Route>
-        <Route path="formulaire_intervenant" element={<FormInterv />} />
       </Routes>
       <ToastContainer />
     </div>

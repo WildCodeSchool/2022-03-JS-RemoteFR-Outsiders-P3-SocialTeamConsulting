@@ -45,6 +45,16 @@ function HistoryMissions() {
         Ensemble des missions pour lesquelles j'ai postulé, en cours et
         effectuées
       </h2>
+      <div className="legende">
+        <div>Légende : </div>
+        <div>refusé :</div>
+        <div className="is-refused-legend"> </div>
+        <div>En attente de validation :</div>
+        <div className="pending-validation-legend"> </div>
+        <div>Validé : </div>
+        <div className="is-validated-legend"> </div>
+      </div>
+
       <div className="card">
         {missions.map((mission) => {
           return <MissionSynthesis mission={mission} key={mission.id} />;
