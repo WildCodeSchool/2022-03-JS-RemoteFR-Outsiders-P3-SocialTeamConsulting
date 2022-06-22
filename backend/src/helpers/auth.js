@@ -73,7 +73,10 @@ const IntervenantJoiVerification = (intervenant) => {
     email: Joi.string().email().max(255).required(),
     telephone: Joi.string().min(10).max(10).required(),
     password: Joi.string().max(255).required(),
-    image_cv: Joi.string().max(255).required(),
+    image_cv: Joi.string()
+      .max(255)
+      .pattern(/^[a-z|A-Z|0-9]+[^I]\s?PNG{1}$/)
+      .required(),
     image_carte_vitale: Joi.string().max(255).required(),
     image_statut_autoentrepreneur: Joi.string().max(255).required(),
     pre_inscription_message: Joi.string().max(500).required(),

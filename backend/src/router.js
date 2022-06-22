@@ -2,6 +2,8 @@ const express = require("express");
 
 const { userTypeCheck } = require("./helpers/auth");
 
+const fileMiddleware = require("./helpers/file");
+
 const {
   ItemController,
   IntervenantsController,
@@ -28,7 +30,7 @@ router.delete("/administrateurs/:id", AdministrateursController.delete);
 router.get("/intervenants", IntervenantsController.browse);
 router.get("/intervenants/:id", IntervenantsController.read);
 router.put("/intervenants/:id", IntervenantsController.edit);
-router.post("/intervenants", IntervenantsController.add);
+router.post("/intervenants", fileMiddleware, IntervenantsController.add);
 router.delete("/intervenants/:id", IntervenantsController.delete);
 
 router.get("/associations", AssociationsController.browse);
