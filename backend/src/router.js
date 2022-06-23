@@ -27,6 +27,7 @@ router.delete("/administrateurs/:id", AdministrateursController.delete);
 
 router.get("/intervenants", IntervenantsController.browse);
 router.get("/intervenants/:id", IntervenantsController.read);
+router.get("/intervenants/email/:email", IntervenantsController.readByEmail);
 router.put("/intervenants/:id", IntervenantsController.edit);
 router.post("/intervenants", IntervenantsController.add);
 router.delete("/intervenants/:id", IntervenantsController.delete);

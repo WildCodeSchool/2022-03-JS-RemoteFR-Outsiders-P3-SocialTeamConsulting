@@ -1,9 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { api } from "@services/services";
 
 import "@style/App.css";
 import "@style/ProfilInterv.css";
 
 export default function ProfilInterv() {
+  const [intervenant, setIntervenant] = useState({});
+  const emailIntervenant = "batman@wayneco.com";
+  const ENDPOINT = `/intervenants/email/${emailIntervenant}`;
+
+  useEffect(() => {
+    api.get(ENDPOINT).then((result) => {
+      setIntervenant(result.data);
+    });
+  }, []);
+
   return (
     <form className="backoffice_profilinterv_form">
       <div className="backoffice-bloc">
@@ -13,12 +24,16 @@ export default function ProfilInterv() {
             className="rules"
             type="text"
             name="name"
-            placeholder="Benoît"
+            placeholder={intervenant.nom}
           />
         </label>
         <label htmlFor="firstname" className="backoffice-input-half">
           <p>Prénom</p>
-          <input className="rules" type="text" placeholder="John" />
+          <input
+            className="rules"
+            type="text"
+            placeholder={intervenant.prenom}
+          />
         </label>
       </div>
 
@@ -48,29 +63,45 @@ export default function ProfilInterv() {
         <input
           className="otherinput"
           type="text"
-          placeholder="12 rue de la République"
+          placeholder={intervenant.adresse}
         />
       </label>
 
       <div className="backoffice-bloc">
         <label htmlFor="zip" className="backoffice-input-half">
           <p>Code Postal</p>
-          <input className="rules" type="text" placeholder="75000" />
+          <input
+            className="rules"
+            type="text"
+            placeholder={intervenant.code_postal}
+          />
         </label>
         <label htmlFor="city" className="backoffice-input-half">
           <p>Ville</p>
-          <input className="rules" type="text" placeholder="Paris" />
+          <input
+            className="rules"
+            type="text"
+            placeholder={intervenant.ville}
+          />
         </label>
       </div>
 
       <div className="backoffice-bloc">
         <label htmlFor="email" className="backoffice-input-half">
           <p>Email</p>
-          <input className="rules" type="email" placeholder="yoyo@mail.com" />
+          <input
+            className="rules"
+            type="email"
+            placeholder={intervenant.email}
+          />
         </label>
         <label htmlFor="phone" className="backoffice-input-half">
           <p>Téléphone</p>
-          <input className="rules" type="text" placeholder="06 06 06 06 06" />
+          <input
+            className="rules"
+            type="text"
+            placeholder={intervenant.telephone}
+          />
         </label>
       </div>
 

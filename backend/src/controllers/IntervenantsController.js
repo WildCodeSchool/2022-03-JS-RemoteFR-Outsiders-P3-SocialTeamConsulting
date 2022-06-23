@@ -32,6 +32,22 @@ class IntervenantController {
       });
   };
 
+  static readByEmail = (req, res) => {
+    models.intervenants
+      .findByEmail(req.params.email)
+      .then(([rows]) => {
+        if (rows[0] == null) {
+          res.sendStatus(404);
+        } else {
+          res.send(rows[0]);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(500);
+      });
+  };
+
   static edit = (req, res) => {
     const intervenant = req.body;
 
