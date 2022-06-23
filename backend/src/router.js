@@ -9,6 +9,7 @@ const {
   AdministrateursController,
   MissionsController,
   AuthController,
+  AccepteController,
 } = require("./controllers");
 
 const router = express.Router();
@@ -43,6 +44,13 @@ router.get("/missions/:id", MissionsController.read);
 router.put("/missions/:id", MissionsController.edit);
 router.post("/missions", MissionsController.add);
 router.delete("/missions/:id", MissionsController.delete);
+
+router.get("/accepte", AccepteController.browse);
+router.get("/accepte/validation", AccepteController.readWithIntervenant);
+router.get("/accepte/:id", AccepteController.read);
+router.put("/accepte/:id", AccepteController.edit);
+router.post("/accepte", AccepteController.add);
+router.delete("/accepte/:id", AccepteController.delete);
 
 router.post("/auth", userTypeCheck, AuthController.session);
 
