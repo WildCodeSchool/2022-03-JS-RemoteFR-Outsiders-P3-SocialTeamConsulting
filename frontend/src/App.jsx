@@ -1,4 +1,3 @@
-import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
@@ -14,8 +13,6 @@ import FormInterv from "@pages/FormInterv";
 import ProfilInterv from "@components/ProfilInterv";
 import BackOfficeAdminMissionValidation from "@components/BackOfficeAdminMissionValidation";
 
-import ValidatedMissions from "@components/ValidatedMissions";
-
 import "@style/App.css";
 
 function App() {
@@ -23,7 +20,7 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/back_office" element={<BackOffice />}>
-          <Route index element={<ValidatedMissions />} />
+          <Route index element={<ProfilInterv />} />
           <Route
             path="modification_profil_intervenant"
             element={<ProfilInterv />}
