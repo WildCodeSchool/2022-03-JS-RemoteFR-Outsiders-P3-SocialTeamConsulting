@@ -20,7 +20,9 @@ const fileMiddleware = (req, res, next) => {
     console.warn("done");
   });
 
-  form.parse(req, (err) => {
+  /* eslint-disable */
+     form.parse(req, (err, fields, files) => {
+   /* eslint-enable */
     if (err) {
       res.status(500).json({ validationErrors: [{ message: err.message }] });
     } else {

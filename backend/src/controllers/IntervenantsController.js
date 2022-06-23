@@ -63,7 +63,7 @@ class IntervenantController {
         id: uuid,
         etat: etat[0],
         image_carte_vitale: req.files.CarteVitale.newFilename,
-        image_statut_autoentrepreneur: req.files.autoE.newFilename,
+        image_statut_autoentrepreneur: req.files.AutoE.newFilename,
         image_cv: req.files.Cv.newFilename,
       };
       const intervenant = req.body;
