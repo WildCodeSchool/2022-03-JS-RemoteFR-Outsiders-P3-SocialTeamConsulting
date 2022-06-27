@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-import MissionSynthesis from "./MissionSynthesis";
+import MissionSynthesis from "@components/MissionSynthesis";
 import "@style/ValidatedMissions.css";
 
 function ValidatedMissions() {

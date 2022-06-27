@@ -1,4 +1,3 @@
-import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
@@ -24,6 +23,7 @@ function App() {
       <Routes>
         <Route path="/back_office" element={<BackOffice />}>
           <Route index element={<HistoryMissions />} />
+
           <Route
             path="modification_profil_intervenant"
             element={<ProfilInterv />}
