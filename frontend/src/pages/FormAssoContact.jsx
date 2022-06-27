@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "@style/Form.css";
-import { notifySuccess, notifyError } from "@services/services";
+import { notifySuccess, notifyError, api } from "@services/services";
 
 function FormAssoContact() {
   const [buttonText, setButtonText] = useState("Envoyer le message");
@@ -16,7 +16,7 @@ function FormAssoContact() {
   const handleSubmitMessage = (e) => {
     e.preventDefault();
 
-    axios
+    api
       .post("http://localhost:8080/messages/", {
         nom: messageValue.nom,
         email: messageValue.email,
