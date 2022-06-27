@@ -35,7 +35,7 @@ function App() {
           <Route path="accueil_association" element={<AccueilAsso />} />
           <Route path="formulaire_association" element={<FormAsso />} />
           <Route
-            path="formulaire_conact_association"
+            path="formulaire_contact_association"
             element={<FormAssoContact />}
           />
           <Route path="accueil_intervenant" element={<AccueilIntervenant />} />
