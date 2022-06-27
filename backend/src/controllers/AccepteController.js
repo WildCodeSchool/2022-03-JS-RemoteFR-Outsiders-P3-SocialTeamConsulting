@@ -55,8 +55,10 @@ class AccepteController {
      * OK.
      */
 
+    models.accepte.updateAccepteEtat(intervenantID, missionID);
+
     models.accepte
-      .updateMissionEtat(intervenantID, missionID)
+      .updateAccepteEtatRefus(intervenantID, missionID)
       .then(([result]) => {
         if (result.affectedRows === 0) {
           res.status(404).send("Le statut de la mission a change");

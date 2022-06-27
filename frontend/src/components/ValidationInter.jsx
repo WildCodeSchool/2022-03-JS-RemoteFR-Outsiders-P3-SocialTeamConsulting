@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { api } from "@services/services";
+import { notifySuccess, notifyError, api } from "@services/services";
 
 function ValidationInter(missionID) {
   /**
@@ -47,8 +47,10 @@ function ValidationInter(missionID) {
       .put(ENDPOINTACCEPTE, { intervenantID, missionID })
       .then(() => {
         window.location.reload();
+        notifySuccess("Vous venez de choisir un intervenant.");
       })
       .catch((err) => {
+        notifyError("Votre choix n'a pas pu aboutir. Merci de recommencer.");
         console.error(err);
       });
   };
