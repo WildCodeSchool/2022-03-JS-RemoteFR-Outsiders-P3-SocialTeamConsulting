@@ -20,13 +20,11 @@ function PostMission() {
     api
       .post(ENDPOINT, mission)
       .then(() => {
-        notifySuccess(
-          "Votre pré-inscription a été enregistrée. Un administrateur vous contactera bientôt pour vous informer de l'avancement de votre dossier"
-        );
+        notifySuccess("Votre mission été postée.");
       })
       .catch(() => {
         notifyError(
-          "Votre pré-inscription n'a pas pu aboutir. Veuillez vérifier les champs à remplir avant de soumettre à nouveau votre pré-inscription"
+          "L'envoie de votre mission n'a pas pu aboutir. Veuillez vérifier les champs à remplir avant de soumettre à nouveau votre mission."
         );
       });
   };
