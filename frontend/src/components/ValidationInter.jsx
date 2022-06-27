@@ -55,7 +55,7 @@ function ValidationInter(missionID) {
 
   return (
     <div className="synthesis-validation_area">
-      <form method="put">
+      <form method="PUT">
         <fieldset>
           <legend>Choisissez un intervenant:</legend>
           <div>

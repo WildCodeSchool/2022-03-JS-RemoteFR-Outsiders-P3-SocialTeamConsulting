@@ -43,6 +43,7 @@ class AccepteController {
 
   static edit = (req, res) => {
     const { id } = req.params;
+    console.warn(id);
     const { intervenantID, missionID } = req.body;
     /**
      * id = req.params => la data passé sur l'URL
@@ -55,17 +56,20 @@ class AccepteController {
      */
 
     models.accepte
-      .updateMissionEtat(id, { intervenantID, missionID })
+      .updateMissionEtat(intervenantID, missionID)
       .then(([result]) => {
         if (result.affectedRows === 0) {
-          res.sendStatus(404);
+          res.status(404).send("Le statut de la mission a change");
         } else {
-          res.sendStatus(204);
+          res.status(200).json({
+            intervenantID,
+            missionID,
+          });
         }
       })
       .catch((err) => {
         console.error(err);
-        res.sendStatus(500);
+        res.status(500).send(err.message);
       });
   };
 

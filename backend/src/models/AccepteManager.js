@@ -15,11 +15,15 @@ class AccepteManager extends AbstractManager {
     return this.connection.query(
       `update ${AccepteManager.table} set isvalidated = ? where intervenants_id = ? AND missions_id = ?`,
       [AccepteStatus[1], intervenant, mission]
-
-      //   `update ${AccepteManager.table} set isvalidated = ? where intervenants_id != ? AND missions_id = ?`,
-      //   [AccepteStatus[2], intervenant, mission]
     );
   }
+
+  // updateMissionEtat2(intervenant, mission) {
+  //   return this.connection.query(
+  //       `update ${AccepteManager.table} set isvalidated = ? where intervenants_id != ? AND missions_id = ?`,
+  //       [AccepteStatus[2], intervenant, mission]
+  //   );
+  // }
 }
 
 module.exports = AccepteManager;
