@@ -16,7 +16,7 @@ function FormAssoContact() {
     e.preventDefault();
 
     api
-      .post("http://localhost:8080/messages/", {
+      .post("/messages/", {
         nom: messageValue.nom,
         email: messageValue.email,
         telephone: messageValue.telephone,
