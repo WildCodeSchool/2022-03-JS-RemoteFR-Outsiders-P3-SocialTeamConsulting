@@ -9,6 +9,7 @@ const {
   AdministrateursController,
   MissionsController,
   AuthController,
+  MessagesController,
 } = require("./controllers");
 
 const router = express.Router();
@@ -43,6 +44,9 @@ router.get("/missions/:id", MissionsController.read);
 router.put("/missions/:id", MissionsController.edit);
 router.post("/missions", MissionsController.add);
 router.delete("/missions/:id", MissionsController.delete);
+
+router.post("/messages", MessagesController.add);
+router.get("/messages", MessagesController.browse);
 
 router.post("/auth", userTypeCheck, AuthController.session);
 
