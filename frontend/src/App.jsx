@@ -12,6 +12,8 @@ import FormAsso from "@pages/FormAsso";
 import FormAssoContact from "@pages/FormAssoContact";
 import FormInterv from "@pages/FormInterv";
 import ProfilInterv from "@components/ProfilInterv";
+import BacklogValidatedMissions from "@components/BacklogValidatedMissions";
+import HistoryMissions from "@components/HistoryMissions";
 import BackOfficeAdminMissionValidation from "@components/BackOfficeAdminMissionValidation";
 import ValidatedMissions from "@components/ValidatedMissions";
 
@@ -22,7 +24,8 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/back_office" element={<BackOffice />}>
-          <Route index element={<ProfilInterv />} />
+          <Route index element={<HistoryMissions />} />
+
           <Route
             path="modification_profil_intervenant"
             element={<ProfilInterv />}
@@ -30,9 +33,15 @@ function App() {
           <Route path="post_mission" element={<PostMission />} />
           <Route path="validated_mission" element={<ValidatedMissions />} />
           <Route
+            path="backlog_validated_missions"
+            element={<BacklogValidatedMissions />}
+          />
+
+          <Route
             path="validation_mission"
             element={<BackOfficeAdminMissionValidation />}
           />
+          <Route path="historique_missions" element={<HistoryMissions />} />
         </Route>
         <Route path="/" element={<Home />}>
           <Route index element={<LandingPage />} />

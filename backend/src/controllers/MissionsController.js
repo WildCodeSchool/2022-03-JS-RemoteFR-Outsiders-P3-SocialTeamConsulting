@@ -26,6 +26,30 @@ class MissionsController {
       });
   };
 
+  static browseValidatedMissions = (req, res) => {
+    models.missions
+      .findValidatedMissions()
+      .then(([rows]) => {
+        res.send(rows);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(500);
+      });
+  };
+
+  static browseMissionsHistory = (req, res) => {
+    models.missions
+      .findMyMissions(req.params.id)
+      .then(([rows]) => {
+        res.send(rows);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(500);
+      });
+  };
+
   static read = (req, res) => {
     models.missions
       .find(req.params.id)

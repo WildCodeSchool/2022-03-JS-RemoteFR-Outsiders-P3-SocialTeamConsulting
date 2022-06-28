@@ -2,6 +2,8 @@ const express = require("express");
 
 const { userTypeCheck } = require("./helpers/auth");
 
+const fileMiddleware = require("./helpers/file");
+
 const {
   ItemController,
   IntervenantsController,
@@ -29,7 +31,7 @@ router.delete("/administrateurs/:id", AdministrateursController.delete);
 router.get("/intervenants", IntervenantsController.browse);
 router.get("/intervenants/:id", IntervenantsController.read);
 router.put("/intervenants/:id", IntervenantsController.edit);
-router.post("/intervenants", IntervenantsController.add);
+router.post("/intervenants", fileMiddleware, IntervenantsController.add);
 router.delete("/intervenants/:id", IntervenantsController.delete);
 
 router.get("/associations", AssociationsController.browse);
@@ -40,6 +42,8 @@ router.delete("/associations/:id", AssociationsController.delete);
 
 // router.get("/missions", MissionsController.browse);
 router.get("/missions", MissionsController.browseWithAssociation);
+router.get("/missions/validated", MissionsController.browseValidatedMissions);
+router.get("/missions/history/:id", MissionsController.browseMissionsHistory);
 router.get("/missions/:id", MissionsController.read);
 router.put("/missions/:id", MissionsController.edit);
 router.post("/missions", MissionsController.add);
