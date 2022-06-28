@@ -76,4 +76,5 @@ function MissionSynthesis({ mission, key, validationArea }) {
     </div>
   );
 }
+
 export default MissionSynthesis;
