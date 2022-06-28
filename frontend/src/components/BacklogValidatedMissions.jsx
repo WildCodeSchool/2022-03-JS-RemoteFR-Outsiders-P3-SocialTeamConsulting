@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-
-import MissionSynthesis from "@components/MissionSynthesis";
+import { api } from "@services/services";
 import "@style/ValidatedMissions.css";
+import MissionSynthesis from "./MissionSynthesis";
 
-function ValidatedMissions() {
-  const API = "http://localhost:5000/missions";
+function BacklogValidatedMissions() {
+  const ENDPOINT = "/missions/validated";
   const [missions, setMissions] = useState([]);
   useEffect(() => {
-    axios
-      .get(API)
+    api
+      .get(ENDPOINT)
       .then((res) => {
         setMissions(res.data);
       })
@@ -20,7 +19,7 @@ function ValidatedMissions() {
 
   return (
     <div className="card">
-      <h1>Ensemble des missions auxquelles j'ai candidaté et </h1>
+      <h1>Ensemble des missions ouvertes à candidature</h1>
       {missions.map((mission) => {
         return <MissionSynthesis mission={mission} key={mission.id} />;
       })}
@@ -28,4 +27,4 @@ function ValidatedMissions() {
   );
 }
 
-export default ValidatedMissions;
+export default BacklogValidatedMissions;

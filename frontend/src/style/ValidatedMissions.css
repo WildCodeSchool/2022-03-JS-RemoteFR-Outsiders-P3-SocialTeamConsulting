@@ -13,6 +13,39 @@
   width: 23rem;
 }
 
+.pending-validation {
+  background-color: orange;
+}
+.pending-validation-legend {
+  background-color: orange;
+  width: 0.8rem;
+  height: 0.8rem;
+}
+
+.is-validated {
+  background-color: green;
+}
+
+.is-validated-legend {
+  background-color: green;
+  width: 0.8rem;
+  height: 0.8rem;
+}
+
+.is-refused {
+  background-color: red;
+}
+
+.is-refused-legend {
+  background-color: red;
+  width: 0.8rem;
+  height: 0.8rem;
+}
+
+.finished {
+  background-color: light-grey;
+}
+
 .section1 {
   display: flex;
   align-items: flex-end;
@@ -23,6 +56,11 @@
   display: inline;
 }
 
+.legende {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .masked {
   display: none !important;
 }
