@@ -13,6 +13,7 @@ import FormAssoContact from "@pages/FormAssoContact";
 import FormInterv from "@pages/FormInterv";
 import ProfilInterv from "@components/ProfilInterv";
 import BackOfficeAdminMissionValidation from "@components/BackOfficeAdminMissionValidation";
+import ValidatedMissions from "@components/ValidatedMissions";
 
 import "@style/App.css";
 
