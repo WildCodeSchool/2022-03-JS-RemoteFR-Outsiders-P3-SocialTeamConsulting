@@ -6,6 +6,7 @@ import BackOffice from "@pages/BackOffice";
 import LandingPage from "@pages/LandingPage";
 import AccueilAsso from "@pages/AccueilAsso";
 import AccueilIntervenant from "@pages/AccueilIntervenant";
+import PostMission from "@pages/PostMission";
 
 import FormAsso from "@pages/FormAsso";
 import FormAssoContact from "@pages/FormAssoContact";
@@ -25,6 +26,8 @@ function App() {
             path="modification_profil_intervenant"
             element={<ProfilInterv />}
           />
+          <Route path="post_mission" element={<PostMission />} />
+          <Route path="validated_mission" element={<ValidatedMissions />} />
           <Route
             path="validation_mission"
             element={<BackOfficeAdminMissionValidation />}
