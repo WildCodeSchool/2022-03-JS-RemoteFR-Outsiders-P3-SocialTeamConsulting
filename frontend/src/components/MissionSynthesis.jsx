@@ -78,7 +78,6 @@ function MissionSynthesis({ mission, key, validationArea, validationInter }) {
           </div>
           {validationArea ? validationArea(mission.id) : false}
           {validationInter ? validationInter(mission.id) : false}
-
         </div>
         <div className="fullscreen">
           <img src={fullscreen} alt="full screen button" />

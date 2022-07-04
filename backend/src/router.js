@@ -51,7 +51,6 @@ router.put("/missions/pourvue/:id", MissionsController.editPourvue);
 router.post("/missions", MissionsController.add);
 router.delete("/missions/:id", MissionsController.delete);
 
-
 router.get("/accepte", AccepteController.browse);
 router.get("/accepte/validation", AccepteController.readWithIntervenant);
 router.get("/accepte/:id", AccepteController.read);
@@ -61,7 +60,6 @@ router.delete("/accepte/:id", AccepteController.delete);
 
 router.post("/messages", MessagesController.add);
 router.get("/messages", MessagesController.browse);
-
 
 router.post("/auth", userTypeCheck, AuthController.session);
 

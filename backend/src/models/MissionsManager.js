@@ -44,7 +44,6 @@ class MissionsManager extends AbstractManager {
     );
   }
 
-
   updatePourvue(mission) {
     return this.connection.query(
       `update ${MissionsManager.table} set etat = ? where id = ?`,
@@ -61,7 +60,6 @@ class MissionsManager extends AbstractManager {
   findMyMissions(user) {
     return this.connection.query(
       `SELECT a.*, m.*, asso.nom AS 'nom_asso' FROM ${this.table} AS m INNER JOIN accepte AS a ON a.missions_id = m.id INNER JOIN associations AS asso ON m.associations_id = asso.id WHERE a.intervenants_id = '${user}' ORDER BY m.date_debut`
-
     );
   }
 }

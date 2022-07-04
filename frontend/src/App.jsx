@@ -47,7 +47,6 @@ function App() {
             element={<BackOfficeAdminInterValidation />}
           />
           <Route path="historique_missions" element={<HistoryMissions />} />
-
         </Route>
         <Route path="/" element={<Home />}>
           <Route index element={<LandingPage />} />
