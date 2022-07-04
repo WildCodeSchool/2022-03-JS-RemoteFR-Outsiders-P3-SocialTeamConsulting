@@ -22,8 +22,17 @@ function MissionSynthesis({ mission, key, validationArea, validationInter }) {
     setIsRotated(!isRotated);
   };
 
+  let missionTheme = "mission";
+  if (mission.isvalidated === 1) {
+    missionTheme += " is-validated";
+  } else if (mission.isvalidated === 2) {
+    missionTheme += " mission is-refused";
+  } else if (mission.isvalidated === 0) {
+    missionTheme += " pending-validation";
+  }
+
   return (
-    <div className="mission">
+    <div className={missionTheme}>
       <div className="section1">
         <div className="synthesis">
           <div>
@@ -69,6 +78,7 @@ function MissionSynthesis({ mission, key, validationArea, validationInter }) {
           </div>
           {validationArea ? validationArea(mission.id) : false}
           {validationInter ? validationInter(mission.id) : false}
+
         </div>
         <div className="fullscreen">
           <img src={fullscreen} alt="full screen button" />
@@ -77,4 +87,5 @@ function MissionSynthesis({ mission, key, validationArea, validationInter }) {
     </div>
   );
 }
+
 export default MissionSynthesis;
