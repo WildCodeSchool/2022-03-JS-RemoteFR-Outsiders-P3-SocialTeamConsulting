@@ -17,7 +17,13 @@ class AuthController {
                 httpOnly: true,
                 expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
               })
-              .json({ message: "Le mot de passe est correct", cookie: token });
+              .json({
+                message: "Le mot de passe est correct",
+                cookie: token,
+                email,
+                role: req.body.userType,
+                etat,
+              });
           } else {
             res.status(401).send("Email ou mot de passe incorect");
           }

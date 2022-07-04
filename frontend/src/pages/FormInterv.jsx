@@ -1,22 +1,15 @@
 import React, { useState } from "react";
-import axios from "axios";
 
 import { FaCloudUploadAlt } from "react-icons/fa";
 import "@style/Form.css";
 
-import { notifySuccess, notifyError } from "@services/services";
+import { notifySuccess, notifyError, api } from "@services/services";
 import "react-toastify/dist/ReactToastify.css";
 
 function FormInterv() {
   const [buttonText, setButtonText] = useState("Envoyer ma pré-inscription");
 
-  const [intervenant, setIntervenant] = useState({
-    image_cv: "cv",
-    image_carte_vitale: "carte vitale",
-    image_statut_autoentrepreneur: "autoentrepreneur",
-    password: "",
-    passCheck: "",
-  });
+  const [intervenant, setIntervenant] = useState();
   const [fileAutoE, setFileAutoE] = useState(false);
   const [fileCarteVitale, setFileCarteVitale] = useState(false);
   const [fileCv, setFileCv] = useState(false);
@@ -58,12 +51,21 @@ function FormInterv() {
     return <div className="green">{fileCv.name}</div>;
   }
 
-  const ENDPOINT = "http://localhost:5000/intervenants";
+  const ENDPOINT = "/intervenants";
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios
-      .post(ENDPOINT, intervenant)
+    const formData = new FormData();
+    formData.append("AutoE", fileAutoE);
+    formData.append("CarteVitale", fileCarteVitale);
+    formData.append("Cv", fileCv);
+    /* eslint-disable */
+    for(let clef in intervenant) {
+      formData.append(clef, intervenant[clef])
+    }
+    /* eslint-enable */
+    api
+      .post(ENDPOINT, formData)
       .then(() => {
         if (intervenant.password === intervenant.passCheck) {
           setButtonText(
@@ -167,7 +169,6 @@ function FormInterv() {
                     placeholder="********"
                     onChange={handleChange}
                     autoComplete="off"
-                    value={intervenant.password}
                   />
                 </label>
               </div>
@@ -184,7 +185,6 @@ function FormInterv() {
                     placeholder="********"
                     onChange={handleChange}
                     autoComplete="off"
-                    value={intervenant.passCheck}
                   />
                 </label>
               </div>

@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
-
 import { authentification } from "@services/services";
+import ExportContext from "../contexts/Context";
 
 function NavBarForm({ showForm }) {
+  const { infoUser, setInfoUser } = useContext(ExportContext.Context);
   const [isLog, setIsLog] = useState(false);
   const [user, setUser] = useState({
     email: "",
@@ -16,7 +17,7 @@ function NavBarForm({ showForm }) {
     if (isLog) {
       navigate("/back_office");
     } else {
-      navigate("/home");
+      navigate("/");
     }
   }, [isLog]);
 
@@ -29,7 +30,8 @@ function NavBarForm({ showForm }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    authentification(user, setIsLog);
+    authentification(user, setIsLog, setInfoUser);
+    console.warn(infoUser);
   };
 
   return (
