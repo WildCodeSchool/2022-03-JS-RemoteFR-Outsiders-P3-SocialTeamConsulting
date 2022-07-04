@@ -16,6 +16,7 @@ import BacklogValidatedMissions from "@components/BacklogValidatedMissions";
 import HistoryMissions from "@components/HistoryMissions";
 import BackOfficeAdminMissionValidation from "@components/BackOfficeAdminMissionValidation";
 import ValidatedMissions from "@components/ValidatedMissions";
+import BackOfficeAdminInterValidation from "@components/BackOfficeAdminInterValidation";
 
 import "@style/App.css";
 
@@ -40,6 +41,10 @@ function App() {
           <Route
             path="validation_mission"
             element={<BackOfficeAdminMissionValidation />}
+          />
+          <Route
+            path="validation_inter"
+            element={<BackOfficeAdminInterValidation />}
           />
           <Route path="historique_missions" element={<HistoryMissions />} />
         </Route>
