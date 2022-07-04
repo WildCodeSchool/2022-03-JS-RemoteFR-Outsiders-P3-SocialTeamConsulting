@@ -7,7 +7,7 @@ class AccepteManager extends AbstractManager {
 
   findAllWithIntervenant() {
     return this.connection.query(
-      "SELECT i.id, i.nom, i.prenom, i.email  FROM ACCEPTE AS a INNER JOIN intervenants AS i ON a.intervenants_id = i.id WHERE a.missions_id = 2 AND a.isvalidated = 0"
+      "SELECT i.id, i.nom, i.prenom, i.email  FROM ACCEPTE AS a INNER JOIN intervenants AS i ON a.intervenants_id = i.id INNER JOIN missions AS m ON a.missions_id = m.id WHERE a.missions_id = 2 AND a.isvalidated = 0"
     );
   }
 

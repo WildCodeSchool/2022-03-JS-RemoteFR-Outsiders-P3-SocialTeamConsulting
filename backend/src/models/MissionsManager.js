@@ -23,6 +23,13 @@ class MissionsManager extends AbstractManager {
       [MissionStates[2], mission]
     );
   }
+
+  updatePourvue(mission) {
+    return this.connection.query(
+      `update ${MissionsManager.table} set etat = ? where id = ?`,
+      [MissionStates[3], mission]
+    );
+  }
 }
 
 module.exports = MissionsManager;
