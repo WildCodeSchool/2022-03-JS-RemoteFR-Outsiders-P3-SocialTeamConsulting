@@ -60,8 +60,8 @@ function FormInterv() {
     formData.append("CarteVitale", fileCarteVitale);
     formData.append("Cv", fileCv);
     /* eslint-disable */
-    for(let clef in intervenant) {
-      formData.append(clef, intervenant[clef])
+    for (let clef in intervenant) {
+      formData.append(clef, intervenant[clef]);
     }
     /* eslint-enable */
     api
