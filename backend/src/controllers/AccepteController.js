@@ -76,14 +76,13 @@ class AccepteController {
   };
 
   static add = (req, res) => {
-    const item = req.body;
+    const missionId = req.params.id;
+    const userId = req.body.candidat;
 
-    // TODO validations (length, format...)
-
-    models.item
-      .insert(item)
-      .then(([result]) => {
-        res.status(201).send({ ...item, id: result.insertId });
+    models.accepte
+      .insert(missionId, userId)
+      .then(() => {
+        res.status(201).send("ok");
       })
       .catch((err) => {
         console.error(err);

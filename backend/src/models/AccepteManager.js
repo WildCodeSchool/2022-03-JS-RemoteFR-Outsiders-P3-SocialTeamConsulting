@@ -24,6 +24,13 @@ class AccepteManager extends AbstractManager {
       [AccepteStatus[2], intervenant, mission]
     );
   }
+
+  insert(missionId, userId) {
+    return this.connection.query(
+      `insert into ${AccepteManager.table} (intervenants_id, missions_id, isvalidated) values (?, ?, ?)`,
+      [userId, missionId, 0]
+    );
+  }
 }
 
 module.exports = AccepteManager;
