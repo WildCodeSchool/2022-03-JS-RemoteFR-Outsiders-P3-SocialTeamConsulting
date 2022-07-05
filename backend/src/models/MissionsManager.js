@@ -62,6 +62,17 @@ class MissionsManager extends AbstractManager {
       `SELECT a.*, m.*, asso.nom AS 'nom_asso' FROM ${this.table} AS m INNER JOIN accepte AS a ON a.missions_id = m.id INNER JOIN associations AS asso ON m.associations_id = asso.id WHERE a.intervenants_id = '${user}' ORDER BY m.date_debut`
     );
   }
+
+  findMyMissionsNotAccepted(userId) {
+    return this.connection.query(
+      `SELECT missions.*, associations.nom FROM ${this.table}
+INNER JOIN associations ON associations.id = ${this.table}.associations_id
+       WHERE ${this.table}.etat="acceptée"
+       AND ${this.table}.id NOT IN (
+          SELECT missions_id FROM accepte WHERE accepte.intervenants_id = ?)`,
+      [userId]
+    );
+  }
 }
 
 module.exports = MissionsManager;
