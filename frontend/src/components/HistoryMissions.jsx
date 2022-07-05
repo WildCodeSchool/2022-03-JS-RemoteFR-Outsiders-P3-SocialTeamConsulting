@@ -1,13 +1,32 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { api } from "@services/services";
 import MissionSynthesis from "./MissionSynthesis";
 import "@style/ValidatedMissions.css";
+import ExportContext from "../contexts/Context";
 
 function HistoryMissions() {
-  const [user, setUser] = useState("C3");
-  const [users, setUsers] = useState([]);
+  const { infoUser } = useContext(ExportContext.Context);
+  const [user, setUser] = useState();
+  console.error(infoUser);
+
+  useEffect(() => {
+    const ENDPOINTINTERVENANT = "/intervenants";
+
+    api
+      .get(ENDPOINTINTERVENANT)
+      .then((res) => {
+        setUser(
+          res.data.filter(
+            (intervenant) => intervenant.email === infoUser.email
+          )[0].id
+        );
+      })
+      .catch((err) => {
+        console.error(console.error(err));
+      });
+  }, []);
+
   const ENDPOINT = `/missions/history/${user}`;
-  const INTERVENANTS = `/intervenants`;
   const [missions, setMissions] = useState([]);
   useEffect(() => {
     api
@@ -18,29 +37,8 @@ function HistoryMissions() {
       .catch((err) => console.error(err));
   }, [user]);
 
-  useEffect(() => {
-    api
-      .get(INTERVENANTS)
-      .then((res) => {
-        setUsers(res.data);
-      })
-      .catch((err) => console.error(err));
-  }, []);
-
-  const handleChange = (event) => {
-    setUser(event.target.value);
-  };
-
   return (
     <>
-      <span>Utilisateur : </span>
-      <form>
-        <select onChange={handleChange}>
-          {users.map((userdata) => {
-            return <option value={userdata.id}>{userdata.id}</option>;
-          })}
-        </select>
-      </form>
       <h2>
         Ensemble des missions pour lesquelles j'ai postulé, en cours et
         effectuées
