@@ -1,6 +1,10 @@
 const express = require("express");
 
 const { userTypeCheck } = require("./helpers/auth");
+const { middlewareAssociation } = require("./helpers/middlewareAssociation");
+const {
+  middlewareAdministrateur,
+} = require("./helpers/middlewareAdministrateur");
 
 const fileMiddleware = require("./helpers/file");
 
@@ -35,7 +39,12 @@ router.put("/intervenants/:id", IntervenantsController.edit);
 router.post("/intervenants", fileMiddleware, IntervenantsController.add);
 router.delete("/intervenants/:id", IntervenantsController.delete);
 
-router.get("/associations", AssociationsController.browse);
+router.get(
+  "/associations",
+  userTypeCheck,
+  middlewareAssociation,
+  AssociationsController.browse
+);
 router.get("/associations/:id", AssociationsController.read);
 router.put("/associations/:id", AssociationsController.edit);
 router.post("/associations", AssociationsController.add);
@@ -59,7 +68,12 @@ router.post("/accepte", AccepteController.add);
 router.delete("/accepte/:id", AccepteController.delete);
 
 router.post("/messages", MessagesController.add);
-router.get("/messages", MessagesController.browse);
+router.get(
+  "/messages",
+  userTypeCheck,
+  middlewareAdministrateur,
+  MessagesController.browse
+);
 
 router.post("/auth", userTypeCheck, AuthController.session);
 
