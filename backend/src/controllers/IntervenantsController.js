@@ -16,6 +16,18 @@ class IntervenantController {
       });
   };
 
+  static browseByEmail = (req, res) => {
+    models.intervenants
+      .findByEmail(req.params.email)
+      .then(([rows]) => {
+        res.send(rows);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(500);
+      });
+  };
+
   static read = (req, res) => {
     models.intervenants
       .find(req.params.id)
