@@ -47,7 +47,7 @@ function App() {
             element={<BackOfficeAdminMissionValidation />}
           />
           <Route
-            path="validation_inter"
+            path="validation_intervenant"
             element={<BackOfficeAdminInterValidation />}
           />
           <Route path="historique_missions" element={<HistoryMissions />} />

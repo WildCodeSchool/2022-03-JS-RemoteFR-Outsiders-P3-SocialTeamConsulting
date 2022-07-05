@@ -5,9 +5,13 @@ const AccepteStatus = require("../JSON/AccepteStatus.json");
 class AccepteManager extends AbstractManager {
   static table = "accepte";
 
-  findAllWithIntervenant() {
+  findAllWithIntervenant(mission) {
     return this.connection.query(
-      `SELECT i.id, i.nom, i.prenom, i.email  FROM ${AccepteManager.table} AS a INNER JOIN intervenants AS i ON a.intervenants_id = i.id INNER JOIN missions AS m ON a.missions_id = m.id WHERE a.missions_id = 2 AND a.isvalidated = 0`
+      `SELECT i.id, i.nom, i.prenom, i.email, a.missions_id, a.isvalidated  FROM ${AccepteManager.table} AS a
+       INNER JOIN intervenants AS i ON a.intervenants_id = i.id
+       INNER JOIN missions AS m ON a.missions_id = m.id
+       WHERE a.missions_id = ? AND a.isvalidated = 0`,
+      [mission]
     );
   }
 

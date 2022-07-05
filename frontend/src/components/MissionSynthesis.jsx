@@ -3,13 +3,9 @@ import fullscreen from "@assets/fullscreen.png";
 import triangle from "@assets/triangle.png";
 import "@style/ValidatedMissions.css";
 
-function MissionSynthesis({
-  mission,
-  key,
-  validationArea,
-  validationInter,
-  canditaterArea,
-}) {
+
+function MissionSynthesis({ mission, id, validationArea, validationInter, canditaterArea, }) {
+
   const dateDebut = new Date(mission.date_debut);
   const dateFin = new Date(mission.date_fin);
   const duration = 1;
@@ -75,10 +71,7 @@ function MissionSynthesis({
               />
               <h2>Description de la mission : </h2>
             </div>
-            <div
-              key={key}
-              className={showDescription ? "not-masked" : "masked"}
-            >
+            <div key={id} className={showDescription ? "not-masked" : "masked"}>
               {mission.description}
             </div>
           </div>

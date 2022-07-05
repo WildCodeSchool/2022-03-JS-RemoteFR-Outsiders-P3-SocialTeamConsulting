@@ -13,7 +13,7 @@ function BackOfficeAdminInterValidation() {
      *  */
     const [intervenants, setIntervenants] = useState([]);
     const [choiceInt, setChoiceInt] = useState([]);
-    const ENDPOINTINTERV = "/accepte/validation";
+    const ENDPOINTINTERV = `/accepte/validation/${missionID}`;
 
     useEffect(() => {
       api
@@ -119,6 +119,7 @@ function BackOfficeAdminInterValidation() {
             <MissionSynthesis
               mission={mission}
               key={mission.id}
+              id={mission.id}
               validationInter={validationInter}
             />
           );
