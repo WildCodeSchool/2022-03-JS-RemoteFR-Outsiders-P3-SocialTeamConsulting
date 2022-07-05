@@ -5,7 +5,7 @@ import "@style/ValidatedMissions.css";
 
 function MissionSynthesis({
   mission,
-  key,
+  id,
   validationArea,
   validationInter,
   canditaterArea,
@@ -75,10 +75,7 @@ function MissionSynthesis({
               />
               <h2>Description de la mission : </h2>
             </div>
-            <div
-              key={key}
-              className={showDescription ? "not-masked" : "masked"}
-            >
+            <div key={id} className={showDescription ? "not-masked" : "masked"}>
               {mission.description}
             </div>
           </div>

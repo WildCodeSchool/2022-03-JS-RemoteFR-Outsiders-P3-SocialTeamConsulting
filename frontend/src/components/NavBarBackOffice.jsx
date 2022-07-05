@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import logo from "@assets/SocialTeamConsultingLogo.ico";
+
+import logo from "@assets/logo-STC.png";
 import { NavLink, useNavigate } from "react-router-dom";
 
 import NavBarBackOfficeLinks from "@components/NavBarBackOfficeLinks";
@@ -61,19 +62,21 @@ function NavBarBackOffice() {
         </div>
 
         <div className="nav-part-two">
-          {DataLinksIntervenants.map((el) => (
-            <div>
-              <ul>
-                <NavLink to={el.link}>
-                  <div role="button" tabIndex={0} className="navbar-button">
-                    <li className="navbar-li_highlight">
-                      <h2>{el.section}</h2>
-                    </li>
-                  </div>
-                </NavLink>
-              </ul>
-            </div>
-          ))}
+          {DataLinksIntervenants.map((el) => {
+            return (
+              <div>
+                <ul>
+                  <NavLink to={el.link}>
+                    <div role="button" tabIndex={0} className="navbar-button">
+                      <li className="navbar-li_highlight">
+                        <h2>{el.section}</h2>
+                      </li>
+                    </div>
+                  </NavLink>
+                </ul>
+              </div>
+            );
+          })}
         </div>
       </div>
 

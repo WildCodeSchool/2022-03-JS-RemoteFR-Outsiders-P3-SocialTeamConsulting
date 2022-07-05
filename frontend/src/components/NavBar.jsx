@@ -5,7 +5,7 @@ import "@style/NavBar.css";
 
 import NavBarLinks from "@components/NavBarLinks";
 import NavBarForm from "@components/NavBarForm";
-import logo from "@assets/SocialTeamConsultingLogo.ico";
+import logo from "@assets/logo-STC.png";
 
 function NavBar({ isLinkVisible, showLink, isFormVisible, showForm }) {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
