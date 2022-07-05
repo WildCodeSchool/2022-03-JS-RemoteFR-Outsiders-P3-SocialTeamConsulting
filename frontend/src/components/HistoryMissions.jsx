@@ -37,7 +37,11 @@ function HistoryMissions() {
       <form>
         <select onChange={handleChange}>
           {users.map((userdata) => {
-            return <option value={userdata.id}>{userdata.id}</option>;
+            return (
+              <option value={userdata.id} key={userdata.id}>
+                {userdata.id}
+              </option>
+            );
           })}
         </select>
       </form>

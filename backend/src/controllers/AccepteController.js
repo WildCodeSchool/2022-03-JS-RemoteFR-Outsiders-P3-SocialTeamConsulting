@@ -30,8 +30,9 @@ class AccepteController {
   };
 
   static readWithIntervenant = (req, res) => {
+    const missionID = req.params.id;
     models.accepte
-      .findAllWithIntervenant()
+      .findAllWithIntervenant(missionID)
       .then(([rows]) => {
         res.send(rows);
       })

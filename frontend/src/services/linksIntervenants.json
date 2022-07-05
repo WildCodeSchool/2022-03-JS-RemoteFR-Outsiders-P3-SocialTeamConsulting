@@ -5,5 +5,9 @@
   {
     "section": "Gestion du profil",
     "link": "/back_office/modification_profil_intervenant"
+  },
+  {
+    "section": "Valider un intervenant",
+    "link": "/back_office/validation_intervenant"
   }
 ]
