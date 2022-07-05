@@ -46,6 +46,10 @@ router.get("/missions", MissionsController.browseWithAssociation);
 router.get("/missions/validated", MissionsController.browseValidatedMissions);
 router.get("/missions/history/:id", MissionsController.browseMissionsHistory);
 router.get("/missions/:id", MissionsController.read);
+router.get(
+  "/missions/nonacceptee/:id",
+  MissionsController.browseMissionsNotAccepted
+);
 router.put("/missions/:id", MissionsController.edit);
 router.put("/missions/pourvue/:id", MissionsController.editPourvue);
 router.post("/missions", MissionsController.add);

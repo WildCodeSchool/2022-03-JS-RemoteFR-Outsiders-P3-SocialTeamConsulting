@@ -132,6 +132,19 @@ class MissionsController {
         res.sendStatus(500);
       });
   };
+
+  static browseMissionsNotAccepted = (req, res) => {
+    const userId = req.params.id;
+    models.missions
+      .findMyMissionsNotAccepted(userId)
+      .then(([rows]) => {
+        res.send(rows);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(500);
+      });
+  };
 }
 
 module.exports = MissionsController;
