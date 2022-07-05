@@ -9,6 +9,7 @@ function MissionSynthesis({
   validationArea,
   validationInter,
   canditaterArea,
+  finishArea,
 }) {
   const dateDebut = new Date(mission.date_debut);
   const dateFin = new Date(mission.date_fin);
@@ -85,6 +86,7 @@ function MissionSynthesis({
           {validationArea ? validationArea(mission.id) : false}
           {validationInter ? validationInter(mission.id) : false}
           {canditaterArea ? canditaterArea(mission.id) : false}
+          {finishArea ? finishArea(mission.id) : false}
         </div>
         <div className="fullscreen">
           <img src={fullscreen} alt="full screen button" />

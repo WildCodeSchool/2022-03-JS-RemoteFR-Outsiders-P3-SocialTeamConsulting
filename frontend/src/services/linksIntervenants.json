@@ -9,5 +9,9 @@
   {
     "section": "Gestion du profil",
     "link": "/back_office/modification_profil_intervenant"
+  },
+  {
+    "section": "Terminer une mission",
+    "link": "/back_office/terminer_mission"
   }
 ]
