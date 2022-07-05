@@ -4,7 +4,13 @@
   overflow: hidden;
 	border-radius: 1em;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
+.synthesis-container {
+  height: 90%;
 }
 .synthesis-card_header{
   padding: 1rem;
@@ -23,6 +29,10 @@
   padding: 0.5rem;
 }
 
+.synthesis h1,
+.synthesis h2 {
+  text-transform: uppercase;
+}
 .more{
   cursor: pointer;
   text-align: end;
@@ -57,3 +67,20 @@
   color: var(--color-grey);
   background-color: royalblue;
 }
+
+.synthesis-footer{
+  content: "";
+  height: 1rem;
+}
+.synthesis-pending-validation {
+  background-color: orange;
+}
+
+.synthesis-is-validated {
+  background-color: green;
+}
+
+.synthesis-is-refused {
+  background-color: red;
+}
+

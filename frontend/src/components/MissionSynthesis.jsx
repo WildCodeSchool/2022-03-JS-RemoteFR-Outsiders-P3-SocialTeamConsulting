@@ -39,15 +39,14 @@ function MissionSynthesis({
     }
   };
 
-  /*
-  let missionTheme = "mission";
+  let missionTheme = "";
   if (mission.isvalidated === 1) {
-    missionTheme += " is-validated";
+    missionTheme = "synthesis-is-validated";
   } else if (mission.isvalidated === 2) {
-    missionTheme += " mission is-refused";
+    missionTheme = "synthesis-mission is-refused";
   } else if (mission.isvalidated === 0) {
-    missionTheme += " pending-validation";
-  } */
+    missionTheme = "synthesis-pending-validation";
+  }
 
   const style = metiers.filter((metier) => {
     return metier.metier === mission.metier;
@@ -55,34 +54,36 @@ function MissionSynthesis({
 
   return (
     <div className="synthesis">
-      <div className={`synthesis-card_header ${style[0].style}`}>
-        <h2>{mission.intitule}</h2>
-        <h2>{mission.metier}</h2>
-      </div>
-      <div className="synthesis-asso">
-        <h2>{mission.nom}</h2>
-      </div>
-      <div className="synthesis-date">
-        <p>
-          Du {dateDebut.toLocaleDateString("fr-FR", options)} au{" "}
-          {dateFin.toLocaleDateString("fr-FR", options)}
-        </p>
-        <p className="synthesis-heures">
-          {mission.horaire_debut}-{mission.horaire_fin} ({duration} h)
-        </p>
-      </div>
-      <div className="synthesis-ville">
-        <h2 className="inline">Ville : </h2>
-        {mission.ville}
-      </div>
-      <div className="synthesis-description">
-        <div>
-          <h2>Mission : </h2>
-          {mission.description.split(" ").slice(0, textLength).join(" ")}
-          {more === "En savoir plus" ? "..." : ""}
-          <p className="more" onClick={handleShow}>
-            {more}
+      <div className="synthesis-container">
+        <div className={`synthesis-card_header ${style[0].style}`}>
+          <h2>{mission.intitule}</h2>
+          <h2>{mission.metier}</h2>
+        </div>
+        <div className="synthesis-asso">
+          <h2>{mission.nom}</h2>
+        </div>
+        <div className="synthesis-date">
+          <p>
+            Du {dateDebut.toLocaleDateString("fr-FR", options)} au{" "}
+            {dateFin.toLocaleDateString("fr-FR", options)}
           </p>
+          <p className="synthesis-heures">
+            {mission.horaire_debut}-{mission.horaire_fin} ({duration} h)
+          </p>
+        </div>
+        <div className="synthesis-ville">
+          <h2 className="inline">Ville : </h2>
+          {mission.ville}
+        </div>
+        <div className="synthesis-description">
+          <div>
+            <h2>Mission : </h2>
+            {mission.description.split(" ").slice(0, textLength).join(" ")}
+            {more === "En savoir plus" ? "..." : ""}
+            <p className="more" onClick={handleShow}>
+              {more}
+            </p>
+          </div>
         </div>
       </div>
       <div className="synthesis-area">
@@ -91,6 +92,7 @@ function MissionSynthesis({
         {canditaterArea ? canditaterArea(mission.id) : false}
         {finishArea ? finishArea(mission.id) : false}
       </div>
+      <div className={`synthesis-footer ${missionTheme}`} />
     </div>
   );
 }
