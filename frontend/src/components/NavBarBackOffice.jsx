@@ -1,23 +1,29 @@
 import logo from "@assets/SocialTeamConsultingLogo.ico";
 import { NavLink, useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 import NavBarBackOfficeLinks from "@components/NavBarBackOfficeLinks";
 
 import genericavatar from "@assets/genericavatar.png";
 
 import DataLinksIntervenants from "@services/linksIntervenants.json";
+import ExportContext from "../contexts/Context";
 
 import "@style/BackOffice.css";
 import "@style/NavBar.css";
 
 function NavBarBackOffice() {
+  const { infoUser, setInfoUser } = useContext(ExportContext.Context);
+  console.warn(setInfoUser);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   const handleisMenuVisible = (isVisible) => {
     setIsMenuVisible(isVisible);
   };
-
   const navigate = useNavigate();
+
+  if (infoUser.role === undefined) {
+    return <div>No way !</div>;
+  }
 
   return (
     <div>
@@ -36,12 +42,12 @@ function NavBarBackOffice() {
             <img src={genericavatar} alt="profile" />
           </div>
           <div className="navbar-desk-name">
-            <h1>Laura Dupond</h1>
+            <h1>Laura Dupont</h1>
           </div>
         </div>
 
         <div className="nav-part-two">
-          {DataLinksIntervenants.map((el) => (
+          {DataLinksIntervenants.filter((r) => r[infoUser.role]).map((el) => (
             <div>
               <ul>
                 <NavLink to={el.link}>
