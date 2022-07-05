@@ -1,7 +1,7 @@
 [
   { "section": "Accueil", "link": "/back_office" },
   {
-    "section": "Missions Disponibles",
+    "section": "Missions ouvertes à candidature",
     "link": "/back_office/missions_disponibles"
   },
   { "section": "Missions validées", "link": "/back_office" },
@@ -13,5 +13,9 @@
   {
     "section": "Terminer une mission",
     "link": "/back_office/terminer_mission"
+  },
+  {
+    "section": "Valider un intervenant",
+    "link": "/back_office/validation_intervenant"
   }
 ]
