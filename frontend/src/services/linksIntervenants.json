@@ -1,5 +1,9 @@
 [
   { "section": "Accueil", "link": "/back_office" },
+  {
+    "section": "Missions Disponibles",
+    "link": "/back_office/missions_disponibles"
+  },
   { "section": "Missions validées", "link": "/back_office" },
   { "section": "Offres de missions", "link": "/back_office" },
   {

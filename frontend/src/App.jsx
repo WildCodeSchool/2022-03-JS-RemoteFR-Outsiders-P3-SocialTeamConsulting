@@ -17,6 +17,7 @@ import HistoryMissions from "@components/HistoryMissions";
 import BackOfficeAdminMissionValidation from "@components/BackOfficeAdminMissionValidation";
 import ValidatedMissions from "@components/ValidatedMissions";
 import BackOfficeAdminInterValidation from "@components/BackOfficeAdminInterValidation";
+import BackOfficeMissionsDisponibles from "@components/BackOfficeMissionsDisponibles";
 
 import "@style/App.css";
 
@@ -26,13 +27,16 @@ function App() {
       <Routes>
         <Route path="/back_office" element={<BackOffice />}>
           <Route index element={<HistoryMissions />} />
-
           <Route
             path="modification_profil_intervenant"
             element={<ProfilInterv />}
           />
           <Route path="post_mission" element={<PostMission />} />
           <Route path="validated_mission" element={<ValidatedMissions />} />
+          <Route
+            path="missions_disponibles"
+            element={<BackOfficeMissionsDisponibles />}
+          />
           <Route
             path="backlog_validated_missions"
             element={<BacklogValidatedMissions />}

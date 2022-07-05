@@ -136,6 +136,27 @@ const AssociationJoiVerification = (association) => {
   return error;
 };
 
+const AdministrateurJoiVerification = (administrateur) => {
+  const { nom, prenom, telephone, email, password } = administrateur;
+  const { error } = Joi.object({
+    nom: Joi.string().max(100).required(),
+    prenom: Joi.string().max(100).required(),
+    telephone: Joi.string().min(10).max(10).required(),
+    email: Joi.string().email().max(255).required(),
+    password: Joi.string().max(255).required(),
+  }).validate(
+    {
+      nom,
+      prenom,
+      telephone,
+      email,
+      password,
+    },
+    { abortEarly: false }
+  );
+  return error;
+};
+
 module.exports = {
   userTypeCheck,
   verifyPassword,
@@ -143,4 +164,5 @@ module.exports = {
   hashPassword,
   IntervenantJoiVerification,
   AssociationJoiVerification,
+  AdministrateurJoiVerification,
 };
