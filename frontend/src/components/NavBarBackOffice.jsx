@@ -22,7 +22,7 @@ function NavBarBackOffice() {
   const navigate = useNavigate();
 
   if (infoUser.role === undefined) {
-    return <div>No way !</div>;
+    return <div>Accès interdit !</div>;
   }
 
   return (

@@ -7,11 +7,10 @@ function NavBarBackOfficeLinks({ handleisMenuVisible, showLink }) {
   const { infoUser, setInfoUser } = useContext(ExportContext.Context);
   console.warn(setInfoUser);
   if (infoUser.role === undefined) {
-    return <div>No way !</div>;
+    return <div>Accès interdit !</div>;
   }
   return (
     <div>
-      <h1>TEST</h1>
       {DataLinksIntervenants.filter((r) => r[infoUser.role]).map((el) => (
         <div>
           <NavLink to={el.link}>
