@@ -5,7 +5,7 @@ import { authentification } from "@services/services";
 import ExportContext from "../contexts/Context";
 
 function NavBarForm({ showForm }) {
-  const { infoUser, setInfoUser } = useContext(ExportContext.Context);
+  const { setInfoUser } = useContext(ExportContext.Context);
   const [isLog, setIsLog] = useState(false);
   const [user, setUser] = useState({
     email: "",
@@ -31,7 +31,6 @@ function NavBarForm({ showForm }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     authentification(user, setIsLog, setInfoUser);
-    console.warn(infoUser);
   };
 
   return (
