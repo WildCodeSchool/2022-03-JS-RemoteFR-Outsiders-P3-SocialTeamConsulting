@@ -7,7 +7,6 @@ import ExportContext from "../contexts/Context";
 function HistoryMissions() {
   const { infoUser } = useContext(ExportContext.Context);
   const [user, setUser] = useState();
-  console.error(infoUser);
 
   useEffect(() => {
     const ENDPOINTINTERVENANT = "/intervenants";
