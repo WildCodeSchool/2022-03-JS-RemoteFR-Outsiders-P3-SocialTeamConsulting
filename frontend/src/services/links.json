@@ -1,0 +1,30 @@
+[
+  {
+    "section": "Accueil",
+    "link": "/back_office",
+    "association": true,
+    "intervenant": true,
+    "administrateur": true
+  },
+  {
+    "section": "Missions Disponibles",
+    "link": "/back_office/missions_disponibles",
+    "association": false,
+    "intervenant": true,
+    "administrateur": true
+  },
+  {
+    "section": "Missions validées",
+    "link": "/back_office",
+    "association": false,
+    "intervenant": true,
+    "administrateur": true
+  },
+  {
+    "section": "Gestion du profil",
+    "link": "/back_office/modification_profil_intervenant",
+    "association": true,
+    "intervenant": true,
+    "administrateur": true
+  }
+]

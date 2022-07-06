@@ -29,12 +29,17 @@ router.post("/items", ItemController.add);
 router.delete("/items/:id", ItemController.delete);
 
 router.get("/administrateurs", AdministrateursController.browse);
+router.get(
+  "/administrateurs/bymail/:email",
+  AdministrateursController.browseByEmail
+);
 router.get("/administrateurs/:id", AdministrateursController.read);
 router.put("/administrateurs/:id", AdministrateursController.edit);
 router.post("/administrateurs", AdministrateursController.add);
 router.delete("/administrateurs/:id", AdministrateursController.delete);
 
 router.get("/intervenants", IntervenantsController.browse);
+router.get("/intervenants/bymail/:email", IntervenantsController.browseByEmail);
 router.get("/intervenants/:id", IntervenantsController.read);
 router.get("/intervenants/email/:email", IntervenantsController.readByEmail);
 router.put("/intervenants/:id", IntervenantsController.edit);
@@ -48,6 +53,7 @@ router.get(
   AssociationsController.browse
 );
 router.get("/associations/:id", AssociationsController.read);
+router.get("/associations/bymail/:email", AssociationsController.browseByEmail);
 router.put("/associations/:id", AssociationsController.edit);
 router.post("/associations", AssociationsController.add);
 router.delete("/associations/:id", AssociationsController.delete);

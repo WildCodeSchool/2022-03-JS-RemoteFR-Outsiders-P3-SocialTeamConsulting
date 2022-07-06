@@ -1,5 +1,3 @@
-import React, { useContext } from "react";
-import ExportContext from "../contexts/Context";
 import axios from "axios";
 import { toast } from "react-toastify";
 
@@ -15,7 +13,7 @@ const notifyError = (message) => {
   toast.error(`Erreur : ${message}`);
 };
 
-const authentification = (user, setIsLog, setInfoUser, infoUser) => {
+const authentification = (user, setIsLog, setInfoUser) => {
   const ENDPOINT = "/auth";
   api
     .post(ENDPOINT, user)
@@ -27,7 +25,6 @@ const authentification = (user, setIsLog, setInfoUser, infoUser) => {
       });
       setIsLog(true);
       notifySuccess("La connection a réussi");
-      console.log(infoUser);
     })
     .catch(() => {
       notifyError(
