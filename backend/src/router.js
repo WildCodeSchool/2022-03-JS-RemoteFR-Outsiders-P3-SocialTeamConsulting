@@ -61,6 +61,7 @@ router.get(
 );
 router.put("/missions/:id", MissionsController.edit);
 router.put("/missions/pourvue/:id", MissionsController.editPourvue);
+router.put("/missions/terminee/:id", MissionsController.editTerminee);
 router.post("/missions", MissionsController.add);
 router.delete("/missions/:id", MissionsController.delete);
 
