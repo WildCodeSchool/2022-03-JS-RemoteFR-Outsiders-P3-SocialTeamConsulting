@@ -4,8 +4,7 @@ import DataLinks from "@services/links.json";
 import ExportContext from "../contexts/Context";
 
 function NavBarBackOfficeLinks({ handleisMenuVisible, showLink }) {
-  const { infoUser, setInfoUser } = useContext(ExportContext.Context);
-  console.warn(setInfoUser);
+  const { infoUser } = useContext(ExportContext.Context);
   if (infoUser.role === undefined) {
     return <div>Accès interdit !</div>;
   }
