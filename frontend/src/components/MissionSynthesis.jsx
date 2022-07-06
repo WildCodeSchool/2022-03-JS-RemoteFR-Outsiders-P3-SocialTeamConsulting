@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import metiers from "@services/metiers.json";
 
 import "@style/synthesisCard.css";
