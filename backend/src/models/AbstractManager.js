@@ -10,6 +10,12 @@ class AbstractManager {
     ]);
   }
 
+  findOne(email) {
+    return this.connection
+      .query("SELECT * FROM associations WHERE email = ?", [email])
+      .then((res) => res[0]);
+  }
+
   findAll() {
     return this.connection.query(`select * from  ${this.table}`);
   }

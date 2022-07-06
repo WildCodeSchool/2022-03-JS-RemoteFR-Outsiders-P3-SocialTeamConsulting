@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import metiers from "@services/metiers.json";
 import "../style/PostMission.css";
 
 import { notifySuccess, notifyError, api } from "@services/services";
@@ -156,30 +157,13 @@ function PostMission() {
               <div className="post-mission-job">
                 <select id="job_select" name="metier" onChange={handleChange}>
                   <option value="">--Choisir un type de travail--</option>
-                  <option value="moniteurs" name="metier">
-                    moniteurs{" "}
-                  </option>
-                  <option value="éducateurs" name="metier">
-                    éducateurs
-                  </option>
-                  <option value="éducateurs spécialisé" name="metier">
-                    éducateurs spécialisé
-                  </option>
-                  <option value="assistante de service social" name="metier">
-                    assistante de service social
-                  </option>
-                  <option
-                    value="conseillère en économie social et familiale"
-                    name="metier"
-                  >
-                    conseillère en économie social et familiale
-                  </option>
-                  <option value="chef de service" name="metier">
-                    chef de service
-                  </option>
-                  <option value="Autre" name="metier">
-                    Autre
-                  </option>
+                  {metiers.map((metier) => {
+                    return (
+                      <option value={metier.metier} name="metier">
+                        {`${metier.metier} `}
+                      </option>
+                    );
+                  })}
                 </select>
 
                 <label htmlFor="post_mission_horaire-totale">
