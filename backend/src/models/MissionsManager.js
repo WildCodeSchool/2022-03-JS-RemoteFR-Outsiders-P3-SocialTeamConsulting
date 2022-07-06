@@ -51,6 +51,13 @@ class MissionsManager extends AbstractManager {
     );
   }
 
+  updateTerminee(mission) {
+    return this.connection.query(
+      `update ${MissionsManager.table} set etat = ? where id = ?`,
+      [MissionStates[4], mission]
+    );
+  }
+
   findValidatedMissions() {
     return this.connection.query(
       'SELECT m.*, a.nom FROM MISSIONS AS m INNER JOIN associations AS a ON m.associations_id = a.id WHERE m.etat = ("Validé")'
@@ -59,7 +66,7 @@ class MissionsManager extends AbstractManager {
 
   findMyMissions(user) {
     return this.connection.query(
-      `SELECT a.*, m.*, asso.nom AS 'nom_asso' FROM ${this.table} AS m INNER JOIN accepte AS a ON a.missions_id = m.id INNER JOIN associations AS asso ON m.associations_id = asso.id WHERE a.intervenants_id = '${user}' ORDER BY m.date_debut`
+      `SELECT a.*, m.*, asso.nom FROM ${this.table} AS m INNER JOIN accepte AS a ON a.missions_id = m.id INNER JOIN associations AS asso ON m.associations_id = asso.id WHERE a.intervenants_id = '${user}' ORDER BY m.date_debut`
     );
   }
 

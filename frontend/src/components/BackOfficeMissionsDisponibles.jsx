@@ -9,7 +9,6 @@ function BackOfficeMissionsDisponibles() {
   const [userId, setUserId] = useState();
   const { infoUser } = useContext(ExportContext.Context);
   const { email } = infoUser;
-
   useEffect(() => {
     const ENDPOINTINTERVENANT = "/intervenants";
     api
