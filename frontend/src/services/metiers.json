@@ -1,26 +1,30 @@
 [
   {
-    "metier":"Educateur",
-    "style":"educ"
+    "metier": "Assistante de service social",
+    "style": "ass_soc"
   },
   {
-    "metier":"Educateur spécialisé",
-    "style":"educ_spe"
+    "metier": "Chef de service",
+    "style": "chef"
   },
   {
-    "metier":"Assistante de service social",
-    "style":"ass_soc"
+    "metier": "Conseillère en économie social et familiale",
+    "style": "cons_eco"
   },
   {
-    "metier":"Conseillère en économie social et familiale",
-    "style":"cons_eco"
+    "metier": "Educateur",
+    "style": "educ"
   },
   {
-    "metier":"Chef de service",
-    "style":"chef"
+    "metier": "Educateur spécialisé",
+    "style": "educ_spe"
   },
   {
-    "metier":"Autre",
-    "style":"autre"
+    "metier": "Moniteur",
+    "style": "moniteur"
+  },
+  {
+    "metier": "Autre",
+    "style": "autre"
   }
 ]
