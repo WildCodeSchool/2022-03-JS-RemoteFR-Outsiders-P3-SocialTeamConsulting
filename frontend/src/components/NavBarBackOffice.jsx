@@ -13,8 +13,7 @@ import "@style/BackOffice.css";
 import "@style/NavBar.css";
 
 function NavBarBackOffice() {
-  const { infoUser, setInfoUser } = useContext(ExportContext.Context);
-  console.warn(setInfoUser);
+  const { infoUser } = useContext(ExportContext.Context);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   const handleisMenuVisible = (isVisible) => {
     setIsMenuVisible(isVisible);
