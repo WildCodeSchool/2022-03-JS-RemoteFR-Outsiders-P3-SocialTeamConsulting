@@ -7,7 +7,7 @@ import NavBarBackOfficeLinks from "@components/NavBarBackOfficeLinks";
 
 import genericavatar from "@assets/genericavatar.png";
 
-import DataLinksIntervenants from "@services/linksIntervenants.json";
+import DataLinks from "@services/links.json";
 
 import { api } from "@services/services";
 import ExportContext from "../contexts/Context";
@@ -22,9 +22,11 @@ function NavBarBackOffice() {
   const handleisMenuVisible = (isVisible) => {
     setIsMenuVisible(isVisible);
   };
-
   const navigate = useNavigate();
 
+  if (infoUser.role === undefined) {
+    return <div>Accès interdit !</div>;
+  }
   useEffect(() => {
     const ENDPOINT = `/${infoUser.role}s/bymail/${infoUser.email}`;
 
@@ -60,21 +62,19 @@ function NavBarBackOffice() {
         </div>
 
         <div className="nav-part-two">
-          {DataLinksIntervenants.map((el) => {
-            return (
-              <div>
-                <ul>
-                  <NavLink to={el.link}>
-                    <div role="button" tabIndex={0} className="navbar-button">
-                      <li className="navbar-li_highlight">
-                        <h2>{el.section}</h2>
-                      </li>
-                    </div>
-                  </NavLink>
-                </ul>
-              </div>
-            );
-          })}
+          {DataLinks.filter((r) => r[infoUser.role]).map((el) => (
+            <div>
+              <ul>
+                <NavLink to={el.link}>
+                  <div role="button" tabIndex={0} className="navbar-button">
+                    <li className="navbar-li_highlight">
+                      <h2>{el.section}</h2>
+                    </li>
+                  </div>
+                </NavLink>
+              </ul>
+            </div>
+          ))}
         </div>
       </div>
 

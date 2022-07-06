@@ -2,7 +2,7 @@
   width: 25rem;
   margin: 1rem auto;
   overflow: hidden;
-	border-radius: 1em;
+  border-radius: 1em;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   display: flex;
   flex-direction: column;
@@ -12,12 +12,12 @@
 .synthesis-container {
   height: 90%;
 }
-.synthesis-card_header{
+.synthesis-card_header {
   padding: 1rem;
   margin-bottom: 1rem;
 }
 
-.synthesis-card_header h2{
+.synthesis-card_header h2 {
   padding: 0.5rem;
 }
 
@@ -33,7 +33,7 @@
 .synthesis h2 {
   text-transform: uppercase;
 }
-.more{
+.more {
   cursor: pointer;
   text-align: end;
 }
@@ -68,7 +68,7 @@
   background-color: royalblue;
 }
 
-.synthesis-footer{
+.synthesis-footer {
   content: "";
   height: 1rem;
 }
@@ -83,4 +83,3 @@
 .synthesis-is-refused {
   background-color: red;
 }
-
