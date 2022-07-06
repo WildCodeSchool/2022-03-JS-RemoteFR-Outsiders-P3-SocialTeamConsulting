@@ -76,6 +76,19 @@ class AccepteController {
       });
   };
 
+  static changeInter = (req, res) => {
+    const missionID = req.params.id;
+    models.accepte
+      .findIntervenant(missionID)
+      .then(([rows]) => {
+        res.send(rows);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(500);
+      });
+  };
+
   static add = (req, res) => {
     const missionId = req.params.id;
     const userId = req.body.user;

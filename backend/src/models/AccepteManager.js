@@ -15,6 +15,16 @@ class AccepteManager extends AbstractManager {
     );
   }
 
+  findIntervenant(mission) {
+    return this.connection.query(
+      `SELECT * FROM ${AccepteManager.table} AS a
+      INNER JOIN intervenants AS i ON a.intervenants_id = i.id
+      INNER JOIN missions AS m ON a.missions_id = m.id
+       WHERE a.missions_id = ? AND a.isvalidated != 0`,
+      [mission]
+    );
+  }
+
   updateAccepteEtat(intervenant, mission) {
     return this.connection.query(
       `update ${AccepteManager.table} set isvalidated = ? where intervenants_id = ? AND missions_id = ?`,
