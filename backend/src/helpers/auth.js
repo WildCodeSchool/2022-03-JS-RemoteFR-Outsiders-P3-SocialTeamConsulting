@@ -73,9 +73,15 @@ const IntervenantJoiVerification = (intervenant) => {
     email: Joi.string().email().max(255).required(),
     telephone: Joi.string().min(10).max(10).required(),
     password: Joi.string().max(255).required(),
-    image_cv: Joi.string().max(255).required(),
-    image_carte_vitale: Joi.string().max(255).required(),
-    image_statut_autoentrepreneur: Joi.string().max(255).required(),
+    image_cv: Joi.string()
+      .pattern(/\.(gif|GIF|jpe?g|JPE?G|tiff?|TIFF?|png|PNG)$/)
+      .required(),
+    image_carte_vitale: Joi.string()
+      .pattern(/\.(gif|GIF|jpe?g|JPE?G|tiff?|TIFF?|png|PNG)$/)
+      .required(),
+    image_statut_autoentrepreneur: Joi.string()
+      .pattern(/\.(gif|GIF|jpe?g|JPE?G|tiff?|TIFF?|png|PNG)$/)
+      .required(),
     pre_inscription_message: Joi.string().max(500).required(),
   }).validate(
     {
@@ -130,6 +136,27 @@ const AssociationJoiVerification = (association) => {
   return error;
 };
 
+const AdministrateurJoiVerification = (administrateur) => {
+  const { nom, prenom, telephone, email, password } = administrateur;
+  const { error } = Joi.object({
+    nom: Joi.string().max(100).required(),
+    prenom: Joi.string().max(100).required(),
+    telephone: Joi.string().min(10).max(10).required(),
+    email: Joi.string().email().max(255).required(),
+    password: Joi.string().max(255).required(),
+  }).validate(
+    {
+      nom,
+      prenom,
+      telephone,
+      email,
+      password,
+    },
+    { abortEarly: false }
+  );
+  return error;
+};
+
 module.exports = {
   userTypeCheck,
   verifyPassword,
@@ -137,4 +164,5 @@ module.exports = {
   hashPassword,
   IntervenantJoiVerification,
   AssociationJoiVerification,
+  AdministrateurJoiVerification,
 };

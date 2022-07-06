@@ -19,6 +19,7 @@
     "husky": "^7.0.0"
   },
   "dependencies": {
+    "cookie-parser": "^1.4.6",
     "esbuild-windows-64": "^0.14.47"
   }
 }

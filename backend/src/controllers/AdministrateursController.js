@@ -1,4 +1,10 @@
+const { v4: uuidv4 } = require("uuid");
 const models = require("../models");
+const etat = require("../JSON/UserStates.json");
+const {
+  hashPassword,
+  AdministrateurJoiVerification,
+} = require("../helpers/auth");
 
 class AdministrateursController {
   static browse = (req, res) => {
@@ -52,19 +58,30 @@ class AdministrateursController {
   };
 
   static add = (req, res) => {
-    const intervenant = req.body;
-
-    // TODO validations (length, format...)
-
-    models.administrateurs
-      .insert(intervenant)
-      .then(([result]) => {
-        res.status(201).send({ ...intervenant, id: result.insertId });
-      })
-      .catch((err) => {
-        console.error(err);
-        res.sendStatus(500);
-      });
+    const uuid = uuidv4();
+    hashPassword(req.body.password).then((hashedPassword) => {
+      req.body.password = hashedPassword;
+      req.body = {
+        ...req.body,
+        id: uuid,
+        etat: etat[0],
+      };
+      const administrateur = req.body;
+      const error = AdministrateurJoiVerification(administrateur);
+      if (error) {
+        res.status(422).json({ validationErrors: error.details });
+      } else {
+        models.administrateurs
+          .insert(administrateur)
+          .then(() => {
+            res.status(201).send("administrateur enregistré");
+          })
+          .catch((err) => {
+            console.error(err);
+            res.sendStatus(500);
+          });
+      }
+    });
   };
 
   static delete = (req, res) => {

@@ -1,4 +1,5 @@
 const models = require("../models");
+const etat = require("../JSON/MissionStates.json");
 
 class MissionsController {
   static browse = (req, res) => {
@@ -16,6 +17,30 @@ class MissionsController {
   static browseWithAssociation = (req, res) => {
     models.missions
       .findAllWithAssociation()
+      .then(([rows]) => {
+        res.send(rows);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(500);
+      });
+  };
+
+  static browseValidatedMissions = (req, res) => {
+    models.missions
+      .findValidatedMissions()
+      .then(([rows]) => {
+        res.send(rows);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(500);
+      });
+  };
+
+  static browseMissionsHistory = (req, res) => {
+    models.missions
+      .findMyMissions(req.params.id)
       .then(([rows]) => {
         res.send(rows);
       })
@@ -62,14 +87,49 @@ class MissionsController {
   };
 
   static add = (req, res) => {
-    const intervenant = req.body;
-
-    // TODO validations (length, format...)
-
+    req.body = {
+      ...req.body,
+      etat: etat[0],
+    };
+    const mission = req.body;
     models.missions
-      .insert(intervenant)
+      .insert(mission)
+      .then(() => {
+        res.status(201).send("Mission enregistrée");
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(500);
+      });
+  };
+
+  static editPourvue = (req, res) => {
+    const { id } = req.params;
+    models.missions
+      .updatePourvue(id)
       .then(([result]) => {
-        res.status(201).send({ ...intervenant, id: result.insertId });
+        if (result.affectedRows === 0) {
+          res.sendStatus(404);
+        } else {
+          res.sendStatus(204);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(500);
+      });
+  };
+
+  static editTerminee = (req, res) => {
+    const { id } = req.params;
+    models.missions
+      .updateTerminee(id)
+      .then(([result]) => {
+        if (result.affectedRows === 0) {
+          res.sendStatus(404);
+        } else {
+          res.sendStatus(204);
+        }
       })
       .catch((err) => {
         console.error(err);
@@ -82,6 +142,19 @@ class MissionsController {
       .delete(req.params.id)
       .then(() => {
         res.sendStatus(204);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(500);
+      });
+  };
+
+  static browseMissionsNotAccepted = (req, res) => {
+    const userId = req.params.id;
+    models.missions
+      .findMyMissionsNotAccepted(userId)
+      .then(([rows]) => {
+        res.send(rows);
       })
       .catch((err) => {
         console.error(err);

@@ -4,13 +4,13 @@ import MissionSynthesis from "@components/MissionSynthesis";
 
 import "@style/ValidatedMissions.css";
 
-function BackOfficeAdminMissionValidation() {
+function BackOfficeAdminMissionTerminee() {
   const [update, setUpdate] = useState(false);
-  const validateMission = (missionId, isAccepted) => {
-    const ENDPOINTVALIDATION = `/missions/${missionId}`;
+  const finishMission = (missionId) => {
+    const ENDPOINTVALIDATION = `/missions/terminee/${missionId}`;
 
     api
-      .put(ENDPOINTVALIDATION, { isValidated: isAccepted })
+      .put(ENDPOINTVALIDATION)
       .then(() => {
         notifySuccess("le statut de la mission a été mis à jour");
         setUpdate(!update);
@@ -20,24 +20,16 @@ function BackOfficeAdminMissionValidation() {
         console.error(notifyError(err));
       });
   };
-  const validationArea = (missionId) => {
+  const finishArea = (missionId) => {
     return (
-      <div className="synthesis-validation_area">
+      <div className="synthesis-finish_area">
         <button
-          id="button_preinscription"
+          id="button_finish_mission"
           className="button-blue"
           type="submit"
-          onClick={() => validateMission(missionId, true)}
+          onClick={() => finishMission(missionId, true)}
         >
-          Valider la mission
-        </button>
-        <button
-          id="button_preinscription"
-          className="button-orange"
-          type="submit"
-          onClick={() => validateMission(missionId, false)}
-        >
-          Refuser la mission
+          Passer la mission en "Mission terminée"
         </button>
       </div>
     );
@@ -58,17 +50,17 @@ function BackOfficeAdminMissionValidation() {
 
   return (
     <div className="card">
-      {missions.filter((e) => e.etat === "en attente").length === 0 ? (
+      {missions.filter((e) => e.etat === "pourvue").length === 0 ? (
         <h2>Il n'y a aucune mission à valider pour l'instant</h2>
       ) : (
         missions
-          .filter((e) => e.etat === "en attente")
+          .filter((e) => e.etat === "pourvue")
           .map((mission) => {
             return (
               <MissionSynthesis
                 mission={mission}
                 key={mission.id}
-                validationArea={validationArea}
+                finishArea={finishArea}
               />
             );
           })
@@ -77,4 +69,4 @@ function BackOfficeAdminMissionValidation() {
   );
 }
 
-export default BackOfficeAdminMissionValidation;
+export default BackOfficeAdminMissionTerminee;
