@@ -1,6 +1,12 @@
 import React, { useState } from "react";
+
+import fullscreen from "@assets/fullscreen.png";
+import triangle from "@assets/triangle.png";
+
 import metiers from "@services/metiers.json";
+
 import "@style/synthesisCard.css";
+import "@style/ValidatedMissions.css";
 
 function MissionSynthesis({
   mission,
@@ -8,6 +14,7 @@ function MissionSynthesis({
   validationInter,
   canditaterArea,
   finishArea,
+
 }) {
   const dateDebut = new Date(mission.date_debut);
   const dateFin = new Date(mission.date_fin);

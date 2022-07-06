@@ -1,6 +1,7 @@
+import React, { useContext, useEffect, useState } from "react";
+
 import logo from "@assets/logo-STC.png";
 import { NavLink, useNavigate } from "react-router-dom";
-import React, { useState } from "react";
 
 import NavBarBackOfficeLinks from "@components/NavBarBackOfficeLinks";
 
@@ -8,16 +9,32 @@ import genericavatar from "@assets/genericavatar.png";
 
 import DataLinksIntervenants from "@services/linksIntervenants.json";
 
+import { api } from "@services/services";
+import ExportContext from "../contexts/Context";
+
 import "@style/BackOffice.css";
 import "@style/NavBar.css";
 
 function NavBarBackOffice() {
+  const { infoUser } = useContext(ExportContext.Context);
+  const [names, setNames] = useState({ nom: "", prenom: "" });
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   const handleisMenuVisible = (isVisible) => {
     setIsMenuVisible(isVisible);
   };
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const ENDPOINT = `/${infoUser.role}s/bymail/${infoUser.email}`;
+
+    api
+      .get(ENDPOINT)
+      .then((user) => {
+        setNames({ nom: user.data[0].nom, prenom: user.data[0].prenom });
+      })
+      .catch((err) => console.error(err));
+  }, []);
 
   return (
     <div>
@@ -36,7 +53,9 @@ function NavBarBackOffice() {
             <img src={genericavatar} alt="profile" />
           </div>
           <div className="navbar-desk-name">
-            <h1>Laura Dupond</h1>
+            <h1>
+              {names.prenom} {names.nom}
+            </h1>
           </div>
         </div>
 
@@ -103,7 +122,9 @@ function NavBarBackOffice() {
                 />
               </div>
               <div className="profile-desc-name">
-                <h2>Laura Dupont</h2>
+                <h2>
+                  {names.prenom} {names.nom}
+                </h2>
               </div>
             </div>
           </div>
