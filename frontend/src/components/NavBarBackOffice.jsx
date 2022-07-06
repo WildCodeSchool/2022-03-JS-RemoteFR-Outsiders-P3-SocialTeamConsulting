@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 
 import logo from "@assets/logo-STC.png";
 import { NavLink, useNavigate } from "react-router-dom";
+import { notifySuccess, api } from "@services/services";
 
 import NavBarBackOfficeLinks from "@components/NavBarBackOfficeLinks";
 
@@ -9,7 +10,6 @@ import genericavatar from "@assets/genericavatar.png";
 
 import DataLinks from "@services/links.json";
 
-import { api } from "@services/services";
 import ExportContext from "../contexts/Context";
 
 import "@style/BackOffice.css";
@@ -39,13 +39,13 @@ function NavBarBackOffice() {
   }, []);
 
   const handleDeconnexion = () => {
-    console.error("le click a marché");
     const ENDPOINTDECONNEXION = "/deconnexion";
     api.post(ENDPOINTDECONNEXION).then((status) => {
-      console.error(status);
       if (status.status === 200) {
-        console.error("la déconnexion marche");
-        navigate("/");
+        notifySuccess(
+          "Déconnexion réussie, vous allez être redirigés sur la page d'accueil"
+        );
+        setTimeout(() => navigate("/"), 5000);
       }
     });
   };
@@ -74,27 +74,39 @@ function NavBarBackOffice() {
         </div>
 
         <div className="nav-part-two">
-          {DataLinks.filter((r) => r[infoUser.role]).map((el) => (
-            <div>
-              <ul>
-                <NavLink to={el.link}>
-                  <div role="button" tabIndex={0} className="navbar-button">
-                    <li className="navbar-li_highlight">
-                      <h2>{el.section}</h2>
-                    </li>
-                  </div>
-                </NavLink>
-              </ul>
-            </div>
-          ))}
-        </div>
-        <div
-          role="button"
-          tabIndex={0}
-          className="deconnexion"
-          onClick={handleDeconnexion}
-        >
-          Se déconnecter
+          {DataLinks.filter((r) => r[infoUser.role]).map((el) => {
+            if (el.section === "Déconnexion") {
+              return (
+                <div>
+                  <ul>
+                    <NavLink to={el.link}>
+                      <div role="button" tabIndex={0} className="navbar-button">
+                        <li
+                          className="navbar-li_highlight"
+                          onClick={handleDeconnexion}
+                        >
+                          <h2>{el.section}</h2>
+                        </li>
+                      </div>
+                    </NavLink>
+                  </ul>
+                </div>
+              );
+            }
+            return (
+              <div>
+                <ul>
+                  <NavLink to={el.link}>
+                    <div role="button" tabIndex={0} className="navbar-button">
+                      <li className="navbar-li_highlight">
+                        <h2>{el.section}</h2>
+                      </li>
+                    </div>
+                  </NavLink>
+                </ul>
+              </div>
+            );
+          })}
         </div>
       </div>
 
@@ -127,10 +139,8 @@ function NavBarBackOffice() {
               <hr className="navbar-hr" />
               <NavBarBackOfficeLinks
                 handleisMenuVisible={handleisMenuVisible}
+                handleDeconnexion={handleDeconnexion}
               />
-              <div role="button" tabIndex={0} onClick={handleDeconnexion}>
-                se déconnecter
-              </div>
             </div>
           </nav>
           <hr className="navbar-bottom-hr" />
