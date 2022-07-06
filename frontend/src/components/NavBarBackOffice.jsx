@@ -38,6 +38,18 @@ function NavBarBackOffice() {
       .catch((err) => console.error(err));
   }, []);
 
+  const handleDeconnexion = () => {
+    console.error("le click a marché");
+    const ENDPOINTDECONNEXION = "/deconnexion";
+    api.post(ENDPOINTDECONNEXION).then((status) => {
+      console.error(status);
+      if (status.status === 200) {
+        console.error("la déconnexion marche");
+        navigate("/");
+      }
+    });
+  };
+
   return (
     <div>
       <div className="navbar-desktop-backoffice">
@@ -76,6 +88,14 @@ function NavBarBackOffice() {
             </div>
           ))}
         </div>
+        <div
+          role="button"
+          tabIndex={0}
+          className="deconnexion"
+          onClick={handleDeconnexion}
+        >
+          Se déconnecter
+        </div>
       </div>
 
       <div className="navbar-mobile-backoffice">
@@ -108,6 +128,9 @@ function NavBarBackOffice() {
               <NavBarBackOfficeLinks
                 handleisMenuVisible={handleisMenuVisible}
               />
+              <div role="button" tabIndex={0} onClick={handleDeconnexion}>
+                se déconnecter
+              </div>
             </div>
           </nav>
           <hr className="navbar-bottom-hr" />
