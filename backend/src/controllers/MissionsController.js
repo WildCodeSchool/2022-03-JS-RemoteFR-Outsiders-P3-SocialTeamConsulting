@@ -105,9 +105,25 @@ class MissionsController {
 
   static editPourvue = (req, res) => {
     const { id } = req.params;
-    console.warn(id);
     models.missions
       .updatePourvue(id)
+      .then(([result]) => {
+        if (result.affectedRows === 0) {
+          res.sendStatus(404);
+        } else {
+          res.sendStatus(204);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(500);
+      });
+  };
+
+  static editTerminee = (req, res) => {
+    const { id } = req.params;
+    models.missions
+      .updateTerminee(id)
       .then(([result]) => {
         if (result.affectedRows === 0) {
           res.sendStatus(404);

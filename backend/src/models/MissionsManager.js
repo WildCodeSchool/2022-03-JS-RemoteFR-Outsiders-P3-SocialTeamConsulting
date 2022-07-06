@@ -51,6 +51,13 @@ class MissionsManager extends AbstractManager {
     );
   }
 
+  updateTerminee(mission) {
+    return this.connection.query(
+      `update ${MissionsManager.table} set etat = ? where id = ?`,
+      [MissionStates[4], mission]
+    );
+  }
+
   findValidatedMissions() {
     return this.connection.query(
       'SELECT m.*, a.nom FROM MISSIONS AS m INNER JOIN associations AS a ON m.associations_id = a.id WHERE m.etat = ("Validé")'
