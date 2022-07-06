@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
-import DataLinksIntervenants from "@services/linksIntervenants.json";
+import DataLinks from "@services/links.json";
 import ExportContext from "../contexts/Context";
 
 function NavBarBackOfficeLinks({ handleisMenuVisible, showLink }) {
@@ -11,7 +11,7 @@ function NavBarBackOfficeLinks({ handleisMenuVisible, showLink }) {
   }
   return (
     <div>
-      {DataLinksIntervenants.filter((r) => r[infoUser.role]).map((el) => (
+      {DataLinks.filter((r) => r[infoUser.role]).map((el) => (
         <div>
           <NavLink to={el.link}>
             <div

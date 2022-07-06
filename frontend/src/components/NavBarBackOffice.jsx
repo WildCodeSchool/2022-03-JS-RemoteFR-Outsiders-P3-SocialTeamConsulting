@@ -6,7 +6,7 @@ import NavBarBackOfficeLinks from "@components/NavBarBackOfficeLinks";
 
 import genericavatar from "@assets/genericavatar.png";
 
-import DataLinksIntervenants from "@services/linksIntervenants.json";
+import DataLinks from "@services/links.json";
 import ExportContext from "../contexts/Context";
 
 import "@style/BackOffice.css";
@@ -47,7 +47,7 @@ function NavBarBackOffice() {
         </div>
 
         <div className="nav-part-two">
-          {DataLinksIntervenants.filter((r) => r[infoUser.role]).map((el) => (
+          {DataLinks.filter((r) => r[infoUser.role]).map((el) => (
             <div>
               <ul>
                 <NavLink to={el.link}>
