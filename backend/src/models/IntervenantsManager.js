@@ -21,6 +21,18 @@ class IntervenantManager extends AbstractManager {
       ]
     );
   }
+
+  update(intervenant) {
+    return this.connection.query(
+      `update into ${IntervenantManager.table} (nom, prenom, email, telephone) values (?, ?, ?, ?)`,
+      [
+        intervenant.nom,
+        intervenant.prenom,
+        intervenant.email,
+        intervenant.telephone,
+      ]
+    );
+  }
 }
 
 module.exports = IntervenantManager;

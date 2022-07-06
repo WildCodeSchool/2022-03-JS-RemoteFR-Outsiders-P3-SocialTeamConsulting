@@ -62,11 +62,7 @@ class IntervenantController {
 
   static edit = (req, res) => {
     const intervenant = req.body;
-
-    // TODO validations (length, format...)
-
-    intervenant.id = parseInt(req.params.id, 10);
-
+    intervenant.id = req.params.id;
     models.intervenants
       .update(intervenant)
       .then(([result]) => {

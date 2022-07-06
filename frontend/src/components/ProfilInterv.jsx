@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { notifySuccess, api } from "@services/services";
+import React, { useEffect, useState, useContext } from "react";
+import { notifySuccess, notifyError, api } from "@services/services";
+import ExportContext from "../contexts/Context";
 
 import "@style/App.css";
 import "@style/ProfilInterv.css";
 
 export default function ProfilInterv() {
   const [intervenant, setIntervenant] = useState({});
-  const emailIntervenant = "ironman@starkco.com";
+  const { infoUser } = useContext(ExportContext.Context);
+  const { email } = infoUser;
 
   useEffect(() => {
-    const ENDPOINT = `/intervenants/email/${emailIntervenant}`;
+    const ENDPOINT = `/intervenants/email/${email}`;
     api.get(ENDPOINT).then((result) => {
       setIntervenant(result.data);
     });
@@ -20,17 +22,23 @@ export default function ProfilInterv() {
   const updateIntervenant = (e) => {
     e.preventDefault();
     const ENDPOINTUPDATEINTER = `/intervenants/${intervenant.id}`;
-    api.put(ENDPOINTUPDATEINTER).then(() => {
-      console.warn("it's working");
-      notifySuccess("Vous venez de choisir un intervenant.");
-      setIntervenant();
-    });
+    api
+      .put(ENDPOINTUPDATEINTER, intervenant)
+      .then(() => {
+        notifySuccess("Le profil de l'intervenant a été modifié.");
+      })
+      .catch(() => {
+        notifyError("Une erreur est survenue lors de la mise à jour.");
+      });
   };
 
   // changement de valeur
-  const handleChange = () => {
-    setIntervenant({ ...intervenant });
-  };
+  function handleChange(event) {
+    setIntervenant({
+      ...intervenant,
+      [event.target.name]: event.target.value,
+    });
+  }
 
   return (
     // <div className="backoffice-bloc">
@@ -56,7 +64,7 @@ export default function ProfilInterv() {
           <input
             className="rules"
             type="text"
-            name="name"
+            name="nom"
             placeholder={intervenant.nom}
             onChange={() => handleChange}
           />
@@ -66,70 +74,8 @@ export default function ProfilInterv() {
           <input
             className="rules"
             type="text"
+            name="prenom"
             placeholder={intervenant.prenom}
-            onChange={() => handleChange}
-          />
-        </label>
-      </div>
-
-      <label htmlFor="password">
-        <p>Mot de Passe actuel</p>
-        <input
-          className="otherinput"
-          type="text"
-          placeholder=""
-          onChange={() => handleChange}
-        />
-      </label>
-
-      <div className="backoffice-bloc">
-        <label htmlFor="newPassword" className="backoffice-input-half">
-          <p>Nouveau mot de Passe</p>
-          <input
-            className="otherinput"
-            type="text"
-            name="name"
-            placeholder=""
-            onChange={() => handleChange}
-          />
-        </label>
-        <label htmlFor="confirmedNewPassword">
-          <p>Confirmer le nouveau mot de Passe</p>
-          <input
-            className="otherinput"
-            type="text"
-            placeholder=""
-            onChange={() => handleChange}
-          />
-        </label>
-      </div>
-
-      <label htmlFor="address">
-        <p>Adresse</p>
-        <input
-          className="otherinput"
-          type="text"
-          placeholder={intervenant.adresse}
-          onChange={() => handleChange}
-        />
-      </label>
-
-      <div className="backoffice-bloc">
-        <label htmlFor="zip" className="backoffice-input-half">
-          <p>Code Postal</p>
-          <input
-            className="rules"
-            type="text"
-            placeholder={intervenant.code_postal}
-            onChange={() => handleChange}
-          />
-        </label>
-        <label htmlFor="city" className="backoffice-input-half">
-          <p>Ville</p>
-          <input
-            className="rules"
-            type="text"
-            placeholder={intervenant.ville}
             onChange={() => handleChange}
           />
         </label>
@@ -141,6 +87,7 @@ export default function ProfilInterv() {
           <input
             className="rules"
             type="email"
+            name="email"
             placeholder={intervenant.email}
             onChange={() => handleChange}
           />
@@ -150,6 +97,7 @@ export default function ProfilInterv() {
           <input
             className="rules"
             type="text"
+            name="telephone"
             placeholder={intervenant.telephone}
             onChange={() => handleChange}
           />
@@ -158,7 +106,7 @@ export default function ProfilInterv() {
 
       <div className="backoffice_profilinterv_submit_button">
         <button className="button-blue" type="submit">
-          Demander une modification
+          Modifier le profil de l'intervenant
         </button>
       </div>
     </form>
