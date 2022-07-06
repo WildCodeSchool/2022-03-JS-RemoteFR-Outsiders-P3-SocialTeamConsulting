@@ -20,7 +20,7 @@ class AdministrateursController {
   };
 
   static browseByEmail = (req, res) => {
-    models.intervenants
+    models.administrateurs
       .findByEmail(req.params.email)
       .then(([rows]) => {
         res.send(rows);

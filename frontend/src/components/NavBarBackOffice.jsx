@@ -31,9 +31,7 @@ function NavBarBackOffice() {
     api
       .get(ENDPOINT)
       .then((user) => {
-        console.error(user.data[0]);
         setNames({ nom: user.data[0].nom, prenom: user.data[0].prenom });
-        console.error(names.nom);
       })
       .catch((err) => console.error(err));
   }, []);

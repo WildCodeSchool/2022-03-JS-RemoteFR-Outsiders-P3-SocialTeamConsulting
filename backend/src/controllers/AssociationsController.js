@@ -17,7 +17,7 @@ class AssociationsController {
   };
 
   static browseByEmail = (req, res) => {
-    models.intervenants
+    models.associations
       .findByEmail(req.params.email)
       .then(([rows]) => {
         res.send(rows);
