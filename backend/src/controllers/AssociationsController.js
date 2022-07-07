@@ -66,6 +66,26 @@ class AssociationsController {
       });
   };
 
+  static editEtat = (req, res) => {
+    const association = {
+      etat: req.body.newStatus,
+      id: req.params.id,
+    };
+    models.associations
+      .updateEtat(association)
+      .then(([result]) => {
+        if (result.affectedRows === 0) {
+          res.sendStatus(404);
+        } else {
+          res.sendStatus(201);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(500);
+      });
+  };
+
   static add = (req, res) => {
     const uuid = uuidv4();
     hashPassword(req.body.password).then((hashedPassword) => {

@@ -1,7 +1,6 @@
 const express = require("express");
 
 const { userTypeCheck } = require("./helpers/auth");
-const { middlewareAssociation } = require("./helpers/middlewareAssociation");
 const {
   middlewareAdministrateur,
 } = require("./helpers/middlewareAdministrateur");
@@ -43,18 +42,15 @@ router.get("/intervenants/bymail/:email", IntervenantsController.browseByEmail);
 router.get("/intervenants/:id", IntervenantsController.read);
 router.get("/intervenants/email/:email", IntervenantsController.readByEmail);
 router.put("/intervenants/:id", IntervenantsController.edit);
+router.put("/intervenants/etat/:id", IntervenantsController.editEtat);
 router.post("/intervenants", fileMiddleware, IntervenantsController.add);
 router.delete("/intervenants/:id", IntervenantsController.delete);
 
-router.get(
-  "/associations",
-  userTypeCheck,
-  middlewareAssociation,
-  AssociationsController.browse
-);
+router.get("/associations", AssociationsController.browse);
 router.get("/associations/:id", AssociationsController.read);
 router.get("/associations/bymail/:email", AssociationsController.browseByEmail);
 router.put("/associations/:id", AssociationsController.edit);
+router.put("/associations/etat/:id", AssociationsController.editEtat);
 router.post("/associations", AssociationsController.add);
 router.delete("/associations/:id", AssociationsController.delete);
 

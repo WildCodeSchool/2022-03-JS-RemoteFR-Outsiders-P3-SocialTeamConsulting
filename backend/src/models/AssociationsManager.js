@@ -20,6 +20,15 @@ class AssociationsManager extends AbstractManager {
       ]
     );
   }
+
+  updateEtat(association) {
+    return this.connection.query(
+      `update ${AssociationsManager.table} SET etat= ?
+      WHERE ${AssociationsManager.table}.id = ?`,
+
+      [association.etat, association.id]
+    );
+  }
 }
 
 module.exports = AssociationsManager;

@@ -69,6 +69,26 @@ class AdministrateursController {
       });
   };
 
+  static put = (req, res) => {
+    const administrateur = req.body;
+
+    administrateur.id = parseInt(req.params.id, 10);
+
+    models.administrateurs
+      .update(administrateur)
+      .then(([result]) => {
+        if (result.affectedRows === 0) {
+          res.sendStatus(404);
+        } else {
+          res.sendStatus(204);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(500);
+      });
+  };
+
   static add = (req, res) => {
     const uuid = uuidv4();
     hashPassword(req.body.password).then((hashedPassword) => {

@@ -24,13 +24,25 @@ class IntervenantManager extends AbstractManager {
 
   update(intervenant) {
     return this.connection.query(
-      `update into ${IntervenantManager.table} (nom, prenom, email, telephone) values (?, ?, ?, ?)`,
+      `update ${IntervenantManager.table} SET nom= ?, prenom= ?, email= ?, telephone= ?
+      WHERE ${IntervenantManager.table}.id = ?`,
+
       [
         intervenant.nom,
         intervenant.prenom,
         intervenant.email,
         intervenant.telephone,
+        intervenant.id,
       ]
+    );
+  }
+
+  updateEtat(intervenant) {
+    return this.connection.query(
+      `update ${IntervenantManager.table} SET etat= ?
+      WHERE ${IntervenantManager.table}.id = ?`,
+
+      [intervenant.etat, intervenant.id]
     );
   }
 }
