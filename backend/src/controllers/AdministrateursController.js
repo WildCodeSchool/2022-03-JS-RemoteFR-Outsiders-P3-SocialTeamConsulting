@@ -69,15 +69,15 @@ class AdministrateursController {
       });
   };
 
-  static put = (req, res) => {
+  static put /* edit */ = (req, res) => {
     const administrateur = req.body;
 
-    administrateur.id = parseInt(req.params.id, 10);
+    administrateur.id = req.params.id;
 
     models.administrateurs
       .update(administrateur)
       .then(([result]) => {
-        if (result.affectedRows === 0) {
+        if (result.affectedRows[0] === 0) {
           res.sendStatus(404);
         } else {
           res.sendStatus(204);

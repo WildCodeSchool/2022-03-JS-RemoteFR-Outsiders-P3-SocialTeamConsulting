@@ -45,14 +45,14 @@ class AssociationsController {
   };
 
   static edit = (req, res) => {
-    const item = req.body;
+    const association = req.body;
 
     // TODO validations (length, format...)
 
-    item.id = parseInt(req.params.id, 10);
+    association.id = req.params.id;
 
     models.associations
-      .update(item)
+      .update(association)
       .then(([result]) => {
         if (result.affectedRows === 0) {
           res.sendStatus(404);

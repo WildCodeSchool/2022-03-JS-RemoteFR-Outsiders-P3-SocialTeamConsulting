@@ -8,7 +8,7 @@ import "@style/ProfilInterv.css";
 export default function ProfilAdmin() {
   const { state } = useLocation();
   const { email } = state;
-  const [administrateur, setAdministrateur] = useState({});
+  const [administrateur, setAdministrateur] = useState([{}]);
 
   useEffect(() => {
     const ENDPOINT = `/administrateurs/bymail/${email}`;

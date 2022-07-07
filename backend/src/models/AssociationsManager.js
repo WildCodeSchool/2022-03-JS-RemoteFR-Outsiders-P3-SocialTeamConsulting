@@ -21,6 +21,23 @@ class AssociationsManager extends AbstractManager {
     );
   }
 
+  update(association) {
+    return this.connection.query(
+      `update ${AssociationsManager.table} SET nom = ?, adresse = ?, ville = ?, code_postal = ?, email = ?, telephone = ?
+      WHERE ${AssociationsManager.table}.id = ?`,
+
+      [
+        association.nom,
+        association.adresse,
+        association.ville,
+        association.code_postal,
+        association.email,
+        association.telephone,
+        association.id,
+      ]
+    );
+  }
+
   updateEtat(association) {
     return this.connection.query(
       `update ${AssociationsManager.table} SET etat= ?

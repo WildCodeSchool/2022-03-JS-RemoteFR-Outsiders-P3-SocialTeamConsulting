@@ -19,7 +19,7 @@ class AdministrateursManager extends AbstractManager {
 
   update(administrateur) {
     return this.connection.query(
-      `update ${AdministrateursManager.table} SET nom= ?, prenom= ?, email= ?, telephone= ?,
+      `update ${AdministrateursManager.table} SET nom= ?, prenom= ?, email= ?, telephone= ?
       WHERE ${AdministrateursManager.table}.id = ?`,
 
       [
