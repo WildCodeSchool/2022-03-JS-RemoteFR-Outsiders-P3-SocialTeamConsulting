@@ -90,14 +90,35 @@ class AccepteController {
   };
 
   static updateChangeInter = (req, res) => {
-    const id = parseInt(req.params.id, 10);
-    console.warn(id);
     const { intervenantID, missionID } = req.body;
 
     models.accepte.updateValidationInter(intervenantID, missionID);
 
     models.accepte
       .updateValidationInterRefus(intervenantID, missionID)
+      .then(([result]) => {
+        if (result.affectedRows === 0) {
+          res.status(404).send("Le statut de la mission a change");
+        } else {
+          res.status(200).json({
+            intervenantID,
+            missionID,
+          });
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500).send(err.message);
+      });
+  };
+
+  // passe les inter de isvalidated 2 et 1 a 0 = reinitialise
+  static updateRemoveInter = (req, res) => {
+    const { intervenantID, missionID } = req.body;
+    models.accepte.updateRemoveEtatRefusAgain(intervenantID, missionID);
+
+    models.accepte
+      .updateRemoveEtatRefus(intervenantID, missionID)
       .then(([result]) => {
         if (result.affectedRows === 0) {
           res.status(404).send("Le statut de la mission a change");

@@ -6,11 +6,42 @@
 }
 
 .modif-fieldset {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
   padding: 1rem;
+}
+
+.modif-button-blue {
+  margin: 1rem auto;
+  background-color: var(--color-interaction);
+  color: var(--color-black);
+  font-weight: 500;
 }
 
 .modif-warning {
   background-color: darkred;
   color: white;
   padding: 1rem;
+}
+
+.modif-inter-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.modif-input-container {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.modif-button {
+  margin: 2rem 0;
+  border-color: var(--color-interaction);
+}
+
+.modif-form-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }

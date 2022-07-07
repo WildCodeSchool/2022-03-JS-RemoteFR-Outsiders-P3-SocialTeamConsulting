@@ -68,6 +68,7 @@ router.get(
 router.put("/missions/:id", MissionsController.edit);
 router.put("/missions/pourvue/:id", MissionsController.editPourvue);
 router.put("/missions/terminee/:id", MissionsController.editTerminee);
+router.put("/missions/accepte/:id", MissionsController.editAccepte);
 router.post("/missions", MissionsController.add);
 router.delete("/missions/:id", MissionsController.delete);
 
@@ -78,6 +79,7 @@ router.put("/accepte/modification/:id", AccepteController.updateChangeInter);
 router.get("/accepte/:id", AccepteController.read);
 router.post("/accepte/:id", AccepteController.add);
 router.put("/accepte/:id", AccepteController.edit);
+router.put("/accepte/change/:id", AccepteController.updateRemoveInter);
 router.delete("/accepte/:id", AccepteController.delete);
 
 router.post("/messages", MessagesController.add);
