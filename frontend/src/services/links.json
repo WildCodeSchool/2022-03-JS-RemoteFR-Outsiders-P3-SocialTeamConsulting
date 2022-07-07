@@ -26,5 +26,12 @@
     "association": true,
     "intervenant": true,
     "administrateur": true
+  },
+  {
+    "section": "Déconnexion",
+    "link": "",
+    "association": true,
+    "intervenant": true,
+    "administrateur": true
   }
 ]
