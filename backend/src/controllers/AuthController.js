@@ -33,6 +33,14 @@ class AuthController {
         });
     });
   };
+
+  static verifCookie = (req, res) => {
+    if (!req.cookies.user_token) {
+      res.status(401).send("Accès refusé");
+    } else {
+      res.status(200).send("Accès Autorisé");
+    }
+  };
 }
 
 module.exports = AuthController;
