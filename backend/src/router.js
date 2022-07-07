@@ -92,4 +92,6 @@ router.get(
 
 router.post("/auth", userTypeCheck, AuthController.session);
 
+router.post("/deconnexion", AuthController.disconnect);
+
 module.exports = router;
