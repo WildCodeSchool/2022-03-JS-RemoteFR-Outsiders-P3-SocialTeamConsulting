@@ -89,6 +89,31 @@ class AccepteController {
       });
   };
 
+  static updateChangeInter = (req, res) => {
+    const id = parseInt(req.params.id, 10);
+    console.warn(id);
+    const { intervenantID, missionID } = req.body;
+
+    models.accepte.updateValidationInter(intervenantID, missionID);
+
+    models.accepte
+      .updateValidationInterRefus(intervenantID, missionID)
+      .then(([result]) => {
+        if (result.affectedRows === 0) {
+          res.status(404).send("Le statut de la mission a change");
+        } else {
+          res.status(200).json({
+            intervenantID,
+            missionID,
+          });
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500).send(err.message);
+      });
+  };
+
   static add = (req, res) => {
     const missionId = req.params.id;
     const userId = req.body.user;

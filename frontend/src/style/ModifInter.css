@@ -1,0 +1,16 @@
+.modif-synthesis-validation_area {
+  padding: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.modif-fieldset {
+  padding: 1rem;
+}
+
+.modif-warning {
+  background-color: darkred;
+  color: white;
+  padding: 1rem;
+}

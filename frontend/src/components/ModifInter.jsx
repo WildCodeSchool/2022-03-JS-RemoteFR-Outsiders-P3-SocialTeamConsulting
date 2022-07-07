@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { api } from "@services/services";
+import { notifySuccess, notifyError, api } from "@services/services";
 import MissionSynthesis from "./MissionSynthesis";
+import "@style/ModifInter.css";
 
 function ModifInter() {
   const ENDPOINT = "/missions";
   const [missions, setMissions] = useState([]);
-  const [update] = useState(false);
+  const [update, setUpdate] = useState(false);
 
-  // Permet de recuperer les missions en status acceptee et de les afficher.
+  // Permet de recuperer les missions et de les afficher.
   useEffect(() => {
     api
       .get(ENDPOINT)
@@ -21,10 +22,11 @@ function ModifInter() {
 
   const modificationInter = (missionID) => {
     const [intervenants, setIntervenants] = useState([]);
-    const [setChoiceInt] = useState([]);
+    const [choiceInt, setChoiceInt] = useState([]);
+    const [isShow, setIsShow] = useState(false);
 
     /**
-     * Permet de recuperer les noms et prenoms des intervenants qui ont ete positionne sur une mission .
+     * Permet de recuperer les noms et prenoms des intervenants qui ont ete positionne sur une mission et ceux qui avait ete refuse.
      *  */
     const ENDPOINTINTERV = `/accepte/modification/${missionID}`;
     useEffect(() => {
@@ -40,13 +42,29 @@ function ModifInter() {
 
     // permet de voir et stocker le changement de valeur
     const handleChange = (int) => {
+      setIsShow(!isShow);
       setChoiceInt(int.id);
     };
 
+    const updateChangeOnInter = (e, intervenantID) => {
+      e.preventDefault();
+      const ENDPOINTUPDATEINTER = `/accepte/modification/${missionID}`;
+      api
+        .put(ENDPOINTUPDATEINTER, { intervenantID, missionID })
+        .then(() => {
+          notifySuccess("Vous venez de choisir un nouvel intervenant.");
+          setUpdate(!update);
+        })
+        .catch((err) => {
+          notifyError("Votre choix n'a pas pu aboutir. Merci de recommencer.");
+          console.error(err);
+        });
+    };
+
     return (
-      <div className="synthesis-validation_area">
+      <div className="modif-synthesis-validation_area">
         <form method="PUT">
-          <fieldset>
+          <fieldset className="modif-fieldset">
             <legend>Choisissez un intervenant:</legend>
             <div>
               {intervenants.map((intervenant, i) => {
@@ -55,7 +73,9 @@ function ModifInter() {
                     <label htmlFor="checkbox">
                       <input
                         type="radio"
-                        checked={intervenant.isvalidated === 1 && "checked"}
+                        checked={
+                          intervenant.isvalidated === 1 ? "checked" : null
+                        }
                         name="intervenant_id"
                         value={intervenant.email}
                         onChange={() => handleChange(intervenant)}
@@ -70,11 +90,18 @@ function ModifInter() {
               id="button_preinscription"
               className="button-blue"
               type="submit"
+              onClick={(e) => updateChangeOnInter(e, choiceInt, missionID)}
             >
               Modifier l'intervenant sur la mission
             </button>
           </fieldset>
         </form>
+        {isShow && (
+          <div className="modif-warning">
+            Attention vous vous appretez à choisir un nouvel intervenant, merci
+            de le contacter.
+          </div>
+        )}
       </div>
     );
   };
