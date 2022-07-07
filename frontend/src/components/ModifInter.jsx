@@ -24,6 +24,7 @@ function ModifInter() {
     const [intervenants, setIntervenants] = useState([]);
     const [choiceInt, setChoiceInt] = useState([]);
     const [isShow, setIsShow] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
     const [idCheck, setIdCheck] = useState({});
 
     /**
@@ -91,6 +92,11 @@ function ModifInter() {
       setIdCheck(`${missionID}-${intervenantID}`);
     };
 
+    const handleClick = (e) => {
+      e.preventDefault();
+      setIsVisible(true);
+    };
+
     return (
       <div className="modif-synthesis-validation_area">
         <form method="PUT" className="modif-form-container">
@@ -100,6 +106,7 @@ function ModifInter() {
               {" "}
               <label htmlFor="checkbox">
                 <div className="modif-inter-section">
+                  {/* <p>Intervenant : {intervenants[0].nom} {intervenants[0].prenom}</p> */}
                   {intervenants
                     // .slice(1, intervenants.length)
                     .map((intervenant) => {
@@ -146,12 +153,35 @@ function ModifInter() {
           <button
             id="button_preinscription"
             className="modif-button button-blue"
-            type="submit"
-            onClick={(e) => updateChangeMission(e, choiceInt, missionID)}
+            onClick={(e) => handleClick(e)}
+            type="button"
           >
             Repasser la mission en public
           </button>
         </form>
+        {isVisible && (
+          <div className="see-you-container">
+            <div className="modif-see-you">
+              <p>Souhaitez-vous vraiment passer la mission en public?</p>
+              <div className="modif-button-section">
+                <button
+                  type="submit"
+                  onClick={(e) => updateChangeMission(e, choiceInt, missionID)}
+                  className="button-blue"
+                >
+                  Oui
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setIsVisible(!isVisible)}
+                  className="button-blue"
+                >
+                  Revenir en arriere
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     );
   };
