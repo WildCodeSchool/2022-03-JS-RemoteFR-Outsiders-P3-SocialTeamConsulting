@@ -11,7 +11,7 @@ export default function ProfilInterv() {
   const [intervenant, setIntervenant] = useState({});
 
   useEffect(() => {
-    const ENDPOINT = `/intervenants/email/${email}`;
+    const ENDPOINT = `/intervenants/bymail/${email}`;
     api.get(ENDPOINT).then((result) => {
       setIntervenant(result.data);
     });
