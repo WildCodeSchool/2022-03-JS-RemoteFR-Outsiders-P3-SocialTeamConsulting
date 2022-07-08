@@ -88,6 +88,7 @@ router.get(
   MessagesController.browse
 );
 
+router.get("/auth/update", userTypeCheck, AuthController.verifCookie);
 router.post("/auth", userTypeCheck, AuthController.session);
 
 router.post("/deconnexion", AuthController.disconnect);

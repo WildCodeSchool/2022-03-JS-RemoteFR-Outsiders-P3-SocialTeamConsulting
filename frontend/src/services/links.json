@@ -7,6 +7,13 @@
     "administrateur": true
   },
   {
+    "section": "Créer une mission",
+    "link": "/back_office/post_mission",
+    "association": true,
+    "intervenant": false,
+    "administrateur": true
+  },
+  {
     "section": "Missions Disponibles",
     "link": "/back_office/missions_disponibles",
     "association": false,
@@ -28,14 +35,6 @@
     "administrateur": true
   },
   {
-    "section": "Gestion du profil",
-    "link": "/back_office/modification_profil_intervenant",
-    "association": true,
-    "intervenant": true,
-    "administrateur": true
-  },
-  {
-
     "section": "Modification d'intervenant",
     "link": "/back_office/modification_mission_intervenant",
     "association": false,
