@@ -67,7 +67,7 @@ export default function ProfilAdmin() {
           />
         </label>
         <label htmlFor="mail" className="backoffice-input-half">
-          <p />
+          <p>Email</p>
           <input
             className="rules"
             type="text"
