@@ -10,6 +10,7 @@ function MissionSynthesis({
   validationInter,
   canditaterArea,
   finishArea,
+  modificationInter,
 }) {
   const dateDebut = new Date(mission.date_debut);
   const dateFin = new Date(mission.date_fin);
@@ -94,6 +95,7 @@ function MissionSynthesis({
         {validationInter ? validationInter(mission.id) : false}
         {canditaterArea ? canditaterArea(mission.id) : false}
         {finishArea ? finishArea(mission.id) : false}
+        {modificationInter ? modificationInter(mission.id) : false}
       </div>
       <div className={`synthesis-footer ${missionTheme}`} />
     </div>
