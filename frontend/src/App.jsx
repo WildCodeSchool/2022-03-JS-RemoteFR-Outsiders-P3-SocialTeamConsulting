@@ -18,7 +18,6 @@ import ProfilAsso from "@components/ProfilAsso";
 import BacklogValidatedMissions from "@components/BacklogValidatedMissions";
 import HistoryMissions from "@components/HistoryMissions";
 import BackOfficeAdminMissionValidation from "@components/BackOfficeAdminMissionValidation";
-import ValidatedMissions from "@components/ValidatedMissions";
 import BackOfficeAdminInterValidation from "@components/BackOfficeAdminInterValidation";
 import BackOfficeMissionsDisponibles from "@components/BackOfficeMissionsDisponibles";
 import BackOfficeAdminMissionTerminee from "@components/BackOfficeAdminMissionTerminee";
@@ -32,62 +31,153 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/back_office" element={<BackOffice />}>
-          <Route index element={<PostMission />} />
+        <Route
+          path="/back_office"
+          element={
+            <PrivateRoute
+              isAllowed={
+                infoUser.role === "association" ||
+                infoUser.role === "administrateur" ||
+                infoUser.role === "intervenant"
+              }
+            >
+              <BackOffice />
+            </PrivateRoute>
+          }
+        >
+          <Route
+            index
+            element={
+              <PrivateRoute
+                isAllowed={
+                  infoUser.role === "association" ||
+                  infoUser.role === "administrateur" ||
+                  infoUser.role === "intervenant"
+                }
+              >
+                <HistoryMissions />
+              </PrivateRoute>
+            }
+          />
           <Route
             path="modification_profil_intervenant"
-            element={<ProfilInterv />}
+            element={
+              <PrivateRoute isAllowed={infoUser.role === "administrateur"}>
+                <ProfilInterv />
+              </PrivateRoute>
+            }
           />
           <Route
             path="modification_profil_association"
-            element={<ProfilAsso />}
+            element={
+              <PrivateRoute isAllowed={infoUser.role === "administrateur"}>
+                <ProfilAsso />
+              </PrivateRoute>
+            }
           />
           <Route
             path="modification_profil_administrateur"
-            element={<ProfilAdmin />}
+            element={
+              <PrivateRoute isAllowed={infoUser.role === "administrateur"}>
+                <ProfilAdmin />
+              </PrivateRoute>
+            }
           />
           <Route
-            path="modification_mission_intervenant"
-            element={<ModifInter />}
+            path="post_mission"
+            element={
+              <PrivateRoute
+                isAllowed={
+                  infoUser.role === "association" ||
+                  infoUser.role === "administrateur" ||
+                  infoUser.role === "intervenant"
+                }
+              >
+                <PostMission />
+              </PrivateRoute>
+            }
           />
-          <Route path="post_mission" element={<PostMission />} />
-          <Route path="validated_mission" element={<ValidatedMissions />} />
           <Route
             path="missions_disponibles"
             element={
-              <PrivateRoute>
-                <BackOfficeMissionsDisponibles
-                  isAllowed={
-                    infoUser.role === "intervenant" ||
-                    infoUser.role === "administrateur"
-                  }
-                />
+              <PrivateRoute
+                isAllowed={
+                  infoUser.role === "intervenant" ||
+                  infoUser.role === "administrateur"
+                }
+              >
+                <BackOfficeMissionsDisponibles />
               </PrivateRoute>
             }
           />
           <Route
             path="backlog_validated_missions"
-            element={<BacklogValidatedMissions />}
+            element={
+              <PrivateRoute
+                isAllowed={
+                  infoUser.role === "intervenant" ||
+                  infoUser.role === "administrateur"
+                }
+              >
+                <BacklogValidatedMissions />
+              </PrivateRoute>
+            }
           />
 
           <Route
             path="validation_mission"
-            element={<BackOfficeAdminMissionValidation />}
+            element={
+              <PrivateRoute isAllowed={infoUser.role === "administrateur"}>
+                <BackOfficeAdminMissionValidation />
+              </PrivateRoute>
+            }
           />
           <Route
             path="validation_intervenant"
-            element={<BackOfficeAdminInterValidation />}
+            element={
+              <PrivateRoute isAllowed={infoUser.role === "administrateur"}>
+                <BackOfficeAdminInterValidation />
+              </PrivateRoute>
+            }
           />
-          <Route path="historique_missions" element={<HistoryMissions />} />
+          <Route
+            path="historique_missions"
+            element={
+              <PrivateRoute
+                isAllowed={
+                  infoUser.role === "intervenant" ||
+                  infoUser.role === "administrateur"
+                }
+              >
+                <HistoryMissions />
+              </PrivateRoute>
+            }
+          />
           <Route
             path="terminer_mission"
-            element={<BackOfficeAdminMissionTerminee />}
+            element={
+              <PrivateRoute isAllowed={infoUser.role === "administrateur"}>
+                <BackOfficeAdminMissionTerminee />
+              </PrivateRoute>
+            }
           />
           <Route
             path="liste_des_utilisateurs"
-            element={<BackOfficeListeUsers />}
+            element={
+              <PrivateRoute isAllowed={infoUser.role === "administrateur"}>
+                <BackOfficeListeUsers />
+              </PrivateRoute>
+            }
           />
         </Route>
+        <Route
+          path="modification_mission_intervenant"
+          element={
+            <PrivateRoute isAllowed={infoUser.role === "administrateur"}>
+              <ModifInter />
+            </PrivateRoute>
+          }
+        />
         <Route path="/" element={<Home />}>
           <Route index element={<LandingPage />} />
           <Route path="accueil_association" element={<AccueilAsso />} />
