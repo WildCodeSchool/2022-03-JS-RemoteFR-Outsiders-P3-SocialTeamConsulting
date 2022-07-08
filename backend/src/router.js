@@ -66,14 +66,19 @@ router.get(
 router.put("/missions/:id", MissionsController.edit);
 router.put("/missions/pourvue/:id", MissionsController.editPourvue);
 router.put("/missions/terminee/:id", MissionsController.editTerminee);
+router.put("/missions/accepte/:id", MissionsController.editAccepte);
 router.post("/missions", MissionsController.add);
 router.delete("/missions/:id", MissionsController.delete);
 
 router.post("/modifications", ModificationsController.add);
 router.get("/accepte", AccepteController.browse);
 router.get("/accepte/validation/:id", AccepteController.readWithIntervenant);
+router.get("/accepte/modification/:id", AccepteController.changeInter);
+router.put("/accepte/modification/:id", AccepteController.updateChangeInter);
 router.get("/accepte/:id", AccepteController.read);
 router.post("/accepte/:id", AccepteController.add);
+router.put("/accepte/:id", AccepteController.edit);
+router.put("/accepte/change/:id", AccepteController.updateRemoveInter);
 router.delete("/accepte/:id", AccepteController.delete);
 
 router.post("/messages", MessagesController.add);
@@ -85,5 +90,7 @@ router.get(
 );
 
 router.post("/auth", userTypeCheck, AuthController.session);
+
+router.post("/deconnexion", AuthController.disconnect);
 
 module.exports = router;
