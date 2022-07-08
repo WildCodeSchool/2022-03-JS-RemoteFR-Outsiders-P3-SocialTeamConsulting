@@ -21,6 +21,13 @@
     "administrateur": true
   },
   {
+    "section": "Liste des utilisateurs",
+    "link": "/back_office/liste_des_utilisateurs",
+    "association": false,
+    "intervenant": false,
+    "administrateur": true
+  },
+  {
     "section": "Gestion du profil",
     "link": "/back_office/modification_profil_intervenant",
     "association": true,
