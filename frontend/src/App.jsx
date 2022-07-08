@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
@@ -20,10 +20,13 @@ import ValidatedMissions from "@components/ValidatedMissions";
 import BackOfficeAdminInterValidation from "@components/BackOfficeAdminInterValidation";
 import BackOfficeMissionsDisponibles from "@components/BackOfficeMissionsDisponibles";
 import BackOfficeAdminMissionTerminee from "@components/BackOfficeAdminMissionTerminee";
+import PrivateRoute from "@services/PrivateRoute";
+import ExportContext from "./contexts/Context";
 
 import "@style/App.css";
 
 function App() {
+  const { infoUser } = useContext(ExportContext.Context);
   return (
     <div className="App">
       <Routes>
@@ -37,7 +40,16 @@ function App() {
           <Route path="validated_mission" element={<ValidatedMissions />} />
           <Route
             path="missions_disponibles"
-            element={<BackOfficeMissionsDisponibles />}
+            element={
+              <PrivateRoute>
+                <BackOfficeMissionsDisponibles
+                  isAllowed={
+                    infoUser.role === "intervenant" ||
+                    infoUser.role === "administrateur"
+                  }
+                />
+              </PrivateRoute>
+            }
           />
           <Route
             path="backlog_validated_missions"
