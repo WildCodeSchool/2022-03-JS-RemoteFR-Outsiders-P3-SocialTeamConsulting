@@ -34,7 +34,7 @@ function App() {
             element={<ProfilInterv />}
           />
           <Route
-            path="/back_office/modification_mission_intervenant"
+            path="modification_mission_intervenant"
             element={<ModifInter />}
           />
           <Route path="post_mission" element={<PostMission />} />

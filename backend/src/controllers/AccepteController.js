@@ -62,7 +62,7 @@ class AccepteController {
       .updateAccepteEtatRefus(intervenantID, missionID)
       .then(([result]) => {
         if (result.affectedRows === 0) {
-          res.status(404).send("Le statut de la mission a change");
+          res.status(404).send("Le statut n'a pas été mis à jour.");
         } else {
           res.status(200).json({
             intervenantID,
@@ -98,7 +98,7 @@ class AccepteController {
       .updateValidationInterRefus(intervenantID, missionID)
       .then(([result]) => {
         if (result.affectedRows === 0) {
-          res.status(404).send("Le statut de la mission a change");
+          res.status(404).send("Le statut n'a pas été mis à jour.");
         } else {
           res.status(200).json({
             intervenantID,
@@ -121,7 +121,7 @@ class AccepteController {
       .updateRemoveEtatRefus(intervenantID, missionID)
       .then(([result]) => {
         if (result.affectedRows === 0) {
-          res.status(404).send("Le statut de la mission a change");
+          res.status(404).send("Le statut n'a pas été mis à jour.");
         } else {
           res.status(200).json({
             intervenantID,
@@ -142,7 +142,7 @@ class AccepteController {
     models.accepte
       .insert(missionId, userId)
       .then(() => {
-        res.status(201).send("ok");
+        res.status(201).send("Une nouvelle mission a été ajouté.");
       })
       .catch((err) => {
         console.error(err);
