@@ -28,6 +28,21 @@
     "administrateur": true
   },
   {
+
+    "section": "Modification d'intervenant",
+    "link": "/back_office/modification_mission_intervenant",
+    "association": false,
+    "intervenant": false,
+    "administrateur": true
+  },
+  {
+    "section": "Validation d'intervenant",
+    "link": "/back_office/validation_intervenant",
+    "association": false,
+    "intervenant": false,
+    "administrateur": true
+  },
+  {
     "section": "Déconnexion",
     "link": "",
     "association": true,

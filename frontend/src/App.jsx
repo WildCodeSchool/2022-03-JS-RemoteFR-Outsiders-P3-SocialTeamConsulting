@@ -19,6 +19,7 @@ import ValidatedMissions from "@components/ValidatedMissions";
 import BackOfficeAdminInterValidation from "@components/BackOfficeAdminInterValidation";
 import BackOfficeMissionsDisponibles from "@components/BackOfficeMissionsDisponibles";
 import BackOfficeAdminMissionTerminee from "@components/BackOfficeAdminMissionTerminee";
+import ModifInter from "@components/ModifInter";
 
 import "@style/App.css";
 
@@ -31,6 +32,10 @@ function App() {
           <Route
             path="modification_profil_intervenant"
             element={<ProfilInterv />}
+          />
+          <Route
+            path="modification_mission_intervenant"
+            element={<ModifInter />}
           />
           <Route path="post_mission" element={<PostMission />} />
           <Route path="validated_mission" element={<ValidatedMissions />} />
