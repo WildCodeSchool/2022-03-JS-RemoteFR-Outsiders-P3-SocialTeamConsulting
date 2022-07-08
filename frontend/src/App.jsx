@@ -8,11 +8,13 @@ import LandingPage from "@pages/LandingPage";
 import AccueilAsso from "@pages/AccueilAsso";
 import AccueilIntervenant from "@pages/AccueilIntervenant";
 import PostMission from "@pages/PostMission";
-
+import ModifInter from "@components/ModifInter";
 import FormAsso from "@pages/FormAsso";
 import FormAssoContact from "@pages/FormAssoContact";
 import FormInterv from "@pages/FormInterv";
+import ProfilAdmin from "@components/ProfilAdmin";
 import ProfilInterv from "@components/ProfilInterv";
+import ProfilAsso from "@components/ProfilAsso";
 import BacklogValidatedMissions from "@components/BacklogValidatedMissions";
 import HistoryMissions from "@components/HistoryMissions";
 import BackOfficeAdminMissionValidation from "@components/BackOfficeAdminMissionValidation";
@@ -21,8 +23,8 @@ import BackOfficeAdminInterValidation from "@components/BackOfficeAdminInterVali
 import BackOfficeMissionsDisponibles from "@components/BackOfficeMissionsDisponibles";
 import BackOfficeAdminMissionTerminee from "@components/BackOfficeAdminMissionTerminee";
 import PrivateRoute from "@services/PrivateRoute";
+import BackOfficeListeUsers from "@components/BackOfficeListeUsers";
 import ExportContext from "./contexts/Context";
-
 import "@style/App.css";
 
 function App() {
@@ -35,6 +37,18 @@ function App() {
           <Route
             path="modification_profil_intervenant"
             element={<ProfilInterv />}
+          />
+          <Route
+            path="modification_profil_association"
+            element={<ProfilAsso />}
+          />
+          <Route
+            path="modification_profil_administrateur"
+            element={<ProfilAdmin />}
+          />
+          <Route
+            path="modification_mission_intervenant"
+            element={<ModifInter />}
           />
           <Route path="post_mission" element={<PostMission />} />
           <Route path="validated_mission" element={<ValidatedMissions />} />
@@ -68,6 +82,10 @@ function App() {
           <Route
             path="terminer_mission"
             element={<BackOfficeAdminMissionTerminee />}
+          />
+          <Route
+            path="liste_des_utilisateurs"
+            element={<BackOfficeListeUsers />}
           />
         </Route>
         <Route path="/" element={<Home />}>

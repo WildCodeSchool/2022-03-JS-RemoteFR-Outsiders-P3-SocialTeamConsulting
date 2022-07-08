@@ -10,6 +10,7 @@ function MissionSynthesis({
   validationInter,
   canditaterArea,
   finishArea,
+  modificationInter,
 }) {
   const dateDebut = new Date(mission.date_debut);
   const dateFin = new Date(mission.date_fin);
@@ -74,8 +75,9 @@ function MissionSynthesis({
           </p>
         </div>
         <div className="synthesis-ville">
-          <h2 className="inline">Ville : </h2>
-          {mission.ville}
+          <h2 className="inline">Adresse : </h2>
+          <br />
+          {`${mission.adresse} - ${mission.code_postal} ${mission.ville}`}
         </div>
         <div className="synthesis-description">
           <div>
@@ -93,6 +95,7 @@ function MissionSynthesis({
         {validationInter ? validationInter(mission.id) : false}
         {canditaterArea ? canditaterArea(mission.id) : false}
         {finishArea ? finishArea(mission.id) : false}
+        {modificationInter ? modificationInter(mission.id) : false}
       </div>
       <div className={`synthesis-footer ${missionTheme}`} />
     </div>

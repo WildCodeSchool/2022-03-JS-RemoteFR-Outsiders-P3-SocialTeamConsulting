@@ -41,6 +41,10 @@ class AuthController {
       res.status(200).send("Accès Autorisé");
     }
   };
+
+  static disconnect = (req, res) => {
+    res.clearCookie(req.cookies.user_token).sendStatus(200);
+  };
 }
 
 module.exports = AuthController;
