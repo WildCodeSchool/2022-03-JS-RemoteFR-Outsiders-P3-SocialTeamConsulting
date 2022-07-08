@@ -40,7 +40,6 @@ router.delete("/administrateurs/:id", AdministrateursController.delete);
 router.get("/intervenants", IntervenantsController.browse);
 router.get("/intervenants/bymail/:email", IntervenantsController.browseByEmail);
 router.get("/intervenants/:id", IntervenantsController.read);
-router.get("/intervenants/email/:email", IntervenantsController.readByEmail);
 router.put("/intervenants/:id", IntervenantsController.edit);
 router.put("/intervenants/etat/:id", IntervenantsController.editEtat);
 router.post("/intervenants", fileMiddleware, IntervenantsController.add);
