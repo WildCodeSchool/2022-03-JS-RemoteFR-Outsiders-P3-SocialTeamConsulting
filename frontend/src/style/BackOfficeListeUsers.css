@@ -23,3 +23,13 @@
 .refusé::before {
   background-color: red;
 }
+
+.usersList {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.listTitle {
+  margin-bottom: 2rem;
+}
