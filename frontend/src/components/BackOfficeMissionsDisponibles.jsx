@@ -61,7 +61,7 @@ function BackOfficeMissionsDisponibles() {
           type="submit"
           onClick={() => candidaterMission(missionId, true)}
         >
-          Cadidater pour cette mission
+          Candidater pour cette mission
         </button>
       </div>
     );

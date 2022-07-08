@@ -10,6 +10,7 @@ function MissionSynthesis({
   validationInter,
   canditaterArea,
   finishArea,
+  annulationArea,
 }) {
   const dateDebut = new Date(mission.date_debut);
   const dateFin = new Date(mission.date_fin);
@@ -93,6 +94,13 @@ function MissionSynthesis({
         {validationInter ? validationInter(mission.id) : false}
         {canditaterArea ? canditaterArea(mission.id) : false}
         {finishArea ? finishArea(mission.id) : false}
+        {/* eslint-disable */}
+        {annulationArea
+          ? mission.isvalidated === 2
+            ? null
+            : annulationArea(mission.id)
+          : null}
+        {/* eslint-enable */}
       </div>
       <div className={`synthesis-footer ${missionTheme}`} />
     </div>
