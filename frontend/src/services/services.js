@@ -23,9 +23,9 @@ const authentification = (user, setIsLog, setInfoUser) => {
         email: response.data.email,
         etat: response.data.etat,
       });
-      localStorage.setItem(`role`, response.data.role);
-      localStorage.setItem(`email`, response.data.email);
-      localStorage.setItem(`etat`, response.data.etat);
+      sessionStorage.setItem(`role`, response.data.role);
+      sessionStorage.setItem(`email`, response.data.email);
+      sessionStorage.setItem(`etat`, response.data.etat);
       setIsLog(true);
       notifySuccess("La connection a réussi");
     })
