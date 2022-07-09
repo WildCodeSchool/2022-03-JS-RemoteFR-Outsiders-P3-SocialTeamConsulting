@@ -114,8 +114,7 @@ class AccepteController {
   static deleteAppliedMissionByIntervenant = (req, res) => {
     models.accepte
       .deleteByIntervenant(req.params.missionId, req.params.userId)
-      .then((result) => {
-        console.error(result);
+      .then(() => {
         res
           .status(204)
           .send(
@@ -126,17 +125,18 @@ class AccepteController {
         models.missions.updateEtat(req.params.missionId, true);
       })
       .then(() => {
-        res.status(204).send("Mission is now available for application again");
+        res.status(204);
       })
-      .then(() => {
-        models.accepte.resetMissionAccepte(req.params.missionId);
-      })
-      .then(() => {
-        res
-          .status(204)
-          .send(
-            "mission is available for application again and previously refused applier can now be validated again"
+      .then(async () => {
+        const result = await models.accepte.findUserRefusedByMission(
+          req.params.missionId
+        );
+        result[0].forEach((userId) => {
+          models.accepte.resetMissionAccepte(
+            req.params.missionId,
+            userId.intervenants_id
           );
+        });
       })
       .catch((err) => console.error(err));
   };

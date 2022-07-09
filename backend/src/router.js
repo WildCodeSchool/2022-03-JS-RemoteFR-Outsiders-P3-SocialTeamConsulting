@@ -77,10 +77,14 @@ router.get(
   "/accepte/refuseduser/:userId",
   AccepteController.readRefusedIntervenantByMission
 );
-router.post(
-  "/accepte/annulation/:userId",
-  AccepteController.updateWithIntervenant
-);
+
+// j'ai l'impression que cette route n'est utilisée par personne, peut être à supprimer
+
+// router.post(
+//   "/accepte/annulation/:userId",
+//   AccepteController.updateWithIntervenant
+// );
+
 router.put(
   "/accepte/:missionId/:userId",
   AccepteController.deleteAppliedMissionByIntervenant

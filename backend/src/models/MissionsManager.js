@@ -80,13 +80,6 @@ INNER JOIN associations ON associations.id = ${this.table}.associations_id
       [userId]
     );
   }
-
-  resetMissionAccepte(missionId) {
-    return this.connection.query(
-      `UPDATE ${this.table} SET isvalidated = 0 where intervenants_id  IN (SELECT intervenants_id FROM ${this.table} WHERE missions_id = ? AND isvalidated = ?)`,
-      [missionId, 2]
-    );
-  }
 }
 
 module.exports = MissionsManager;

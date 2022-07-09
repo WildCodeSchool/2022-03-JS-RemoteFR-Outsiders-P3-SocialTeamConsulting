@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { api } from "@services/services";
+import { api, notifySuccess } from "@services/services";
 import MissionSynthesis from "./MissionSynthesis";
 import "@style/ValidatedMissions.css";
 import ExportContext from "../contexts/Context";
@@ -7,6 +7,7 @@ import ExportContext from "../contexts/Context";
 function HistoryMissions() {
   const { infoUser } = useContext(ExportContext.Context);
   const [user, setUser] = useState();
+  const [update, setUpdate] = useState(false);
 
   useEffect(() => {
     const ENDPOINTINTERVENANT = "/intervenants";
@@ -34,7 +35,7 @@ function HistoryMissions() {
         setMissions(res.data);
       })
       .catch((err) => console.error(err));
-  }, [user]);
+  }, [user, update]);
 
   const handleAnnulationMission = (e) => {
     console.error(e.target.value);
@@ -43,7 +44,8 @@ function HistoryMissions() {
       .put(ENDPOINTANNULATION)
       .then((result) => {
         if (result.status === 204) {
-          console.error("Suppression de la candidature avec succès");
+          notifySuccess("Suppression de la candidature avec succès");
+          setUpdate(!update);
         }
       })
       .catch((err) => console.error(err));
