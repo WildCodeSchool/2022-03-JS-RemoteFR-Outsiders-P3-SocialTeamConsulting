@@ -36,4 +36,15 @@ const authentification = (user, setIsLog, setInfoUser) => {
     });
 };
 
-export { authentification, notifySuccess, notifyError, api };
+const Deconnexion = (navigate, setInfoUser) => {
+  const ENDPOINTDECONNEXION = "/deconnexion";
+  api.post(ENDPOINTDECONNEXION).then((status) => {
+    if (status.status === 200) {
+      notifySuccess("Déconnexion réussie !l");
+      setTimeout(() => navigate("/"), 1000);
+      setInfoUser({});
+    }
+  });
+};
+
+export { authentification, Deconnexion, notifySuccess, notifyError, api };

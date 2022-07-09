@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 import "@style/NavBar.css";
@@ -6,14 +6,22 @@ import "@style/NavBar.css";
 import NavBarLinks from "@components/NavBarLinks";
 import NavBarForm from "@components/NavBarForm";
 import logo from "@assets/logo-STC.png";
+import ExportContext from "../contexts/Context";
 
 function NavBar({ isLinkVisible, showLink, isFormVisible, showForm }) {
+  const { infoUser } = useContext(ExportContext.Context);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
+  const [isLogInVisible, setIsLogInVisible] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (infoUser.email !== undefined) {
+      setIsLogInVisible(true);
+    }
+  }, [infoUser]);
   const handleisMenuVisible = (isVisible) => {
     setIsMenuVisible(isVisible);
   };
-
-  const navigate = useNavigate();
 
   return (
     <div className="fixed">
@@ -39,6 +47,15 @@ function NavBar({ isLinkVisible, showLink, isFormVisible, showForm }) {
         </div>
         <div className="navbar-inline">
           <ul>
+            {isLogInVisible ? (
+              <li>
+                <h2 onClick={() => navigate("/back_office")}>
+                  Accès au Tableau de bord
+                </h2>
+              </li>
+            ) : (
+              ""
+            )}
             <li
               className={`${isLinkVisible ? "navbar-li_highlight" : ""}`}
               onClick={() => {
