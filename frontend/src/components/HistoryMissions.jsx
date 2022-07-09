@@ -10,14 +10,20 @@ function HistoryMissions() {
 
   useEffect(() => {
     const ENDPOINTINTERVENANT = "/intervenants";
+    const ENDPOINTASSOCIATION = "/associations";
+    let ENDPOINTROLE = "";
+    if (infoUser.role === "intervenant") {
+      ENDPOINTROLE = ENDPOINTINTERVENANT;
+    }
+    if (infoUser.role === "association") {
+      ENDPOINTROLE = ENDPOINTASSOCIATION;
+    }
 
     api
-      .get(ENDPOINTINTERVENANT)
+      .get(ENDPOINTROLE)
       .then((res) => {
         setUser(
-          res.data.filter(
-            (intervenant) => intervenant.email === infoUser.email
-          )[0].id
+          res.data.filter((thisUser) => thisUser.email === infoUser.email)[0].id
         );
       })
       .catch((err) => {
@@ -25,7 +31,15 @@ function HistoryMissions() {
       });
   }, []);
 
-  const ENDPOINT = `/missions/history/${user}`;
+  const ENDPOINTMISSIONSINTERVENANT = `/missions/history/${user}`;
+  const ENDPOINTMISSIONSASSOCIATION = `/missions/assohistory/${user}`;
+  let ENDPOINT = "";
+  if (infoUser.role === "intervenant") {
+    ENDPOINT = ENDPOINTMISSIONSINTERVENANT;
+  }
+  if (infoUser.role === "association") {
+    ENDPOINT = ENDPOINTMISSIONSASSOCIATION;
+  }
   const [missions, setMissions] = useState([]);
   useEffect(() => {
     api
@@ -44,12 +58,12 @@ function HistoryMissions() {
       </h2>
       <div className="legende">
         <div>Légende : </div>
-        <div>refusé :</div>
-        <div className="is-refused-legend"> </div>
-        <div>En attente de validation :</div>
-        <div className="pending-validation-legend"> </div>
-        <div>Validé : </div>
-        <div className="is-validated-legend"> </div>
+        <div className="is-refused-legend">refusé :</div>
+        <div className="pending-validation-legend">
+          En attente de validation :
+        </div>
+        <div className="is-validated-legend">Validé : </div>
+        <div className="is-pourvue-legend">Pourvue : </div>
       </div>
 
       <div className="card">

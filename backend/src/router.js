@@ -57,6 +57,10 @@ router.delete("/associations/:id", AssociationsController.delete);
 router.get("/missions", MissionsController.browseWithAssociation);
 router.get("/missions/validated", MissionsController.browseValidatedMissions);
 router.get("/missions/history/:id", MissionsController.browseMissionsHistory);
+router.get(
+  "/missions/assohistory/:id",
+  MissionsController.browseAssoMissionsHistory
+);
 router.get("/missions/:id", MissionsController.read);
 router.get(
   "/missions/nonacceptee/:id",

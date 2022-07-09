@@ -43,12 +43,14 @@ function MissionSynthesis({
   };
 
   let missionTheme = "";
-  if (mission.isvalidated === 1) {
+  if (mission.isvalidated === 1 || mission.etat === "validée") {
     missionTheme = "synthesis-is-validated";
   } else if (mission.isvalidated === 2) {
     missionTheme = "synthesis-mission is-refused";
-  } else if (mission.isvalidated === 0) {
+  } else if (mission.isvalidated === 0 || mission.etat === "en attente") {
     missionTheme = "synthesis-pending-validation";
+  } else if (mission.etat === "pourvue") {
+    missionTheme = "synthesis-pourvue";
   }
 
   const style = metiers.filter((metier) => {
