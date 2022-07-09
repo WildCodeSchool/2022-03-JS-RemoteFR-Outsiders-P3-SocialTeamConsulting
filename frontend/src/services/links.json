@@ -35,7 +35,6 @@
     "administrateur": true
   },
   {
-
     "section": "Modification d'intervenant",
     "link": "/back_office/modification_mission_intervenant",
     "association": false,
