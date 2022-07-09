@@ -84,15 +84,21 @@ function HistoryMissions() {
       </div>
 
       <div className="card">
-        {missions.map((mission) => {
-          return (
-            <MissionSynthesis
-              mission={mission}
-              key={mission.id}
-              annulationArea={annulationMissionArea}
-            />
-          );
-        })}
+        {missions.length < 1 ? (
+          <div>
+            <h1>Il n'y a aucune mission dans votre historique.</h1>
+          </div>
+        ) : (
+          missions.map((mission) => {
+            return (
+              <MissionSynthesis
+                mission={mission}
+                key={mission.id}
+                annulationArea={annulationMissionArea}
+              />
+            );
+          })
+        )}
       </div>
     </>
   );

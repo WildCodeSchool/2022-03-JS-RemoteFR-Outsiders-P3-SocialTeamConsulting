@@ -5,27 +5,26 @@ import { useLocation } from "react-router-dom";
 import "@style/App.css";
 import "@style/ProfilInterv.css";
 
-export default function ProfilInterv() {
+export default function ProfilAsso() {
   const { state } = useLocation();
   const { email } = state;
-  const [intervenant, setIntervenant] = useState({});
+  const [association, setAssociation] = useState({});
 
   useEffect(() => {
-    const ENDPOINT = `/intervenants/bymail/${email}`;
+    const ENDPOINT = `/associations/bymail/${email}`;
     api.get(ENDPOINT).then((result) => {
-      setIntervenant(result.data);
+      setAssociation(result.data[0]);
     });
   }, []);
-
   // On veut mettre a jour les informations d'un intervenant
 
-  const updateIntervenant = (e) => {
+  const updateAssociation = (e) => {
     e.preventDefault();
-    const ENDPOINTUPDATEINTER = `/intervenants/${intervenant.id}`;
+    const ENDPOINTUPDATEASSO = `/associations/${association.id}`;
     api
-      .put(ENDPOINTUPDATEINTER, intervenant)
+      .put(ENDPOINTUPDATEASSO, association)
       .then(() => {
-        notifySuccess("Le profil de l'intervenant a été modifié.");
+        notifySuccess("Le profil de l'association a été modifié.");
       })
       .catch(() => {
         notifyError("Une erreur est survenue lors de la mise à jour.");
@@ -34,14 +33,14 @@ export default function ProfilInterv() {
 
   // changement de valeur
   function handleChange(event) {
-    setIntervenant({
-      ...intervenant,
+    setAssociation({
+      ...association,
       [event.target.name]: event.target.value,
     });
   }
 
   const handleStatus = (newStatus) => {
-    const ENDPOINTETAT = `/intervenants/etat/${intervenant.id}`;
+    const ENDPOINTETAT = `/associations/etat/${association.id}`;
     api
       .put(ENDPOINTETAT, { newStatus })
       .then(() => {
@@ -89,7 +88,7 @@ export default function ProfilInterv() {
     );
   };
   const modifEtat = () => {
-    switch (intervenant.etat) {
+    switch (association.etat) {
       case "pré-inscrit":
         return (
           <div>
@@ -117,9 +116,9 @@ export default function ProfilInterv() {
   return (
     <div>
       <form
-        className="backoffice_profilinterv_form"
+        className="backoffice_profilasso_form"
         method="PUT"
-        onSubmit={updateIntervenant}
+        onSubmit={updateAssociation}
       >
         <div className="backoffice-bloc">
           <label htmlFor="name" className="backoffice-input-half">
@@ -128,17 +127,37 @@ export default function ProfilInterv() {
               className="rules"
               type="text"
               name="nom"
-              placeholder={intervenant.nom}
+              placeholder={association.nom}
               onChange={(e) => handleChange(e)}
             />
           </label>
-          <label htmlFor="firstname" className="backoffice-input-half">
-            <p>Prénom</p>
+          <label htmlFor="adress" className="backoffice-input-half">
+            <p>Adresse</p>
             <input
               className="rules"
               type="text"
-              name="prenom"
-              placeholder={intervenant.prenom}
+              name="adresse"
+              placeholder={association.adresse}
+              onChange={(e) => handleChange(e)}
+            />
+          </label>
+          <label htmlFor="ville" className="backoffice-input-half">
+            <p>Ville</p>
+            <input
+              className="rules"
+              type="text"
+              name="ville"
+              placeholder={association.ville}
+              onChange={(e) => handleChange(e)}
+            />
+          </label>
+          <label htmlFor="zip" className="backoffice-input-half">
+            <p>Code postal</p>
+            <input
+              className="rules"
+              type="text"
+              name="code_postal"
+              placeholder={association.code_postal}
               onChange={(e) => handleChange(e)}
             />
           </label>
@@ -150,7 +169,7 @@ export default function ProfilInterv() {
               className="rules"
               type="email"
               name="email"
-              placeholder={intervenant.email}
+              placeholder={association.email}
               onChange={(e) => handleChange(e)}
             />
           </label>
@@ -160,19 +179,19 @@ export default function ProfilInterv() {
               className="rules"
               type="text"
               name="telephone"
-              placeholder={intervenant.telephone}
+              placeholder={association.telephone}
               onChange={(e) => handleChange(e)}
             />
           </label>
         </div>
-        <div className="backoffice_profilinterv_submit_button">
+        <div className="backoffice_profilasso_submit_button">
           <button className="button-blue" type="submit">
-            Modifier le profil de l'intervenant
+            Modifier le profil de l'association
           </button>
         </div>
       </form>
       <hr className="navbar-hr" />
-      <p>{`Cet utilisateur est actuellement ${intervenant.etat}.`}</p>
+      <p>{`Cette association est actuellement ${association.etat}.`}</p>
       {modifEtat()}
     </div>
   );
