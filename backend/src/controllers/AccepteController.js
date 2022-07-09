@@ -62,7 +62,66 @@ class AccepteController {
       .updateAccepteEtatRefus(intervenantID, missionID)
       .then(([result]) => {
         if (result.affectedRows === 0) {
-          res.status(404).send("Le statut de la mission a change");
+          res.status(404).send("Le statut n'a pas été mis à jour.");
+        } else {
+          res.status(200).json({
+            intervenantID,
+            missionID,
+          });
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500).send(err.message);
+      });
+  };
+
+  static changeInter = (req, res) => {
+    const missionID = req.params.id;
+    models.accepte
+      .findIntervenant(missionID)
+      .then(([rows]) => {
+        res.send(rows);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(500);
+      });
+  };
+
+  static updateChangeInter = (req, res) => {
+    const { intervenantID, missionID } = req.body;
+
+    models.accepte.updateValidationInter(intervenantID, missionID);
+
+    models.accepte
+      .updateValidationInterRefus(intervenantID, missionID)
+      .then(([result]) => {
+        if (result.affectedRows === 0) {
+          res.status(404).send("Le statut n'a pas été mis à jour.");
+        } else {
+          res.status(200).json({
+            intervenantID,
+            missionID,
+          });
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500).send(err.message);
+      });
+  };
+
+  // passe les inter de isvalidated 2 et 1 a 0 = reinitialise
+  static updateRemoveInter = (req, res) => {
+    const { intervenantID, missionID } = req.body;
+    models.accepte.updateRemoveEtatRefusAgain(intervenantID, missionID);
+
+    models.accepte
+      .updateRemoveEtatRefus(intervenantID, missionID)
+      .then(([result]) => {
+        if (result.affectedRows === 0) {
+          res.status(404).send("Le statut n'a pas été mis à jour.");
         } else {
           res.status(200).json({
             intervenantID,
@@ -83,7 +142,7 @@ class AccepteController {
     models.accepte
       .insert(missionId, userId)
       .then(() => {
-        res.status(201).send("ok");
+        res.status(201).send("Une nouvelle mission a été ajouté.");
       })
       .catch((err) => {
         console.error(err);

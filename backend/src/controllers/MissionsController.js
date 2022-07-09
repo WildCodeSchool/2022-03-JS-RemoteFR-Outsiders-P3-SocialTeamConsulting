@@ -137,6 +137,24 @@ class MissionsController {
       });
   };
 
+  // passe la mission de pourvue a acceptee
+  static editAccepte = (req, res) => {
+    const { id } = req.params;
+    models.missions
+      .updateAccepte(id)
+      .then(([result]) => {
+        if (result.affectedRows === 0) {
+          res.sendStatus(404);
+        } else {
+          res.sendStatus(204);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(500);
+      });
+  };
+
   static delete = (req, res) => {
     models.missions
       .delete(req.params.id)
