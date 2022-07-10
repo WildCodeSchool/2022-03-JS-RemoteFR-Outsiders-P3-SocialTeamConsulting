@@ -16,13 +16,16 @@ const notifyError = (message) => {
 const authentification = (user, setIsLog, setInfoUser) => {
   const ENDPOINT = "/auth";
   api
-    .post(ENDPOINT, user)
+    .post(ENDPOINT, user, { withCredentials: true })
     .then((response) => {
       setInfoUser({
         role: response.data.role,
         email: response.data.email,
         etat: response.data.etat,
       });
+      localStorage.setItem(`role`, response.data.role);
+      localStorage.setItem(`email`, response.data.email);
+      localStorage.setItem(`etat`, response.data.etat);
       setIsLog(true);
       notifySuccess("La connection a réussi");
     })
