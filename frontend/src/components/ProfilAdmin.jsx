@@ -66,6 +66,8 @@ export default function ProfilAdmin() {
             onChange={(e) => handleChange(e)}
           />
         </label>
+      </div>
+      <div className="backoffice-bloc">
         <label htmlFor="mail" className="backoffice-input-half">
           <p>Email</p>
           <input
