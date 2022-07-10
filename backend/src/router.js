@@ -72,6 +72,16 @@ router.delete("/missions/:id", MissionsController.delete);
 router.post("/modifications", ModificationsController.add);
 router.get("/accepte", AccepteController.browse);
 router.get("/accepte/validation/:id", AccepteController.readWithIntervenant);
+router.get(
+  "/accepte/refuseduser/:userId",
+  AccepteController.readRefusedIntervenantByMission
+);
+
+router.put(
+  "/accepte/:missionId/:userId",
+  AccepteController.deleteAppliedMissionByIntervenant
+);
+
 router.get("/accepte/modification/:id", AccepteController.changeInter);
 router.put("/accepte/modification/:id", AccepteController.updateChangeInter);
 router.get("/accepte/:id", AccepteController.read);

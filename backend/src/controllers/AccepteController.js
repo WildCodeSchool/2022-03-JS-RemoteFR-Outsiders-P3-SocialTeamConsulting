@@ -135,6 +135,14 @@ class AccepteController {
       });
   };
 
+  static readRefusedIntervenantByMission = (req, res) => {
+    models.accepte
+      .findMissionsWhereUserRefused(req.params.userId)
+      .then((result) => {
+        res.send(result);
+      });
+  };
+
   static add = (req, res) => {
     const missionId = req.params.id;
     const userId = req.body.user;
@@ -160,6 +168,36 @@ class AccepteController {
         console.error(err);
         res.sendStatus(500);
       });
+  };
+
+  static deleteAppliedMissionByIntervenant = (req, res) => {
+    models.accepte
+      .deleteByIntervenant(req.params.missionId, req.params.userId)
+      .then(() => {
+        res
+          .status(204)
+          .send(
+            `Application to this mission by intervenant ${req.params.userId} has been deleted`
+          );
+      })
+      .then(() => {
+        models.missions.updateEtat(req.params.missionId, true);
+      })
+      .then(() => {
+        res.status(204);
+      })
+      .then(async () => {
+        const result = await models.accepte.findUserRefusedByMission(
+          req.params.missionId
+        );
+        result[0].forEach((userId) => {
+          models.accepte.resetMissionAccepte(
+            req.params.missionId,
+            userId.intervenants_id
+          );
+        });
+      })
+      .catch((err) => console.error(err));
   };
 }
 
