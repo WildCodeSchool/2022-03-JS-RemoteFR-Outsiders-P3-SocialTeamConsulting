@@ -1,9 +1,6 @@
 const express = require("express");
 
 const { userTypeCheck } = require("./helpers/auth");
-const {
-  middlewareAdministrateur,
-} = require("./helpers/middlewareAdministrateur");
 
 const fileMiddleware = require("./helpers/file");
 
@@ -91,12 +88,8 @@ router.put("/accepte/change/:id", AccepteController.updateRemoveInter);
 router.delete("/accepte/:id", AccepteController.delete);
 
 router.post("/messages", MessagesController.add);
-router.get(
-  "/messages",
-  userTypeCheck,
-  middlewareAdministrateur,
-  MessagesController.browse
-);
+router.get("/messages", MessagesController.browse);
+router.put("/messages/id", MessagesController.close);
 
 router.get("/auth/update", userTypeCheck, AuthController.verifCookie);
 router.post("/auth", userTypeCheck, AuthController.session);
