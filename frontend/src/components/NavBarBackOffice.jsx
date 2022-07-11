@@ -108,7 +108,7 @@ function NavBarBackOffice() {
                 className="navbar-logo"
                 src={logo}
                 alt="logo de la Social Team Consulting"
-                onClick={() => navigate("/back_office")}
+                onClick={() => navigate("/")}
               />
             </div>
             <h1 className="title">Social Team Consulting</h1>
@@ -127,7 +127,7 @@ function NavBarBackOffice() {
               <hr className="navbar-hr" />
               <NavBarBackOfficeLinks
                 handleisMenuVisible={handleisMenuVisible}
-                handleDeconnexion={Deconnexion}
+                handleDeconnexion={() => Deconnexion(navigate, setInfoUser)}
               />
             </div>
           </nav>
