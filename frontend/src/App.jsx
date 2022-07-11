@@ -179,7 +179,7 @@ function App() {
               </PrivateRoute>
             }
           />
-          <Route  
+          <Route
             path="lecture_message"
             element={
               <PrivateRoute isAllowed={infoUser.role === "administrateur"}>

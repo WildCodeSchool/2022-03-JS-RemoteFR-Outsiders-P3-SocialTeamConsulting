@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 
 import logo from "@assets/logo-STC.png";
 import { NavLink, useNavigate } from "react-router-dom";
-import { notifySuccess, api } from "@services/services";
+import { Deconnexion, api } from "@services/services";
 
 import NavBarBackOfficeLinks from "@components/NavBarBackOfficeLinks";
 
@@ -16,7 +16,7 @@ import "@style/BackOffice.css";
 import "@style/NavBar.css";
 
 function NavBarBackOffice() {
-  const { infoUser } = useContext(ExportContext.Context);
+  const { infoUser, setInfoUser } = useContext(ExportContext.Context);
   const [names, setNames] = useState({ nom: "", prenom: "" });
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   const handleisMenuVisible = (isVisible) => {
@@ -38,19 +38,6 @@ function NavBarBackOffice() {
       .catch((err) => console.error(err));
   }, []);
 
-  const handleDeconnexion = () => {
-    const ENDPOINTDECONNEXION = "/deconnexion";
-    api.post(ENDPOINTDECONNEXION).then((status) => {
-      if (status.status === 200) {
-        notifySuccess("Déconnexion réussie !");
-        sessionStorage.removeItem(`role`);
-        sessionStorage.removeItem(`email`);
-        sessionStorage.removeItem(`etat`);
-        navigate("/");
-      }
-    });
-  };
-
   return (
     <div>
       <div className="navbar-desktop-backoffice">
@@ -60,7 +47,7 @@ function NavBarBackOffice() {
               className="navbar-logo"
               src={logo}
               alt="logo de la Social Team Consulting"
-              onClick={() => navigate("/back_office")}
+              onClick={() => navigate("/")}
             />
             <h1>Social Team Consulting</h1>
           </div>
@@ -84,7 +71,7 @@ function NavBarBackOffice() {
                       <div role="button" tabIndex={0} className="navbar-button">
                         <li
                           className="navbar-li_highlight"
-                          onClick={handleDeconnexion}
+                          onClick={() => Deconnexion(navigate, setInfoUser)}
                         >
                           <h2>{el.section}</h2>
                         </li>
@@ -121,7 +108,7 @@ function NavBarBackOffice() {
                 className="navbar-logo"
                 src={logo}
                 alt="logo de la Social Team Consulting"
-                onClick={() => navigate("/back_office")}
+                onClick={() => navigate("/")}
               />
             </div>
             <h1 className="title">Social Team Consulting</h1>
@@ -140,7 +127,7 @@ function NavBarBackOffice() {
               <hr className="navbar-hr" />
               <NavBarBackOfficeLinks
                 handleisMenuVisible={handleisMenuVisible}
-                handleDeconnexion={handleDeconnexion}
+                handleDeconnexion={() => Deconnexion(navigate, setInfoUser)}
               />
             </div>
           </nav>
