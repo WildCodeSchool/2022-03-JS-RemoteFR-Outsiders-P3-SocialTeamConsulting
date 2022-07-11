@@ -44,7 +44,6 @@ function HistoryMissions() {
 
   const [missions, setMissions] = useState([]);
   useEffect(() => {
-    const ENDPOINT = `/missions/history/${user}`;
     api
       .get(ENDPOINT)
       .then((res) => {
