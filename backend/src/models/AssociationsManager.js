@@ -46,6 +46,13 @@ class AssociationsManager extends AbstractManager {
       [association.etat, association.id]
     );
   }
+
+  updateMDP(password, association) {
+    return this.connection.query(
+      `update ${AssociationsManager.table} set password = ? where id = ?`,
+      [password, association]
+    );
+  }
 }
 
 module.exports = AssociationsManager;

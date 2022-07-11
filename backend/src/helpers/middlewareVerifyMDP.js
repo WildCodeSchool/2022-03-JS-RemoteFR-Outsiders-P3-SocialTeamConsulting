@@ -4,7 +4,6 @@ const { verifyPassword } = require("./auth");
 const verifyMDP = (req, res, next) => {
   const { id } = req.params;
   const { password } = req.body;
-
   let hashedPassword = "";
   models.intervenants
     .find(id)

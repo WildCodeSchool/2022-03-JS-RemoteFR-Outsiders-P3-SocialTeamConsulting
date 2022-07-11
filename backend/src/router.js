@@ -49,6 +49,7 @@ router.get("/associations/:id", AssociationsController.read);
 router.get("/associations/bymail/:email", AssociationsController.browseByEmail);
 router.put("/associations/:id", AssociationsController.edit);
 router.put("/associations/etat/:id", AssociationsController.editEtat);
+router.put("/associations/mpd/:id", verifyMDP, AssociationsController.editMDP);
 router.post("/associations", AssociationsController.add);
 router.delete("/associations/:id", AssociationsController.delete);
 

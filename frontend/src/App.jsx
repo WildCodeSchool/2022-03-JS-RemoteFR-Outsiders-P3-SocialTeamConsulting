@@ -25,6 +25,7 @@ import BackOfficeAdminMissionTerminee from "@components/BackOfficeAdminMissionTe
 import BackOfficeLectureMessage from "@components/BackOfficeLectureMessage";
 import PrivateRoute from "@services/PrivateRoute";
 import BackOfficeListeUsers from "@components/BackOfficeListeUsers";
+import ModifProfilAsso from "@pages/ModifProfilAsso";
 import ExportContext from "./contexts/Context";
 import "@style/App.css";
 
@@ -83,6 +84,19 @@ function App() {
                 }
               >
                 <ModifProfilInter />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="mon_profil_association"
+            element={
+              <PrivateRoute
+                isAllowed={
+                  infoUser.role === "administrateur" ||
+                  infoUser.role === "association"
+                }
+              >
+                <ModifProfilAsso />
               </PrivateRoute>
             }
           />
