@@ -49,6 +49,13 @@
     "administrateur": true
   },
   {
+    "section": "Mon profil",
+    "link": "/back_office/mon_profil_intervenant",
+    "association": false,
+    "intervenant": true,
+    "administrateur": false
+  },
+  {
     "section": "Déconnexion",
     "link": "",
     "association": true,

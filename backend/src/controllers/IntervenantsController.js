@@ -78,6 +78,26 @@ class IntervenantController {
       });
   };
 
+  static editMDP = (req, res) => {
+    const { id } = req.params;
+    const password = req.body.newPassword;
+    hashPassword(password).then((hashedPassword) => {
+      models.intervenants
+        .updateMDP(hashedPassword, id)
+        .then(([result]) => {
+          if (result.affectedRows === 0) {
+            res.sendStatus(404);
+          } else {
+            res.status(200).json(password);
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+          res.sendStatus(500);
+        });
+    });
+  };
+
   static editEtat = (req, res) => {
     const intervenant = {
       etat: req.body.newStatus,

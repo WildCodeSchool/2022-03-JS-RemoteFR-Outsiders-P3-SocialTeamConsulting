@@ -42,6 +42,12 @@ const Deconnexion = (navigate, setInfoUser) => {
   api.post(ENDPOINTDECONNEXION).then((status) => {
     if (status.status === 200) {
       setInfoUser({});
+      sessionStorage.removeItem(`role`);
+      sessionStorage.removeItem(`email`);
+      sessionStorage.removeItem(`etat`);
+      localStorage.removeItem(`role`);
+      localStorage.removeItem(`email`);
+      localStorage.removeItem(`etat`);
       navigate("/");
       notifySuccess("Déconnexion réussie !");
     }

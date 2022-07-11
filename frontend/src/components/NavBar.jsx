@@ -15,7 +15,7 @@ function NavBar({ isLinkVisible, showLink, isFormVisible, showForm }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (infoUser.email !== undefined) {
+    if (infoUser.email !== undefined && infoUser.email !== null) {
       setIsLogInVisible(true);
     } else {
       setIsLogInVisible(false);

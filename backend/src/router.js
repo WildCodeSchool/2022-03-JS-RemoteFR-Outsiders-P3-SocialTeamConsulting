@@ -1,6 +1,7 @@
 const express = require("express");
 
 const { userTypeCheck } = require("./helpers/auth");
+const { verifyMDP } = require("./helpers/middlewareVerifyMDP");
 
 const fileMiddleware = require("./helpers/file");
 
@@ -76,6 +77,12 @@ router.put(
   "/intervenants/etat/:id",
   middlewareAdministrateur,
   IntervenantsController.editEtat
+);
+router.put(
+  "/intervenants/mpd/:id",
+  middlewareAll,
+  verifyMDP,
+  IntervenantsController.editMDP
 );
 router.post("/intervenants", fileMiddleware, IntervenantsController.add);
 router.delete(
