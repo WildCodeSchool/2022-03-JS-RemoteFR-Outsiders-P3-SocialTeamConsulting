@@ -21,6 +21,7 @@ import BackOfficeAdminMissionValidation from "@components/BackOfficeAdminMission
 import BackOfficeAdminInterValidation from "@components/BackOfficeAdminInterValidation";
 import BackOfficeMissionsDisponibles from "@components/BackOfficeMissionsDisponibles";
 import BackOfficeAdminMissionTerminee from "@components/BackOfficeAdminMissionTerminee";
+import BackOfficeLectureMessage from "@components/BackOfficeLectureMessage";
 import PrivateRoute from "@services/PrivateRoute";
 import BackOfficeListeUsers from "@components/BackOfficeListeUsers";
 import ExportContext from "./contexts/Context";
@@ -175,6 +176,14 @@ function App() {
             element={
               <PrivateRoute isAllowed={infoUser.role === "administrateur"}>
                 <ModifInter />
+              </PrivateRoute>
+            }
+          />
+          <Route  
+            path="lecture_message"
+            element={
+              <PrivateRoute isAllowed={infoUser.role === "administrateur"}>
+                <BackOfficeLectureMessage />
               </PrivateRoute>
             }
           />

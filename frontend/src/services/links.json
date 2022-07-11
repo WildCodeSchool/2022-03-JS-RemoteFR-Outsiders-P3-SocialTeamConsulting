@@ -42,6 +42,13 @@
     "administrateur": true
   },
   {
+    "section": "* Messages de contact des associations *",
+    "link": "/back_office/lecture_message",
+    "association": false,
+    "intervenant": false,
+    "administrateur": true
+  },
+  {
     "section": "Déconnexion",
     "link": "",
     "association": true,

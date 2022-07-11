@@ -13,7 +13,7 @@ export default function ProfilInterv() {
   useEffect(() => {
     const ENDPOINT = `/intervenants/bymail/${email}`;
     api.get(ENDPOINT).then((result) => {
-      setIntervenant(result.data);
+      setIntervenant(result.data[0]);
     });
   }, []);
 

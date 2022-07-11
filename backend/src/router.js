@@ -1,9 +1,6 @@
 const express = require("express");
 
 const { userTypeCheck } = require("./helpers/auth");
-const {
-  middlewareAdministrateur,
-} = require("./helpers/middlewareAdministrateur");
 
 const fileMiddleware = require("./helpers/file");
 
@@ -72,6 +69,16 @@ router.delete("/missions/:id", MissionsController.delete);
 router.post("/modifications", ModificationsController.add);
 router.get("/accepte", AccepteController.browse);
 router.get("/accepte/validation/:id", AccepteController.readWithIntervenant);
+router.get(
+  "/accepte/refuseduser/:userId",
+  AccepteController.readRefusedIntervenantByMission
+);
+
+router.put(
+  "/accepte/:missionId/:userId",
+  AccepteController.deleteAppliedMissionByIntervenant
+);
+
 router.get("/accepte/modification/:id", AccepteController.changeInter);
 router.put("/accepte/modification/:id", AccepteController.updateChangeInter);
 router.get("/accepte/:id", AccepteController.read);
@@ -81,12 +88,8 @@ router.put("/accepte/change/:id", AccepteController.updateRemoveInter);
 router.delete("/accepte/:id", AccepteController.delete);
 
 router.post("/messages", MessagesController.add);
-router.get(
-  "/messages",
-  userTypeCheck,
-  middlewareAdministrateur,
-  MessagesController.browse
-);
+router.get("/messages", MessagesController.browse);
+router.put("/messages/id", MessagesController.close);
 
 router.get("/auth/update", userTypeCheck, AuthController.verifCookie);
 router.post("/auth", userTypeCheck, AuthController.session);
