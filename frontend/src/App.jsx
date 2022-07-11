@@ -12,6 +12,7 @@ import ModifInter from "@components/ModifInter";
 import FormAsso from "@pages/FormAsso";
 import FormAssoContact from "@pages/FormAssoContact";
 import FormInterv from "@pages/FormInterv";
+import ModifProfilInter from "@pages/ModifProfilInter";
 import ProfilAdmin from "@components/ProfilAdmin";
 import ProfilInterv from "@components/ProfilInterv";
 import ProfilAsso from "@components/ProfilAsso";
@@ -69,6 +70,19 @@ function App() {
             element={
               <PrivateRoute isAllowed={infoUser.role === "administrateur"}>
                 <ProfilInterv />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="mon_profil_intervenant"
+            element={
+              <PrivateRoute
+                isAllowed={
+                  infoUser.role === "administrateur" ||
+                  infoUser.role === "intervenant"
+                }
+              >
+                <ModifProfilInter />
               </PrivateRoute>
             }
           />

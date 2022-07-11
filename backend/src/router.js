@@ -1,6 +1,7 @@
 const express = require("express");
 
 const { userTypeCheck } = require("./helpers/auth");
+const { verifyMDP } = require("./helpers/middlewareVerifyMDP");
 
 const fileMiddleware = require("./helpers/file");
 
@@ -38,6 +39,7 @@ router.get("/intervenants", IntervenantsController.browse);
 router.get("/intervenants/bymail/:email", IntervenantsController.browseByEmail);
 router.get("/intervenants/:id", IntervenantsController.read);
 router.put("/intervenants/:id", IntervenantsController.edit);
+router.put("/intervenants/mpd/:id", verifyMDP, IntervenantsController.editMDP);
 router.put("/intervenants/etat/:id", IntervenantsController.editEtat);
 router.post("/intervenants", fileMiddleware, IntervenantsController.add);
 router.delete("/intervenants/:id", IntervenantsController.delete);

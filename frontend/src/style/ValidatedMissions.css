@@ -13,13 +13,11 @@
   width: 23rem;
 }
 
-
 .is-refused-legend::after,
 .pending-validation-legend::after,
 .is-validated-legend::after,
 .is-refused-legend::after,
-.is-pourvue-legend::after
-{
+.is-pourvue-legend::after {
   content: "";
   display: inline-block;
   width: 0.8rem;
@@ -27,20 +25,17 @@
 }
 
 .pending-validation,
-.pending-validation-legend::after
-{
+.pending-validation-legend::after {
   background-color: orange;
 }
 
 .is-validated,
-.is-validated-legend::after
-{
+.is-validated-legend::after {
   background-color: green;
 }
 
 .is-refused,
-.is-refused-legend::after
-{
+.is-refused-legend::after {
   background-color: red;
 }
 
