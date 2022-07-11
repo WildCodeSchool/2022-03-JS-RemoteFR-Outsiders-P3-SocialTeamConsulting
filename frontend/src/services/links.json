@@ -28,7 +28,13 @@
     "administrateur": true
   },
   {
-
+    "section": "Profil",
+    "link": "/back_office/modification_profil",
+    "association": false,
+    "intervenant": true,
+    "administrateur": true
+  },
+  {
     "section": "Modification d'intervenant",
     "link": "/back_office/modification_mission_intervenant",
     "association": false,

@@ -11,6 +11,7 @@ import PostMission from "@pages/PostMission";
 import FormAsso from "@pages/FormAsso";
 import FormAssoContact from "@pages/FormAssoContact";
 import FormInterv from "@pages/FormInterv";
+import ModifProfilInter from "@pages/ModifProfilInter";
 import ProfilInterv from "@components/ProfilInterv";
 import BacklogValidatedMissions from "@components/BacklogValidatedMissions";
 import HistoryMissions from "@components/HistoryMissions";
@@ -33,6 +34,7 @@ function App() {
             path="modification_profil_intervenant"
             element={<ProfilInterv />}
           />
+          <Route path="modification_profil" element={<ModifProfilInter />} />
           <Route
             path="modification_mission_intervenant"
             element={<ModifInter />}
