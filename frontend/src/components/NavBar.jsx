@@ -75,6 +75,8 @@ function NavBar({ isLinkVisible, showLink, isFormVisible, showForm }) {
                 }`}
               >
                 <NavBarLinks
+                  navigate={navigate}
+                  isLogInVisible={isLogInVisible}
                   handleisMenuVisible={handleisMenuVisible}
                   showLink={showLink}
                 />
@@ -114,7 +116,12 @@ function NavBar({ isLinkVisible, showLink, isFormVisible, showForm }) {
         </div>
         <div className="navbar-menu_wrapper">
           <hr className="navbar-hr" />
-          <NavBarLinks handleisMenuVisible={handleisMenuVisible} />
+          <NavBarLinks
+            navigate={navigate}
+            isLogInVisible={isLogInVisible}
+            handleisMenuVisible={handleisMenuVisible}
+            showLink={showLink}
+          />
           <hr className="navbar-hr" />
           {isMenuVisible ? <NavBarForm /> : ""}
         </div>
