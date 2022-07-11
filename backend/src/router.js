@@ -1,9 +1,7 @@
 const express = require("express");
 
 const { userTypeCheck } = require("./helpers/auth");
-const {
-  middlewareAdministrateur,
-} = require("./helpers/middlewareAdministrateur");
+const { verifyMDP } = require("./helpers/middlewareVerifyMDP");
 
 const fileMiddleware = require("./helpers/file");
 
@@ -40,8 +38,8 @@ router.delete("/administrateurs/:id", AdministrateursController.delete);
 router.get("/intervenants", IntervenantsController.browse);
 router.get("/intervenants/bymail/:email", IntervenantsController.browseByEmail);
 router.get("/intervenants/:id", IntervenantsController.read);
-router.get("/intervenants/email/:email", IntervenantsController.readByEmail);
 router.put("/intervenants/:id", IntervenantsController.edit);
+router.put("/intervenants/mpd/:id", verifyMDP, IntervenantsController.editMDP);
 router.put("/intervenants/etat/:id", IntervenantsController.editEtat);
 router.post("/intervenants", fileMiddleware, IntervenantsController.add);
 router.delete("/intervenants/:id", IntervenantsController.delete);
@@ -58,6 +56,10 @@ router.delete("/associations/:id", AssociationsController.delete);
 router.get("/missions", MissionsController.browseWithAssociation);
 router.get("/missions/validated", MissionsController.browseValidatedMissions);
 router.get("/missions/history/:id", MissionsController.browseMissionsHistory);
+router.get(
+  "/missions/assohistory/:id",
+  MissionsController.browseAssoMissionsHistory
+);
 router.get("/missions/:id", MissionsController.read);
 router.get(
   "/missions/nonacceptee/:id",
@@ -73,6 +75,16 @@ router.delete("/missions/:id", MissionsController.delete);
 router.post("/modifications", ModificationsController.add);
 router.get("/accepte", AccepteController.browse);
 router.get("/accepte/validation/:id", AccepteController.readWithIntervenant);
+router.get(
+  "/accepte/refuseduser/:userId",
+  AccepteController.readRefusedIntervenantByMission
+);
+
+router.put(
+  "/accepte/:missionId/:userId",
+  AccepteController.deleteAppliedMissionByIntervenant
+);
+
 router.get("/accepte/modification/:id", AccepteController.changeInter);
 router.put("/accepte/modification/:id", AccepteController.updateChangeInter);
 router.get("/accepte/:id", AccepteController.read);
@@ -82,13 +94,10 @@ router.put("/accepte/change/:id", AccepteController.updateRemoveInter);
 router.delete("/accepte/:id", AccepteController.delete);
 
 router.post("/messages", MessagesController.add);
-router.get(
-  "/messages",
-  userTypeCheck,
-  middlewareAdministrateur,
-  MessagesController.browse
-);
+router.get("/messages", MessagesController.browse);
+router.put("/messages/id", MessagesController.close);
 
+router.get("/auth/update", userTypeCheck, AuthController.verifCookie);
 router.post("/auth", userTypeCheck, AuthController.session);
 
 router.post("/deconnexion", AuthController.disconnect);

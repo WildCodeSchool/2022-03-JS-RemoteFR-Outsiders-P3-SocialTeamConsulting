@@ -13,33 +13,35 @@
   width: 23rem;
 }
 
-.pending-validation {
-  background-color: orange;
-}
-.pending-validation-legend {
-  background-color: orange;
+.is-refused-legend::after,
+.pending-validation-legend::after,
+.is-validated-legend::after,
+.is-refused-legend::after,
+.is-pourvue-legend::after {
+  content: "";
+  display: inline-block;
   width: 0.8rem;
   height: 0.8rem;
 }
 
-.is-validated {
+.pending-validation,
+.pending-validation-legend::after {
+  background-color: orange;
+}
+
+.is-validated,
+.is-validated-legend::after {
   background-color: green;
 }
 
-.is-validated-legend {
-  background-color: green;
-  width: 0.8rem;
-  height: 0.8rem;
-}
-
-.is-refused {
+.is-refused,
+.is-refused-legend::after {
   background-color: red;
 }
 
-.is-refused-legend {
-  background-color: red;
-  width: 0.8rem;
-  height: 0.8rem;
+.is-pourvue,
+.is-pourvue-legend::after {
+  background-color: var(--color-interaction);
 }
 
 .finished {
@@ -96,7 +98,7 @@
 .synthesis-validation_area {
   padding: 1rem 0;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 @keyframes expand {

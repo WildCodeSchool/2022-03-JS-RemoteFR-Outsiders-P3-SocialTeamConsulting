@@ -26,6 +26,20 @@ class MessagesController {
         res.sendStatus(500);
       });
   };
+
+  static close = (req, res) => {
+    const messageID = parseInt(req.params.id, 10);
+
+    models.messages
+      .close(messageID)
+      .then(([rows]) => {
+        res.status(201).send(rows);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(500);
+      });
+  };
 }
 
 module.exports = MessagesController;
