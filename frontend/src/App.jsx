@@ -21,6 +21,7 @@ import BackOfficeAdminMissionValidation from "@components/BackOfficeAdminMission
 import BackOfficeAdminInterValidation from "@components/BackOfficeAdminInterValidation";
 import BackOfficeMissionsDisponibles from "@components/BackOfficeMissionsDisponibles";
 import BackOfficeAdminMissionTerminee from "@components/BackOfficeAdminMissionTerminee";
+import BackOfficeLectureMessage from "@components/BackOfficeLectureMessage";
 import PrivateRoute from "@services/PrivateRoute";
 import BackOfficeListeUsers from "@components/BackOfficeListeUsers";
 import ExportContext from "./contexts/Context";
@@ -146,6 +147,7 @@ function App() {
               <PrivateRoute
                 isAllowed={
                   infoUser.role === "intervenant" ||
+                  infoUser.role === "association" ||
                   infoUser.role === "administrateur"
                 }
               >
@@ -169,15 +171,24 @@ function App() {
               </PrivateRoute>
             }
           />
+          <Route
+            path="modification_mission_intervenant"
+            element={
+              <PrivateRoute isAllowed={infoUser.role === "administrateur"}>
+                <ModifInter />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="lecture_message"
+            element={
+              <PrivateRoute isAllowed={infoUser.role === "administrateur"}>
+                <BackOfficeLectureMessage />
+              </PrivateRoute>
+            }
+          />
         </Route>
-        <Route
-          path="modification_mission_intervenant"
-          element={
-            <PrivateRoute isAllowed={infoUser.role === "administrateur"}>
-              <ModifInter />
-            </PrivateRoute>
-          }
-        />
+
         <Route path="/" element={<Home />}>
           <Route index element={<LandingPage />} />
           <Route path="accueil_association" element={<AccueilAsso />} />

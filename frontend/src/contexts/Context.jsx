@@ -4,9 +4,9 @@ const Context = createContext();
 
 function Provider({ children }) {
   const [infoUser, setInfoUser] = useState({
-    role: localStorage.getItem(`role`),
-    email: localStorage.getItem(`email`),
-    etat: localStorage.getItem(`etat`),
+    role: sessionStorage.getItem(`role`),
+    email: sessionStorage.getItem(`email`),
+    etat: sessionStorage.getItem(`etat`),
   });
 
   return (
