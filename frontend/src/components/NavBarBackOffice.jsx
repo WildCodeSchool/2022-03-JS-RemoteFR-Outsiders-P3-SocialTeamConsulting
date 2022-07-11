@@ -16,7 +16,7 @@ import "@style/BackOffice.css";
 import "@style/NavBar.css";
 
 function NavBarBackOffice() {
-  const { infoUser } = useContext(ExportContext.Context);
+  const { infoUser, setInfoUser } = useContext(ExportContext.Context);
   const [names, setNames] = useState({ nom: "", prenom: "" });
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   const handleisMenuVisible = (isVisible) => {
@@ -71,7 +71,7 @@ function NavBarBackOffice() {
                       <div role="button" tabIndex={0} className="navbar-button">
                         <li
                           className="navbar-li_highlight"
-                          onClick={Deconnexion}
+                          onClick={() => Deconnexion(navigate, setInfoUser)}
                         >
                           <h2>{el.section}</h2>
                         </li>

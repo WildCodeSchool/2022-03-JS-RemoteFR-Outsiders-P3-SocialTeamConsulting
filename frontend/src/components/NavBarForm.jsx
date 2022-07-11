@@ -4,7 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { authentification, Deconnexion } from "@services/services";
 import ExportContext from "../contexts/Context";
 
-function NavBarForm({ showForm }) {
+function NavBarForm(showForm) {
   const navigate = useNavigate();
   const { infoUser, setInfoUser } = useContext(ExportContext.Context);
   const [isLog, setIsLog] = useState(false);

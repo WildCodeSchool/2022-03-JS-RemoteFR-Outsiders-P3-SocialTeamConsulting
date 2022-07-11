@@ -17,8 +17,11 @@ function NavBar({ isLinkVisible, showLink, isFormVisible, showForm }) {
   useEffect(() => {
     if (infoUser.email !== undefined) {
       setIsLogInVisible(true);
+    } else {
+      setIsLogInVisible(false);
     }
   }, [infoUser]);
+
   const handleisMenuVisible = (isVisible) => {
     setIsMenuVisible(isVisible);
   };

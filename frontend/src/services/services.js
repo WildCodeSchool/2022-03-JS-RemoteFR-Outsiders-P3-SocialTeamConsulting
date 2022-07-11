@@ -40,9 +40,9 @@ const Deconnexion = (navigate, setInfoUser) => {
   const ENDPOINTDECONNEXION = "/deconnexion";
   api.post(ENDPOINTDECONNEXION).then((status) => {
     if (status.status === 200) {
-      notifySuccess("Déconnexion réussie ! !");
-      navigate("/");
       setInfoUser({});
+      navigate("/");
+      notifySuccess("Déconnexion réussie !");
     }
   });
 };
