@@ -1,9 +1,16 @@
 [
   {
-    "section": "Accueil",
-    "link": "/back_office",
+    "section": "Historique des missions",
+    "link": "/back_office/historique_missions",
     "association": true,
     "intervenant": true,
+    "administrateur": false
+  },
+  {
+    "section": "Créer une mission",
+    "link": "/back_office/post_mission",
+    "association": true,
+    "intervenant": false,
     "administrateur": true
   },
   {
@@ -14,39 +21,39 @@
     "administrateur": true
   },
   {
-    "section": "Missions validées",
-    "link": "/back_office",
+    "section": "* Liste des utilisateurs *",
+    "link": "/back_office/liste_des_utilisateurs",
     "association": false,
-    "intervenant": true,
+    "intervenant": false,
     "administrateur": true
   },
   {
-    "section": "Gestion du profil",
-    "link": "/back_office/modification_profil_intervenant",
-    "association": true,
-    "intervenant": true,
-    "administrateur": true
-  },
-  {
-    "section": "Profil",
-    "link": "/back_office/modification_profil",
+    "section": "* Missions : Choisir un intervenant *",
+    "link": "/back_office/validation_intervenant",
     "association": false,
-    "intervenant": true,
+    "intervenant": false,
     "administrateur": true
   },
   {
-    "section": "Modification d'intervenant",
+    "section": "* Missions : Changer l'intervenant * ",
     "link": "/back_office/modification_mission_intervenant",
     "association": false,
     "intervenant": false,
     "administrateur": true
   },
   {
-    "section": "Validation d'intervenant",
-    "link": "/back_office/validation_intervenant",
+    "section": "* Messages de contact des associations *",
+    "link": "/back_office/lecture_message",
     "association": false,
     "intervenant": false,
     "administrateur": true
+  },
+  {
+    "section": "Mon profil",
+    "link": "/back_office/mon_profil_intervenant",
+    "association": false,
+    "intervenant": true,
+    "administrateur": false
   },
   {
     "section": "Déconnexion",

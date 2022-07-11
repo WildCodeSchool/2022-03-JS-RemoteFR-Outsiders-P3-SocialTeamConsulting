@@ -15,6 +15,20 @@ class AccepteManager extends AbstractManager {
     );
   }
 
+  findMissionsWhereUserRefused(userId) {
+    return this.connection.query(
+      `SELECT missions_id FROM ${this.table} WHERE isvalidated = 2 AND intervenants_id = ?`,
+      [userId]
+    );
+  }
+
+  findUserRefusedByMission(missionId) {
+    return this.connection.query(
+      `SELECT intervenants_id FROM ${this.table} WHERE isvalidated = 2 AND missions_id = ?`,
+      [missionId]
+    );
+  }
+
   findIntervenant(mission) {
     return this.connection.query(
       `SELECT i.id, i.nom, i.prenom, i.email, a.missions_id, a.isvalidated FROM ${AccepteManager.table} AS a
@@ -72,6 +86,20 @@ class AccepteManager extends AbstractManager {
     return this.connection.query(
       `insert into ${AccepteManager.table} (intervenants_id, missions_id, isvalidated) values (?, ?, ?)`,
       [userId, missionId, 0]
+    );
+  }
+
+  deleteByIntervenant(missionId, userId) {
+    return this.connection.query(
+      `DELETE FROM ${this.table} WHERE intervenants_id = ? AND missions_id = ?`,
+      [userId, missionId]
+    );
+  }
+
+  resetMissionAccepte(missionId, userId) {
+    return this.connection.query(
+      `UPDATE ${this.table} SET isvalidated = 0 where intervenants_id = ? AND missions_id = ?`,
+      [userId, missionId]
     );
   }
 }

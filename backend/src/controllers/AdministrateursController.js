@@ -48,16 +48,14 @@ class AdministrateursController {
   };
 
   static edit = (req, res) => {
-    const intervenant = req.body;
+    const administrateur = req.body;
 
-    // TODO validations (length, format...)
-
-    intervenant.id = parseInt(req.params.id, 10);
+    administrateur.id = req.params.id;
 
     models.administrateurs
-      .update(intervenant)
+      .update(administrateur)
       .then(([result]) => {
-        if (result.affectedRows === 0) {
+        if (result.affectedRows[0] === 0) {
           res.sendStatus(404);
         } else {
           res.sendStatus(204);

@@ -83,3 +83,7 @@
 .synthesis-is-refused {
   background-color: red;
 }
+
+.synthesis-pourvue {
+  background-color: var(--color-interaction);
+}

@@ -16,13 +16,16 @@ const notifyError = (message) => {
 const authentification = (user, setIsLog, setInfoUser) => {
   const ENDPOINT = "/auth";
   api
-    .post(ENDPOINT, user)
+    .post(ENDPOINT, user, { withCredentials: true })
     .then((response) => {
       setInfoUser({
         role: response.data.role,
         email: response.data.email,
         etat: response.data.etat,
       });
+      sessionStorage.setItem(`role`, response.data.role);
+      sessionStorage.setItem(`email`, response.data.email);
+      sessionStorage.setItem(`etat`, response.data.etat);
       setIsLog(true);
       notifySuccess("La connection a réussi");
     })
@@ -33,4 +36,15 @@ const authentification = (user, setIsLog, setInfoUser) => {
     });
 };
 
-export { authentification, notifySuccess, notifyError, api };
+const Deconnexion = (navigate, setInfoUser) => {
+  const ENDPOINTDECONNEXION = "/deconnexion";
+  api.post(ENDPOINTDECONNEXION).then((status) => {
+    if (status.status === 200) {
+      setInfoUser({});
+      navigate("/");
+      notifySuccess("Déconnexion réussie !");
+    }
+  });
+};
+
+export { authentification, Deconnexion, notifySuccess, notifyError, api };
