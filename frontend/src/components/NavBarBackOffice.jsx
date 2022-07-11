@@ -45,7 +45,7 @@ function NavBarBackOffice() {
         notifySuccess(
           "Déconnexion réussie, vous allez être redirigés sur la page d'accueil"
         );
-        setTimeout(() => navigate("/"), 5000);
+        navigate("/");
       }
     });
   };
