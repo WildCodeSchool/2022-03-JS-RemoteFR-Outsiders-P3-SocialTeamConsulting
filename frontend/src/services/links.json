@@ -1,10 +1,10 @@
 [
   {
-    "section": "Accueil",
-    "link": "/back_office",
-    "association": true,
-    "intervenant": true,
-    "administrateur": true
+  "section": "Historique des missions",
+  "link": "/back_office/historique_missions",
+  "association": true,
+  "intervenant": true,
+  "administrateur": false
   },
   {
     "section": "Créer une mission",
@@ -21,29 +21,22 @@
     "administrateur": true
   },
   {
-    "section": "Missions validées",
-    "link": "/back_office",
-    "association": false,
-    "intervenant": true,
-    "administrateur": true
-  },
-  {
-    "section": "Liste des utilisateurs",
+    "section": "* Liste des utilisateurs *",
     "link": "/back_office/liste_des_utilisateurs",
     "association": false,
     "intervenant": false,
     "administrateur": true
   },
   {
-    "section": "Modification d'intervenant",
-    "link": "/back_office/modification_mission_intervenant",
+    "section": "* Missions : Choisir un intervenant *",
+    "link": "/back_office/validation_intervenant",
     "association": false,
     "intervenant": false,
     "administrateur": true
   },
   {
-    "section": "Validation d'intervenant",
-    "link": "/back_office/validation_intervenant",
+    "section": "* Missions : Changer l'intervenant * ",
+    "link": "/back_office/modification_mission_intervenant",
     "association": false,
     "intervenant": false,
     "administrateur": true

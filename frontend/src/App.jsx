@@ -147,6 +147,7 @@ function App() {
               <PrivateRoute
                 isAllowed={
                   infoUser.role === "intervenant" ||
+                  infoUser.role === "association" ||
                   infoUser.role === "administrateur"
                 }
               >
@@ -171,6 +172,14 @@ function App() {
             }
           />
           <Route
+            path="modification_mission_intervenant"
+            element={
+              <PrivateRoute isAllowed={infoUser.role === "administrateur"}>
+                <ModifInter />
+              </PrivateRoute>
+            }
+          />
+          <Route  
             path="lecture_message"
             element={
               <PrivateRoute isAllowed={infoUser.role === "administrateur"}>
@@ -179,14 +188,7 @@ function App() {
             }
           />
         </Route>
-        <Route
-          path="modification_mission_intervenant"
-          element={
-            <PrivateRoute isAllowed={infoUser.role === "administrateur"}>
-              <ModifInter />
-            </PrivateRoute>
-          }
-        />
+
         <Route path="/" element={<Home />}>
           <Route index element={<LandingPage />} />
           <Route path="accueil_association" element={<AccueilAsso />} />
