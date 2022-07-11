@@ -77,6 +77,13 @@ class MissionsManager extends AbstractManager {
     );
   }
 
+  findAssoMissions(assoId) {
+    return this.connection.query(
+      `SELECT * FROM ${this.table}
+       WHERE ${this.table}.associations_id = '${assoId}' ORDER BY ${this.table}.date_debut`
+    );
+  }
+
   findMyMissionsNotAccepted(userId) {
     return this.connection.query(
       `SELECT missions.*, associations.nom FROM ${this.table}

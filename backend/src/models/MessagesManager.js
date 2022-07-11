@@ -20,6 +20,15 @@ class MessagesManager extends AbstractManager {
   showAllMessages() {
     return this.connection.query(`select * from messages`);
   }
+
+  close(messageID) {
+    return this.connection.query(
+      `update ${MessagesManager.table}
+       SET ishandle = 1
+       WHERE message.id = ?`,
+      [messageID]
+    );
+  }
 }
 
 module.exports = MessagesManager;

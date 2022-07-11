@@ -131,43 +131,13 @@ export default function ProfilAsso() {
               onChange={(e) => handleChange(e)}
             />
           </label>
-          <label htmlFor="adress" className="backoffice-input-half">
-            <p>Adresse</p>
-            <input
-              className="rules"
-              type="text"
-              name="adresse"
-              placeholder={association.adresse}
-              onChange={(e) => handleChange(e)}
-            />
-          </label>
-          <label htmlFor="ville" className="backoffice-input-half">
-            <p>Ville</p>
-            <input
-              className="rules"
-              type="text"
-              name="ville"
-              placeholder={association.ville}
-              onChange={(e) => handleChange(e)}
-            />
-          </label>
-          <label htmlFor="zip" className="backoffice-input-half">
-            <p>Code postal</p>
-            <input
-              className="rules"
-              type="text"
-              name="code_postal"
-              placeholder={association.code_postal}
-              onChange={(e) => handleChange(e)}
-            />
-          </label>
         </div>
         <div className="backoffice-bloc">
           <label htmlFor="email" className="backoffice-input-half">
             <p>Email</p>
             <input
               className="rules"
-              type="email"
+              type="text"
               name="email"
               placeholder={association.email}
               onChange={(e) => handleChange(e)}
@@ -180,6 +150,40 @@ export default function ProfilAsso() {
               type="text"
               name="telephone"
               placeholder={association.telephone}
+              onChange={(e) => handleChange(e)}
+            />
+          </label>
+        </div>
+        <div>
+          <label htmlFor="adress" className="backoffice-input-half">
+            <p>Adresse</p>
+            <input
+              className="rules"
+              type="text"
+              name="adresse"
+              placeholder={association.adresse}
+              onChange={(e) => handleChange(e)}
+            />
+          </label>
+        </div>
+        <div className="backoffice-bloc">
+          <label htmlFor="city" className="backoffice-input-half">
+            <p>Ville</p>
+            <input
+              className="rules"
+              type="email"
+              name="ville"
+              placeholder={association.ville}
+              onChange={(e) => handleChange(e)}
+            />
+          </label>
+          <label htmlFor="zip" className="backoffice-input-half">
+            <p>Code Postal</p>
+            <input
+              className="rules"
+              type="text"
+              name="code_postal"
+              placeholder={association.code_postal}
               onChange={(e) => handleChange(e)}
             />
           </label>
