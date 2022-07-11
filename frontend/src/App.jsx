@@ -46,7 +46,7 @@ function App() {
             </PrivateRoute>
           }
         >
-        <Route
+          <Route
             index
             element={
               <PrivateRoute
