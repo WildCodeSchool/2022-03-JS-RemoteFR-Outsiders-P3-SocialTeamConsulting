@@ -42,9 +42,10 @@ function NavBarBackOffice() {
     const ENDPOINTDECONNEXION = "/deconnexion";
     api.post(ENDPOINTDECONNEXION).then((status) => {
       if (status.status === 200) {
-        notifySuccess(
-          "Déconnexion réussie, vous allez être redirigés sur la page d'accueil"
-        );
+        notifySuccess("Déconnexion réussie !");
+        sessionStorage.removeItem(`role`);
+        sessionStorage.removeItem(`email`);
+        sessionStorage.removeItem(`etat`);
         navigate("/");
       }
     });
