@@ -1,12 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import metiers from "@services/metiers.json";
-import "../style/PostMission.css";
-
 import { notifySuccess, notifyError, api } from "@services/services";
+import "../style/PostMission.css";
+import ExportContext from "../contexts/Context";
 
 function PostMission() {
+  const { infoUser } = useContext(ExportContext.Context);
   const [mission, setMissions] = useState({});
-  const assoID = "18679c5f-dc33-475e-8630-45c971d38cab";
+  const [assoID, setAssoID] = useState("");
+
+  const ENDPOINTASSOCIATION = "/associations";
+  useEffect(() => {
+    api
+      .get(ENDPOINTASSOCIATION)
+      .then((res) => {
+        setAssoID(
+          res.data.filter((thisUser) => thisUser.email === infoUser.email)[0].id
+        );
+      })
+      .catch((err) => {
+        console.error(console.error(err));
+      });
+  }, []);
+
   function handleChange(e) {
     setMissions({
       ...mission,
