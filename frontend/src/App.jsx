@@ -12,7 +12,7 @@ import ModifInter from "@components/ModifInter";
 import FormAsso from "@pages/FormAsso";
 import FormAssoContact from "@pages/FormAssoContact";
 import FormInterv from "@pages/FormInterv";
-import ModifProfilInter from "@pages/ModifProfilInter";
+import ModifProfil from "@pages/ModifProfil";
 import ProfilAdmin from "@components/ProfilAdmin";
 import ProfilInterv from "@components/ProfilInterv";
 import ProfilAsso from "@components/ProfilAsso";
@@ -25,7 +25,6 @@ import BackOfficeAdminMissionTerminee from "@components/BackOfficeAdminMissionTe
 import BackOfficeLectureMessage from "@components/BackOfficeLectureMessage";
 import PrivateRoute from "@services/PrivateRoute";
 import BackOfficeListeUsers from "@components/BackOfficeListeUsers";
-import ModifProfilAsso from "@pages/ModifProfilAsso";
 import ExportContext from "./contexts/Context";
 import "@style/App.css";
 
@@ -75,28 +74,16 @@ function App() {
             }
           />
           <Route
-            path="mon_profil_intervenant"
+            path="mon_profil"
             element={
               <PrivateRoute
                 isAllowed={
                   infoUser.role === "administrateur" ||
-                  infoUser.role === "intervenant"
-                }
-              >
-                <ModifProfilInter />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="mon_profil_association"
-            element={
-              <PrivateRoute
-                isAllowed={
-                  infoUser.role === "administrateur" ||
+                  infoUser.role === "intervenant" ||
                   infoUser.role === "association"
                 }
               >
-                <ModifProfilAsso />
+                <ModifProfil />
               </PrivateRoute>
             }
           />

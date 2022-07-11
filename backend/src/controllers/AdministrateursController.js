@@ -94,6 +94,26 @@ class AdministrateursController {
     });
   };
 
+  static editMDP = (req, res) => {
+    const { id } = req.params;
+    const password = req.body.newPassword;
+    hashPassword(password).then((hashedPassword) => {
+      models.administrateurs
+        .updateMDP(hashedPassword, id)
+        .then(([result]) => {
+          if (result.affectedRows === 0) {
+            res.sendStatus(404);
+          } else {
+            res.status(200).json(password);
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+          res.sendStatus(500);
+        });
+    });
+  };
+
   static delete = (req, res) => {
     models.administrateurs
       .delete(req.params.id)

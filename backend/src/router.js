@@ -54,6 +54,11 @@ router.put(
   middlewareAdministrateur,
   AdministrateursController.edit
 );
+router.put(
+  "/administrateurs/mpd/:id",
+  verifyMDP,
+  AdministrateursController.editMDP
+);
 router.post(
   "/administrateurs",
   middlewareAdministrateur,

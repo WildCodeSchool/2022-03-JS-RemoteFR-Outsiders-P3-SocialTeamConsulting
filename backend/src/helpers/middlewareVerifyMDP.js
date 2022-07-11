@@ -1,11 +1,23 @@
 const models = require("../models");
 const { verifyPassword } = require("./auth");
+const { verifyAccessToken } = require("./verifyAccessToken");
 
-const verifyMDP = (req, res, next) => {
+const verifyMDP = async (req, res, next) => {
   const { id } = req.params;
   const { password } = req.body;
   let hashedPassword = "";
-  models.intervenants
+  let model = "";
+  const data = await verifyAccessToken(req.cookies.user_token);
+  if (data.role === "association") {
+    model = models.associations;
+  }
+  if (data.role === "intervenant") {
+    model = models.intervenants;
+  }
+  if (data.role === "administrateur") {
+    model = models.administrateur;
+  }
+  model
     .find(id)
     .then((result) => {
       hashedPassword = result[0][0].password;
