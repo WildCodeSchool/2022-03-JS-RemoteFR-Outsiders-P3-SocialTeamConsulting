@@ -25,7 +25,8 @@ function HistoryMissions() {
         .get(ENDPOINTROLE)
         .then((res) => {
           setUser(
-            res.data.filter((thisUser) => thisUser.email === infoUser.email)[0].id
+            res.data.filter((thisUser) => thisUser.email === infoUser.email)[0]
+              .id
           );
         })
         .catch((err) => {
