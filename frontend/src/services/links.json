@@ -1,10 +1,10 @@
 [
   {
-  "section": "Historique des missions",
-  "link": "/back_office/historique_missions",
-  "association": true,
-  "intervenant": true,
-  "administrateur": false
+    "section": "Historique des missions",
+    "link": "/back_office/historique_missions",
+    "association": true,
+    "intervenant": true,
+    "administrateur": false
   },
   {
     "section": "Créer une mission",
@@ -47,6 +47,13 @@
     "association": false,
     "intervenant": false,
     "administrateur": true
+  },
+  {
+    "section": "Mon profil",
+    "link": "/back_office/mon_profil_intervenant",
+    "association": false,
+    "intervenant": true,
+    "administrateur": false
   },
   {
     "section": "Déconnexion",
