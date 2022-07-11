@@ -15,6 +15,9 @@ const {
   AccepteController,
   MessagesController,
 } = require("./controllers");
+const {
+  middlewareAdministrateur,
+} = require("./helpers/middlewareAdministrateur");
 
 const router = express.Router();
 
@@ -24,7 +27,11 @@ router.put("/items/:id", ItemController.edit);
 router.post("/items", ItemController.add);
 router.delete("/items/:id", ItemController.delete);
 
-router.get("/administrateurs", AdministrateursController.browse);
+router.get(
+  "/administrateurs",
+  middlewareAdministrateur,
+  AdministrateursController.browse
+);
 router.get(
   "/administrateurs/bymail/:email",
   AdministrateursController.browseByEmail
