@@ -33,3 +33,7 @@
 .listTitle {
   margin-bottom: 2rem;
 }
+
+p:hover {
+  cursor: pointer;
+}
