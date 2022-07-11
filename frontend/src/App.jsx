@@ -46,7 +46,7 @@ function App() {
             </PrivateRoute>
           }
         >
-          <Route
+        <Route
             index
             element={
               <PrivateRoute
@@ -56,7 +56,11 @@ function App() {
                   infoUser.role === "intervenant"
                 }
               >
-                <HistoryMissions />
+                {infoUser.role === "administrateur" ? (
+                  <BackOfficeLectureMessage />
+                ) : (
+                  <HistoryMissions />
+                )}
               </PrivateRoute>
             }
           />
