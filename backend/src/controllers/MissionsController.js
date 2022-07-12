@@ -2,17 +2,17 @@ const models = require("../models");
 const etat = require("../JSON/MissionStates.json");
 
 class MissionsController {
-  static browse = (req, res) => {
-    models.missions
-      .findAll()
-      .then(([rows]) => {
-        res.send(rows);
-      })
-      .catch((err) => {
-        console.error(err);
-        res.sendStatus(500);
-      });
-  };
+  // static browse = (req, res) => {
+  //   models.missions
+  //     .findAll()
+  //     .then(([rows]) => {
+  //       res.send(rows);
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //       res.sendStatus(500);
+  //     });
+  // };
 
   static browseMissionAccepte = (req, res) => {
     models.missions
@@ -74,21 +74,21 @@ class MissionsController {
       });
   };
 
-  static read = (req, res) => {
-    models.missions
-      .find(req.params.id)
-      .then(([rows]) => {
-        if (rows[0] == null) {
-          res.sendStatus(404);
-        } else {
-          res.send(rows[0]);
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-        res.sendStatus(500);
-      });
-  };
+  // static read = (req, res) => {
+  //   models.missions
+  //     .find(req.params.id)
+  //     .then(([rows]) => {
+  //       if (rows[0] == null) {
+  //         res.sendStatus(404);
+  //       } else {
+  //         res.send(rows[0]);
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //       res.sendStatus(500);
+  //     });
+  // };
 
   static edit = (req, res) => {
     const { isValidated } = req.body;
@@ -179,17 +179,17 @@ class MissionsController {
       });
   };
 
-  static delete = (req, res) => {
-    models.missions
-      .delete(req.params.id)
-      .then(() => {
-        res.sendStatus(204);
-      })
-      .catch((err) => {
-        console.error(err);
-        res.sendStatus(500);
-      });
-  };
+  // static delete = (req, res) => {
+  //   models.missions
+  //     .delete(req.params.id)
+  //     .then(() => {
+  //       res.sendStatus(204);
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //       res.sendStatus(500);
+  //     });
+  // };
 
   static browseMissionsNotAccepted = (req, res) => {
     const userId = req.params.id;
