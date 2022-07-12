@@ -24,8 +24,8 @@ class MessagesManager extends AbstractManager {
   close(messageID) {
     return this.connection.query(
       `update ${MessagesManager.table}
-       SET ishandle = 1
-       WHERE message.id = ?`,
+       SET ishandled = 1
+       WHERE id = ?`,
       [messageID]
     );
   }
