@@ -187,7 +187,7 @@ router.delete(
 
 router.post("/messages", MessagesController.add);
 router.get("/messages", middlewareAdministrateur, MessagesController.browse);
-router.put("/messages/id", MessagesController.close);
+router.put("/messages/:id", MessagesController.close);
 
 router.get("/auth/update", userTypeCheck, AuthController.verifCookie);
 router.post("/auth", userTypeCheck, AuthController.session);
