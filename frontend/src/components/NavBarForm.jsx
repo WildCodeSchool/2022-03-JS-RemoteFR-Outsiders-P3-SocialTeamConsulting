@@ -73,7 +73,7 @@ function NavBarForm(showForm) {
           </button>
         </div>
       </form>
-      {infoUser.email !== undefined ? (
+      {infoUser.email !== undefined && infoUser.email !== null ? (
         <div
           className="button-blue navbar-input"
           onClick={() => Deconnexion(navigate, setInfoUser)}
