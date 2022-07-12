@@ -28,6 +28,13 @@
     "administrateur": true
   },
   {
+    "section": "* Missions : Valider une mission *",
+    "link": "/back_office/validation_mission",
+    "association": false,
+    "intervenant": false,
+    "administrateur": true
+  },
+  {
     "section": "* Missions : Choisir un intervenant *",
     "link": "/back_office/validation_intervenant",
     "association": false,
@@ -37,6 +44,13 @@
   {
     "section": "* Missions : Changer l'intervenant * ",
     "link": "/back_office/modification_mission_intervenant",
+    "association": false,
+    "intervenant": false,
+    "administrateur": true
+  },
+  {
+    "section": "* Missions : Terminer une mission *",
+    "link": "/back_office/terminer_mission",
     "association": false,
     "intervenant": false,
     "administrateur": true

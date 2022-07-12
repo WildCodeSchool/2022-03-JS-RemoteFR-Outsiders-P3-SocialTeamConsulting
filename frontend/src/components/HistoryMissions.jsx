@@ -59,9 +59,8 @@ function HistoryMissions() {
       .catch((err) => console.error(err));
   }, [user, update]);
 
-  const handleAnnulationMission = (e) => {
-    console.error(e.target.value);
-    const ENDPOINTANNULATION = `/accepte/${e.target.value}/${user}`;
+  const handleAnnulationMission = (missionId) => {
+    const ENDPOINTANNULATION = `/accepte/annulation/${missionId}/${user}`;
     api
       .put(ENDPOINTANNULATION)
       .then((result) => {
@@ -81,7 +80,7 @@ function HistoryMissions() {
             type="button"
             className="button-blue"
             value={missionId}
-            onClick={handleAnnulationMission}
+            onClick={() => handleAnnulationMission(missionId)}
           >
             Annuler ma candidature
           </button>
