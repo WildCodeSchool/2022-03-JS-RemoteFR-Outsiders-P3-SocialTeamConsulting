@@ -1,5 +1,8 @@
-const middlewareAdministrateur = (req, res, next) => {
-  if (req.body.userType === "administrateur") {
+const { verifyAccessToken } = require("./verifyAccessToken");
+
+const middlewareAdministrateur = async (req, res, next) => {
+  const data = await verifyAccessToken(req.cookies.user_token);
+  if (data.role === "administrateur") {
     next();
   }
 };

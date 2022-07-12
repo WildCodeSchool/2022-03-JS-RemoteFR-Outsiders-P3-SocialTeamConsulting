@@ -29,6 +29,13 @@ class AbstractManager {
     );
   }
 
+  updateMDP(password, intervenant) {
+    return this.connection.query(
+      `update ${this.table} set password = ? where id = ?`,
+      [password, intervenant]
+    );
+  }
+
   delete(id) {
     return this.connection.query(`delete from ${this.table} where id = ?`, [
       id,
