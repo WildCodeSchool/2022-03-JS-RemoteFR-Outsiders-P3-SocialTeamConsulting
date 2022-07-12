@@ -43,7 +43,6 @@ function BackOfficeLectureMessage() {
         .map((message) => {
           return mapMessages(message, handleOnclick);
         })}
-      <hr className="lecture-hr" />
       <h2 className="lecture-titre">Archive des messages</h2>
       {messages
         .filter((message) => {

@@ -1,6 +1,6 @@
 .lecture-titre {
   font-size: 2rem;
-  padding: 2rem 0;
+  margin: 4rem 0;
 }
 
 .lecture-message {
@@ -35,7 +35,8 @@
 .lecture-hr {
   content: "";
   display: block;
-  width: 100%;
+  width: 30%;
+  margin: 2rem auto;
   height: 0.5rem;
   position: relative;
   background-color: var(--color-highlight);
