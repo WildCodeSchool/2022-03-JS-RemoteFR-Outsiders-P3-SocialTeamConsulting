@@ -78,7 +78,7 @@ function BackOfficeListeUsers() {
                 })
               }
             >
-              <p>{`${administrateur.nom} ${administrateur.prenom}`}</p>
+              <p className="admin">{`${administrateur.nom} ${administrateur.prenom}`}</p>
             </div>
           );
         })}
