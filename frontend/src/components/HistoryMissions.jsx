@@ -11,46 +11,24 @@ function HistoryMissions() {
 
   useEffect(() => {
     const ENDPOINTINTERVENANT = "/intervenants";
-    const ENDPOINTASSOCIATION = "/associations";
-    let ENDPOINTROLE = "";
-    if (infoUser.role === "intervenant") {
-      ENDPOINTROLE = ENDPOINTINTERVENANT;
-    }
-    if (infoUser.role === "association") {
-      ENDPOINTROLE = ENDPOINTASSOCIATION;
-    }
 
-    if (infoUser.role !== "administrateur") {
-      api
-        .get(ENDPOINTROLE)
-        .then((res) => {
-          setUser(
-            res.data.filter((thisUser) => thisUser.email === infoUser.email)[0]
-              .id
-          );
-        })
-        .catch((err) => {
-          console.error(console.error(err));
-        });
-    }
+    api
+      .get(ENDPOINTINTERVENANT)
+      .then((res) => {
+        setUser(
+          res.data.filter(
+            (intervenant) => intervenant.email === infoUser.email
+          )[0].id
+        );
+      })
+      .catch((err) => {
+        console.error(console.error(err));
+      });
   }, []);
-
-  const ENDPOINTMISSIONSINTERVENANT = `/missions/history/${user}`;
-  const ENDPOINTMISSIONSASSOCIATION = `/missions/assohistory/${user}`;
-  const ENDPOINTMISSIONSADMINISTRATEUR = `/missions`;
-  let ENDPOINT = "";
-  if (infoUser.role === "intervenant") {
-    ENDPOINT = ENDPOINTMISSIONSINTERVENANT;
-  }
-  if (infoUser.role === "association") {
-    ENDPOINT = ENDPOINTMISSIONSASSOCIATION;
-  }
-  if (infoUser.role === "administrateur") {
-    ENDPOINT = ENDPOINTMISSIONSADMINISTRATEUR;
-  }
 
   const [missions, setMissions] = useState([]);
   useEffect(() => {
+    const ENDPOINT = `/missions/history/${user}`;
     api
       .get(ENDPOINT)
       .then((res) => {
@@ -74,21 +52,18 @@ function HistoryMissions() {
   };
 
   const annulationMissionArea = (missionId) => {
-    if (infoUser.role === "intervenant") {
-      return (
-        <div className="synthesis-validation_area">
-          <button
-            type="button"
-            className="button-blue"
-            value={missionId}
-            onClick={handleAnnulationMission}
-          >
-            Annuler ma candidature
-          </button>
-        </div>
-      );
-    }
-    return "";
+    return (
+      <div className="synthesis-validation_area">
+        <button
+          type="button"
+          className="button-blue"
+          value={missionId}
+          onClick={handleAnnulationMission}
+        >
+          Annuler ma candidature
+        </button>
+      </div>
+    );
   };
 
   return (
@@ -100,12 +75,12 @@ function HistoryMissions() {
 
       <div className="legende">
         <div>Légende : </div>
-        <div className="is-refused-legend">refusé :</div>
-        <div className="pending-validation-legend">
-          En attente de validation :
-        </div>
-        <div className="is-validated-legend">Validé : </div>
-        <div className="is-pourvue-legend">Pourvue : </div>
+        <div>refusé :</div>
+        <div className="is-refused-legend"> </div>
+        <div>En attente de validation :</div>
+        <div className="pending-validation-legend"> </div>
+        <div>Validé : </div>
+        <div className="is-validated-legend"> </div>
       </div>
 
       <div className="card">
