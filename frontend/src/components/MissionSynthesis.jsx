@@ -15,7 +15,7 @@ function MissionSynthesis({
 }) {
   const dateDebut = new Date(mission.date_debut);
   const dateFin = new Date(mission.date_fin);
-  const duration = 1;
+  const duration = mission.total_heure;
   const options = {
     weekday: "long",
     year: "numeric",
