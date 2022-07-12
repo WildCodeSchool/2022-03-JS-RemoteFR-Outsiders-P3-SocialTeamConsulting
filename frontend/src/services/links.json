@@ -4,7 +4,7 @@
     "link": "/back_office/historique_missions",
     "association": true,
     "intervenant": true,
-    "administrateur": false
+    "administrateur": true
   },
   {
     "section": "Créer une mission",
@@ -18,7 +18,7 @@
     "link": "/back_office/missions_disponibles",
     "association": false,
     "intervenant": true,
-    "administrateur": true
+    "administrateur": false
   },
   {
     "section": "* Liste des utilisateurs *",
