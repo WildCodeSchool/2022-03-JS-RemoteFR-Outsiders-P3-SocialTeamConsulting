@@ -114,7 +114,8 @@ class AccepteController {
 
   // passe les inter de isvalidated 2 et 1 a 0 = reinitialise
   static updateRemoveInter = (req, res) => {
-    const { intervenantID, missionID } = req.body;
+    const { missionID } = req.body;
+    const intervenantID = req.body.choiceInt;
     models.accepte.updateRemoveEtatRefusAgain(intervenantID, missionID);
 
     models.accepte
