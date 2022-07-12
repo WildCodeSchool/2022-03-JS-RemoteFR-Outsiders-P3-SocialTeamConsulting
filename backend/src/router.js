@@ -165,7 +165,7 @@ router.get(
 );
 
 router.put(
-  "/accepte/:missionId/:userId",
+  "/accepte/annulation/:missionId/:userId",
   AccepteController.deleteAppliedMissionByIntervenant
 );
 
