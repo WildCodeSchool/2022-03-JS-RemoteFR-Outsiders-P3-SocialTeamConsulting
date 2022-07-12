@@ -12,7 +12,7 @@ import ModifInter from "@components/ModifInter";
 import FormAsso from "@pages/FormAsso";
 import FormAssoContact from "@pages/FormAssoContact";
 import FormInterv from "@pages/FormInterv";
-import ModifProfilInter from "@pages/ModifProfilInter";
+import ModifProfil from "@pages/ModifProfil";
 import ProfilAdmin from "@components/ProfilAdmin";
 import ProfilInterv from "@components/ProfilInterv";
 import ProfilAsso from "@components/ProfilAsso";
@@ -74,15 +74,16 @@ function App() {
             }
           />
           <Route
-            path="mon_profil_intervenant"
+            path="mon_profil"
             element={
               <PrivateRoute
                 isAllowed={
                   infoUser.role === "administrateur" ||
-                  infoUser.role === "intervenant"
+                  infoUser.role === "intervenant" ||
+                  infoUser.role === "association"
                 }
               >
-                <ModifProfilInter />
+                <ModifProfil />
               </PrivateRoute>
             }
           />
