@@ -11,7 +11,7 @@
     "link": "/back_office/post_mission",
     "association": true,
     "intervenant": false,
-    "administrateur": true
+    "administrateur": false
   },
   {
     "section": "Missions Disponibles",
