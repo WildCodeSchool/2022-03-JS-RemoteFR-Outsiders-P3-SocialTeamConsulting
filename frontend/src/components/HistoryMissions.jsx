@@ -52,6 +52,8 @@ function HistoryMissions() {
       .then((res) => {
         if (filter.encours && filter.valide && filter.refus) {
           setMissions(res.data);
+        } else if (!filter.encours && !filter.valide && !filter.refus) {
+          setMissions([]);
         } else if (filter.encours && filter.valide) {
           setMissions(res.data.filter((mission) => mission.isvalidated < 2));
         } else if (filter.encours && filter.refus) {
@@ -62,7 +64,7 @@ function HistoryMissions() {
           setMissions(res.data.filter((mission) => mission.isvalidated === 2));
         } else if (filter.encours) {
           setMissions(res.data.filter((mission) => mission.isvalidated === 0));
-        } else if (filter.isValidated) {
+        } else if (filter.valide) {
           setMissions(res.data.filter((mission) => mission.isvalidated === 1));
         }
       })
