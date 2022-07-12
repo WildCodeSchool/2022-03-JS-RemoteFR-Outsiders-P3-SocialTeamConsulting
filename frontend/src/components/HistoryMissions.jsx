@@ -27,12 +27,44 @@ function HistoryMissions() {
   }, []);
 
   const [missions, setMissions] = useState([]);
+  const [isRefused, setIsRefused] = useState(false);
+  const [isValidated, setIsValidated] = useState(true);
+  const [isPending, setIsPending] = useState(true);
+  const [filter, setFilter] = useState({
+    refus: isRefused,
+    encours: isPending,
+    valide: isValidated,
+  });
+
+  useEffect(() => {
+    setFilter({
+      refus: isRefused,
+      encours: isPending,
+      valide: isValidated,
+    });
+    setUpdate(!update);
+  }, [isRefused, isPending, isValidated]);
+
   useEffect(() => {
     const ENDPOINT = `/missions/history/${user}`;
     api
       .get(ENDPOINT)
       .then((res) => {
-        setMissions(res.data);
+        if (filter.encours && filter.valide && filter.refus) {
+          setMissions(res.data);
+        } else if (filter.encours && filter.valide) {
+          setMissions(res.data.filter((mission) => mission.isvalidated < 2));
+        } else if (filter.encours && filter.refus) {
+          setMissions(res.data.filter((mission) => mission.isvalidated !== 1));
+        } else if (filter.valide && filter.refus) {
+          setMissions(res.data.filter((mission) => mission.isvalidated !== 0));
+        } else if (filter.refus) {
+          setMissions(res.data.filter((mission) => mission.isvalidated === 2));
+        } else if (filter.encours) {
+          setMissions(res.data.filter((mission) => mission.isvalidated === 0));
+        } else if (filter.isValidated) {
+          setMissions(res.data.filter((mission) => mission.isvalidated === 1));
+        }
       })
       .catch((err) => console.error(err));
   }, [user, update]);
@@ -68,6 +100,30 @@ function HistoryMissions() {
     return "";
   };
 
+  const handleRefusedFilter = (e) => {
+    if (e.target.checked) {
+      setIsRefused(true);
+    } else {
+      setIsRefused(false);
+    }
+  };
+
+  const handlePendingFilter = (e) => {
+    if (e.target.checked) {
+      setIsPending(true);
+    } else {
+      setIsPending(false);
+    }
+  };
+
+  const handleValidatedFilter = (e) => {
+    if (e.target.checked) {
+      setIsValidated(true);
+    } else {
+      setIsValidated(false);
+    }
+  };
+
   return (
     <>
       <div className="header-mission-synthesis">
@@ -91,30 +147,66 @@ function HistoryMissions() {
       <div className="filters">
         <form action="" method="post" className="filter-from" onSubmit="">
           <label htmlFor="refused">
-            <input
-              type="checkbox"
-              value="refusées"
-              id="refused"
-              name="refused"
-            />
+            {isRefused ? (
+              <input
+                type="checkbox"
+                value="refusées"
+                id="refused"
+                name="refused"
+                checked
+                onChange={handleRefusedFilter}
+              />
+            ) : (
+              <input
+                type="checkbox"
+                value="refusées"
+                id="refused"
+                name="refused"
+                onChange={handleRefusedFilter}
+              />
+            )}
             <p className="inline"> : Refusées </p>
           </label>
           <label htmlFor="pending">
-            <input
-              type="checkbox"
-              value="pending"
-              id="pending"
-              name="pending"
-            />
+            {isPending ? (
+              <input
+                type="checkbox"
+                value="pending"
+                id="pending"
+                name="pending"
+                checked
+                onChange={handlePendingFilter}
+              />
+            ) : (
+              <input
+                type="checkbox"
+                value="pending"
+                id="pending"
+                name="pending"
+                onChange={handlePendingFilter}
+              />
+            )}
             <p className="inline"> : En attente de validation </p>
           </label>
           <label htmlFor="validated">
-            <input
-              type="checkbox"
-              value="validated"
-              id="validated"
-              name="validated"
-            />
+            {isValidated ? (
+              <input
+                type="checkbox"
+                value="validated"
+                id="validated"
+                name="validated"
+                checked
+                onChange={handleValidatedFilter}
+              />
+            ) : (
+              <input
+                type="checkbox"
+                value="validated"
+                id="validated"
+                name="validated"
+                onChange={handleValidatedFilter}
+              />
+            )}
             <p className="inline"> : Validées </p>
           </label>
           <label htmlFor="month-selection">
