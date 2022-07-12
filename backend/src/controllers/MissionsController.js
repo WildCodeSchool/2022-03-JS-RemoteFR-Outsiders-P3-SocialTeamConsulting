@@ -14,6 +14,18 @@ class MissionsController {
       });
   };
 
+  static browseMissionAccepte = (req, res) => {
+    models.missions
+      .findAllMissionAccepte()
+      .then(([rows]) => {
+        res.send(rows);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(500);
+      });
+  };
+
   static browseWithAssociation = (req, res) => {
     models.missions
       .findAllWithAssociation()

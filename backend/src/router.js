@@ -120,6 +120,11 @@ router.get(
   MissionsController.browseWithAssociation
 );
 router.get(
+  "/missions/accepte",
+  middlewareAll,
+  MissionsController.browseMissionAccepte
+);
+router.get(
   "/missions/validated",
   middlewareAll,
   MissionsController.browseValidatedMissions
