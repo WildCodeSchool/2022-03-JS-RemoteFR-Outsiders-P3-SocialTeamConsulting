@@ -63,6 +63,10 @@
   color: var(--color-grey);
   background-color: salmon;
 }
+.moniteur {
+  color: var(--color-black);
+  background-color: gold;
+}
 .autre {
   color: var(--color-grey);
   background-color: royalblue;

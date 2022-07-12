@@ -38,8 +38,7 @@ function HistoryMissions() {
   }, [user, update]);
 
   const handleAnnulationMission = (e) => {
-    console.error(e.target.value);
-    const ENDPOINTANNULATION = `/accepte/${e.target.value}/${user}`;
+    const ENDPOINTANNULATION = `/accepte/annulation/${e.target.value}/${user}`;
     api
       .put(ENDPOINTANNULATION)
       .then((result) => {
@@ -52,41 +51,50 @@ function HistoryMissions() {
   };
 
   const annulationMissionArea = (missionId) => {
-    return (
-      <div className="synthesis-validation_area">
-        <button
-          type="button"
-          className="button-blue"
-          value={missionId}
-          onClick={handleAnnulationMission}
-        >
-          Annuler ma candidature
-        </button>
-      </div>
-    );
+    if (infoUser.role === "intervenant") {
+      return (
+        <div className="synthesis-validation_area">
+          <button
+            type="button"
+            className="button-blue"
+            value={missionId}
+            onClick={handleAnnulationMission}
+            // je sais que je suis tétu mais ça fonctionne et il n'est écrit nul part que c'est une mauvaise pratique.
+            // un élément de formulaire avec une propriété value renvoie systématiquement l'évenement qui lui est associé avec la valeur de cette propriété value
+          >
+            Annuler ma candidature
+          </button>
+        </div>
+      );
+    }
+    return "";
   };
 
   return (
     <>
-      <h2>
-        Ensemble des missions pour lesquelles j'ai postulé, en cours et
-        effectuées
-      </h2>
+      <div className="header-mission-synthesis">
+        <div>
+          <h2>
+            Ensemble des missions pour lesquelles j'ai postulé, en cours et
+            effectuées
+          </h2>
+        </div>
 
-      <div className="legende">
-        <div>Légende : </div>
-        <div>refusé :</div>
-        <div className="is-refused-legend"> </div>
-        <div>En attente de validation :</div>
-        <div className="pending-validation-legend"> </div>
-        <div>Validé : </div>
-        <div className="is-validated-legend"> </div>
+        <div className="legende">
+          <div>Légende : </div>
+          <div>refusé :</div>
+          <div className="is-refused-legend"> </div>
+          <div>En attente de validation :</div>
+          <div className="pending-validation-legend"> </div>
+          <div>Validé : </div>
+          <div className="is-validated-legend"> </div>
+        </div>
       </div>
 
       <div className="card">
         {missions.length < 1 ? (
           <div>
-            <h1>Il n'y a aucune mission dans votre historique.</h1>
+            <h2>Il n'y a aucune mission dans votre historique.</h2>
           </div>
         ) : (
           missions.map((mission) => {

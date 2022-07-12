@@ -58,11 +58,22 @@
   display: inline;
 }
 
+.header-mission-synthesis > div {
+  display: flex;
+  justify-content: center;
+}
+
 .legende {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
+.legende > div {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
 .masked {
   display: none !important;
 }
