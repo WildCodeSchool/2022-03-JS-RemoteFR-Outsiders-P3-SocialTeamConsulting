@@ -10,14 +10,29 @@ class AbstractManager {
     ]);
   }
 
+  findOne(email) {
+    return this.connection
+      .query("SELECT * FROM associations WHERE email = ?", [email])
+      .then((res) => res[0]);
+  }
+
   findAll() {
-    return this.connection.query(`select * from  ${this.table}`);
+    return this.connection.query(
+      `select * from  ${this.table} ORDER BY nom ASC`
+    );
   }
 
   findByEmail(email) {
     return this.connection.query(
       `select * from  ${this.table} where email = ?`,
       [email]
+    );
+  }
+
+  updateMDP(password, intervenant) {
+    return this.connection.query(
+      `update ${this.table} set password = ? where id = ?`,
+      [password, intervenant]
     );
   }
 

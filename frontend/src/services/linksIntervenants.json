@@ -1,9 +1,0 @@
-[
-  { "section": "Accueil", "link": "/back_office" },
-  { "section": "Missions validées", "link": "/back_office" },
-  { "section": "Offres de missions", "link": "/back_office" },
-  {
-    "section": "Gestion du profil",
-    "link": "/back_office/modification_profil_intervenant"
-  }
-]

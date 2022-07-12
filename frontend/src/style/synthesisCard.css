@@ -1,0 +1,89 @@
+.synthesis {
+  width: 25rem;
+  margin: 1rem auto;
+  overflow: hidden;
+  border-radius: 1em;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.synthesis-container {
+  height: 90%;
+}
+.synthesis-card_header {
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.synthesis-card_header h2 {
+  padding: 0.5rem;
+}
+
+.synthesis-asso,
+.synthesis-date,
+.synthesis-ville,
+.synthesis-description,
+.synthesis-area {
+  padding: 0.5rem;
+}
+
+.synthesis h1,
+.synthesis h2 {
+  text-transform: uppercase;
+}
+.more {
+  cursor: pointer;
+  text-align: end;
+}
+
+.synthesis-heures {
+  font-weight: 400;
+}
+
+.educ_spe {
+  color: var(--color-grey);
+  background-color: var(--color-interaction);
+}
+
+.educ {
+  color: var(--color-grey);
+  background-color: var(--color-highlight);
+}
+.ass_soc {
+  color: var(--color-grey);
+  background-color: var(--color-line-admin);
+}
+.cons_eco {
+  color: var(--color-grey);
+  background-color: var(--color-line-asso);
+}
+.chef {
+  color: var(--color-grey);
+  background-color: salmon;
+}
+.autre {
+  color: var(--color-grey);
+  background-color: royalblue;
+}
+
+.synthesis-footer {
+  content: "";
+  height: 1rem;
+}
+.synthesis-pending-validation {
+  background-color: orange;
+}
+
+.synthesis-is-validated {
+  background-color: green;
+}
+
+.synthesis-is-refused {
+  background-color: red;
+}
+
+.synthesis-pourvue {
+  background-color: var(--color-interaction);
+}

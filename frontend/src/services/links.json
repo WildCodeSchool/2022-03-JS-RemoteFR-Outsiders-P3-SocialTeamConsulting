@@ -1,0 +1,65 @@
+[
+  {
+    "section": "Historique des missions",
+    "link": "/back_office/historique_missions",
+    "association": true,
+    "intervenant": true,
+    "administrateur": true
+  },
+  {
+    "section": "Créer une mission",
+    "link": "/back_office/post_mission",
+    "association": true,
+    "intervenant": false,
+    "administrateur": true
+  },
+  {
+    "section": "Missions Disponibles",
+    "link": "/back_office/missions_disponibles",
+    "association": false,
+    "intervenant": true,
+    "administrateur": false
+  },
+  {
+    "section": "* Liste des utilisateurs *",
+    "link": "/back_office/liste_des_utilisateurs",
+    "association": false,
+    "intervenant": false,
+    "administrateur": true
+  },
+  {
+    "section": "* Missions : Choisir un intervenant *",
+    "link": "/back_office/validation_intervenant",
+    "association": false,
+    "intervenant": false,
+    "administrateur": true
+  },
+  {
+    "section": "* Missions : Changer l'intervenant * ",
+    "link": "/back_office/modification_mission_intervenant",
+    "association": false,
+    "intervenant": false,
+    "administrateur": true
+  },
+  {
+    "section": "* Messages de contact des associations *",
+    "link": "/back_office/lecture_message",
+    "association": false,
+    "intervenant": false,
+    "administrateur": true
+  },
+  {
+    "section": "Mon profil",
+    "link": "/back_office/mon_profil",
+    "association": true,
+    "intervenant": true,
+    "administrateur": true
+  },
+  {
+    "section": "Déconnexion",
+    "link": "",
+    "association": true,
+    "intervenant": true,
+    "administrateur": true
+  }
+]

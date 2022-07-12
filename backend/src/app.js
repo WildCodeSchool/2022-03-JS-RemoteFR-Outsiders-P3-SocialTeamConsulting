@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 const router = require("./router");
 
 const app = express();
@@ -10,10 +11,12 @@ app.use(
   cors({
     origin: process.env.FRONTEND_URL ?? "http://localhost:3000",
     optionsSuccessStatus: 200,
+    credentials: true,
   })
 );
 
 app.use(express.json());
+app.use(cookieParser());
 
 // Serve the public folder for public resources
 app.use(express.static(path.join(__dirname, "../public")));

@@ -1,0 +1,30 @@
+[
+  {
+    "metier": "Assistante de service social",
+    "style": "ass_soc"
+  },
+  {
+    "metier": "Chef de service",
+    "style": "chef"
+  },
+  {
+    "metier": "Conseillère en économie social et familiale",
+    "style": "cons_eco"
+  },
+  {
+    "metier": "Educateur",
+    "style": "educ"
+  },
+  {
+    "metier": "Educateur spécialisé",
+    "style": "educ_spe"
+  },
+  {
+    "metier": "Moniteur",
+    "style": "moniteur"
+  },
+  {
+    "metier": "Autre",
+    "style": "autre"
+  }
+]

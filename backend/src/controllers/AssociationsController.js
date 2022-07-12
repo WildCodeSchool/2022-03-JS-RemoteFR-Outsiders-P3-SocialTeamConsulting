@@ -16,6 +16,18 @@ class AssociationsController {
       });
   };
 
+  static browseByEmail = (req, res) => {
+    models.associations
+      .findByEmail(req.params.email)
+      .then(([rows]) => {
+        res.send(rows);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(500);
+      });
+  };
+
   static read = (req, res) => {
     models.associations
       .find(req.params.id)
@@ -33,19 +45,59 @@ class AssociationsController {
   };
 
   static edit = (req, res) => {
-    const item = req.body;
+    const association = req.body;
 
     // TODO validations (length, format...)
 
-    item.id = parseInt(req.params.id, 10);
+    association.id = req.params.id;
 
     models.associations
-      .update(item)
+      .update(association)
       .then(([result]) => {
         if (result.affectedRows === 0) {
           res.sendStatus(404);
         } else {
           res.sendStatus(204);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(500);
+      });
+  };
+
+  static editMDP = (req, res) => {
+    const { id } = req.params;
+    const password = req.body.newPassword;
+    hashPassword(password).then((hashedPassword) => {
+      models.associations
+        .updateMDP(hashedPassword, id)
+        .then(([result]) => {
+          if (result.affectedRows === 0) {
+            res.sendStatus(404);
+          } else {
+            res.status(200).json(password);
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+          res.sendStatus(500);
+        });
+    });
+  };
+
+  static editEtat = (req, res) => {
+    const association = {
+      etat: req.body.newStatus,
+      id: req.params.id,
+    };
+    models.associations
+      .updateEtat(association)
+      .then(([result]) => {
+        if (result.affectedRows === 0) {
+          res.sendStatus(404);
+        } else {
+          res.sendStatus(201);
         }
       })
       .catch((err) => {

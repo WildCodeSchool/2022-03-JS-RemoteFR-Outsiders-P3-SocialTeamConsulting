@@ -44,6 +44,27 @@ class MissionsManager extends AbstractManager {
     );
   }
 
+  updatePourvue(mission) {
+    return this.connection.query(
+      `update ${MissionsManager.table} set etat = ? where id = ?`,
+      [MissionStates[3], mission]
+    );
+  }
+
+  updateTerminee(mission) {
+    return this.connection.query(
+      `update ${MissionsManager.table} set etat = ? where id = ?`,
+      [MissionStates[4], mission]
+    );
+  }
+
+  updateAccepte(mission) {
+    return this.connection.query(
+      `update ${MissionsManager.table} set etat = ? where id = ?`,
+      [MissionStates[1], mission]
+    );
+  }
+
   findValidatedMissions() {
     return this.connection.query(
       'SELECT m.*, a.nom FROM MISSIONS AS m INNER JOIN associations AS a ON m.associations_id = a.id WHERE m.etat = ("Validé")'
@@ -52,7 +73,25 @@ class MissionsManager extends AbstractManager {
 
   findMyMissions(user) {
     return this.connection.query(
-      `SELECT a.*, m.*, asso.nom AS 'nom_asso' FROM ${this.table} AS m INNER JOIN accepte AS a ON a.missions_id = m.id INNER JOIN associations AS asso ON m.associations_id = asso.id WHERE a.intervenants_id = '${user}' ORDER BY m.date_debut`
+      `SELECT a.*, m.*, asso.nom FROM ${this.table} AS m INNER JOIN accepte AS a ON a.missions_id = m.id INNER JOIN associations AS asso ON m.associations_id = asso.id WHERE a.intervenants_id = '${user}' ORDER BY m.date_debut`
+    );
+  }
+
+  findAssoMissions(assoId) {
+    return this.connection.query(
+      `SELECT * FROM ${this.table}
+       WHERE ${this.table}.associations_id = '${assoId}' ORDER BY ${this.table}.date_debut`
+    );
+  }
+
+  findMyMissionsNotAccepted(userId) {
+    return this.connection.query(
+      `SELECT missions.*, associations.nom FROM ${this.table}
+INNER JOIN associations ON associations.id = ${this.table}.associations_id
+       WHERE ${this.table}.etat="acceptée"
+       AND ${this.table}.id NOT IN (
+          SELECT missions_id FROM accepte WHERE accepte.intervenants_id = ?)`,
+      [userId]
     );
   }
 }

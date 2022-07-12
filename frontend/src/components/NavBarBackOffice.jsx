@@ -1,23 +1,42 @@
-import logo from "@assets/SocialTeamConsultingLogo.ico";
+import React, { useContext, useEffect, useState } from "react";
+
+import logo from "@assets/logo-STC.png";
 import { NavLink, useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import { Deconnexion, api } from "@services/services";
 
 import NavBarBackOfficeLinks from "@components/NavBarBackOfficeLinks";
 
 import genericavatar from "@assets/genericavatar.png";
 
-import DataLinksIntervenants from "@services/linksIntervenants.json";
+import DataLinks from "@services/links.json";
+
+import ExportContext from "../contexts/Context";
 
 import "@style/BackOffice.css";
 import "@style/NavBar.css";
 
 function NavBarBackOffice() {
+  const { infoUser, setInfoUser } = useContext(ExportContext.Context);
+  const [names, setNames] = useState({ nom: "", prenom: "" });
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   const handleisMenuVisible = (isVisible) => {
     setIsMenuVisible(isVisible);
   };
-
   const navigate = useNavigate();
+
+  if (infoUser.role === undefined) {
+    return <div>Accès interdit !</div>;
+  }
+  useEffect(() => {
+    const ENDPOINT = `/${infoUser.role}s/bymail/${infoUser.email}`;
+
+    api
+      .get(ENDPOINT)
+      .then((user) => {
+        setNames({ nom: user.data[0].nom, prenom: user.data[0].prenom });
+      })
+      .catch((err) => console.error(err));
+  }, []);
 
   return (
     <div>
@@ -28,7 +47,7 @@ function NavBarBackOffice() {
               className="navbar-logo"
               src={logo}
               alt="logo de la Social Team Consulting"
-              onClick={() => navigate("/back_office")}
+              onClick={() => navigate("/")}
             />
             <h1>Social Team Consulting</h1>
           </div>
@@ -36,24 +55,46 @@ function NavBarBackOffice() {
             <img src={genericavatar} alt="profile" />
           </div>
           <div className="navbar-desk-name">
-            <h1>Laura Dupond</h1>
+            <h1>
+              {names.prenom} {names.nom}
+            </h1>
           </div>
         </div>
 
         <div className="nav-part-two">
-          {DataLinksIntervenants.map((el) => (
-            <div>
-              <ul>
-                <NavLink to={el.link}>
-                  <div role="button" tabIndex={0} className="navbar-button">
-                    <li className="navbar-li_highlight">
-                      <h2>{el.section}</h2>
-                    </li>
-                  </div>
-                </NavLink>
-              </ul>
-            </div>
-          ))}
+          {DataLinks.filter((r) => r[infoUser.role]).map((el) => {
+            if (el.section === "Déconnexion") {
+              return (
+                <div>
+                  <ul>
+                    <NavLink to={el.link}>
+                      <div role="button" tabIndex={0} className="navbar-button">
+                        <li
+                          className="navbar-li_highlight"
+                          onClick={() => Deconnexion(navigate, setInfoUser)}
+                        >
+                          <h2>{el.section}</h2>
+                        </li>
+                      </div>
+                    </NavLink>
+                  </ul>
+                </div>
+              );
+            }
+            return (
+              <div>
+                <ul>
+                  <NavLink to={el.link}>
+                    <div role="button" tabIndex={0} className="navbar-button">
+                      <li className="navbar-li_highlight">
+                        <h2>{el.section}</h2>
+                      </li>
+                    </div>
+                  </NavLink>
+                </ul>
+              </div>
+            );
+          })}
         </div>
       </div>
 
@@ -67,7 +108,7 @@ function NavBarBackOffice() {
                 className="navbar-logo"
                 src={logo}
                 alt="logo de la Social Team Consulting"
-                onClick={() => navigate("/back_office")}
+                onClick={() => navigate("/")}
               />
             </div>
             <h1 className="title">Social Team Consulting</h1>
@@ -86,6 +127,7 @@ function NavBarBackOffice() {
               <hr className="navbar-hr" />
               <NavBarBackOfficeLinks
                 handleisMenuVisible={handleisMenuVisible}
+                handleDeconnexion={() => Deconnexion(navigate, setInfoUser)}
               />
             </div>
           </nav>
@@ -101,7 +143,9 @@ function NavBarBackOffice() {
                 />
               </div>
               <div className="profile-desc-name">
-                <h2>Laura Dupont</h2>
+                <h2>
+                  {names.prenom} {names.nom}
+                </h2>
               </div>
             </div>
           </div>

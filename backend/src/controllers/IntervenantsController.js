@@ -16,6 +16,18 @@ class IntervenantController {
       });
   };
 
+  static browseByEmail = (req, res) => {
+    models.intervenants
+      .findByEmail(req.params.email)
+      .then(([rows]) => {
+        res.send(rows);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(500);
+      });
+  };
+
   static read = (req, res) => {
     models.intervenants
       .find(req.params.id)
@@ -32,13 +44,25 @@ class IntervenantController {
       });
   };
 
+  static readByEmail = (req, res) => {
+    models.intervenants
+      .findByEmail(req.params.email)
+      .then(([rows]) => {
+        if (rows[0] == null) {
+          res.sendStatus(404);
+        } else {
+          res.send(rows[0]);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(500);
+      });
+  };
+
   static edit = (req, res) => {
     const intervenant = req.body;
-
-    // TODO validations (length, format...)
-
-    intervenant.id = parseInt(req.params.id, 10);
-
+    intervenant.id = req.params.id;
     models.intervenants
       .update(intervenant)
       .then(([result]) => {
@@ -46,6 +70,46 @@ class IntervenantController {
           res.sendStatus(404);
         } else {
           res.sendStatus(204);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(500);
+      });
+  };
+
+  static editMDP = (req, res) => {
+    const { id } = req.params;
+    const password = req.body.newPassword;
+    hashPassword(password).then((hashedPassword) => {
+      models.intervenants
+        .updateMDP(hashedPassword, id)
+        .then(([result]) => {
+          if (result.affectedRows === 0) {
+            res.sendStatus(404);
+          } else {
+            res.status(200).json(password);
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+          res.sendStatus(500);
+        });
+    });
+  };
+
+  static editEtat = (req, res) => {
+    const intervenant = {
+      etat: req.body.newStatus,
+      id: req.params.id,
+    };
+    models.intervenants
+      .updateEtat(intervenant)
+      .then(([result]) => {
+        if (result.affectedRows === 0) {
+          res.sendStatus(404);
+        } else {
+          res.sendStatus(201);
         }
       })
       .catch((err) => {

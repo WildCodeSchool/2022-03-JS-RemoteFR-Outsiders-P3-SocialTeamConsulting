@@ -8,20 +8,23 @@
   width: 40%;
 }
 
-input {
+.backoffice_profilinterv_form input,
+.backoffice_profilasso_form input {
   border: 0.125rem solid #f79a33;
   border-radius: 0.6rem;
   text-align: center;
   width: 100%;
 }
 
-.backoffice_profilinterv_submit_button {
+.backoffice_profilinterv_submit_button,
+.backoffice_profilasso_submit_button {
   width: 100%;
   display: flex;
   justify-content: center;
 }
 
-.backoffice_profilinterv_submit_button .button-blue {
+.backoffice_profilinterv_submit_button .button-blue,
+.backoffice_profilasso_submit_button .button-blue {
   margin: 2rem auto;
 }
 

@@ -50,6 +50,18 @@ class MissionsController {
       });
   };
 
+  static browseAssoMissionsHistory = (req, res) => {
+    models.missions
+      .findAssoMissions(req.params.id)
+      .then(([rows]) => {
+        res.send(rows);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(500);
+      });
+  };
+
   static read = (req, res) => {
     models.missions
       .find(req.params.id)
@@ -103,11 +115,76 @@ class MissionsController {
       });
   };
 
+  static editPourvue = (req, res) => {
+    const { id } = req.params;
+    models.missions
+      .updatePourvue(id)
+      .then(([result]) => {
+        if (result.affectedRows === 0) {
+          res.sendStatus(404);
+        } else {
+          res.sendStatus(204);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(500);
+      });
+  };
+
+  static editTerminee = (req, res) => {
+    const { id } = req.params;
+    models.missions
+      .updateTerminee(id)
+      .then(([result]) => {
+        if (result.affectedRows === 0) {
+          res.sendStatus(404);
+        } else {
+          res.sendStatus(204);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(500);
+      });
+  };
+
+  // passe la mission de pourvue a acceptee
+  static editAccepte = (req, res) => {
+    const { id } = req.params;
+    models.missions
+      .updateAccepte(id)
+      .then(([result]) => {
+        if (result.affectedRows === 0) {
+          res.sendStatus(404);
+        } else {
+          res.sendStatus(204);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(500);
+      });
+  };
+
   static delete = (req, res) => {
     models.missions
       .delete(req.params.id)
       .then(() => {
         res.sendStatus(204);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(500);
+      });
+  };
+
+  static browseMissionsNotAccepted = (req, res) => {
+    const userId = req.params.id;
+    models.missions
+      .findMyMissionsNotAccepted(userId)
+      .then(([rows]) => {
+        res.send(rows);
       })
       .catch((err) => {
         console.error(err);
