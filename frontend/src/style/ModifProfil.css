@@ -1,0 +1,51 @@
+.modifProfil {
+  text-align: center;
+}
+
+.modifProfil-card-container {
+  width: 80%;
+  padding: 1rem;
+  margin: 1rem auto;
+  overflow: hidden;
+  border-radius: 1em;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.modifProfil-h2 {
+  margin: 1rem auto;
+}
+
+.modifProfil-input {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.modifProfil-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.modifProfil-input-container {
+  display: flex;
+  width: 60%;
+}
+
+
+.modifProfil-input input[type="text"],
+.modifProfil-input input[type="password"] {
+  padding: 0 0.2rem;
+  width: 100%;
+}
+
+.modifProfil-icon-container{
+  display: flex;
+  align-items: center;
+}
+
+.modifProfil-icon {
+  line-height: 1px;
+}

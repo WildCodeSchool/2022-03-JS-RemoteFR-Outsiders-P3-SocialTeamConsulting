@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import { notifySuccess, notifyError, api } from "@services/services";
+import { BiShowAlt, BiHide } from "react-icons/bi";
 import ExportContext from "../contexts/Context";
+
+import "../style/ModifProfil.css";
 
 function ModifProfil() {
   const { infoUser } = useContext(ExportContext.Context);
@@ -30,12 +33,22 @@ function ModifProfil() {
       });
   }, [user]);
 
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [oldPassIsVisible, setoldPassIsVisible] = useState(false);
+  const [newPasswordIsVisible, setnewPasswordIsVisible] = useState(false);
+  const [newPassConfIsVisible, setnewPassConfIsVisible] = useState(false);
   const [newPass, setNewPass] = useState();
 
-  const handleShowPassword = (e) => {
+  const handleShowPassword = (e, inputChoice) => {
     e.preventDefault();
-    setIsPasswordVisible(!isPasswordVisible);
+    if (inputChoice === "newPassword") {
+      setnewPasswordIsVisible(!newPasswordIsVisible);
+    }
+    if (inputChoice === "newPassConf") {
+      setnewPassConfIsVisible(!newPassConfIsVisible);
+    }
+    if (inputChoice === "oldPass") {
+      setoldPassIsVisible(!oldPassIsVisible);
+    }
   };
 
   function handleChange(e) {
@@ -61,56 +74,101 @@ function ModifProfil() {
   };
 
   return (
-    <>
-      <div>
-        <h1>
-          {user.nom} {user.prenom}
-        </h1>
-        <p>{user.adresse}</p>
-        <p>
-          {user.code_postal} {user.ville}
-        </p>
-        <p>{user.email}</p>
-        <p>{user.telephone}</p>
-      </div>
-      <div>
+    <div className="modifProfil">
+      <h1>
+        {user.nom} {user.prenom}
+      </h1>
+      <p>{user.adresse}</p>
+      <p>
+        {user.code_postal} {user.ville}
+      </p>
+      <p>{user.email}</p>
+      <p>{user.telephone}</p>
+      <div className="modifProfil-card-container">
+        <h2 className="modifProfil-h2">Changer mon mot de passe</h2>
         <form method="PUT" action="#">
-          <div>
-            <label htmlFor="passNew">
-              Nouveau mot de passe
-              <input
-                type={isPasswordVisible ? "text" : "password"}
-                name="newPassword"
-                onChange={handleChange}
-                id="passNew"
-              />
-            </label>
-            <button type="button" onClick={(e) => handleShowPassword(e)}>
-              {isPasswordVisible ? "Hide" : "Show"}
-            </button>
-          </div>
-
-          <div>
-            <label htmlFor="passNewTry">
-              Confirmation du mot de passe
-              <input
-                type={isPasswordVisible ? "text" : "password"}
-                name="newPassConf"
-                onChange={handleChange}
-                id="passNewTry"
-              />
-            </label>
-          </div>
-          <div>
-            <label htmlFor="passOld">
-              Ancien mot de passe
-              <input
-                type={isPasswordVisible ? "text" : "password"}
-                name="oldPass"
-                onChange={handleChange}
-                id="passOld"
-              />
-            </label>
+          <div className="modifProfil-container">
+            <div className="modifProfil-input-container">
+              <label className="modifProfil-input" htmlFor="passOld">
+                <input
+                  placeholder="mot de passe actuel"
+                  type={oldPassIsVisible ? "text" : "password"}
+                  name="oldPass"
+                  onChange={handleChange}
+                  id="passOld"
+                />
+              </label>
+              <div
+                className="modifProfil-icon-container"
+                role="button"
+                tabIndex={0}
+                onClick={(e) => handleShowPassword(e, "oldPass")}
+              >
+                {oldPassIsVisible ? (
+                  <div className="modifProfil-icon">
+                    <BiHide />
+                  </div>
+                ) : (
+                  <div className="modifProfil-icon">
+                    <BiShowAlt />
+                  </div>
+                )}
+              </div>
+            </div>
+            <div className="modifProfil-input-container">
+              <label className="modifProfil-input" htmlFor="passNew">
+                <input
+                  placeholder="nouveau mot de passe"
+                  type={newPasswordIsVisible ? "text" : "password"}
+                  name="newPassword"
+                  onChange={handleChange}
+                  id="passNew"
+                />
+              </label>
+              <div
+                className="modifProfil-icon-container"
+                role="button"
+                tabIndex={0}
+                onClick={(e) => handleShowPassword(e, "newPassword")}
+              >
+                {newPasswordIsVisible ? (
+                  <div className="modifProfil-icon">
+                    <BiHide />
+                  </div>
+                ) : (
+                  <div className="modifProfil-icon">
+                    <BiShowAlt />
+                  </div>
+                )}
+              </div>
+            </div>
+            <div className="modifProfil-input-container">
+              <label className="modifProfil-input" htmlFor="passNewTry">
+                <input
+                  placeholder="confirmer le nouveau mot de passe"
+                  type={newPassConfIsVisible ? "text" : "password"}
+                  name="newPassConf"
+                  onChange={handleChange}
+                  id="passNewTry"
+                />
+              </label>
+              <div
+                className="modifProfil-icon-container"
+                role="button"
+                tabIndex={0}
+                onClick={(e) => handleShowPassword(e, "newPassConf")}
+              >
+                {newPassConfIsVisible ? (
+                  <div className="modifProfil-icon">
+                    <BiHide />
+                  </div>
+                ) : (
+                  <div className="modifProfil-icon">
+                    <BiShowAlt />
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
 
           <button
@@ -124,7 +182,7 @@ function ModifProfil() {
           </button>
         </form>
       </div>
-    </>
+    </div>
   );
 }
 
