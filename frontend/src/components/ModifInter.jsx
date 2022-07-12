@@ -43,12 +43,6 @@ function ModifInter() {
         });
     }, []);
 
-    // permet de voir et stocker le changement de valeur
-    function handleChange(int) {
-      setChoiceInt(int.id);
-      setIsShow(true);
-    }
-
     // permet de modifier l'intervenant sur une mission, passe celui choisit sur 1 et les autres a 2.
     const updateChangeOnInter = (e, intervenantID) => {
       e.preventDefault();
@@ -66,15 +60,15 @@ function ModifInter() {
     };
 
     // permet de modifier le status de la mission a 1 et passe tous les intervenants a isvalidated 0
-    const updateChangeMission = (e, intervenantID) => {
+    const updateChangeMission = (e) => {
       e.preventDefault();
       const ENDPOINTCHANGEMISSIONACCEPTE = `/missions/accepte/${missionID}`;
       const ENDPOINTCHANGEINTER = `/accepte/change/${missionID}`;
       api
-        .put(ENDPOINTCHANGEINTER, { intervenantID, missionID })
+        .put(ENDPOINTCHANGEINTER, { choiceInt, missionID })
         .then(() => {
           api
-            .put(ENDPOINTCHANGEMISSIONACCEPTE, { intervenantID, missionID })
+            .put(ENDPOINTCHANGEMISSIONACCEPTE, { choiceInt, missionID })
             .then(() => {
               notifySuccess(
                 "Vous venez de repasser cette mission accessible au public."
@@ -88,8 +82,10 @@ function ModifInter() {
         });
     };
 
-    const handleCheck = (intervenantID) => {
-      setIdCheck(`${missionID}-${intervenantID}`);
+    const handleCheck = (missionId, intervenantId) => {
+      setChoiceInt(intervenantId);
+      setIdCheck(`${missionId}-${intervenantId}`);
+      setIsShow(true);
     };
 
     const handleClick = (e) => {
@@ -125,7 +121,6 @@ function ModifInter() {
                             }
                             name="intervenant_id"
                             value={intervenant.email}
-                            onChange={() => handleChange(intervenant)}
                           />
 
                           {`${intervenant.nom} ${intervenant.prenom} `}
@@ -166,7 +161,7 @@ function ModifInter() {
               <div className="modif-button-section">
                 <button
                   type="submit"
-                  onClick={(e) => updateChangeMission(e, choiceInt, missionID)}
+                  onClick={(e) => updateChangeMission(e, choiceInt)}
                   className="button-blue"
                 >
                   Oui
