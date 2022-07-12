@@ -74,6 +74,11 @@
   padding-right: 1rem;
 }
 
+.filters {
+  display: flex;
+  justify-content: center;
+}
+
 .masked {
   display: none !important;
 }

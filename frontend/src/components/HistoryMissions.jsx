@@ -59,8 +59,6 @@ function HistoryMissions() {
             className="button-blue"
             value={missionId}
             onClick={handleAnnulationMission}
-            // je sais que je suis tétu mais ça fonctionne et il n'est écrit nul part que c'est une mauvaise pratique.
-            // un élément de formulaire avec une propriété value renvoie systématiquement l'évenement qui lui est associé avec la valeur de cette propriété value
           >
             Annuler ma candidature
           </button>
@@ -82,13 +80,56 @@ function HistoryMissions() {
 
         <div className="legende">
           <div>Légende : </div>
-          <div>refusé :</div>
+          <div>refusée :</div>
           <div className="is-refused-legend"> </div>
           <div>En attente de validation :</div>
           <div className="pending-validation-legend"> </div>
-          <div>Validé : </div>
+          <div>Validée : </div>
           <div className="is-validated-legend"> </div>
         </div>
+      </div>
+      <div className="filters">
+        <form action="" method="post" className="filter-from" onSubmit="">
+          <label htmlFor="refused">
+            <input
+              type="checkbox"
+              value="refusées"
+              id="refused"
+              name="refused"
+            />
+            <p className="inline"> : Refusées </p>
+          </label>
+          <label htmlFor="pending">
+            <input
+              type="checkbox"
+              value="pending"
+              id="pending"
+              name="pending"
+            />
+            <p className="inline"> : En attente de validation </p>
+          </label>
+          <label htmlFor="validated">
+            <input
+              type="checkbox"
+              value="validated"
+              id="validated"
+              name="validated"
+            />
+            <p className="inline"> : Validées </p>
+          </label>
+          <label htmlFor="month-selection">
+            <select
+              value="month-selection"
+              id="month-selection"
+              name="month-selection"
+            >
+              <option value="this-month">mois en cours</option>
+              <option value="previous-month">mois précédent</option>
+              <option value="even-before">mois - 2</option>
+            </select>
+            <p className="inline"> : Validées </p>
+          </label>
+        </form>
       </div>
 
       <div className="card">
