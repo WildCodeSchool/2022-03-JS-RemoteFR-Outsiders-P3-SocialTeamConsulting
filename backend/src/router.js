@@ -54,6 +54,11 @@ router.put(
   middlewareAdministrateur,
   AdministrateursController.edit
 );
+router.put(
+  "/administrateurs/mpd/:id",
+  verifyMDP,
+  AdministrateursController.editMDP
+);
 router.post(
   "/administrateurs",
   middlewareAdministrateur,
@@ -100,6 +105,7 @@ router.get(
 );
 router.put("/associations/:id", AssociationsController.edit);
 router.put("/associations/etat/:id", AssociationsController.editEtat);
+router.put("/associations/mpd/:id", verifyMDP, AssociationsController.editMDP);
 router.post("/associations", AssociationsController.add);
 router.delete(
   "/associations/:id",

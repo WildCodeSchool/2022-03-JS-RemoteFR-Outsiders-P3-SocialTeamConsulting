@@ -2,14 +2,26 @@ import React, { useState, useEffect, useContext } from "react";
 import { notifySuccess, notifyError, api } from "@services/services";
 import ExportContext from "../contexts/Context";
 
-function ModifProfilInter() {
+function ModifProfil() {
   const { infoUser } = useContext(ExportContext.Context);
   const [user, setUser] = useState({});
 
   useEffect(() => {
+    let ENDPOINT = "";
+    const ENDPOINTADMINISTRATEUR = `/administrateurs/bymail/${infoUser.email}`;
+    const ENDPOINTASSOCIATION = `/associations/bymail/${infoUser.email}`;
     const ENDPOINTINTERVENANT = `/intervenants/bymail/${infoUser.email}`;
+    if (infoUser.role === "association") {
+      ENDPOINT = ENDPOINTASSOCIATION;
+    }
+    if (infoUser.role === "intervenant") {
+      ENDPOINT = ENDPOINTINTERVENANT;
+    }
+    if (infoUser.role === "administrateur") {
+      ENDPOINT = ENDPOINTADMINISTRATEUR;
+    }
     api
-      .get(ENDPOINTINTERVENANT)
+      .get(ENDPOINT)
       .then((res) => {
         setUser(res.data[0]);
       })
@@ -116,4 +128,4 @@ function ModifProfilInter() {
   );
 }
 
-export default ModifProfilInter;
+export default ModifProfil;

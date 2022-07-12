@@ -22,13 +22,6 @@ class IntervenantManager extends AbstractManager {
     );
   }
 
-  updateMDP(password, intervenant) {
-    return this.connection.query(
-      `update ${IntervenantManager.table} set password = ? where id = ?`,
-      [password, intervenant]
-    );
-  }
-
   update(intervenant) {
     return this.connection.query(
       `update ${IntervenantManager.table} SET nom= ?, prenom= ?, email= ?, telephone= ?
