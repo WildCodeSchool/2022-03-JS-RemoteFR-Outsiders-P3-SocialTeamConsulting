@@ -62,20 +62,16 @@ function NavBarBackOffice() {
         </div>
 
         <div className="nav-part-two">
-          <ul className="ul-nav-backoffice">
+          <ul>
             {DataLinks.filter((r) => r[infoUser.role]).map((el) => {
               if (el.section === "Déconnexion") {
                 return (
-                  <NavLink to={el.link}>
-                    <div role="button" tabIndex={0} className="navbar-button">
-                      <li
-                        className="navbar-li_highlight"
-                        onClick={() => Deconnexion(navigate, setInfoUser)}
-                      >
-                        <h2>{el.section}</h2>
-                      </li>
-                    </div>
-                  </NavLink>
+                  <li
+                    className="navbar-li_highlight"
+                    onClick={() => Deconnexion(navigate, setInfoUser)}
+                  >
+                    <h2>{el.section}</h2>
+                  </li>
                 );
               }
               return (

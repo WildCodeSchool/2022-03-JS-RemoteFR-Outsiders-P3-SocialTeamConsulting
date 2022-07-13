@@ -47,9 +47,8 @@ nav {
   list-style: none;
 }
 
-.ul-nav-backoffice {
+ul {
   background-color: var(--color-highlight);
-  height: 100vh;
 }
 
 .navbar-inline li {
