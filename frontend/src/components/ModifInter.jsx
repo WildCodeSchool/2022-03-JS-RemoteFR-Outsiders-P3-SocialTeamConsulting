@@ -145,11 +145,11 @@ function ModifInter() {
           )}
           <button
             id="button_preinscription"
-            className="modif-button button-blue"
+            className="modif-button button-blue button-plus-size"
             onClick={(e) => handleClick(e)}
             type="button"
           >
-            Repasser la mission en public
+            Passer la mission en public
           </button>
         </form>
         {isVisible && (
@@ -169,7 +169,7 @@ function ModifInter() {
                   onClick={() => setIsVisible(!isVisible)}
                   className="button-blue"
                 >
-                  Revenir en arriere
+                  Retour
                 </button>
               </div>
             </div>
