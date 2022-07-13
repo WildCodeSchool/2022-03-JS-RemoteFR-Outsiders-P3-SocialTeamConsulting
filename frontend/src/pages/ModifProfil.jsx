@@ -60,9 +60,22 @@ function ModifProfil() {
 
   const changeMPD = (e) => {
     e.preventDefault();
-    const ENDPOINTMDP = `/intervenants/mpd/${user.id}`;
+    let ENDPOINTMDP = "";
+    const ENDPOINTMDPINTER = `/intervenants/mpd/${user.id}`;
+    const ENDPOINTMDPADMIN = `/administrateurs/mpd/${user.id}`;
+    const ENDPOINTMDPASSO = `/associations/mpd/${user.id}`;
     const password = newPass.oldPass;
     const { newPassword } = newPass;
+
+    if (infoUser.role === "association") {
+      ENDPOINTMDP = ENDPOINTMDPASSO;
+    }
+    if (infoUser.role === "intervenant") {
+      ENDPOINTMDP = ENDPOINTMDPINTER;
+    }
+    if (infoUser.role === "administrateur") {
+      ENDPOINTMDP = ENDPOINTMDPADMIN;
+    }
     api
       .put(ENDPOINTMDP, { password, newPassword })
       .then(() => {

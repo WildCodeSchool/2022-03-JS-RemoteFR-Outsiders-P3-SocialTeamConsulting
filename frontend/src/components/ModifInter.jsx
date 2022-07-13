@@ -65,16 +65,14 @@ function ModifInter() {
       const ENDPOINTCHANGEMISSIONACCEPTE = `/missions/accepte/${missionID}`;
       const ENDPOINTCHANGEINTER = `/accepte/change/${missionID}`;
       api
-        .put(ENDPOINTCHANGEINTER, { choiceInt, missionID })
+        .put(ENDPOINTCHANGEINTER, { missionID })
         .then(() => {
-          api
-            .put(ENDPOINTCHANGEMISSIONACCEPTE, { choiceInt, missionID })
-            .then(() => {
-              notifySuccess(
-                "Vous venez de repasser cette mission accessible au public."
-              );
-              setUpdate(!update);
-            });
+          api.put(ENDPOINTCHANGEMISSIONACCEPTE, { missionID }).then(() => {
+            notifySuccess(
+              "Vous venez de repasser cette mission accessible au public."
+            );
+            setUpdate(!update);
+          });
         })
         .catch((err) => {
           notifyError("Votre choix n'a pas pu aboutir. Merci de recommencer.");
@@ -161,7 +159,7 @@ function ModifInter() {
               <div className="modif-button-section">
                 <button
                   type="submit"
-                  onClick={(e) => updateChangeMission(e, choiceInt)}
+                  onClick={(e) => updateChangeMission(e, missionID)}
                   className="button-blue"
                 >
                   Oui

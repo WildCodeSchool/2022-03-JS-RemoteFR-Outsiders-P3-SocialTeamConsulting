@@ -68,17 +68,10 @@ class AccepteManager extends AbstractManager {
     );
   }
 
-  updateRemoveEtatRefus(intervenant, mission) {
+  updateRemoveState(mission) {
     return this.connection.query(
-      `update ${AccepteManager.table} set isvalidated = ? where intervenants_id = ? AND missions_id = ?`,
-      [AccepteStatus[0], intervenant, mission]
-    );
-  }
-
-  updateRemoveEtatRefusAgain(intervenant, mission) {
-    return this.connection.query(
-      `update ${AccepteManager.table} set isvalidated = ? where intervenants_id != ? AND missions_id = ?`,
-      [AccepteStatus[0], intervenant, mission]
+      `update ${AccepteManager.table} set isvalidated = ? where missions_id = ?`,
+      [AccepteStatus[0], mission]
     );
   }
 

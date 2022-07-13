@@ -115,17 +115,14 @@ class AccepteController {
   // passe les inter de isvalidated 2 et 1 a 0 = reinitialise
   static updateRemoveInter = (req, res) => {
     const { missionID } = req.body;
-    const intervenantID = req.body.choiceInt;
-    models.accepte.updateRemoveEtatRefusAgain(intervenantID, missionID);
 
     models.accepte
-      .updateRemoveEtatRefus(intervenantID, missionID)
+      .updateRemoveState(missionID)
       .then(([result]) => {
         if (result.affectedRows === 0) {
           res.status(404).send("Le statut n'a pas été mis à jour.");
         } else {
           res.status(200).json({
-            intervenantID,
             missionID,
           });
         }
