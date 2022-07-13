@@ -1,8 +1,10 @@
 import React from "react";
 
 import { FaPhoneAlt, FaRegEnvelope, FaHeart } from "react-icons/fa";
+import { BiCookie } from "react-icons/bi";
 
 import "@style/Footer.css";
+import MissionSynthesis from "./MissionSynthesis";
 
 function Footer() {
   return (
@@ -39,6 +41,11 @@ function Footer() {
         >
           les Wilders
         </a>
+      </p>
+      <p className="cookie">
+        <BiCookie />
+        {` Pour son bon fonctionnement, ce site requiert l'utilisation de cookies en nombre limité `}
+        <BiCookie />
       </p>
     </footer>
   );
