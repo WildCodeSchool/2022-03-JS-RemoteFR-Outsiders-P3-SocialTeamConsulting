@@ -106,11 +106,11 @@ function ModifProfil() {
               >
                 {oldPassIsVisible ? (
                   <div className="modifProfil-icon">
-                    <BiHide />
+                    <BiShowAlt />
                   </div>
                 ) : (
                   <div className="modifProfil-icon">
-                    <BiShowAlt />
+                    <BiHide />
                   </div>
                 )}
               </div>
@@ -133,11 +133,11 @@ function ModifProfil() {
               >
                 {newPasswordIsVisible ? (
                   <div className="modifProfil-icon">
-                    <BiHide />
+                    <BiShowAlt />
                   </div>
                 ) : (
                   <div className="modifProfil-icon">
-                    <BiShowAlt />
+                    <BiHide />
                   </div>
                 )}
               </div>
@@ -160,11 +160,11 @@ function ModifProfil() {
               >
                 {newPassConfIsVisible ? (
                   <div className="modifProfil-icon">
-                    <BiHide />
+                    <BiShowAlt />
                   </div>
                 ) : (
                   <div className="modifProfil-icon">
-                    <BiShowAlt />
+                    <BiHide />
                   </div>
                 )}
               </div>
