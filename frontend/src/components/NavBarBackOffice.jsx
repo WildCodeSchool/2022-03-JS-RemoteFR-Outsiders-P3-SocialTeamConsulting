@@ -64,27 +64,40 @@ function NavBarBackOffice() {
 
         <div className="nav-part-two">
           <ul>
-            {DataLinks.filter((r) => r[infoUser.role]).map((el) => {
-              if (el.section === "Déconnexion") {
-                return (
-                  <li
-                    className="navbar-li_highlight"
-                    onClick={() => Deconnexion(navigate, setInfoUser)}
-                  >
-                    <h2>{el.section}</h2>
-                  </li>
-                );
-              }
-              return (
-                <NavLink to={el.link}>
-                  <div role="button" tabIndex={0} className="navbar-button">
-                    <li className="navbar-li_highlight">
+            {infoUser.etat === "pré-inscrit" &&
+            infoUser.role !== "administrateur" ? (
+              <NavLink to="/back_office/mon_profil">
+                <li
+                  className="navbar-li_highlight"
+                  onClick={() => Deconnexion(navigate, setInfoUser)}
+                >
+                  <h2>Déconnexion</h2>
+                </li>
+              </NavLink>
+            ) : (
+              DataLinks.filter((r) => r[infoUser.role]).map((el) => {
+                if (el.section === "Déconnexion") {
+                  return (
+                    <li
+                      className="navbar-li_highlight"
+                      onClick={() => Deconnexion(navigate, setInfoUser)}
+                    >
                       <h2>{el.section}</h2>
                     </li>
-                  </div>
-                </NavLink>
-              );
-            })}
+                  );
+                }
+
+                return (
+                  <NavLink to={el.link}>
+                    <div role="button" tabIndex={0} className="navbar-button">
+                      <li className="navbar-li_highlight">
+                        <h2>{el.section}</h2>
+                      </li>
+                    </div>
+                  </NavLink>
+                );
+              })
+            )}
           </ul>
         </div>
       </div>
