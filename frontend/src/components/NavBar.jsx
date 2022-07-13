@@ -26,6 +26,17 @@ function NavBar({ isLinkVisible, showLink, isFormVisible, showForm }) {
     setIsMenuVisible(isVisible);
   };
 
+  const backOfficeAccess = () => {
+    if (isLogInVisible) {
+      return (
+        <h2 onClick={() => navigate("/back_office")}>
+          Accès au Tableau de bord
+        </h2>
+      );
+    }
+    return "";
+  };
+
   return (
     <div className="fixed">
       <nav className={`${isMenuVisible ? "navbar-visible" : "navbar-hidden"}`}>
@@ -50,15 +61,7 @@ function NavBar({ isLinkVisible, showLink, isFormVisible, showForm }) {
         </div>
         <div className="navbar-inline">
           <ul>
-            {isLogInVisible ? (
-              <li>
-                <h2 onClick={() => navigate("/back_office")}>
-                  Accès au Tableau de bord
-                </h2>
-              </li>
-            ) : (
-              ""
-            )}
+            {isLogInVisible ? <li>{backOfficeAccess()}</li> : ""}
             <li
               className={`${isLinkVisible ? "navbar-li_highlight" : ""}`}
               onClick={() => {
@@ -115,6 +118,8 @@ function NavBar({ isLinkVisible, showLink, isFormVisible, showForm }) {
           </ul>
         </div>
         <div className="navbar-menu_wrapper">
+          {isLogInVisible ? <hr className="navbar-hr" /> : ""}
+          {backOfficeAccess()}
           <hr className="navbar-hr" />
           <NavBarLinks
             navigate={navigate}

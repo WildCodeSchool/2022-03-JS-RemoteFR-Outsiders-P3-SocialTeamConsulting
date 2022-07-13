@@ -1,28 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-function NavBarLinks({
-  handleisMenuVisible,
-  showLink,
-  isLogInVisible,
-  navigate,
-}) {
+function NavBarLinks({ handleisMenuVisible, showLink }) {
   return (
     <>
-      {isLogInVisible ? (
-        <>
-          <div
-            role="button"
-            tabIndex={0}
-            onClick={() => navigate("/back_office")}
-          >
-            <h2>Accès au Tableau de bord</h2>
-          </div>
-          <hr className="navbar-hr" />
-        </>
-      ) : (
-        ""
-      )}
       <NavLink to="/accueil_intervenant">
         <div
           role="button"
