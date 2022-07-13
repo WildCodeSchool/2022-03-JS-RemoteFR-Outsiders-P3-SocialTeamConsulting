@@ -4,7 +4,6 @@ import { FaPhoneAlt, FaRegEnvelope, FaHeart } from "react-icons/fa";
 import { BiCookie } from "react-icons/bi";
 
 import "@style/Footer.css";
-import MissionSynthesis from "./MissionSynthesis";
 
 function Footer() {
   return (
