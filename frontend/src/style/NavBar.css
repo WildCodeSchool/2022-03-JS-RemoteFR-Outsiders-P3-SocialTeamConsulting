@@ -47,6 +47,10 @@ nav {
   list-style: none;
 }
 
+ul {
+  background-color: var(--color-highlight);
+}
+
 .navbar-inline li {
   text-decoration: underline;
   text-decoration-color: black;
