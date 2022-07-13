@@ -22,7 +22,7 @@ function LandingPage() {
                 </li>
                 <li>
                   Une <span>mise en relation</span> avec des intervenants aux{" "}
-                  <span>compétences variée</span> : accueillante, technicien•ne
+                  <span>compétences variées</span> : accueillante, technicien•ne
                   d’intervention sociale et familiale, éducation spécialisée,
                   moniteur éducateur, CESF, Assistante de Service Sociale,
                   animateur…

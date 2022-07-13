@@ -71,7 +71,7 @@ function NavBarBackOffice() {
                   className="navbar-li_highlight"
                   onClick={() => Deconnexion(navigate, setInfoUser)}
                 >
-                  <h2>Deconnexion</h2>
+                  <h2>Déconnexion</h2>
                 </li>
               </NavLink>
             ) : (
