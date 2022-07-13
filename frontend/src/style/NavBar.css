@@ -72,7 +72,8 @@ ul {
 }
 
 .navbar-navbarlink-visible,
-.navbar-navbarform-visible {
+.navbar-navbarform-visible,
+.navbar-navbarform-visible-login {
   display: block;
   position: absolute;
   top: 3rem;
@@ -81,11 +82,11 @@ ul {
 }
 
 .navbar-navbarlink-visible,
-.navbar-navbarform-visible {
-  width: 22.6rem;
+.navbar-navbarform-visible,
+.navbar-navbarform-visible-login {
+  width: 21.3rem;
   padding: 1rem 0;
   right: 1rem;
-  animation: fadein 1s;
   overflow: hidden;
 }
 
@@ -119,13 +120,30 @@ ul {
   }
 }
 
+.navbar-navbarform-visible-login {
+  height: 8rem;
+  animation: fadeinformsmall 0.8s;
+}
+
+@keyframes fadeinformsmall {
+  from {
+    height: 0rem;
+    padding: 0;
+  }
+  to {
+    height: 8rem;
+  }
+}
+
 .navbar-navbarlink-visible h2,
-.navbar-navbarform-visible .navbar-legend {
+.navbar-navbarform-visible .navbar-legend,
+.navbar-navbarform-visible-login .navbar-legend{
   color: white;
   text-align: center;
   padding: 1.01rem;
 }
-.navbar-navbarform-visible p {
+.navbar-navbarform-visible p,
+.navbar-navbarform-visible-login p {
   color: white;
   padding: 0 0.5rem;
 }
@@ -218,6 +236,11 @@ ul {
   left: calc(100vw - 2.5rem - 1rem);
 }
 
+.navbar-connect-container {
+  display: flex;
+  justify-content: center;
+}
+
 /* **************************************
 **************** WRAPPER ****************
 ************************************** */
@@ -284,6 +307,7 @@ ul {
   margin-top: 1.5rem;
   width: auto;
 }
+
 
 /* **************************************
 ************** DESKTOP ******************
