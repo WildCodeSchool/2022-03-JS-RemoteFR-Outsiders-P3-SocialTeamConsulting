@@ -143,7 +143,9 @@ function HistoryMissions() {
 
   useEffect(() => {
     if (!isLoading) {
-      if (filter.periode === "this-month") {
+      if (filter.periode === "all-months") {
+        setUpdate(!update);
+      } else if (filter.periode === "this-month") {
         setMissions(
           missions.filter(
             (mission) =>
@@ -233,9 +235,7 @@ function HistoryMissions() {
   };
 
   const handleMonthFilter = (e) => {
-    if (e.target.value !== "all-months") {
-      setIsTimeConstrained(e.target.value);
-    }
+    setIsTimeConstrained(e.target.value);
   };
 
   return (
@@ -259,7 +259,7 @@ function HistoryMissions() {
         </div>
       </div>
       <div className="filters">
-        <form action="" method="post" className="filter-from" onSubmit="">
+        <form action="" method="post" className="filter-form" onSubmit="">
           <label htmlFor="refused">
             {isRefused ? (
               <input
@@ -323,7 +323,9 @@ function HistoryMissions() {
             )}
             <p className="inline"> : Validées </p>
           </label>
+          <br />
           <label htmlFor="month-selection">
+            <p className="inline"> Afficher : </p>
             <select
               id="month-selection"
               name="month-selection"
@@ -336,7 +338,6 @@ function HistoryMissions() {
                 Tout l'historique
               </option>
             </select>
-            <p className="inline"> : Validées </p>
           </label>
         </form>
       </div>

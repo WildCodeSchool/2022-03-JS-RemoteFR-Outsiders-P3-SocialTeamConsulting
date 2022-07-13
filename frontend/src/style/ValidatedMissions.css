@@ -79,6 +79,10 @@
   justify-content: center;
 }
 
+.filter-form {
+  text-align: center;
+}
+
 .masked {
   display: none !important;
 }
