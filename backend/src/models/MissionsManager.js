@@ -31,6 +31,12 @@ class MissionsManager extends AbstractManager {
     );
   }
 
+  findAllMissionAccepte() {
+    return this.connection.query(
+      `SELECT DISTINCT missions.id, missions.* FROM missions INNER JOIN accepte ON accepte.missions_id = missions.id WHERE accepte.isvalidated = 0`
+    );
+  }
+
   updateEtat(mission, isValidated) {
     if (isValidated) {
       return this.connection.query(
