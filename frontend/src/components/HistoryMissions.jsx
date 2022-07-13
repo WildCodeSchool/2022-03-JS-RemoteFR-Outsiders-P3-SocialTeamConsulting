@@ -126,6 +126,89 @@ function HistoryMissions() {
     }
   };
 
+  const handleMonthFilter = (e) => {
+    console.error(missions);
+    const currentDate = new Date();
+    const currentMonth = currentDate.getUTCMonth();
+    const currentYear = currentDate.getUTCFullYear();
+    const monthLowerBoundary = new Date(currentYear, currentMonth, 1, 0, 0, 0);
+    const monthUpperBoundary = new Date(
+      currentYear,
+      currentMonth + 1,
+      0,
+      0,
+      0,
+      0
+    );
+    const lastMonthLowerBoundary = new Date(
+      currentYear,
+      currentMonth - 1,
+      1,
+      0,
+      0,
+      0
+    );
+    const lastMonthUpperBoundary = new Date(
+      currentYear,
+      currentMonth,
+      0,
+      0,
+      0,
+      0
+    );
+    const monthBeforeLastLowerBoundary = new Date(
+      currentYear,
+      currentMonth - 2,
+      1,
+      0,
+      0,
+      0
+    );
+    const monthBeforeLastUpperBoundary = new Date(
+      currentYear,
+      currentMonth - 1,
+      0,
+      0,
+      0,
+      0
+    );
+    console.error(lastMonthLowerBoundary);
+    console.error(lastMonthUpperBoundary);
+
+    // get date and month 2022-6-22
+    if (e.target.value === "this-month") {
+      setMissions(
+        missions.filter(
+          (mission) =>
+            (new Date(mission.date_debut) >= monthLowerBoundary ||
+              new Date(mission.date_fin) >= monthLowerBoundary) &&
+            (new Date(mission.date_debut) <= monthUpperBoundary ||
+              new Date(mission.date_fin) <= monthUpperBoundary)
+        )
+      );
+    } else if (e.target.value === "previous-month") {
+      setMissions(
+        missions.filter(
+          (mission) =>
+            (new Date(mission.date_debut) >= lastMonthLowerBoundary ||
+              new Date(mission.date_fin) >= lastMonthLowerBoundary) &&
+            (new Date(mission.date_debut) <= lastMonthUpperBoundary ||
+              new Date(mission.date_fin) <= lastMonthUpperBoundary)
+        )
+      );
+    } else if (e.target.value === "even-before") {
+      setMissions(
+        missions.filter(
+          (mission) =>
+            (new Date(mission.date_debut) >= monthBeforeLastLowerBoundary ||
+              new Date(mission.date_fin) >= monthBeforeLastLowerBoundary) &&
+            (new Date(mission.date_debut) <= monthBeforeLastUpperBoundary ||
+              new Date(mission.date_fin) <= monthBeforeLastUpperBoundary)
+        )
+      );
+    }
+  };
+
   return (
     <>
       <div className="header-mission-synthesis">
@@ -213,9 +296,9 @@ function HistoryMissions() {
           </label>
           <label htmlFor="month-selection">
             <select
-              value="month-selection"
               id="month-selection"
               name="month-selection"
+              onChange={handleMonthFilter}
             >
               <option value="this-month">mois en cours</option>
               <option value="previous-month">mois précédent</option>
