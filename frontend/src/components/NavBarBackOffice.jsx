@@ -27,6 +27,7 @@ function NavBarBackOffice() {
   if (infoUser.role === undefined) {
     return <div>Accès interdit !</div>;
   }
+
   useEffect(() => {
     const ENDPOINT = `/${infoUser.role}s/bymail/${infoUser.email}`;
 

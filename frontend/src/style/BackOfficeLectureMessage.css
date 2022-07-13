@@ -16,7 +16,6 @@
 
 .lecture-message-container {
   padding: 0.5rem;
-
 }
 
 .lecture-message-titre {
@@ -42,6 +41,6 @@
   background-color: var(--color-highlight);
 }
 
-.lecture-button{
+.lecture-button {
   margin: 0.5rem;
 }
