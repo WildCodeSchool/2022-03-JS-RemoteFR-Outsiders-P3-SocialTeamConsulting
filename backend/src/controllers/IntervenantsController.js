@@ -28,21 +28,21 @@ class IntervenantController {
       });
   };
 
-  static read = (req, res) => {
-    models.intervenants
-      .find(req.params.id)
-      .then(([rows]) => {
-        if (rows[0] == null) {
-          res.sendStatus(404);
-        } else {
-          res.send(rows[0]);
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-        res.sendStatus(500);
-      });
-  };
+  // static read = (req, res) => {
+  //   models.intervenants
+  //     .find(req.params.id)
+  //     .then(([rows]) => {
+  //       if (rows[0] == null) {
+  //         res.sendStatus(404);
+  //       } else {
+  //         res.send(rows[0]);
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //       res.sendStatus(500);
+  //     });
+  // };
 
   static readByEmail = (req, res) => {
     models.intervenants
@@ -149,17 +149,17 @@ class IntervenantController {
     });
   };
 
-  static delete = (req, res) => {
-    models.intervenants
-      .delete(req.params.id)
-      .then(() => {
-        res.sendStatus(204);
-      })
-      .catch((err) => {
-        console.error(err);
-        res.sendStatus(500);
-      });
-  };
+  // static delete = (req, res) => {
+  //   models.intervenants
+  //     .delete(req.params.id)
+  //     .then(() => {
+  //       res.sendStatus(204);
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //       res.sendStatus(500);
+  //     });
+  // };
 }
 
 module.exports = IntervenantController;

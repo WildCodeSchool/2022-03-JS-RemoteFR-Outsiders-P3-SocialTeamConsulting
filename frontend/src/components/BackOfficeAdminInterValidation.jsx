@@ -3,7 +3,7 @@ import { notifySuccess, notifyError, api } from "@services/services";
 import MissionSynthesis from "./MissionSynthesis";
 
 function BackOfficeAdminInterValidation() {
-  const ENDPOINT = "/missions";
+  const ENDPOINT = "/missions/accepte";
   const [missions, setMissions] = useState([]);
   const [update, setUpdate] = useState(false);
 
