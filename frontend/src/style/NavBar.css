@@ -304,6 +304,7 @@ ul {
   }
 
   .navbar-button h2:hover {
+    cursor: pointer;
     text-decoration: underline;
   }
 }

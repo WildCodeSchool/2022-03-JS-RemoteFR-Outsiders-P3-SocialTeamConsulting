@@ -13,30 +13,28 @@ function NavBarBackOfficeLinks({
     return <div>Accès interdit !</div>;
   }
   return (
-    <div>
+    <>
       {DataLinks.filter((r) => r[infoUser.role]).map((el) => {
         if (el.section === "Déconnexion") {
           return (
-            <div>
-              <NavLink to={el.link}>
-                <div
-                  role="button"
-                  tabIndex={0}
-                  className="navbar-button"
-                  onClick={() => {
-                    handleDeconnexion();
-                    handleisMenuVisible(false);
-                    showLink(false);
-                  }}
-                >
-                  <h2>{el.section}</h2>
-                </div>
-              </NavLink>
-            </div>
+            <NavLink to={el.link}>
+              <div
+                role="button"
+                tabIndex={0}
+                className="navbar-button"
+                onClick={() => {
+                  handleDeconnexion();
+                  handleisMenuVisible(false);
+                  showLink(false);
+                }}
+              >
+                <h2>{el.section}</h2>
+              </div>
+            </NavLink>
           );
         }
         return (
-          <div>
+          <>
             <NavLink to={el.link}>
               <div
                 role="button"
@@ -50,10 +48,11 @@ function NavBarBackOfficeLinks({
                 <h2>{el.section}</h2>
               </div>
             </NavLink>
-          </div>
+            <hr className="navbar-hr" />
+          </>
         );
       })}
-    </div>
+    </>
   );
 }
 
