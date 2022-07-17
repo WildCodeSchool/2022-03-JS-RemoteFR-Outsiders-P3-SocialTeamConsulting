@@ -96,14 +96,14 @@ function NavBar({ isLinkVisible, showLink, isFormVisible, showForm }) {
                   showForm(!isFormVisible);
                 }}
               >
-                Se connecter
+                Connexion
               </h2>
               <div
                 className={`${
                   isFormVisible
                     ? "navbar-navbarform-visible"
                     : "navbar-navbarform-hidden"
-                }`}
+                } ${isLogInVisible ? "navbar-navbarform-visible-login" : ""}`}
               >
                 {isFormVisible ? (
                   <NavBarForm
