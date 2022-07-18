@@ -60,7 +60,7 @@ function NavBar({ isLinkVisible, showLink, isFormVisible, showForm }) {
           <span className="navbar-bar" />
         </div>
         <div className="navbar-inline">
-          <ul>
+          <ul className="navbar-list">
             {isLogInVisible ? <li>{backOfficeAccess()}</li> : ""}
             <li
               className={`${isLinkVisible ? "navbar-li_highlight" : ""}`}
