@@ -173,7 +173,7 @@ export default function ProfilInterv() {
       >
         <div className="backoffice-bloc">
           <label htmlFor="name" className="backoffice-input-half">
-            <p>Nom</p>
+            <p className="bold">Nom</p>
             <input
               className="rules"
               type="text"
@@ -183,7 +183,7 @@ export default function ProfilInterv() {
             />
           </label>
           <label htmlFor="firstname" className="backoffice-input-half">
-            <p>Prénom</p>
+            <p className="bold">Prénom</p>
             <input
               className="rules"
               type="text"
@@ -195,7 +195,7 @@ export default function ProfilInterv() {
         </div>
         <div className="backoffice-bloc">
           <label htmlFor="email" className="backoffice-input-half">
-            <p>Email</p>
+            <p className="bold">Email</p>
             <input
               className="rules"
               type="email"
@@ -205,7 +205,7 @@ export default function ProfilInterv() {
             />
           </label>
           <label htmlFor="phone" className="backoffice-input-half">
-            <p>Téléphone</p>
+            <p className="bold">Téléphone</p>
             <input
               className="rules"
               type="text"
@@ -224,7 +224,7 @@ export default function ProfilInterv() {
       <div className="container-profil">
         <div className="profilInter-container">
           <div className="profilInter-img-container">
-            <img src={imageCV} alt="cv de l'intervenant" />
+            <img className="imgDoc" src={imageCV} alt="cv de l'intervenant" />
           </div>
           <div className="ajustButton">
             <button
@@ -240,6 +240,7 @@ export default function ProfilInterv() {
         <div className="profilInter-container">
           <div className="profilInter-img-container">
             <img
+              className="imgDoc"
               src={ImageAuto}
               alt="status d'auto entrepreneur de l'intervenant"
             />
@@ -259,7 +260,7 @@ export default function ProfilInterv() {
 
         <div className="profilInter-container">
           <div className="profilInter-img-container">
-            <img src={ImageCarteVitale} alt="carte vitale de l'intervenant" />
+            <img className="imgDoc" src={ImageCarteVitale} alt="carte vitale de l'intervenant" />
           </div>
           <div className="ajustButton">
             <button
@@ -273,7 +274,7 @@ export default function ProfilInterv() {
         </div>
       </div>
       <hr className="profilinter-hr" />
-      <p>{`Cet utilisateur est actuellement ${intervenant.etat}.`}</p>
+      <p className='bold'>{`Cet utilisateur est actuellement ${intervenant.etat}.`}</p>
       {modifEtat()}
     </div>
   );
