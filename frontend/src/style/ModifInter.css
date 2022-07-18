@@ -1,5 +1,5 @@
 .modif-synthesis-validation_area {
-  position: relative;  
+  position: relative;
   padding: 1rem 0;
   display: flex;
   justify-content: space-between;
@@ -13,7 +13,7 @@
   width: 100%;
   padding: 1rem;
 }
-.button-plus-size{
+.button-plus-size {
   width: 60% !important;
 }
 .modif-button-blue {

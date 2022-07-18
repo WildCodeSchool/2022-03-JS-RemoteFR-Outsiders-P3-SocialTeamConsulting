@@ -47,7 +47,7 @@ nav {
   list-style: none;
 }
 
-ul {
+.navbar-list {
   background-color: var(--color-highlight);
 }
 
@@ -137,7 +137,7 @@ ul {
 
 .navbar-navbarlink-visible h2,
 .navbar-navbarform-visible .navbar-legend,
-.navbar-navbarform-visible-login .navbar-legend{
+.navbar-navbarform-visible-login .navbar-legend {
   color: white;
   text-align: center;
   padding: 1.01rem;
@@ -307,7 +307,6 @@ ul {
   margin-top: 1.5rem;
   width: auto;
 }
-
 
 /* **************************************
 ************** DESKTOP ******************
