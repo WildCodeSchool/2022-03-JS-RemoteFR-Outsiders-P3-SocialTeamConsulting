@@ -55,3 +55,11 @@ details[open] div {
   margin-bottom: 2rem;
   font-family: var(--font-title);
 }
+
+p.pré-inscrit,
+p.inscrit,
+p.banni,
+p.refusé,
+p.admin:hover {
+  cursor: pointer;
+}
