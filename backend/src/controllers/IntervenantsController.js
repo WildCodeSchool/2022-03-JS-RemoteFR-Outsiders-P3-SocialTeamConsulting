@@ -149,6 +149,20 @@ class IntervenantController {
     });
   };
 
+  static download = (req, res) => {
+    const { filename } = req.params;
+    // je renvoi via un status code 200 mon document.
+    res
+      .status(200)
+      .download(`${__dirname}/../../uploads/${filename}`, filename);
+  };
+
+  static browsePath = (req, res) => {
+    const { filename } = req.params;
+    // je renvoi via un status code 200 mon document.
+    res.status(200).json({ path: `${__dirname}/../../uploads/${filename}` });
+  };
+
   // static delete = (req, res) => {
   //   models.intervenants
   //     .delete(req.params.id)

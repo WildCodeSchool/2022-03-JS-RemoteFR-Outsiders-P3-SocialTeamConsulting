@@ -33,3 +33,11 @@
 .listTitle {
   margin-bottom: 2rem;
 }
+
+p.pré-inscrit,
+p.inscrit,
+p.banni,
+p.refusé,
+p.admin:hover {
+  cursor: pointer;
+}
