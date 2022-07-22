@@ -26,6 +26,7 @@ function ModifInter() {
     const [isShow, setIsShow] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
     const [idCheck, setIdCheck] = useState({});
+    const [isDisabled, setIsDisabled] = useState(false);
 
     /**
      * Permet de recuperer les noms et prenoms des intervenants qui ont ete positionne sur une mission et ceux qui avait ete refuse.
@@ -84,6 +85,7 @@ function ModifInter() {
       setChoiceInt(intervenantId);
       setIdCheck(`${missionId}-${intervenantId}`);
       setIsShow(true);
+      setIsDisabled(true);
     };
 
     const handleClick = (e) => {
@@ -130,9 +132,14 @@ function ModifInter() {
             </div>
             <button
               id="button_preinscription"
-              className="button-blue modif-button-blue"
+              className={` ${
+                !isDisabled
+                  ? "button-blue btn-disabled"
+                  : "button-blue modif-button-blue"
+              }`}
               type="submit"
               onClick={(e) => updateChangeOnInter(e, choiceInt, missionID)}
+              disabled={isDisabled ? "disabled" : "null"}
             >
               Modifier l'intervenant
             </button>

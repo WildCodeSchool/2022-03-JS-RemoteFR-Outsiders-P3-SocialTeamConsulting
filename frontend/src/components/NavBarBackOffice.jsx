@@ -63,7 +63,7 @@ function NavBarBackOffice() {
         </div>
 
         <div className="nav-part-two">
-          <ul>
+          <ul className="navbar-list">
             {infoUser.etat === "pré-inscrit" &&
             infoUser.role !== "administrateur" ? (
               <NavLink to="/back_office/mon_profil">

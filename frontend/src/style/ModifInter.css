@@ -81,6 +81,21 @@
   margin: 0 auto;
 }
 
+.btn-disabled {
+  background-color: rgb(173, 173, 173);
+  color: black;
+  border: 1px solid black;
+  width: 60%;
+  margin: 1rem auto;
+}
+
+.btn-disabled:hover {
+  background-color: rgb(173, 173, 173);
+  color: black;
+  border: 1px solid black;
+  cursor: default;
+}
+
 @keyframes scaleIn {
   from {
     transform: scale(0.5);
