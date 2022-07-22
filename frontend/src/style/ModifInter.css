@@ -1,4 +1,5 @@
-.modif-synthesis-validation_area {
+.modif-synthesis-validation_area,
+.synthesis-validation_area {
   position: relative;
   padding: 1rem 0;
   display: flex;

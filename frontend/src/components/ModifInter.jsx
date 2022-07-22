@@ -102,31 +102,26 @@ function ModifInter() {
               {" "}
               <label htmlFor="checkbox">
                 <div className="modif-inter-section">
-                  {/* <p>Intervenant : {intervenants[0].nom} {intervenants[0].prenom}</p> */}
-                  {intervenants
-                    // .slice(1, intervenants.length)
-                    .map((intervenant) => {
-                      return (
-                        <div className="modif-input-container">
-                          <input
-                            type="radio"
-                            checked={
-                              `${missionID}-${intervenant.id}` === idCheck
-                                ? "checked"
-                                : null
-                            }
-                            id={`${missionID}-${intervenant.id}`}
-                            onClick={() =>
-                              handleCheck(missionID, intervenant.id)
-                            }
-                            name="intervenant_id"
-                            value={intervenant.email}
-                          />
+                  {intervenants.map((intervenant) => {
+                    return (
+                      <div className="modif-input-container">
+                        <input
+                          type="radio"
+                          checked={
+                            `${missionID}-${intervenant.id}` === idCheck
+                              ? "checked"
+                              : null
+                          }
+                          id={`${missionID}-${intervenant.id}`}
+                          onClick={() => handleCheck(missionID, intervenant.id)}
+                          name="intervenant_id"
+                          value={intervenant.email}
+                        />
 
-                          {`${intervenant.nom} ${intervenant.prenom} `}
-                        </div>
-                      );
-                    })}
+                        {`${intervenant.nom} ${intervenant.prenom} `}
+                      </div>
+                    );
+                  })}
                 </div>
               </label>
             </div>
