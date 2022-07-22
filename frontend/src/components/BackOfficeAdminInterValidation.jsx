@@ -65,7 +65,7 @@ function BackOfficeAdminInterValidation() {
     return (
       <div className="synthesis-validation_area">
         <form method="PUT">
-          <fieldset>
+          <fieldset className="modif-fieldset">
             <legend>Choisissez un intervenant:</legend>
             <div>
               {intervenants.map((intervenant, i) => {
