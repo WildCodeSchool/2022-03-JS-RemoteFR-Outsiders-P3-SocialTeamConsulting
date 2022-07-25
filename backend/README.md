@@ -2,13 +2,14 @@
 
 ## Description
 
-This repository is a simple Express MVC structure from scratch.
+Basé sur une structure MVC, Back-end du projet de Social Team Consulting.
 
-## Steps
+## Etapes
 
-1. Clone the repo from Github.
-2. Run `npm install` or `yarn install`.
-3. Create _.env_ from _.env.sample_ file and add your DB parameters. Don't delete the _.sample_ file, it must be kept.
+1. Cloner le repo depuis Github.
+2. Effectuer l’installation des packages en lançant la commande `npm install` ou `yarn install`.
+3. Créer un fichier  _.env_ et le remplir en se basant sur le _.env.sample_ avec ses informations personnelles concernant les paramètres de la base.
+Ne pas supprimer le fichier _.sample_ file.
 
 ```
 DB_HOST=your_db_host
@@ -17,26 +18,25 @@ DB_PASSWORD=your_db_password
 DB_NAME=your_db_name
 ```
 
-4. Adapt _database.sql_ with your own tables. Import the script in your SQL server. You can do it manually or run _migrate_ script (either using `npm run migrate` or `yarn run migrate`).
-5. Start the server in dev mode with `npm run dev` or `yarn run dev`. This will run `index.js` using _nodemon_.
-6. Go to `localhost:5000` with your favorite browser.
-7. From this starter kit, create your own web application.
+4. Adaptez _database.sql_ avec vos propres tables. Importez le script vers votre serveur SQL en le faisant manuellement ou en effectuant la commande `npm run migrate` ou `yarn run migrate`.
+5. Lancez le serveur complet avec `npm run dev` ou `yarn run dev`. Ce qui lancera `index.js` en utilisant _nodemon_.
+6. Allez sur votre `localhost:5000` à l'aide de votre navigateur.
 
-### Windows Users
+### Utilisateurs Windows
 
-If you develop on Windows, you should edit you git configuration to change your end of line rules with this command :
+Si vous developpez sur Windows, vous devez éditer votre configuration git avec cette commande:
 
 `git config --global core.autocrlf true`
 
-## Example
+## Exemple
 
-An example (a basic list of items) is provided (you can load the _database.sql_ file in a test database). The accessible URLs are :
+Un exemple pour accéder aux routes:
 
-- Home page: [GET localhost:5000/](localhost:5000/)
-- Item browse: [GET localhost:5000/items](localhost:5000/items)
-- Item read: [GET localhost:5000/items/:id](localhost:5000/items/2)
-- Item edit: PUT localhost:5000/items/:id
-- Item add: POST localhost:5000/items
-- Item deletion: DELETE localhost:5000/items/:id
+- Page principale: [GET localhost:5000/](localhost:5000/)
+- Associations browse: [GET localhost:5000/associations](localhost:5000/associations)
+- Associations read: [GET localhost:5000/associations/bymail/:email](localhost:5000/associations/bymail/uneadresse4@hello.fr)
+- Associations edit: PUT localhost:5000/items/associations/:id
+- Associations add: POST localhost:5000/associations
 
-You can find all these routes declared in the file `src/router.js`. You can add your own new routes, controllers and models.
+Vous pouvez retrouver toutes ses routes déclarées dans le document `src/router.js`.
+Ajoutez de nouvelles routes, controllers et models.
