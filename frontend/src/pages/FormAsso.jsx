@@ -186,7 +186,6 @@ export default function FormAsso() {
             </div>
             <div className="submit_button">
               <button type="submit" className="button-blue">
-                {" "}
                 {buttonText}
               </button>
             </div>
