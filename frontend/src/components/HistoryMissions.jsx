@@ -12,10 +12,9 @@ function HistoryMissions() {
   const [updateRefusedFilter, setUpdateRefusedFilter] = useState(false);
   const [updatePendingFilter, setUpdatePendingFilter] = useState(false);
   const [updateValidatedFilter, setUpdateValidatedFilter] = useState(false);
-  const [updateTimeFilter, setUpdateTimeFilter] = useState(false);
   const [applyTimeFilter, setApplyTimeFilter] = useState(false);
   const filterStep = useRef(0);
-  const timeFilterStep = useRef(0);
+  const timeFilterStep = useRef(1);
 
   const ENDPOINTINTERVENANT = "/intervenants";
 
@@ -43,14 +42,13 @@ function HistoryMissions() {
   const [isRefused, setIsRefused] = useState(false);
   const [isValidated, setIsValidated] = useState(true);
   const [isPending, setIsPending] = useState(true);
-  const isTimeConstrained = useRef("");
+  const isTimeConstrained = useRef("all-months");
 
   // on charge les missions de l'utilisateur quand l'id de l'utilisateur est récupéré
   useEffect(() => {
     console.error("chargement de missions");
     if (typeof user !== "undefined") {
       const ENDPOINT = `/missions/history/${user}`;
-
       api
         .get(ENDPOINT)
         .then((res) => {
@@ -98,6 +96,14 @@ function HistoryMissions() {
     }
   };
 
+  const handleMonthFilter = (e) => {
+    console.error(e.target.value);
+    isTimeConstrained.current = e.target.value;
+    filterStep.current = 0; // on s'assure d'appliquer le filtre temporel sur les filtres de status déjà existant
+    timeFilterStep.current = 1; // on demande au dispatcher d'appliquer un filtre temporel
+    setMissionsFiltered([]); // on réinitialise missionFiltered ce qui relance le dispatcher
+  };
+
   // ici on lance les filtres au premier chargement en s'assurant qu'ils se lancent l'un après que l'autre soit executé. Si l'on arrive ici par le biais de la checkbox, on est redirigé vers le 6
 
   useEffect(() => {
@@ -118,6 +124,10 @@ function HistoryMissions() {
           break;
         case 6:
           break;
+        case 7: // si besoin de réinitialiser missionfiltered (par exemple lors d'une annulation de candidature ou mission doit être rechargée)
+          filterStep.current = 0;
+          setMissionsFiltered([]);
+          break;
         default:
           filterStep.current = 0;
       }
@@ -137,7 +147,7 @@ function HistoryMissions() {
         }
       }
     }
-  }, [missions, missionsFiltered, updateTimeFilter]);
+  }, [missions, missionsFiltered]);
 
   // application du filtre refused
   useEffect(() => {
@@ -207,14 +217,6 @@ function HistoryMissions() {
       }
     }
   }, [updateValidatedFilter, isValidated]);
-
-  const handleMonthFilter = (e) => {
-    console.error(e.target.value);
-    isTimeConstrained.current = e.target.value;
-    filterStep.current = 0; // on s'assure d'appliquer le filtre temporel sur les filtres de status déjà existant
-    timeFilterStep.current = 1; // on demande au dispatcher d'appliquer un filtre temporel
-    setMissionsFiltered([]); // on réinitialise missionFiltered ce qui relance le dispatcher
-  };
 
   // on initialise les dates nécessaires au calcul du filtre temporel
   const currentDate = new Date();
@@ -311,8 +313,9 @@ function HistoryMissions() {
       .put(ENDPOINTANNULATION)
       .then((result) => {
         if (result.status === 204) {
-          notifySuccess("Suppression de la candidature avec succès");
+          filterStep.current = 7;
           setUpdate(!update);
+          notifySuccess("Suppression de la candidature avec succès");
         }
       })
       .catch((err) => console.error(err));
@@ -432,7 +435,9 @@ function HistoryMissions() {
               <option value="this-month">Mois en cours</option>
               <option value="previous-month">Mois précédent</option>
               <option value="even-before">Mois - 2</option>
-              <option value="all-months">Tout l'historique</option>
+              <option value="all-months" selected>
+                Tout l'historique
+              </option>
             </select>
           </label>
         </form>
