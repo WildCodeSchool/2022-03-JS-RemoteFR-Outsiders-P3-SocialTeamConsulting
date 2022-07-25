@@ -38,6 +38,7 @@ function PostMission() {
       .post(ENDPOINT, mission)
       .then(() => {
         notifySuccess("Votre mission été postée.");
+        e.target.reset();
       })
       .catch(() => {
         notifyError(
