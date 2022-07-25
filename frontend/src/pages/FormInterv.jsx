@@ -8,10 +8,12 @@ import "react-toastify/dist/ReactToastify.css";
 
 function FormInterv() {
   const [buttonText, setButtonText] = useState("Envoyer ma pré-inscription");
-
   const [intervenant, setIntervenant] = useState();
 
   function handleChange(event, type) {
+    // Is used on each input.
+    // In case of file, directly add the file in the state
+    // Else, add the value of the input
     if (type === "file") {
       setIntervenant({
         ...intervenant,
@@ -26,6 +28,8 @@ function FormInterv() {
   }
 
   function isDocSend(thisFile) {
+    // Is used on each file input
+    // Show a green light or a red light to the user
     if (
       intervenant !== undefined &&
       typeof intervenant[thisFile] !== "undefined"
@@ -43,15 +47,17 @@ function FormInterv() {
     const formData = new FormData();
     /* eslint-disable */
     for (let clef in intervenant) {
-      console.log("clef", clef)
-      console.log("intervenant.clef", intervenant[clef])
       formData.append(clef, intervenant[clef]);
     }
     /* eslint-enable */
-    api
-      .post(ENDPOINT, formData)
-      .then(() => {
-        if (intervenant.password === intervenant.passCheck) {
+    if (intervenant.password === intervenant.passCheck) {
+      notifyError(
+        "Votre pré-inscription n'a pas pu aboutir. Votre confirmation de mot de passe ne correspond pas au mot de passe entré."
+      );
+    } else {
+      api
+        .post(ENDPOINT, formData)
+        .then(() => {
           setButtonText(
             "Merci, votre pré-inscription a bien été prise en compte"
           );
@@ -59,20 +65,16 @@ function FormInterv() {
           notifySuccess(
             "Votre pré-inscription a été enregistrée. Un administrateur vous contactera bientôt pour vous informer de l'avancement de votre dossier"
           );
-        } else {
+        })
+        .catch(() => {
+          setButtonText(
+            "Erreur, vérifier si toutes vos informations sont correctes"
+          );
           notifyError(
             "Votre pré-inscription n'a pas pu aboutir. Veuillez vérifier les champs à remplir avant de soumettre à nouveau votre pré-inscription"
           );
-        }
-      })
-      .catch(() => {
-        setButtonText(
-          "Erreur, vérifier si toutes vos informations sont correctes"
-        );
-        notifyError(
-          "Votre pré-inscription n'a pas pu aboutir. Veuillez vérifier les champs à remplir avant de soumettre à nouveau votre pré-inscription"
-        );
-      });
+        });
+    }
   };
 
   return (
