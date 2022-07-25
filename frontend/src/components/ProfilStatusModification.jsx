@@ -5,17 +5,17 @@ function ProfilStatusModification({ user }) {
   const [etat, setEtat] = useState("undefined");
   const [update, setUpdate] = useState(false);
   let ENDPOINTETAT = "";
+  let ENDPOINT = "";
+
+  if (user.prenom !== undefined) {
+    ENDPOINTETAT = `/intervenants/etat/${user.id}`;
+    ENDPOINT = `/intervenants/bymail/${user.email}`;
+  } else {
+    ENDPOINTETAT = `/associations/etat/${user.id}`;
+    ENDPOINT = `/associations/bymail/${user.email}`;
+  }
 
   useEffect(() => {
-    let ENDPOINT = "";
-    const ENDPOINTASSO = `/associations/bymail/${user.email}`;
-    const ENDPOINTINTERV = `/intervenants/bymail/${user.email}`;
-    if (user.prenom !== undefined) {
-      ENDPOINT = ENDPOINTINTERV;
-    } else {
-      ENDPOINT = ENDPOINTASSO;
-    }
-
     api
       .get(ENDPOINT)
       .then((res) => {
@@ -27,11 +27,6 @@ function ProfilStatusModification({ user }) {
   }, [user, update]);
 
   const handleStatus = (newStatus) => {
-    if (user.prenom !== undefined) {
-      ENDPOINTETAT = `/intervenants/etat/${user.id}`;
-    } else {
-      ENDPOINTETAT = `/associations/etat/${user.id}`;
-    }
     api
       .put(ENDPOINTETAT, { newStatus })
       .then(() => {
