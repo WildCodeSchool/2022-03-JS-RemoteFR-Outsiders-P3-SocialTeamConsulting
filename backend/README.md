@@ -35,8 +35,8 @@ Un exemple pour accéder aux routes:
 - Page principale: [GET localhost:5000/](localhost:5000/)
 - Associations browse: [GET localhost:5000/associations](localhost:5000/associations)
 - Associations read: [GET localhost:5000/associations/bymail/:email](localhost:5000/associations/bymail/uneadresse4@hello.fr)
-- Associations edit: PUT localhost:5000/items/associations/:id
+- Associations edit: PUT localhost:5000/associations/:id
 - Associations add: POST localhost:5000/associations
 
-Vous pouvez retrouver toutes ses routes déclarées dans le document `src/router.js`.
+Vous pouvez retrouver toutes ces routes déclarées dans le document `src/router.js`.
 Ajoutez de nouvelles routes, controllers et models.
