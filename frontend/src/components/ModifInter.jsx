@@ -8,7 +8,6 @@ function ModifInter() {
   const [missions, setMissions] = useState([]);
   const [update, setUpdate] = useState(false);
 
-  // Permet de recuperer les missions et de les afficher.
   useEffect(() => {
     api
       .get(ENDPOINT)
@@ -27,11 +26,8 @@ function ModifInter() {
     const [isVisible, setIsVisible] = useState(false);
     const [idCheck, setIdCheck] = useState({});
     const [isDisabled, setIsDisabled] = useState(false);
-
-    /**
-     * Permet de recuperer les noms et prenoms des intervenants qui ont ete positionne sur une mission et ceux qui avait ete refuse.
-     *  */
     const ENDPOINTINTERV = `/accepte/modification/${missionID}`;
+
     useEffect(() => {
       api
         .get(ENDPOINTINTERV)
@@ -44,7 +40,6 @@ function ModifInter() {
         });
     }, []);
 
-    // permet de modifier l'intervenant sur une mission, passe celui choisit sur 1 et les autres a 2.
     const updateChangeOnInter = (e, intervenantID) => {
       e.preventDefault();
       const ENDPOINTUPDATEINTER = `/accepte/modification/${missionID}`;
@@ -60,7 +55,6 @@ function ModifInter() {
         });
     };
 
-    // permet de modifier le status de la mission a 1 et passe tous les intervenants a isvalidated 0
     const updateChangeMission = (e) => {
       e.preventDefault();
       const ENDPOINTCHANGEMISSIONACCEPTE = `/missions/accepte/${missionID}`;
@@ -104,7 +98,12 @@ function ModifInter() {
                 <div className="modif-inter-section">
                   {intervenants.map((intervenant) => {
                     return (
-                      <div className="modif-input-container">
+                      <div
+                        role="button"
+                        tabIndex={0}
+                        className="modif-input-container"
+                        onClick={() => handleCheck(missionID, intervenant.id)}
+                      >
                         <input
                           type="radio"
                           checked={
@@ -113,7 +112,6 @@ function ModifInter() {
                               : null
                           }
                           id={`${missionID}-${intervenant.id}`}
-                          onClick={() => handleCheck(missionID, intervenant.id)}
                           name="intervenant_id"
                           value={intervenant.email}
                         />
@@ -141,8 +139,10 @@ function ModifInter() {
           </fieldset>
           {isShow && (
             <div className="modif-warning">
-              Attention vous vous apprêtez à choisir un nouvel intervenant,
-              merci de le contacter pour valider ses disponibilitées.
+              <p>
+                Attention vous vous apprêtez à choisir un nouvel intervenant,
+                merci de le contacter pour valider ses disponibilitées.
+              </p>
             </div>
           )}
           <button
