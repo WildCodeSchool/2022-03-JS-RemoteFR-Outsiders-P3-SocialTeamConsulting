@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { FaCloudUploadAlt } from "react-icons/fa";
 import "@style/Form.css";
@@ -9,6 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 function FormInterv() {
   const [buttonText, setButtonText] = useState("Envoyer ma pré-inscription");
   const [intervenant, setIntervenant] = useState();
+  const navigate = useNavigate();
 
   function handleChange(event, type) {
     // Is used on each input.
@@ -50,7 +52,7 @@ function FormInterv() {
       formData.append(clef, intervenant[clef]);
     }
     /* eslint-enable */
-    if (intervenant.password === intervenant.passCheck) {
+    if (intervenant.password !== intervenant.passCheck) {
       notifyError(
         "Votre pré-inscription n'a pas pu aboutir. Votre confirmation de mot de passe ne correspond pas au mot de passe entré."
       );
@@ -61,7 +63,6 @@ function FormInterv() {
           setButtonText(
             "Merci, votre pré-inscription a bien été prise en compte"
           );
-
           notifySuccess(
             "Votre pré-inscription a été enregistrée. Un administrateur vous contactera bientôt pour vous informer de l'avancement de votre dossier"
           );
@@ -75,6 +76,7 @@ function FormInterv() {
           );
         });
     }
+    navigate("/");
   };
 
   return (
