@@ -38,11 +38,13 @@ function FormInterv() {
   }
 
   const handleSubmit = (e) => {
-    const ENDPOINT = "/intervenants";
     e.preventDefault();
+    const ENDPOINT = "/intervenants";
     const formData = new FormData();
     /* eslint-disable */
     for (let clef in intervenant) {
+      console.log("clef", clef)
+      console.log("intervenant.clef", intervenant[clef])
       formData.append(clef, intervenant[clef]);
     }
     /* eslint-enable */
