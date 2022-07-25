@@ -10,55 +10,37 @@ function FormInterv() {
   const [buttonText, setButtonText] = useState("Envoyer ma pré-inscription");
 
   const [intervenant, setIntervenant] = useState();
-  const [fileAutoE, setFileAutoE] = useState(false);
-  const [fileCarteVitale, setFileCarteVitale] = useState(false);
-  const [fileCv, setFileCv] = useState(false);
 
-  function handleChangeAutoEntr(event) {
-    setFileAutoE(event.target.files[0]);
+  function handleChange(event, type) {
+    if (type === "file") {
+      setIntervenant({
+        ...intervenant,
+        [event.target.name]: event.target.files[0],
+      });
+    } else {
+      setIntervenant({
+        ...intervenant,
+        [event.target.name]: event.target.value,
+      });
+    }
   }
 
-  function handleChangeCarteVitale(event) {
-    setFileCarteVitale(event.target.files[0]);
-  }
-
-  function handleChangeCv(event) {
-    setFileCv(event.target.files[0]);
-  }
-
-  function handleChange(event) {
-    setIntervenant({
-      ...intervenant,
-      [event.target.name]: event.target.value,
-    });
-  }
-
-  function noFile() {
+  function isDocSend(thisFile) {
+    if (
+      intervenant !== undefined &&
+      typeof intervenant[thisFile] !== "undefined"
+    ) {
+      return <div className="green">{intervenant[thisFile].name}</div>;
+    }
     return (
       <div className="red">{`Vous n'avez pas encore ajouté de fichier`}</div>
     );
   }
 
-  function fooAutoEntr() {
-    return <div className="green">{fileAutoE.name}</div>;
-  }
-
-  function fooCarteVitale() {
-    return <div className="green">{fileCarteVitale.name}</div>;
-  }
-
-  function fooCv() {
-    return <div className="green">{fileCv.name}</div>;
-  }
-
-  const ENDPOINT = "/intervenants";
-
   const handleSubmit = (e) => {
+    const ENDPOINT = "/intervenants";
     e.preventDefault();
     const formData = new FormData();
-    formData.append("AutoE", fileAutoE);
-    formData.append("CarteVitale", fileCarteVitale);
-    formData.append("Cv", fileCv);
     /* eslint-disable */
     for (let clef in intervenant) {
       formData.append(clef, intervenant[clef]);
@@ -166,7 +148,6 @@ function FormInterv() {
                     name="password"
                     id="interv_mdp"
                     required
-                    placeholder="********"
                     onChange={handleChange}
                     autoComplete="off"
                   />
@@ -182,7 +163,6 @@ function FormInterv() {
                     name="passCheck"
                     id="interv_mdp2"
                     required
-                    placeholder="********"
                     onChange={handleChange}
                     autoComplete="off"
                   />
@@ -201,11 +181,14 @@ function FormInterv() {
                 <div>
                   <FaCloudUploadAlt className="upload_icon" />
                 </div>
-                {fileAutoE ? fooAutoEntr() : noFile()}
+                {isDocSend("AutoE")}
                 <input
                   id="upload_statut_ae"
                   type="file"
-                  onChange={handleChangeAutoEntr}
+                  name="AutoE"
+                  onChange={(e) => {
+                    handleChange(e, "file");
+                  }}
                   className="inputfile"
                   required
                 />
@@ -216,11 +199,14 @@ function FormInterv() {
                 <div>
                   <FaCloudUploadAlt className="upload_icon" />
                 </div>
-                {fileCarteVitale ? fooCarteVitale() : noFile()}
+                {isDocSend("CarteVitale")}
                 <input
                   id="upload_carte_vitale"
                   type="file"
-                  onChange={handleChangeCarteVitale}
+                  name="CarteVitale"
+                  onChange={(e) => {
+                    handleChange(e, "file");
+                  }}
                   className="inputfile"
                   required
                 />
@@ -232,11 +218,14 @@ function FormInterv() {
                   <div>
                     <FaCloudUploadAlt className="upload_icon" />
                   </div>
-                  {fileCv ? fooCv() : noFile()}
+                  {isDocSend("CV")}
                   <input
                     id="upload_cv"
                     type="file"
-                    onChange={handleChangeCv}
+                    name="CV"
+                    onChange={(e) => {
+                      handleChange(e, "file");
+                    }}
                     className="inputfile"
                     required
                   />
