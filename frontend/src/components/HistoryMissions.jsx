@@ -63,6 +63,7 @@ function HistoryMissions() {
   const handleRefusedFilter = (e) => {
     if (e.target.checked) {
       filterStep.current = 6; // les fonctions handle ne doivent pas relancer l'ensemble des filtres. 6 signifie ne rien faire après application du filtre
+      timeFilterStep.current = 1; // les fonctions handle ne doivent pas relancer l'ensemble des filtres. 6 signifie ne rien faire après application du filtre
       setIsRefused(true);
       setUpdateRefusedFilter(!updateRefusedFilter);
     } else {
@@ -75,6 +76,7 @@ function HistoryMissions() {
   const handlePendingFilter = (e) => {
     if (e.target.checked) {
       filterStep.current = 6; // les fonctions handle ne doivent pas relancer l'ensemble des filtres. 6 signifie ne rien faire après application du filtre
+      timeFilterStep.current = 1; // les fonctions handle ne doivent pas relancer l'ensemble des filtres. 6 signifie ne rien faire après application du filtre
       setIsPending(true);
       setUpdatePendingFilter(!updatePendingFilter);
     } else {
@@ -87,6 +89,7 @@ function HistoryMissions() {
   const handleValidatedFilter = (e) => {
     if (e.target.checked) {
       filterStep.current = 6; // les fonctions handle ne doivent pas relancer l'ensemble des filtres. 6 signifie ne rien faire après application du filtre
+      timeFilterStep.current = 1; // les fonctions handle ne doivent pas relancer l'ensemble des filtres. 6 signifie ne rien faire après application du filtre
       setIsValidated(true);
       setUpdateValidatedFilter(!updateValidatedFilter);
     } else {
