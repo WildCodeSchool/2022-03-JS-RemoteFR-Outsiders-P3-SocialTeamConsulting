@@ -62,9 +62,9 @@ const IntervenantJoiVerification = (intervenant) => {
     email,
     telephone,
     password,
-    image_cv,
-    image_carte_vitale,
-    image_statut_autoentrepreneur,
+    CV,
+    CarteVitale,
+    AutoE,
     pre_inscription_message,
   } = intervenant;
   const { error } = Joi.object({
@@ -73,13 +73,13 @@ const IntervenantJoiVerification = (intervenant) => {
     email: Joi.string().email().max(255).required(),
     telephone: Joi.string().min(10).max(10).required(),
     password: Joi.string().max(255).required(),
-    image_cv: Joi.string()
+    CV: Joi.string()
       .pattern(/\.(gif|GIF|jpe?g|JPE?G|tiff?|TIFF?|png|PNG)$/)
       .required(),
-    image_carte_vitale: Joi.string()
+    CarteVitale: Joi.string()
       .pattern(/\.(gif|GIF|jpe?g|JPE?G|tiff?|TIFF?|png|PNG)$/)
       .required(),
-    image_statut_autoentrepreneur: Joi.string()
+    AutoE: Joi.string()
       .pattern(/\.(gif|GIF|jpe?g|JPE?G|tiff?|TIFF?|png|PNG)$/)
       .required(),
     pre_inscription_message: Joi.string().max(500).required(),
@@ -90,9 +90,9 @@ const IntervenantJoiVerification = (intervenant) => {
       email,
       telephone,
       password,
-      image_cv,
-      image_carte_vitale,
-      image_statut_autoentrepreneur,
+      CV,
+      CarteVitale,
+      AutoE,
       pre_inscription_message,
     },
     { abortEarly: false }
