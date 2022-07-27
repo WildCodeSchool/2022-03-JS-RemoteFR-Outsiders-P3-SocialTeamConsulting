@@ -11,25 +11,41 @@ function HistoryMissions() {
   const [updateRefusedFilter, setUpdateRefusedFilter] = useState(false);
   const [updatePendingFilter, setUpdatePendingFilter] = useState(false);
   const [updateValidatedFilter, setUpdateValidatedFilter] = useState(false);
+  const [loadMissionWithoutFilter, setLoadMissionWithoutFilter] =
+    useState(false);
   const [applyTimeFilter, setApplyTimeFilter] = useState(false);
   const filterStep = useRef(0);
   const timeFilterStep = useRef(1);
 
   const ENDPOINTINTERVENANT = "/intervenants";
+  const ENDPOINTASSOCIATION = "/associations";
+  const ENDPOINTADMINISTRATEUR = "/administrateurs";
+  let ENDPOINTROLE = "";
 
   useEffect(() => {
     // on récupère l'id de l'user pour charger ses missions
+    console.error(infoUser);
+    if (infoUser.role === "intervenant") {
+      ENDPOINTROLE = ENDPOINTINTERVENANT;
+    }
+    if (infoUser.role === "association") {
+      filterStep.current = 8;
+      ENDPOINTROLE = ENDPOINTASSOCIATION;
+    }
+    if (infoUser.role === "administrateur") {
+      filterStep.current = 8;
+      ENDPOINTROLE = ENDPOINTADMINISTRATEUR;
+    }
+
     api
-      .get(ENDPOINTINTERVENANT)
+      .get(ENDPOINTROLE)
       .then((res) => {
         setUser(
-          res.data.filter(
-            (intervenant) => intervenant.email === infoUser.email
-          )[0].id
+          res.data.filter((thisUser) => thisUser.email === infoUser.email)[0].id
         );
       })
       .catch((err) => {
-        console.error(err);
+        console.error(console.error(err));
       });
   }, []);
 
@@ -43,13 +59,28 @@ function HistoryMissions() {
   const isTimeConstrained = useRef("all-months");
 
   // on charge les missions de l'utilisateur quand l'id de l'utilisateur est récupéré
+
   useEffect(() => {
     if (typeof user !== "undefined") {
-      const ENDPOINT = `/missions/history/${user}`;
+      const ENDPOINTMISSIONSINTERVENANT = `/missions/history/${user}`;
+      const ENDPOINTMISSIONSASSOCIATION = `/missions/assohistory/${user}`;
+      const ENDPOINTMISSIONSADMINISTRATEUR = `/missions`;
+      let ENDPOINT = "";
+      if (infoUser.role === "intervenant") {
+        ENDPOINT = ENDPOINTMISSIONSINTERVENANT;
+      }
+      if (infoUser.role === "association") {
+        ENDPOINT = ENDPOINTMISSIONSASSOCIATION;
+      }
+      if (infoUser.role === "administrateur") {
+        ENDPOINT = ENDPOINTMISSIONSADMINISTRATEUR;
+      }
+
       api
         .get(ENDPOINT)
         .then((res) => {
           setMissions(res.data);
+          console.error(res.data);
         })
         .catch((err) => console.error(err));
     }
@@ -98,9 +129,14 @@ function HistoryMissions() {
 
   const handleMonthFilter = (e) => {
     isTimeConstrained.current = e.target.value;
-    filterStep.current = 0; // on s'assure d'appliquer le filtre temporel sur les filtres de status déjà existant
     timeFilterStep.current = 1; // on demande au dispatcher d'appliquer un filtre temporel
-    setMissionsFiltered([]); // on réinitialise missionFiltered ce qui relance le dispatcher
+    if (infoUser.role === "intervenant") {
+      filterStep.current = 0; // on s'assure d'appliquer le filtre temporel sur les filtres de status déjà existant
+      setMissionsFiltered([]); // on réinitialise missionFiltered ce qui relance le dispatcher
+    } else {
+      filterStep.current = 8;
+      setMissionsFiltered([]); // on réinitialise missionFiltered ce qui relance le dispatcher
+    }
   };
 
   // ici on lance les filtres au premier chargement en s'assurant qu'ils se lancent l'un après que l'autre soit executé. Si l'on arrive ici par le biais de la checkbox, on est redirigé vers le 6
@@ -126,6 +162,9 @@ function HistoryMissions() {
           filterStep.current = 0;
           setMissionsFiltered([]);
           break;
+        case 8: // le cas spécifique de l'administrateur qui n'a pas de filtre
+          setLoadMissionWithoutFilter(!loadMissionWithoutFilter);
+          break;
         default:
           filterStep.current = 0;
       }
@@ -143,10 +182,19 @@ function HistoryMissions() {
           default:
             timeFilterStep.current = 0;
         }
+        sortByDate(missionsFiltered); // tri des missions , la mission la plus récente d'abord
       }
-      sortByDate(missionsFiltered); // tri des missions , la mission la plus récente d'abord
     }
   }, [missions, missionsFiltered]);
+
+  // on charge sans filtre
+
+  useEffect(() => {
+    if (missions.length > 0 && infoUser.role !== "intervenant") {
+      filterStep.current = 6;
+      setMissionsFiltered(missions);
+    }
+  }, [loadMissionWithoutFilter]);
 
   // application du filtre refused
   useEffect(() => {
@@ -265,6 +313,7 @@ function HistoryMissions() {
       // on s' assure que missionFiltered est définie et qu'on est bien passé par le dispatcher
 
       if (isTimeConstrained.current === "all-months") {
+        timeFilterStep.current = 0;
       } else if (isTimeConstrained.current === "this-month") {
         setMissionsFiltered([
           ...missionsFiltered.filter(
@@ -333,108 +382,114 @@ function HistoryMissions() {
 
   return (
     <>
-      <div className="header-mission-synthesis">
-        <div>
-          <h2>
-            Ensemble des missions pour lesquelles j'ai postulé, en cours et
-            effectuées
-          </h2>
-        </div>
+      {infoUser.role !== "intervenant" ? null : (
+        <>
+          {" "}
+          <div className="header-mission-synthesis">
+            <div>
+              <h2>
+                Ensemble des missions pour lesquelles j'ai postulé, en cours et
+                effectuées
+              </h2>
+            </div>
 
-        <div className="legende">
-          <div>Légende : </div>
-          <div>refusée :</div>
-          <div className="is-refused-legend"> </div>
-          <div>En attente de validation :</div>
-          <div className="pending-validation-legend"> </div>
-          <div>Validée : </div>
-          <div className="is-validated-legend"> </div>
-        </div>
-      </div>
+            <div className="legende">
+              <div>Légende : </div>
+              <div>refusée :</div>
+              <div className="is-refused-legend"> </div>
+              <div>En attente de validation :</div>
+              <div className="pending-validation-legend"> </div>
+              <div>Validée : </div>
+              <div className="is-validated-legend"> </div>
+            </div>
+          </div>
+          <div className="filters">
+            <form action="" method="post" className="filter-form">
+              <label htmlFor="refused">
+                {isRefused ? (
+                  <input
+                    type="checkbox"
+                    value="refused"
+                    id="refused"
+                    name="refused"
+                    checked
+                    onChange={handleRefusedFilter}
+                  />
+                ) : (
+                  <input
+                    type="checkbox"
+                    value="refused"
+                    id="refused"
+                    name="refused"
+                    onChange={handleRefusedFilter}
+                  />
+                )}
+                <p className="inline"> : Refusées </p>
+              </label>
+              <label htmlFor="pending">
+                {isPending ? (
+                  <input
+                    type="checkbox"
+                    value="pending"
+                    id="pending"
+                    name="pending"
+                    checked
+                    onChange={handlePendingFilter}
+                  />
+                ) : (
+                  <input
+                    type="checkbox"
+                    value="pending"
+                    id="pending"
+                    name="pending"
+                    onChange={handlePendingFilter}
+                  />
+                )}
+                <p className="inline"> : En attente de validation </p>
+              </label>
+              <label htmlFor="validated">
+                {isValidated ? (
+                  <input
+                    type="checkbox"
+                    value="validated"
+                    id="validated"
+                    name="validated"
+                    checked
+                    onChange={handleValidatedFilter}
+                  />
+                ) : (
+                  <input
+                    type="checkbox"
+                    value="validated"
+                    id="validated"
+                    name="validated"
+                    onChange={handleValidatedFilter}
+                  />
+                )}
+                <p className="inline"> : Validées </p>
+              </label>
+              <br />
+            </form>
+          </div>
+        </>
+      )}
       <div className="filters">
-        <form action="" method="post" className="filter-form">
-          <label htmlFor="refused">
-            {isRefused ? (
-              <input
-                type="checkbox"
-                value="refused"
-                id="refused"
-                name="refused"
-                checked
-                onChange={handleRefusedFilter}
-              />
-            ) : (
-              <input
-                type="checkbox"
-                value="refused"
-                id="refused"
-                name="refused"
-                onChange={handleRefusedFilter}
-              />
-            )}
-            <p className="inline"> : Refusées </p>
-          </label>
-          <label htmlFor="pending">
-            {isPending ? (
-              <input
-                type="checkbox"
-                value="pending"
-                id="pending"
-                name="pending"
-                checked
-                onChange={handlePendingFilter}
-              />
-            ) : (
-              <input
-                type="checkbox"
-                value="pending"
-                id="pending"
-                name="pending"
-                onChange={handlePendingFilter}
-              />
-            )}
-            <p className="inline"> : En attente de validation </p>
-          </label>
-          <label htmlFor="validated">
-            {isValidated ? (
-              <input
-                type="checkbox"
-                value="validated"
-                id="validated"
-                name="validated"
-                checked
-                onChange={handleValidatedFilter}
-              />
-            ) : (
-              <input
-                type="checkbox"
-                value="validated"
-                id="validated"
-                name="validated"
-                onChange={handleValidatedFilter}
-              />
-            )}
-            <p className="inline"> : Validées </p>
-          </label>
-          <br />
-          <label htmlFor="month-selection">
-            <p className="inline"> Afficher : </p>
-            <select
-              id="month-selection"
-              name="month-selection"
-              onChange={handleMonthFilter}
-            >
-              <option value="this-month">Mois en cours</option>
-              <option value="previous-month">Mois précédent</option>
-              <option value="even-before">Mois - 2</option>
-              <option value="all-months" selected>
-                Tout l'historique
-              </option>
-            </select>
-          </label>
-        </form>
+        <label htmlFor="month-selection">
+          <p className="inline"> Afficher : </p>
+          <select
+            id="month-selection"
+            name="month-selection"
+            onChange={handleMonthFilter}
+          >
+            <option value="this-month">Mois en cours</option>
+            <option value="previous-month">Mois précédent</option>
+            <option value="even-before">Mois - 2</option>
+            <option value="all-months" selected>
+              Tout l'historique
+            </option>
+          </select>
+        </label>
       </div>
-
       <div className="card">
         {missions.length < 1 ? (
           <div>
