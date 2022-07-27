@@ -62,4 +62,27 @@ const Deconnexion = (navigate, setInfoUser) => {
   });
 };
 
-export { authentification, Deconnexion, notifySuccess, notifyError, api };
+const swap = (arr, i, j) => {
+  const tmp = arr[i];
+  arr[i] = arr[j];
+  arr[j] = tmp;
+};
+
+const sortByDate = (array) => {
+  for (let i = 0; i < array.length; i++) {
+    for (let j = i + 1; j < array.length; j++)
+      if (new Date(array[i].date_debut) < new Date(array[j].date_debut)) {
+        swap(array, i, j);
+      }
+  }
+  return array;
+};
+
+export {
+  authentification,
+  Deconnexion,
+  notifySuccess,
+  notifyError,
+  api,
+  sortByDate,
+};
