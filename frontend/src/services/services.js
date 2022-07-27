@@ -64,10 +64,17 @@ const Deconnexion = (navigate, setInfoUser) => {
 
 const swap = (arr, i, j) => {
   const tmp = arr[i];
+<<<<<<< HEAD
   // arr[i] = arr[j];
   arr.splice(i, 1, arr[j]);
   arr.splice(j, 1, tmp);
   // arr[j] = tmp;
+=======
+  // eslint-disable-next-line no-param-reassign
+  arr[i] = arr[j];
+  // eslint-disable-next-line no-param-reassign
+  arr[j] = tmp;
+>>>>>>> 8e5c8f05586dce8124f516554d17fc804bdc26e5
 };
 
 const sortByDate = (array) => {
