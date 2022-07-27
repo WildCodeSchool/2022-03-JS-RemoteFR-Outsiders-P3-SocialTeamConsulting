@@ -265,6 +265,7 @@ function HistoryMissions() {
       // on s' assure que missionFiltered est définie et qu'on est bien passé par le dispatcher
 
       if (isTimeConstrained.current === "all-months") {
+        return;
       } else if (isTimeConstrained.current === "this-month") {
         setMissionsFiltered([
           ...missionsFiltered.filter(
