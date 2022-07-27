@@ -64,7 +64,9 @@ const Deconnexion = (navigate, setInfoUser) => {
 
 const swap = (arr, i, j) => {
   const tmp = arr[i];
+  // eslint-disable-next-line no-param-reassign
   arr[i] = arr[j];
+  // eslint-disable-next-line no-param-reassign
   arr[j] = tmp;
 };
 
