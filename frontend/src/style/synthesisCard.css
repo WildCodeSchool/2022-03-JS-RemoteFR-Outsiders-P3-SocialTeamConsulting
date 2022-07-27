@@ -91,3 +91,8 @@
 .synthesis-pourvue {
   background-color: var(--color-interaction);
 }
+
+.synthesis-finish_area{
+  display: flex;
+  justify-content: center;
+}

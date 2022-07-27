@@ -98,7 +98,7 @@ export default function ProfilAsso() {
             <p>Ville</p>
             <input
               className="rules"
-              type="email"
+              type="text"
               name="ville"
               placeholder={association.ville}
               onChange={(e) => handleChange(e)}

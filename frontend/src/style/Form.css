@@ -30,6 +30,7 @@
 .app-backoffice-container input[type="text"],
 .app-backoffice-container input[type="date"],
 .app-backoffice-container input[type="time"],
+.app-backoffice-container input[type="email"],
 .app-backoffice-container input[type="number"],
 .app-backoffice-container textarea[type="text"],
 #job_select,
