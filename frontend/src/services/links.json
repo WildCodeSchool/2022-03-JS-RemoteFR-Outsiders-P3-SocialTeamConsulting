@@ -1,14 +1,14 @@
 [
   {
     "section": "Historique des missions",
-    "link": "/back_office/historique_missions",
+    "link": "/back_office/historique_des_missions",
     "association": true,
     "intervenant": true,
     "administrateur": true
   },
   {
     "section": "Créer une mission",
-    "link": "/back_office/post_mission",
+    "link": "/back_office/creer_une_mission",
     "association": true,
     "intervenant": false,
     "administrateur": false
@@ -29,21 +29,21 @@
   },
   {
     "section": "Missions : Valider une mission",
-    "link": "/back_office/validation_mission",
+    "link": "/back_office/validation_des_missions",
     "association": false,
     "intervenant": false,
     "administrateur": true
   },
   {
     "section": "Missions : Choisir un intervenant",
-    "link": "/back_office/validation_intervenant",
+    "link": "/back_office/choisir_un_intervenant",
     "association": false,
     "intervenant": false,
     "administrateur": true
   },
   {
     "section": "Missions : Changer l'intervenant",
-    "link": "/back_office/modification_mission_intervenant",
+    "link": "/back_office/changer_un_intervenant",
     "association": false,
     "intervenant": false,
     "administrateur": true
@@ -57,7 +57,7 @@
   },
   {
     "section": "Messages de contact des associations",
-    "link": "/back_office/lecture_message",
+    "link": "/back_office/lecture_des_messages",
     "association": false,
     "intervenant": false,
     "administrateur": true

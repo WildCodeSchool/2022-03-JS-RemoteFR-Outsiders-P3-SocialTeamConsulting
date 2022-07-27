@@ -12,7 +12,6 @@ export default function AccueilAsso() {
       </header>
       <div className="presentationText">
         <p>
-          {" "}
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores,
           molestias quisquam eum laboriosam mollitia voluptates! Accusantium
           pariatur ipsum accusamus laboriosam quam aspernatur, perferendis magni

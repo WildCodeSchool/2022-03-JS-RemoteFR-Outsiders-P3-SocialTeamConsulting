@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import download from "downloadjs";
 import { notifySuccess, notifyError, api } from "@services/services";
 import { useLocation } from "react-router-dom";
+import ProfilStatusModification from "./ProfilStatusModification";
 
 import "@style/App.css";
 import "@style/ProfilInterv.css";
@@ -30,28 +31,28 @@ export default function ProfilInterv() {
     const promiseAUTO = api.get(ENDPOINTPATHAUTO);
     const promiseVITALE = api.get(ENDPOINTPATHVITALE);
 
-    /*eslint-disable*/
-
     Promise.all([promiseCV, promiseAUTO, promiseVITALE]).then((data) => {
-      import.meta.env.VITE_BACKEND_URL === "http://localhost:5000"
-        ? setImageCV(
-            "https://modele-cv.org/wp-content/uploads/doc-builder/cv/miniatures/cv-15-blue.jpg"
-          )
-        : setImageCV(data[0].data.path);
-      import.meta.env.VITE_BACKEND_URL === "http://localhost:5000"
-        ? setImageAuto(
-            "https://sp-formation.com/wp-content/uploads/2018/06/AGEFICE-Attestation-de-versement-ME-CFP-2018-318x450.jpg"
-          )
-        : setImageAuto(data[1].data.path);
-      import.meta.env.VITE_BACKEND_URL === "http://localhost:5000"
-        ? setImageCarteVitale(
-            "https://secu-jeunes.fr/wp-content/uploads/2016/09/Carte_Vitale_Une.jpg"
-          )
-        : setImageCarteVitale(data[2].data.path);
+      /*
+       ** localhost cannot be load due to security issues.
+       ** load fake data when use with localhost
+       */
+      if (import.meta.env.VITE_BACKEND_URL === "http://localhost:5000") {
+        setImageCV(
+          "https://modele-cv.org/wp-content/uploads/doc-builder/cv/miniatures/cv-15-blue.jpg"
+        );
+        setImageAuto(
+          "https://sp-formation.com/wp-content/uploads/2018/06/AGEFICE-Attestation-de-versement-ME-CFP-2018-318x450.jpg"
+        );
+        setImageCarteVitale(
+          "https://secu-jeunes.fr/wp-content/uploads/2016/09/Carte_Vitale_Une.jpg"
+        );
+      } else {
+        setImageCV(data[0].data.path);
+        setImageAuto(data[1].data.path);
+        setImageCarteVitale(data[2].data.path);
+      }
     });
   }, [intervenant]);
-
-  // On veut mettre a jour les informations d'un intervenant
 
   const updateIntervenant = (e) => {
     e.preventDefault();
@@ -66,25 +67,12 @@ export default function ProfilInterv() {
       });
   };
 
-  // changement de valeur
   function handleChange(event) {
     setIntervenant({
       ...intervenant,
       [event.target.name]: event.target.value,
     });
   }
-
-  const handleStatus = (newStatus) => {
-    const ENDPOINTETAT = `/intervenants/etat/${intervenant.id}`;
-    api
-      .put(ENDPOINTETAT, { newStatus })
-      .then(() => {
-        notifySuccess(`L'utilisateur à maintenant le status "${newStatus}"`);
-      })
-      .catch(() => {
-        notifyError("Une erreur est survenue lors de la mise à jour.");
-      });
-  };
 
   const downloadImage = (image) => {
     const extension = image.split(".")[1];
@@ -100,68 +88,6 @@ export default function ProfilInterv() {
       .then((blob) => {
         download(blob, `${image}`, `image/${extension}`);
       });
-  };
-
-  const inscritButton = () => {
-    return (
-      <div
-        role="button"
-        tabIndex={0}
-        className="button-blue"
-        onClick={() => handleStatus("inscrit")}
-      >
-        Mettre l'utilisateur en status "inscrit"
-      </div>
-    );
-  };
-  const refuseButton = () => {
-    return (
-      <div
-        role="button"
-        tabIndex={0}
-        className="button-blue"
-        onClick={() => handleStatus("refusé")}
-      >
-        Refuser le pré-inscription de l'utilisateur
-      </div>
-    );
-  };
-  const banniButton = () => {
-    return (
-      <div
-        role="button"
-        tabIndex={0}
-        className="button-blue"
-        onClick={() => handleStatus("banni")}
-      >
-        Bannir l'utilisateur
-      </div>
-    );
-  };
-  const modifEtat = () => {
-    switch (intervenant.etat) {
-      case "pré-inscrit":
-        return (
-          <div>
-            {inscritButton()} {refuseButton()} {banniButton()}
-          </div>
-        );
-
-      case "inscrit":
-        return <div>{banniButton()}</div>;
-
-      case "refusé":
-        return (
-          <div>
-            {inscritButton()} {banniButton()}
-          </div>
-        );
-
-      case "banni":
-        return <div>{inscritButton()}</div>;
-      default:
-        return "";
-    }
   };
 
   return (
@@ -277,9 +203,7 @@ export default function ProfilInterv() {
           </div>
         </div>
       </div>
-      <hr className="profilinter-hr" />
-      <p className="bold">{`Cet utilisateur est actuellement ${intervenant.etat}.`}</p>
-      {modifEtat()}
+      <ProfilStatusModification user={intervenant} />
     </div>
   );
 }

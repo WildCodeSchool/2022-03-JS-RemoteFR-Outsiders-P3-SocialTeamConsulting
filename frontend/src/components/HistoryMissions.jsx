@@ -393,8 +393,8 @@ function HistoryMissions() {
               </h2>
             </div>
 
+            <div>Légende : </div>
             <div className="legende">
-              <div>Légende : </div>
               <div>refusée :</div>
               <div className="is-refused-legend"> </div>
               <div>En attente de validation :</div>

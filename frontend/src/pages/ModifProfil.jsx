@@ -10,6 +10,10 @@ function ModifProfil() {
   const [user, setUser] = useState({});
 
   useEffect(() => {
+    /*
+     ** UseEffect to load the correct route depending of the type of user
+     */
+
     let ENDPOINT = "";
     const ENDPOINTADMINISTRATEUR = `/administrateurs/bymail/${infoUser.email}`;
     const ENDPOINTASSOCIATION = `/associations/bymail/${infoUser.email}`;
@@ -33,22 +37,19 @@ function ModifProfil() {
       });
   }, [user]);
 
-  const [oldPassIsVisible, setoldPassIsVisible] = useState(false);
-  const [newPasswordIsVisible, setnewPasswordIsVisible] = useState(false);
-  const [newPassConfIsVisible, setnewPassConfIsVisible] = useState(false);
+  const [isPasswordVisilbe, setIsPasswordVisilbe] = useState({
+    oldPassword: false,
+    newPassword: false,
+    newPasswordConfirm: false,
+  });
   const [newPass, setNewPass] = useState();
 
   const handleShowPassword = (e, inputChoice) => {
     e.preventDefault();
-    if (inputChoice === "newPassword") {
-      setnewPasswordIsVisible(!newPasswordIsVisible);
-    }
-    if (inputChoice === "newPassConf") {
-      setnewPassConfIsVisible(!newPassConfIsVisible);
-    }
-    if (inputChoice === "oldPass") {
-      setoldPassIsVisible(!oldPassIsVisible);
-    }
+    setIsPasswordVisilbe({
+      ...isPasswordVisilbe,
+      [inputChoice]: !isPasswordVisilbe[inputChoice],
+    });
   };
 
   function handleChange(e) {
@@ -64,7 +65,7 @@ function ModifProfil() {
     const ENDPOINTMDPINTER = `/intervenants/mpd/${user.id}`;
     const ENDPOINTMDPADMIN = `/administrateurs/mpd/${user.id}`;
     const ENDPOINTMDPASSO = `/associations/mpd/${user.id}`;
-    const password = newPass.oldPass;
+    const password = newPass.oldPassword;
     const { newPassword } = newPass;
 
     if (infoUser.role === "association") {
@@ -105,8 +106,8 @@ function ModifProfil() {
               <label className="modifProfil-input" htmlFor="passOld">
                 <input
                   placeholder="mot de passe actuel"
-                  type={oldPassIsVisible ? "text" : "password"}
-                  name="oldPass"
+                  type={isPasswordVisilbe.oldPassword ? "text" : "password"}
+                  name="oldPassword"
                   onChange={handleChange}
                   id="passOld"
                 />
@@ -115,9 +116,9 @@ function ModifProfil() {
                 className="modifProfil-icon-container"
                 role="button"
                 tabIndex={0}
-                onClick={(e) => handleShowPassword(e, "oldPass")}
+                onClick={(e) => handleShowPassword(e, "oldPassword")}
               >
-                {oldPassIsVisible ? (
+                {isPasswordVisilbe.oldPassword ? (
                   <div className="modifProfil-icon">
                     <BiShowAlt />
                   </div>
@@ -132,7 +133,7 @@ function ModifProfil() {
               <label className="modifProfil-input" htmlFor="passNew">
                 <input
                   placeholder="nouveau mot de passe"
-                  type={newPasswordIsVisible ? "text" : "password"}
+                  type={isPasswordVisilbe.newPassword ? "text" : "password"}
                   name="newPassword"
                   onChange={handleChange}
                   id="passNew"
@@ -144,7 +145,7 @@ function ModifProfil() {
                 tabIndex={0}
                 onClick={(e) => handleShowPassword(e, "newPassword")}
               >
-                {newPasswordIsVisible ? (
+                {isPasswordVisilbe.newPassword ? (
                   <div className="modifProfil-icon">
                     <BiShowAlt />
                   </div>
@@ -159,8 +160,10 @@ function ModifProfil() {
               <label className="modifProfil-input" htmlFor="passNewTry">
                 <input
                   placeholder="confirmer le nouveau mot de passe"
-                  type={newPassConfIsVisible ? "text" : "password"}
-                  name="newPassConf"
+                  type={
+                    isPasswordVisilbe.newPasswordConfirm ? "text" : "password"
+                  }
+                  name="newPasswordConfirm"
                   onChange={handleChange}
                   id="passNewTry"
                 />
@@ -169,9 +172,9 @@ function ModifProfil() {
                 className="modifProfil-icon-container"
                 role="button"
                 tabIndex={0}
-                onClick={(e) => handleShowPassword(e, "newPassConf")}
+                onClick={(e) => handleShowPassword(e, "newPasswordConfirm")}
               >
-                {newPassConfIsVisible ? (
+                {isPasswordVisilbe.newPasswordConfirm ? (
                   <div className="modifProfil-icon">
                     <BiShowAlt />
                   </div>
