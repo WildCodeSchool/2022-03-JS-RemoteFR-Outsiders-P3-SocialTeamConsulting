@@ -152,6 +152,7 @@ class MissionsController {
 
   static browseMissionsNotAccepted = (req, res) => {
     const userId = req.params.id;
+
     models.missions
       .findMyMissionsNotAccepted(userId)
       .then(([rows]) => {

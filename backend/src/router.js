@@ -61,9 +61,9 @@ router.put("/intervenants/etat/:id", middlewareAdministrateur, IntervenantsContr
 router.put("/intervenants/mpd/:id", middlewareAll, verifyMDP, IntervenantsController.editMDP);
 router.post("/intervenants", fileMiddleware, IntervenantsController.add);
 
-router.post("/messages", MessagesController.add);
 router.get("/messages", middlewareAdministrateur, MessagesController.browse);
 router.put("/messages/:id", MessagesController.close);
+router.post("/messages", MessagesController.add);
 
 router.get("/missions", middlewareAll, MissionsController.browseWithAssociation);
 router.get("/missions/accepte", middlewareAll, MissionsController.browseMissionAccepte);

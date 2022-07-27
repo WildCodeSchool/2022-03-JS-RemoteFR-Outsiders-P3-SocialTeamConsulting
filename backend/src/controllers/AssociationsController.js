@@ -96,6 +96,7 @@ class AssociationsController {
         id: uuid,
         etat: etat[0],
       };
+
       const association = req.body;
       const error = AssociationJoiVerification(association);
       if (error) {
