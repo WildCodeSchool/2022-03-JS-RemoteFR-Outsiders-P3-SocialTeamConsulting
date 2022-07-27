@@ -11,7 +11,7 @@
     "link": "/back_office/post_mission",
     "association": true,
     "intervenant": false,
-    "administrateur": true
+    "administrateur": false
   },
   {
     "section": "Missions Disponibles",
@@ -21,42 +21,42 @@
     "administrateur": false
   },
   {
-    "section": "* Liste des utilisateurs *",
+    "section": "Liste des utilisateurs",
     "link": "/back_office/liste_des_utilisateurs",
     "association": false,
     "intervenant": false,
     "administrateur": true
   },
   {
-    "section": "* Missions : Valider une mission *",
+    "section": "Missions : Valider une mission",
     "link": "/back_office/validation_mission",
     "association": false,
     "intervenant": false,
     "administrateur": true
   },
   {
-    "section": "* Missions : Choisir un intervenant *",
+    "section": "Missions : Choisir un intervenant",
     "link": "/back_office/validation_intervenant",
     "association": false,
     "intervenant": false,
     "administrateur": true
   },
   {
-    "section": "* Missions : Changer l'intervenant * ",
+    "section": "Missions : Changer l'intervenant",
     "link": "/back_office/modification_mission_intervenant",
     "association": false,
     "intervenant": false,
     "administrateur": true
   },
   {
-    "section": "* Missions : Terminer une mission *",
+    "section": "Missions : Terminer une mission",
     "link": "/back_office/terminer_mission",
     "association": false,
     "intervenant": false,
     "administrateur": true
   },
   {
-    "section": "* Messages de contact des associations *",
+    "section": "Messages de contact des associations",
     "link": "/back_office/lecture_message",
     "association": false,
     "intervenant": false,

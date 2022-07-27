@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { notifySuccess, notifyError, api } from "@services/services";
+import mapMessages from "@components/BackOfficeLectureMessage-map";
 
-import "@style/BackOfficeListeUsers.css";
+import "@style/BackOfficeLectureMessage.css";
 
 function BackOfficeLectureMessage() {
   const [messages, setMessages] = useState([]);
   const [update, setUpdate] = useState([]);
   const ENDPOINT = "/messages";
 
+  // Récupère l'ensemble des messages de la base de donnée
   useEffect(() => {
     api.get(ENDPOINT).then((res) => {
       setMessages(res.data);
     });
   }, [update]);
 
+  // Passe le message en "terminé"
   const handleOnclick = (messageID) => {
     const ENDPOINTCLOSEMESSAGE = `/messages/${messageID}`;
     api
@@ -32,41 +35,23 @@ function BackOfficeLectureMessage() {
   }
   return (
     <>
-      <h2>Liste des messages</h2>
+      <h2 className="lecture-titre">Liste des messages</h2>
       {messages
         .filter((message) => {
           return message.ishandled === 0;
         })
         .map((message) => {
-          return (
-            <div>
-              <h3>{`${message.nom} ${message.prenom}`}</h3>
-              <p>{message.message}</p>
-              <p>Répondre à : {message.email}</p>
-              <button
-                type="button"
-                className="button-blue"
-                onClick={() => handleOnclick(message.id)}
-              >
-                Classer ce message comme "traité"
-              </button>
-            </div>
-          );
+          return mapMessages(message, handleOnclick);
         })}
-      <hr className="navbar-hr" />
-      <h2>Archive des messages</h2>
+      <h2 className="lecture-titre">Archive des messages</h2>
       {messages
         .filter((message) => {
           return message.ishandled === 1;
         })
         .map((message) => {
-          return (
-            <div>
-              <h3>{`${message.nom} ${message.prenom}`}</h3>
-              <p>{message.message}</p>
-              <p>Répondre à : {message.email}</p>
-            </div>
-          );
+          // closed permet de masquer le bouton de traitement du message
+          const closed = true;
+          return mapMessages(message, handleOnclick, closed);
         })}
     </>
   );

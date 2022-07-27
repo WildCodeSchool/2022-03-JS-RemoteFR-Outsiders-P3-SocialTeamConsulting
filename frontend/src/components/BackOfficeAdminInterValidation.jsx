@@ -3,7 +3,7 @@ import { notifySuccess, notifyError, api } from "@services/services";
 import MissionSynthesis from "./MissionSynthesis";
 
 function BackOfficeAdminInterValidation() {
-  const ENDPOINT = "/missions";
+  const ENDPOINT = "/missions/accepte";
   const [missions, setMissions] = useState([]);
   const [update, setUpdate] = useState(false);
 
@@ -65,7 +65,7 @@ function BackOfficeAdminInterValidation() {
     return (
       <div className="synthesis-validation_area">
         <form method="PUT">
-          <fieldset>
+          <fieldset className="modif-fieldset">
             <legend>Choisissez un intervenant:</legend>
             <div>
               {intervenants.map((intervenant, i) => {

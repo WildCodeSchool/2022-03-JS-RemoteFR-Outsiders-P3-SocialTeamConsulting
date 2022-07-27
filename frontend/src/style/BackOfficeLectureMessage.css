@@ -1,0 +1,46 @@
+.lecture-titre {
+  font-size: 2rem;
+  margin: 4rem 0;
+}
+
+.lecture-message {
+  width: 80%;
+  margin: 1rem auto;
+  overflow: hidden;
+  border-radius: 1em;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.lecture-message-container {
+  padding: 0.5rem;
+}
+
+.lecture-message-titre {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.lecture-message-text {
+  font-weight: 400;
+}
+
+.lecture-message-email {
+  text-decoration: underline;
+}
+
+.lecture-hr {
+  content: "";
+  display: block;
+  width: 30%;
+  margin: 2rem auto;
+  height: 0.5rem;
+  position: relative;
+  background-color: var(--color-highlight);
+}
+
+.lecture-button {
+  margin: 0.5rem;
+}

@@ -1,33 +1,33 @@
 const models = require("../models");
 
 class AccepteController {
-  static browse = (req, res) => {
-    models.accepte
-      .findAll()
-      .then(([rows]) => {
-        res.send(rows);
-      })
-      .catch((err) => {
-        console.error(err);
-        res.sendStatus(500);
-      });
-  };
+  // static browse = (req, res) => {
+  //   models.accepte
+  //     .findAll()
+  //     .then(([rows]) => {
+  //       res.send(rows);
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //       res.sendStatus(500);
+  //     });
+  // };
 
-  static read = (req, res) => {
-    models.accepte
-      .find(req.params.id)
-      .then(([rows]) => {
-        if (rows[0] == null) {
-          res.sendStatus(404);
-        } else {
-          res.send(rows[0]);
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-        res.sendStatus(500);
-      });
-  };
+  // static read = (req, res) => {
+  //   models.accepte
+  //     .find(req.params.id)
+  //     .then(([rows]) => {
+  //       if (rows[0] == null) {
+  //         res.sendStatus(404);
+  //       } else {
+  //         res.send(rows[0]);
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //       res.sendStatus(500);
+  //     });
+  // };
 
   static readWithIntervenant = (req, res) => {
     const missionID = req.params.id;
@@ -115,17 +115,14 @@ class AccepteController {
   // passe les inter de isvalidated 2 et 1 a 0 = reinitialise
   static updateRemoveInter = (req, res) => {
     const { missionID } = req.body;
-    const intervenantID = req.body.choiceInt;
-    models.accepte.updateRemoveEtatRefusAgain(intervenantID, missionID);
 
     models.accepte
-      .updateRemoveEtatRefus(intervenantID, missionID)
+      .updateRemoveState(missionID)
       .then(([result]) => {
         if (result.affectedRows === 0) {
           res.status(404).send("Le statut n'a pas été mis à jour.");
         } else {
           res.status(200).json({
-            intervenantID,
             missionID,
           });
         }
@@ -159,17 +156,17 @@ class AccepteController {
       });
   };
 
-  static delete = (req, res) => {
-    models.accepte
-      .delete(req.params.id)
-      .then(() => {
-        res.sendStatus(204);
-      })
-      .catch((err) => {
-        console.error(err);
-        res.sendStatus(500);
-      });
-  };
+  // static delete = (req, res) => {
+  //   models.accepte
+  //     .delete(req.params.id)
+  //     .then(() => {
+  //       res.sendStatus(204);
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //       res.sendStatus(500);
+  //     });
+  // };
 
   static deleteAppliedMissionByIntervenant = (req, res) => {
     models.accepte
