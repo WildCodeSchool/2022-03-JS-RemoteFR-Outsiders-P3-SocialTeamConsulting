@@ -6,6 +6,7 @@ class AuthController {
     const { model } = req.body;
     model.findByEmail(req.body.email).then((user) => {
       const { email, password, etat } = user[0][0];
+
       auth
         .verifyPassword(req.body.password, password)
         .then((isVerify) => {

@@ -15,7 +15,6 @@ class MessagesController {
 
   static add = (req, res) => {
     const message = req.body;
-
     models.messages
       .insert(message)
       .then(([result]) => {

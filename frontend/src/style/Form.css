@@ -26,9 +26,17 @@
 .register_asso input[type="text"],
 .register_asso input[type="password"],
 .register_asso input[type="email"],
-.register_asso textarea {
+.register_asso textarea,
+.app-backoffice-container input[type="text"],
+.app-backoffice-container input[type="date"],
+.app-backoffice-container input[type="time"],
+.app-backoffice-container input[type="email"],
+.app-backoffice-container input[type="number"],
+.app-backoffice-container textarea[type="text"],
+#job_select,
+.modifProfil-card-container input[type="password"]{
   width: 100%;
-  margin: 0.625rem 0 0.938rem;
+  margin: 0.1rem 0 0.938rem;
   padding: 0.313rem;
   outline: none;
   transition: 0.7s;

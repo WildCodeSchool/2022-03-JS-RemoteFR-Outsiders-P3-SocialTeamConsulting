@@ -97,7 +97,6 @@ class AccepteController {
   static add = (req, res) => {
     const missionId = req.params.id;
     const userId = req.body.user;
-
     models.accepte
       .insert(missionId, userId)
       .then(() => {

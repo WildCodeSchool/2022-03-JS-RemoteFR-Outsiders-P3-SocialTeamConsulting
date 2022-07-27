@@ -33,7 +33,6 @@ class AdministrateursController {
 
   static edit = (req, res) => {
     const administrateur = req.body;
-
     administrateur.id = req.params.id;
 
     models.administrateurs

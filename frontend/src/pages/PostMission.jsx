@@ -63,7 +63,7 @@ function PostMission() {
                   type="text"
                   id="post_mission_intitule"
                   required
-                  placeholder="Nous recherchons un travailleur social"
+                  placeholder="Recherche travailleur social"
                   name="intitule"
                   onChange={handleChange}
                 />

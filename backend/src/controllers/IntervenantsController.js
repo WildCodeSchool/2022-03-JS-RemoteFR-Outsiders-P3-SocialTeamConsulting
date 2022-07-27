@@ -47,6 +47,7 @@ class IntervenantController {
   static edit = (req, res) => {
     const intervenant = req.body;
     intervenant.id = req.params.id;
+
     models.intervenants
       .update(intervenant)
       .then(([result]) => {
