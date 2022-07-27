@@ -115,7 +115,6 @@ function ModifInter() {
                           name="intervenant_id"
                           value={intervenant.email}
                         />
-
                         {`${intervenant.nom} ${intervenant.prenom} `}
                       </div>
                     );
@@ -123,19 +122,24 @@ function ModifInter() {
                 </div>
               </label>
             </div>
-            <button
-              id="button_preinscription"
-              className={` ${
-                !isDisabled
-                  ? "button-blue btn-disabled"
-                  : "button-blue modif-button-blue"
-              }`}
-              type="submit"
-              onClick={(e) => updateChangeOnInter(e, choiceInt, missionID)}
-              disabled={isDisabled ? "disabled" : "null"}
-            >
-              Modifier l'intervenant
-            </button>
+            {isDisabled ? (
+              <button
+                id="button_preinscription"
+                className="button-blue modif-button-blue"
+                type="submit"
+                onClick={(e) => updateChangeOnInter(e, choiceInt, missionID)}
+              >
+                Modifier l'intervenant
+              </button>
+            ) : (
+              <button
+                disabled
+                className="btn-disabled button-blue"
+                type="button"
+              >
+                Modifier l'intervenant
+              </button>
+            )}
           </fieldset>
           {isShow && (
             <div className="modif-warning">
