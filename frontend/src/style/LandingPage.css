@@ -15,8 +15,7 @@ header h1 {
 }
 
 #services {
-  border: 0.2rem solid var(--color-highlight);
-  background-color: #F9BA76;
+  background-color: var(--color-highlight);
   margin: 1rem 0rem;
   padding: 0.5rem;
   border-radius: 0.63rem;
@@ -24,7 +23,7 @@ header h1 {
 
 .main-landingpage span {
   font-weight: bold;
-  color: #105A65;
+  color: #105a65;
   font-size: 1rem;
 }
 
