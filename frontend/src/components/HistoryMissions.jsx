@@ -5,7 +5,6 @@ import "@style/ValidatedMissions.css";
 import ExportContext from "../contexts/Context";
 
 function HistoryMissions() {
-  console.error("debut application");
   const { infoUser } = useContext(ExportContext.Context);
   const [user, setUser] = useState();
   const [update, setUpdate] = useState(false);
@@ -20,7 +19,6 @@ function HistoryMissions() {
 
   useEffect(() => {
     // on récupère l'id de l'user pour charger ses missions
-    console.error("on récupère l'ID de l'utilisateur");
     api
       .get(ENDPOINTINTERVENANT)
       .then((res) => {
@@ -31,7 +29,7 @@ function HistoryMissions() {
         );
       })
       .catch((err) => {
-        console.error(console.error(err));
+        console.error(err);
       });
   }, []);
 
@@ -46,10 +44,8 @@ function HistoryMissions() {
 
   // on charge les missions de l'utilisateur quand l'id de l'utilisateur est récupéré
   useEffect(() => {
-    console.error("chargement de missions");
     if (typeof user !== "undefined") {
       const ENDPOINT = `/missions/history/${user}`;
-      console.error(ENDPOINT);
       api
         .get(ENDPOINT)
         .then((res) => {
@@ -101,20 +97,16 @@ function HistoryMissions() {
   };
 
   const handleMonthFilter = (e) => {
-    console.error(e.target.value);
     isTimeConstrained.current = e.target.value;
     filterStep.current = 0; // on s'assure d'appliquer le filtre temporel sur les filtres de status déjà existant
     timeFilterStep.current = 1; // on demande au dispatcher d'appliquer un filtre temporel
     setMissionsFiltered([]); // on réinitialise missionFiltered ce qui relance le dispatcher
   };
 
-  // on veut trier les missions par ordre chronologique par rapport à missionsFiltered.date_fin)
-
   // ici on lance les filtres au premier chargement en s'assurant qu'ils se lancent l'un après que l'autre soit executé. Si l'on arrive ici par le biais de la checkbox, on est redirigé vers le 6
 
   useEffect(() => {
     if (missions.length > 0) {
-      console.error("on commence à dispatcher");
       switch (filterStep.current) {
         case 0:
           filterStep.current = 1; // si 0 passe à 1 (on appelle le filtre refused)
@@ -152,7 +144,7 @@ function HistoryMissions() {
             timeFilterStep.current = 0;
         }
       }
-      sortByDate(missionsFiltered);
+      sortByDate(missionsFiltered); // tri des missions , la mission la plus récente d'abord
     }
   }, [missions, missionsFiltered]);
 
@@ -162,7 +154,6 @@ function HistoryMissions() {
       (missions.length > 0 && filterStep.current === 1) ||
       filterStep.current === 6
     ) {
-      console.error("chargement filtre refus");
       if (filterStep.current === 1) {
         filterStep.current = 2; // on indique le prochain filtre à charger lors du chargement initial
       }
@@ -185,7 +176,6 @@ function HistoryMissions() {
       missions.length > 0 &&
       (filterStep.current === 3 || filterStep.current === 6)
     ) {
-      console.error("chargement filtre pending");
       if (filterStep.current === 3) {
         filterStep.current = 4; // on indique le prochain filtre à charger lors du chargement initial
       }
@@ -208,7 +198,6 @@ function HistoryMissions() {
       missions.length > 0 &&
       (filterStep.current === 5 || filterStep.current === 6)
     ) {
-      console.error("chargement filtre validé");
       if (filterStep.current === 5) {
         filterStep.current = 6; // on indique le prochain filtre à charger lors du chargement initial
       }
@@ -274,11 +263,9 @@ function HistoryMissions() {
   useEffect(() => {
     if (missionsFiltered.length > 0 && timeFilterStep.current === 2) {
       // on s' assure que missionFiltered est définie et qu'on est bien passé par le dispatcher
-      console.error("application filtre temporel");
+
       if (isTimeConstrained.current === "all-months") {
-        console.error("Rien à changer");
       } else if (isTimeConstrained.current === "this-month") {
-        console.error(missionsFiltered);
         setMissionsFiltered([
           ...missionsFiltered.filter(
             (mission) =>
@@ -289,7 +276,6 @@ function HistoryMissions() {
           ),
         ]);
       } else if (isTimeConstrained.current === "previous-month") {
-        console.error(missionsFiltered);
         setMissionsFiltered([
           ...missionsFiltered.filter(
             (mission) =>
@@ -300,7 +286,6 @@ function HistoryMissions() {
           ),
         ]);
       } else if (isTimeConstrained.current === "even-before") {
-        console.error(missionsFiltered);
         setMissionsFiltered([
           ...missionsFiltered.filter(
             (mission) =>
