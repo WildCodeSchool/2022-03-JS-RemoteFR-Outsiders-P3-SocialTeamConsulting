@@ -208,7 +208,17 @@ function App() {
           <Route path="formulaire_intervenant" element={<FormInterv />} />
         </Route>
       </Routes>
-      <ToastContainer />
+      <ToastContainer
+        position="bottom-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable={false}
+        pauseOnHover
+      />
     </div>
   );
 }

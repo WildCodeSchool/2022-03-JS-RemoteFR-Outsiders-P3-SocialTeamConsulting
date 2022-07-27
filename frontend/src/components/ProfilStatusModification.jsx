@@ -83,20 +83,20 @@ function ProfilStatusModification({ user }) {
     switch (etat) {
       case "pré-inscrit":
         return (
-          <div>
+          <>
             {inscritButton()} {refuseButton()} {banniButton()}
-          </div>
+          </>
         );
       case "inscrit":
-        return <div>{banniButton()}</div>;
+        return <>{banniButton()}</>;
       case "refusé":
         return (
-          <div>
+          <>
             {inscritButton()} {banniButton()}
-          </div>
+          </>
         );
       case "banni":
-        return <div>{inscritButton()}</div>;
+        return <>{inscritButton()}</>;
       default:
         return "";
     }
@@ -106,7 +106,7 @@ function ProfilStatusModification({ user }) {
     <>
       <hr className="profilinter-hr" />
       <p className="bold">{`Cet utilisateur est actuellement ${etat}.`}</p>
-      {modifEtat()}
+      <div className="profilinter-button">{modifEtat()}</div>
     </>
   );
 }

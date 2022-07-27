@@ -96,10 +96,9 @@ function HistoryMissions() {
         Ensemble des missions pour lesquelles j'ai postulé, en cours et
         effectuées
       </h2>
-
+      <div>Légende : </div>
       <div className="legende">
-        <div>Légende : </div>
-        <div className="is-refused-legend">refusé :</div>
+        <div className="is-refused-legend">refusé : </div>
         <div className="pending-validation-legend">
           En attente de validation :
         </div>
