@@ -6,6 +6,10 @@ const api = axios.create({
   baseURL: import.meta.env.VITE_BACKEND_URL,
 });
 
+/*
+ ** Use for Toastify component
+ */
+
 const notifySuccess = (message) => {
   toast.success(`Bravo : ${message}`);
 };
@@ -13,6 +17,10 @@ const notifySuccess = (message) => {
 const notifyError = (message) => {
   toast.error(`Erreur : ${message}`);
 };
+
+/*
+ ** Use For logIn and logOff
+ */
 
 const authentification = (user, setIsLog, setInfoUser) => {
   const ENDPOINT = "/auth";

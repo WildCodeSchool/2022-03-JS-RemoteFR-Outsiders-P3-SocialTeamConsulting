@@ -61,7 +61,7 @@ function MissionSynthesis({
   return (
     <div className="synthesis">
       <div className="synthesis-container">
-        <div className={`synthesis-card_header ${style[0]}`}>
+        <div className={`synthesis-card_header ${style[0].style}`}>
           <h2>{mission.intitule}</h2>
           <h2>{mission.metier}</h2>
         </div>

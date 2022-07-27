@@ -126,9 +126,9 @@ class IntervenantController {
         ...req.body,
         id: uuid,
         etat: etat[0],
-        image_carte_vitale: req.files.CarteVitale.newFilename,
-        image_statut_autoentrepreneur: req.files.AutoE.newFilename,
-        image_cv: req.files.Cv.newFilename,
+        CarteVitale: req.files.CarteVitale.newFilename,
+        AutoE: req.files.AutoE.newFilename,
+        CV: req.files.CV.newFilename,
       };
       const intervenant = req.body;
       const error = IntervenantJoiVerification(intervenant);

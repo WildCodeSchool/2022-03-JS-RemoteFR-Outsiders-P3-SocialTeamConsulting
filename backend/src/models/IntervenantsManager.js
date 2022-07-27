@@ -13,9 +13,9 @@ class IntervenantManager extends AbstractManager {
         intervenant.email,
         intervenant.telephone,
         intervenant.password,
-        intervenant.image_cv,
-        intervenant.image_carte_vitale,
-        intervenant.image_statut_autoentrepreneur,
+        intervenant.CV,
+        intervenant.CarteVitale,
+        intervenant.AutoE,
         intervenant.pre_inscription_message,
         intervenant.etat,
       ]

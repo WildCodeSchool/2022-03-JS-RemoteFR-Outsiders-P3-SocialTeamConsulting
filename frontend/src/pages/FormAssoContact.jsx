@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "@style/Form.css";
 import { notifySuccess, notifyError, api } from "@services/services";
 
@@ -11,6 +12,8 @@ function FormAssoContact() {
     telephone: "",
     message: "",
   });
+
+  const navigate = useNavigate();
 
   const handleSubmitMessage = (e) => {
     e.preventDefault();
@@ -27,6 +30,7 @@ function FormAssoContact() {
         notifySuccess(
           "Votre message a bien été envoyé. Un administrateur vous contactera bientôt."
         );
+        navigate("/");
       })
       .catch(() => {
         setButtonText("Erreur lors de l'envoi du message");
