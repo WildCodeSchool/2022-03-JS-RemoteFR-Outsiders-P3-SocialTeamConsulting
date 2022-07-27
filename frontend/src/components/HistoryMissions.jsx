@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
-import { api, notifySuccess } from "@services/services";
+import { api, notifySuccess, sortByDate } from "@services/services";
 import MissionSynthesis from "./MissionSynthesis";
 import "@style/ValidatedMissions.css";
 import ExportContext from "../contexts/Context";
@@ -49,6 +49,7 @@ function HistoryMissions() {
     console.error("chargement de missions");
     if (typeof user !== "undefined") {
       const ENDPOINT = `/missions/history/${user}`;
+      console.error(ENDPOINT);
       api
         .get(ENDPOINT)
         .then((res) => {
@@ -63,7 +64,7 @@ function HistoryMissions() {
   const handleRefusedFilter = (e) => {
     if (e.target.checked) {
       filterStep.current = 6; // les fonctions handle ne doivent pas relancer l'ensemble des filtres. 6 signifie ne rien faire après application du filtre
-      timeFilterStep.current = 1; // les fonctions handle ne doivent pas relancer l'ensemble des filtres. 6 signifie ne rien faire après application du filtre
+      timeFilterStep.current = 1; // l'application d'un filtre de catégorie doit relancer le filtre temporel
       setIsRefused(true);
       setUpdateRefusedFilter(!updateRefusedFilter);
     } else {
@@ -76,7 +77,7 @@ function HistoryMissions() {
   const handlePendingFilter = (e) => {
     if (e.target.checked) {
       filterStep.current = 6; // les fonctions handle ne doivent pas relancer l'ensemble des filtres. 6 signifie ne rien faire après application du filtre
-      timeFilterStep.current = 1; // les fonctions handle ne doivent pas relancer l'ensemble des filtres. 6 signifie ne rien faire après application du filtre
+      timeFilterStep.current = 1; // l'application d'un filtre de catégorie doit relancer le filtre temporel
       setIsPending(true);
       setUpdatePendingFilter(!updatePendingFilter);
     } else {
@@ -89,7 +90,7 @@ function HistoryMissions() {
   const handleValidatedFilter = (e) => {
     if (e.target.checked) {
       filterStep.current = 6; // les fonctions handle ne doivent pas relancer l'ensemble des filtres. 6 signifie ne rien faire après application du filtre
-      timeFilterStep.current = 1; // les fonctions handle ne doivent pas relancer l'ensemble des filtres. 6 signifie ne rien faire après application du filtre
+      timeFilterStep.current = 1; // l'application d'un filtre de catégorie doit relancer le filtre temporel
       setIsValidated(true);
       setUpdateValidatedFilter(!updateValidatedFilter);
     } else {
@@ -106,6 +107,8 @@ function HistoryMissions() {
     timeFilterStep.current = 1; // on demande au dispatcher d'appliquer un filtre temporel
     setMissionsFiltered([]); // on réinitialise missionFiltered ce qui relance le dispatcher
   };
+
+  // on veut trier les missions par ordre chronologique par rapport à missionsFiltered.date_fin)
 
   // ici on lance les filtres au premier chargement en s'assurant qu'ils se lancent l'un après que l'autre soit executé. Si l'on arrive ici par le biais de la checkbox, on est redirigé vers le 6
 
@@ -149,6 +152,7 @@ function HistoryMissions() {
             timeFilterStep.current = 0;
         }
       }
+      sortByDate(missionsFiltered);
     }
   }, [missions, missionsFiltered]);
 
