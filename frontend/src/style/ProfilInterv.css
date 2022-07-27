@@ -8,14 +8,6 @@
   width: 40%;
 }
 
-.backoffice_profilinterv_form input,
-.backoffice_profilasso_form input {
-  border: 0.125rem solid #f79a33;
-  border-radius: 0.6rem;
-  text-align: center;
-  width: 100%;
-}
-
 .backoffice_profilinterv_submit_button,
 .backoffice_profilasso_submit_button {
   width: 100%;
@@ -68,4 +60,12 @@ p.bold {
 .imgDoc {
   width: clamp(7em, 8em, 12em);
   height: clamp(80px, 9em, 220px);
+  object-fit: contain;
+}
+.profilinter-button{
+  display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 50%;
+    margin: 0 auto;
 }

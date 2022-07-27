@@ -64,8 +64,10 @@ const Deconnexion = (navigate, setInfoUser) => {
 
 const swap = (arr, i, j) => {
   const tmp = arr[i];
-  arr[i] = arr[j];
-  arr[j] = tmp;
+  // arr[i] = arr[j];
+  arr.splice(i, 1, arr[j]);
+  arr.splice(j, 1, tmp);
+  // arr[j] = tmp;
 };
 
 const sortByDate = (array) => {
