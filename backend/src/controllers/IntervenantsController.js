@@ -28,22 +28,6 @@ class IntervenantController {
       });
   };
 
-  // static read = (req, res) => {
-  //   models.intervenants
-  //     .find(req.params.id)
-  //     .then(([rows]) => {
-  //       if (rows[0] == null) {
-  //         res.sendStatus(404);
-  //       } else {
-  //         res.send(rows[0]);
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       console.error(err);
-  //       res.sendStatus(500);
-  //     });
-  // };
-
   static readByEmail = (req, res) => {
     models.intervenants
       .findByEmail(req.params.email)
@@ -132,7 +116,6 @@ class IntervenantController {
       };
       const intervenant = req.body;
       const error = IntervenantJoiVerification(intervenant);
-      // TODO validations (length, format...)
       if (error) {
         res.status(422).json({ validationErrors: error.details });
       } else {
@@ -151,7 +134,6 @@ class IntervenantController {
 
   static download = (req, res) => {
     const { filename } = req.params;
-    // je renvoi via un status code 200 mon document.
     res
       .status(200)
       .download(`${__dirname}/../../uploads/${filename}`, filename);
@@ -159,21 +141,8 @@ class IntervenantController {
 
   static browsePath = (req, res) => {
     const { filename } = req.params;
-    // je renvoi via un status code 200 mon document.
     res.status(200).json({ path: `${__dirname}/../../uploads/${filename}` });
   };
-
-  // static delete = (req, res) => {
-  //   models.intervenants
-  //     .delete(req.params.id)
-  //     .then(() => {
-  //       res.sendStatus(204);
-  //     })
-  //     .catch((err) => {
-  //       console.error(err);
-  //       res.sendStatus(500);
-  //     });
-  // };
 }
 
 module.exports = IntervenantController;

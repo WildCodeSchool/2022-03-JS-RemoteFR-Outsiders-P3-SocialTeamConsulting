@@ -28,27 +28,8 @@ class AssociationsController {
       });
   };
 
-  // static read = (req, res) => {
-  //   models.associations
-  //     .find(req.params.id)
-  //     .then(([rows]) => {
-  //       if (rows[0] == null) {
-  //         res.sendStatus(404);
-  //       } else {
-  //         res.send(rows[0]);
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       console.error(err);
-  //       res.sendStatus(500);
-  //     });
-  // };
-
   static edit = (req, res) => {
     const association = req.body;
-
-    // TODO validations (length, format...)
-
     association.id = req.params.id;
 
     models.associations
@@ -132,18 +113,6 @@ class AssociationsController {
       }
     });
   };
-
-  // static delete = (req, res) => {
-  //   models.associations
-  //     .delete(req.params.id)
-  //     .then(() => {
-  //       res.sendStatus(204);
-  //     })
-  //     .catch((err) => {
-  //       console.error(err);
-  //       res.sendStatus(500);
-  //     });
-  // };
 }
 
 module.exports = AssociationsController;
