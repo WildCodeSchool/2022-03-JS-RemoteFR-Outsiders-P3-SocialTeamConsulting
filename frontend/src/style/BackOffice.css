@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  height: 15rem;
+  height: 9rem;
 }
 
 .profile-desc {
@@ -28,12 +28,13 @@
 
 .profile-desc h2 {
   position: relative;
-  font-size: 2rem;
+  padding: 0 1rem;
+  font-size: clamp(1.5rem, 2vw, 2.5rem);
   color: var(--color-black);
 }
 
 .app-backoffice-container {
-  padding: 20rem 1rem 0 1rem;
+  padding: 13rem 1rem 0 1rem;
   display: block;
 }
 
@@ -136,7 +137,7 @@
     color: var(--color-black);
     margin-top: -6rem;
     text-align: center;
-    font-size: clamp(1rem, 2vw, 1.5rem);
+    font-size: clamp(1.5rem, 2vw, 2.5rem);
   }
 
   .navbar-desk-img-profile img {
@@ -153,4 +154,5 @@
     border-radius: 0px 0px 20px 20px;
     padding: 2rem 0;
   }
+
 }

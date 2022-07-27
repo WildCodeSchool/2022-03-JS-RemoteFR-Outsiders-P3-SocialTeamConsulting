@@ -32,6 +32,7 @@
 .modifProfil-input-container {
   display: flex;
   width: 60%;
+  gap: 0.6rem;
 }
 
 .modifProfil-input input[type="text"],
