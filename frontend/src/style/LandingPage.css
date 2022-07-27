@@ -15,20 +15,16 @@ header h1 {
 }
 
 #services {
-  background-color: var(--color-highlight);
+  border: 0.2rem solid var(--color-highlight);
+  background-color: #F9BA76;
   margin: 1rem 0rem;
   padding: 0.5rem;
   border-radius: 0.63rem;
 }
 
-#services h1,
-.argumentaire ul li {
-  color: white;
-}
-
 .main-landingpage span {
   font-weight: bold;
-  color: var(--color-interaction);
+  color: #105A65;
   font-size: 1rem;
 }
 
@@ -39,33 +35,11 @@ header h1 {
 .section-inner-content {
   display: flex;
   align-items: center;
-  color: white;
+  color: var(--color-black);
 }
 
 div > section > h1:nth-child(2n + 1) {
   text-align: left;
-}
-
-#even_section {
-  flex-direction: row-reverse;
-}
-
-.regular-section {
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-}
-
-#services {
-  background-color: var(--color-highlight);
-  margin: 1rem 0rem;
-  padding: 0.5rem;
-  border-radius: 0.63rem;
-}
-
-#services h1,
-.argumentaire ul li {
-  color: white;
 }
 
 #even_section {
@@ -98,7 +72,7 @@ div > section > h1:nth-child(2n + 1) {
   font-weight: bolder;
   background-color: var(--color-interaction);
   border-radius: 0.63rem;
-  color: white;
+  color: var(--color-black);
 }
 
 @media screen and (max-width: 845px) {

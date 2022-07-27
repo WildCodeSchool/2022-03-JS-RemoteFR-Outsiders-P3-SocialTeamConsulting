@@ -29,7 +29,7 @@
 .profile-desc h2 {
   position: relative;
   font-size: 2rem;
-  color: white;
+  color: var(--color-black);
 }
 
 .app-backoffice-container {
@@ -59,14 +59,16 @@
     flex-direction: column;
     justify-content: flex-start;
     height: 100vh;
-    width: 30vw;
+    /* width: 30vw; */
+    width: 90%;
+    max-width: 400px;
   }
 
   .navbar-desktop-backoffice li {
     margin-top: 2rem;
     list-style: none;
     color: white;
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 2vw, 1.5rem);
     text-align: center;
     text-decoration: underline;
     text-underline-offset: 0.2rem;
@@ -125,7 +127,6 @@
     align-items: center;
     justify-content: center;
     background-color: var(--color-highlight);
-    color: white;
   }
 
   .navbar-desk-name {
@@ -134,7 +135,7 @@
 
   .navbar-desk-name h1 {
     position: relative;
-    color: white;
+    color: var(--color-black);
     margin-top: -6rem;
   }
 
