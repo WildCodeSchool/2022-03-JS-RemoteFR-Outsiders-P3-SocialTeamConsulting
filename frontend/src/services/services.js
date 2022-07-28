@@ -6,6 +6,10 @@ const api = axios.create({
   baseURL: import.meta.env.VITE_BACKEND_URL,
 });
 
+/*
+ ** Use for Toastify component
+ */
+
 const notifySuccess = (message) => {
   toast.success(`Bravo : ${message}`);
 };
@@ -13,6 +17,10 @@ const notifySuccess = (message) => {
 const notifyError = (message) => {
   toast.error(`Erreur : ${message}`);
 };
+
+/*
+ ** Use For logIn and logOff
+ */
 
 const authentification = (user, setIsLog, setInfoUser) => {
   const ENDPOINT = "/auth";
@@ -54,4 +62,29 @@ const Deconnexion = (navigate, setInfoUser) => {
   });
 };
 
-export { authentification, Deconnexion, notifySuccess, notifyError, api };
+const swap = (arr, i, j) => {
+  const tmp = arr[i];
+  // eslint-disable-next-line no-param-reassign
+  arr[i] = arr[j];
+  // eslint-disable-next-line no-param-reassign
+  arr[j] = tmp;
+};
+
+const sortByDate = (array) => {
+  for (let i = 0; i < array.length; i++) {
+    for (let j = i + 1; j < array.length; j++)
+      if (new Date(array[i].date_debut) < new Date(array[j].date_debut)) {
+        swap(array, i, j);
+      }
+  }
+  return array;
+};
+
+export {
+  authentification,
+  Deconnexion,
+  notifySuccess,
+  notifyError,
+  api,
+  sortByDate,
+};

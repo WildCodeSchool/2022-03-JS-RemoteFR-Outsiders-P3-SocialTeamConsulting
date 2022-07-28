@@ -5,7 +5,7 @@
   --color-grey: #f0f2f5;
   --color-black: #050505;
   --color-highlight: #f39634;
-  --color-interaction: #198b99;
+  --color-interaction: #19a8b3;
   --color-line-asso: #8dc73b;
   --color-line-inter: #f79a33;
   --color-line-admin: #7f4197;
@@ -73,7 +73,7 @@ h2 {
 .button-orange:hover {
   cursor: pointer;
   transition: all 0.25s ease;
-  color: var(--color-grey);
+  color: var(--color-black);
 }
 
 .button-blue:hover {

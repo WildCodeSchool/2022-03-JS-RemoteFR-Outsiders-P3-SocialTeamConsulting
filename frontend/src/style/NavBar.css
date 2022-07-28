@@ -47,6 +47,10 @@ nav {
   list-style: none;
 }
 
+.navbar-list {
+  background-color: var(--color-highlight);
+}
+
 .navbar-inline li {
   text-decoration: underline;
   text-decoration-color: black;
@@ -64,11 +68,12 @@ nav {
 }
 
 .navbar-li_highlight h2 {
-  color: white;
+  color: var(--color-black);
 }
 
 .navbar-navbarlink-visible,
-.navbar-navbarform-visible {
+.navbar-navbarform-visible,
+.navbar-navbarform-visible-login {
   display: block;
   position: absolute;
   top: 3rem;
@@ -77,11 +82,11 @@ nav {
 }
 
 .navbar-navbarlink-visible,
-.navbar-navbarform-visible {
-  width: 22.6rem;
+.navbar-navbarform-visible,
+.navbar-navbarform-visible-login {
+  width: 21.3rem;
   padding: 1rem 0;
   right: 1rem;
-  animation: fadein 1s;
   overflow: hidden;
 }
 
@@ -115,14 +120,31 @@ nav {
   }
 }
 
+.navbar-navbarform-visible-login {
+  height: 8rem;
+  animation: fadeinformsmall 0.8s;
+}
+
+@keyframes fadeinformsmall {
+  from {
+    height: 0rem;
+    padding: 0;
+  }
+  to {
+    height: 8rem;
+  }
+}
+
 .navbar-navbarlink-visible h2,
-.navbar-navbarform-visible .navbar-legend {
-  color: white;
+.navbar-navbarform-visible .navbar-legend,
+.navbar-navbarform-visible-login .navbar-legend {
+  color: var(--color-black);
   text-align: center;
   padding: 1.01rem;
 }
-.navbar-navbarform-visible p {
-  color: white;
+.navbar-navbarform-visible p,
+.navbar-navbarform-visible-login p {
+  color: var(--color-black);
   padding: 0 0.5rem;
 }
 
@@ -214,6 +236,11 @@ nav {
   left: calc(100vw - 2.5rem - 1rem);
 }
 
+.navbar-connect-container {
+  display: flex;
+  justify-content: center;
+}
+
 /* **************************************
 **************** WRAPPER ****************
 ************************************** */
@@ -227,7 +254,7 @@ nav {
 .navbar-menu_wrapper {
   position: fixed;
   z-index: 9;
-  right: -100vw;
+  right: -150vw;
   bottom: 0;
   display: flex;
   flex-direction: column;
@@ -237,6 +264,7 @@ nav {
   height: 100vh;
   text-align: center;
   transition: 0.6s;
+  font-size: 1.5rem;
 }
 
 .navbar-hr {
@@ -300,6 +328,7 @@ nav {
   }
 
   .navbar-button h2:hover {
+    cursor: pointer;
     text-decoration: underline;
   }
 }

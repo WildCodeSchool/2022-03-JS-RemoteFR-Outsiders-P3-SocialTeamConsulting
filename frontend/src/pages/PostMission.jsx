@@ -11,6 +11,10 @@ function PostMission() {
 
   const ENDPOINTASSOCIATION = "/associations";
   useEffect(() => {
+    /*
+     ** UseEffect to load the id of the association
+     ** id is needed to api.post "/missions"
+     */
     api
       .get(ENDPOINTASSOCIATION)
       .then((res) => {
@@ -30,14 +34,14 @@ function PostMission() {
       associations_id: assoID,
     });
   }
-
-  const ENDPOINT = "/missions";
   const handleSubmit = (e) => {
     e.preventDefault();
+    const ENDPOINT = "/missions";
     api
       .post(ENDPOINT, mission)
       .then(() => {
         notifySuccess("Votre mission été postée.");
+        e.target.reset();
       })
       .catch(() => {
         notifyError(
@@ -59,7 +63,7 @@ function PostMission() {
                   type="text"
                   id="post_mission_intitule"
                   required
-                  placeholder="Nous recherchons un travailleur social"
+                  placeholder="Recherche travailleur social"
                   name="intitule"
                   onChange={handleChange}
                 />

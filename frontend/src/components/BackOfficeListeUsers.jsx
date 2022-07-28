@@ -30,58 +30,67 @@ function BackOfficeListeUsers() {
   return (
     <div className="usersList">
       <div>
-        <h2 className="listTitle"> Liste des intervenants</h2>
-        {intervenants.map((intervenant) => {
-          return (
-            <div
-              role="navigation"
-              onClick={() =>
-                navigate("/back_office/modification_profil_intervenant", {
-                  state: { email: intervenant.email },
-                })
-              }
-            >
-              <p
-                className={`${intervenant.etat}`}
-              >{` - ${intervenant.nom} ${intervenant.prenom}`}</p>
-            </div>
-          );
-        })}
-      </div>
-      <div>
-        <h2 className="listTitle"> Liste des associations</h2>
-        {associations.map((association) => {
-          return (
-            <div
-              role="navigation"
-              onClick={() =>
-                navigate("/back_office/modification_profil_association", {
-                  state: { email: association.email },
-                })
-              }
-            >
-              <p className={`${association.etat}`}>{` - ${association.nom}`}</p>
-            </div>
-          );
-        })}
+        <details className="user-list">
+          <summary className="listTitle"> Liste des intervenants</summary>
+          {intervenants.map((intervenant) => {
+            return (
+              <div
+                role="navigation"
+                onClick={() =>
+                  navigate("/back_office/modification_profil_intervenant", {
+                    state: { email: intervenant.email },
+                  })
+                }
+              >
+                <p
+                  className={`${intervenant.etat}`}
+                >{` - ${intervenant.nom} ${intervenant.prenom}`}</p>
+              </div>
+            );
+          })}
+        </details>
       </div>
 
       <div>
-        <h2 className="listTitle"> Liste des administrateurs</h2>
-        {administrateurs.map((administrateur) => {
-          return (
-            <div
-              role="navigation"
-              onClick={() =>
-                navigate("/back_office/modification_profil_administrateur", {
-                  state: { email: administrateur.email },
-                })
-              }
-            >
-              <p>{`${administrateur.nom} ${administrateur.prenom}`}</p>
-            </div>
-          );
-        })}
+        <details className="user-list">
+          <summary className="listTitle"> Liste des associations</summary>
+          {associations.map((association) => {
+            return (
+              <div
+                role="navigation"
+                onClick={() =>
+                  navigate("/back_office/modification_profil_association", {
+                    state: { email: association.email },
+                  })
+                }
+              >
+                <p
+                  className={`${association.etat}`}
+                >{` - ${association.nom}`}</p>
+              </div>
+            );
+          })}
+        </details>
+      </div>
+
+      <div>
+        <details className="user-list">
+          <summary className="listTitle"> Liste des administrateurs</summary>
+          {administrateurs.map((administrateur) => {
+            return (
+              <div
+                role="navigation"
+                onClick={() =>
+                  navigate("/back_office/modification_profil_administrateur", {
+                    state: { email: administrateur.email },
+                  })
+                }
+              >
+                <p className="admin">{`${administrateur.nom} ${administrateur.prenom}`}</p>
+              </div>
+            );
+          })}
+        </details>
       </div>
     </div>
   );

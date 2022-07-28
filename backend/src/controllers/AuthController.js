@@ -6,6 +6,7 @@ class AuthController {
     const { model } = req.body;
     model.findByEmail(req.body.email).then((user) => {
       const { email, password, etat } = user[0][0];
+
       auth
         .verifyPassword(req.body.password, password)
         .then((isVerify) => {
@@ -32,14 +33,6 @@ class AuthController {
           res.status(401).send("Email ou mot de passe incorect");
         });
     });
-  };
-
-  static verifCookie = (req, res) => {
-    if (!req.cookies.user_token) {
-      res.status(401).send("Accès refusé");
-    } else {
-      res.status(200).send("Accès Autorisé");
-    }
   };
 
   static disconnect = (req, res) => {

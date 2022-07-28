@@ -8,7 +8,6 @@ function ModifInter() {
   const [missions, setMissions] = useState([]);
   const [update, setUpdate] = useState(false);
 
-  // Permet de recuperer les missions et de les afficher.
   useEffect(() => {
     api
       .get(ENDPOINT)
@@ -26,11 +25,9 @@ function ModifInter() {
     const [isShow, setIsShow] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
     const [idCheck, setIdCheck] = useState({});
-
-    /**
-     * Permet de recuperer les noms et prenoms des intervenants qui ont ete positionne sur une mission et ceux qui avait ete refuse.
-     *  */
+    const [isDisabled, setIsDisabled] = useState(false);
     const ENDPOINTINTERV = `/accepte/modification/${missionID}`;
+
     useEffect(() => {
       api
         .get(ENDPOINTINTERV)
@@ -43,13 +40,6 @@ function ModifInter() {
         });
     }, []);
 
-    // permet de voir et stocker le changement de valeur
-    function handleChange(int) {
-      setChoiceInt(int.id);
-      setIsShow(true);
-    }
-
-    // permet de modifier l'intervenant sur une mission, passe celui choisit sur 1 et les autres a 2.
     const updateChangeOnInter = (e, intervenantID) => {
       e.preventDefault();
       const ENDPOINTUPDATEINTER = `/accepte/modification/${missionID}`;
@@ -65,22 +55,19 @@ function ModifInter() {
         });
     };
 
-    // permet de modifier le status de la mission a 1 et passe tous les intervenants a isvalidated 0
-    const updateChangeMission = (e, intervenantID) => {
+    const updateChangeMission = (e) => {
       e.preventDefault();
       const ENDPOINTCHANGEMISSIONACCEPTE = `/missions/accepte/${missionID}`;
       const ENDPOINTCHANGEINTER = `/accepte/change/${missionID}`;
       api
-        .put(ENDPOINTCHANGEINTER, { intervenantID, missionID })
+        .put(ENDPOINTCHANGEINTER, { missionID })
         .then(() => {
-          api
-            .put(ENDPOINTCHANGEMISSIONACCEPTE, { intervenantID, missionID })
-            .then(() => {
-              notifySuccess(
-                "Vous venez de repasser cette mission accessible au public."
-              );
-              setUpdate(!update);
-            });
+          api.put(ENDPOINTCHANGEMISSIONACCEPTE, { missionID }).then(() => {
+            notifySuccess(
+              "Vous venez de repasser cette mission accessible au public."
+            );
+            setUpdate(!update);
+          });
         })
         .catch((err) => {
           notifyError("Votre choix n'a pas pu aboutir. Merci de recommencer.");
@@ -88,8 +75,11 @@ function ModifInter() {
         });
     };
 
-    const handleCheck = (intervenantID) => {
-      setIdCheck(`${missionID}-${intervenantID}`);
+    const handleCheck = (missionId, intervenantId) => {
+      setChoiceInt(intervenantId);
+      setIdCheck(`${missionId}-${intervenantId}`);
+      setIsShow(true);
+      setIsDisabled(true);
     };
 
     const handleClick = (e) => {
@@ -106,57 +96,66 @@ function ModifInter() {
               {" "}
               <label htmlFor="checkbox">
                 <div className="modif-inter-section">
-                  {/* <p>Intervenant : {intervenants[0].nom} {intervenants[0].prenom}</p> */}
-                  {intervenants
-                    // .slice(1, intervenants.length)
-                    .map((intervenant) => {
-                      return (
-                        <div className="modif-input-container">
-                          <input
-                            type="radio"
-                            checked={
-                              `${missionID}-${intervenant.id}` === idCheck
-                                ? "checked"
-                                : null
-                            }
-                            id={`${missionID}-${intervenant.id}`}
-                            onClick={() =>
-                              handleCheck(missionID, intervenant.id)
-                            }
-                            name="intervenant_id"
-                            value={intervenant.email}
-                            onChange={() => handleChange(intervenant)}
-                          />
-
-                          {`${intervenant.nom} ${intervenant.prenom} `}
-                        </div>
-                      );
-                    })}
+                  {intervenants.map((intervenant) => {
+                    return (
+                      <div
+                        role="button"
+                        tabIndex={0}
+                        className="modif-input-container"
+                        onClick={() => handleCheck(missionID, intervenant.id)}
+                      >
+                        <input
+                          type="radio"
+                          checked={
+                            `${missionID}-${intervenant.id}` === idCheck
+                              ? "checked"
+                              : null
+                          }
+                          id={`${missionID}-${intervenant.id}`}
+                          name="intervenant_id"
+                          value={intervenant.email}
+                        />
+                        {`${intervenant.nom} ${intervenant.prenom} `}
+                      </div>
+                    );
+                  })}
                 </div>
               </label>
             </div>
-            <button
-              id="button_preinscription"
-              className="button-blue modif-button-blue"
-              type="submit"
-              onClick={(e) => updateChangeOnInter(e, choiceInt, missionID)}
-            >
-              Modifier l'intervenant
-            </button>
+            {isDisabled ? (
+              <button
+                id="button_preinscription"
+                className="button-blue modif-button-blue"
+                type="submit"
+                onClick={(e) => updateChangeOnInter(e, choiceInt, missionID)}
+              >
+                Modifier l'intervenant
+              </button>
+            ) : (
+              <button
+                disabled
+                className="btn-disabled button-blue"
+                type="button"
+              >
+                Modifier l'intervenant
+              </button>
+            )}
           </fieldset>
           {isShow && (
             <div className="modif-warning">
-              Attention vous vous apprêtez à choisir un nouvel intervenant,
-              merci de le contacter pour valider ses disponibilitées.
+              <p>
+                Attention vous vous apprêtez à choisir un nouvel intervenant,
+                merci de le contacter pour valider ses disponibilitées.
+              </p>
             </div>
           )}
           <button
             id="button_preinscription"
-            className="modif-button button-blue"
+            className="modif-button button-blue button-plus-size"
             onClick={(e) => handleClick(e)}
             type="button"
           >
-            Repasser la mission en public
+            Passer la mission en public
           </button>
         </form>
         {isVisible && (
@@ -166,7 +165,7 @@ function ModifInter() {
               <div className="modif-button-section">
                 <button
                   type="submit"
-                  onClick={(e) => updateChangeMission(e, choiceInt, missionID)}
+                  onClick={(e) => updateChangeMission(e, missionID)}
                   className="button-blue"
                 >
                   Oui
@@ -176,7 +175,7 @@ function ModifInter() {
                   onClick={() => setIsVisible(!isVisible)}
                   className="button-blue"
                 >
-                  Revenir en arriere
+                  Retour
                 </button>
               </div>
             </div>

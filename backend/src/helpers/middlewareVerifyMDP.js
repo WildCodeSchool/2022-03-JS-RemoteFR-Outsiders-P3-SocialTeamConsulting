@@ -15,7 +15,7 @@ const verifyMDP = async (req, res, next) => {
     model = models.intervenants;
   }
   if (data.role === "administrateur") {
-    model = models.administrateur;
+    model = models.administrateurs;
   }
   model
     .find(id)

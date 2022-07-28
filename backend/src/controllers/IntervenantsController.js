@@ -28,22 +28,6 @@ class IntervenantController {
       });
   };
 
-  static read = (req, res) => {
-    models.intervenants
-      .find(req.params.id)
-      .then(([rows]) => {
-        if (rows[0] == null) {
-          res.sendStatus(404);
-        } else {
-          res.send(rows[0]);
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-        res.sendStatus(500);
-      });
-  };
-
   static readByEmail = (req, res) => {
     models.intervenants
       .findByEmail(req.params.email)
@@ -63,6 +47,7 @@ class IntervenantController {
   static edit = (req, res) => {
     const intervenant = req.body;
     intervenant.id = req.params.id;
+
     models.intervenants
       .update(intervenant)
       .then(([result]) => {
@@ -126,13 +111,12 @@ class IntervenantController {
         ...req.body,
         id: uuid,
         etat: etat[0],
-        image_carte_vitale: req.files.CarteVitale.newFilename,
-        image_statut_autoentrepreneur: req.files.AutoE.newFilename,
-        image_cv: req.files.Cv.newFilename,
+        CarteVitale: req.files.CarteVitale.newFilename,
+        AutoE: req.files.AutoE.newFilename,
+        CV: req.files.CV.newFilename,
       };
       const intervenant = req.body;
       const error = IntervenantJoiVerification(intervenant);
-      // TODO validations (length, format...)
       if (error) {
         res.status(422).json({ validationErrors: error.details });
       } else {
@@ -149,16 +133,16 @@ class IntervenantController {
     });
   };
 
-  static delete = (req, res) => {
-    models.intervenants
-      .delete(req.params.id)
-      .then(() => {
-        res.sendStatus(204);
-      })
-      .catch((err) => {
-        console.error(err);
-        res.sendStatus(500);
-      });
+  static download = (req, res) => {
+    const { filename } = req.params;
+    res
+      .status(200)
+      .download(`${__dirname}/../../uploads/${filename}`, filename);
+  };
+
+  static browsePath = (req, res) => {
+    const { filename } = req.params;
+    res.status(200).json({ path: `${__dirname}/../../uploads/${filename}` });
   };
 }
 

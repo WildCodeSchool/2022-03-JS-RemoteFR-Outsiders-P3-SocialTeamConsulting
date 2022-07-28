@@ -13,19 +13,22 @@ import FormAsso from "@pages/FormAsso";
 import FormAssoContact from "@pages/FormAssoContact";
 import FormInterv from "@pages/FormInterv";
 import ModifProfil from "@pages/ModifProfil";
+
 import ProfilAdmin from "@components/ProfilAdmin";
 import ProfilInterv from "@components/ProfilInterv";
 import ProfilAsso from "@components/ProfilAsso";
-import BacklogValidatedMissions from "@components/BacklogValidatedMissions";
 import HistoryMissions from "@components/HistoryMissions";
 import BackOfficeAdminMissionValidation from "@components/BackOfficeAdminMissionValidation";
 import BackOfficeAdminInterValidation from "@components/BackOfficeAdminInterValidation";
 import BackOfficeMissionsDisponibles from "@components/BackOfficeMissionsDisponibles";
 import BackOfficeAdminMissionTerminee from "@components/BackOfficeAdminMissionTerminee";
 import BackOfficeLectureMessage from "@components/BackOfficeLectureMessage";
-import PrivateRoute from "@services/PrivateRoute";
 import BackOfficeListeUsers from "@components/BackOfficeListeUsers";
+
+import PrivateRoute from "@services/PrivateRoute";
+
 import ExportContext from "./contexts/Context";
+
 import "@style/App.css";
 
 function App() {
@@ -104,13 +107,12 @@ function App() {
             }
           />
           <Route
-            path="post_mission"
+            path="creer_une_mission"
             element={
               <PrivateRoute
                 isAllowed={
                   infoUser.role === "association" ||
-                  infoUser.role === "administrateur" ||
-                  infoUser.role === "intervenant"
+                  infoUser.role === "administrateur"
                 }
               >
                 <PostMission />
@@ -131,21 +133,7 @@ function App() {
             }
           />
           <Route
-            path="backlog_validated_missions"
-            element={
-              <PrivateRoute
-                isAllowed={
-                  infoUser.role === "intervenant" ||
-                  infoUser.role === "administrateur"
-                }
-              >
-                <BacklogValidatedMissions />
-              </PrivateRoute>
-            }
-          />
-
-          <Route
-            path="validation_mission"
+            path="validation_des_missions"
             element={
               <PrivateRoute isAllowed={infoUser.role === "administrateur"}>
                 <BackOfficeAdminMissionValidation />
@@ -153,7 +141,7 @@ function App() {
             }
           />
           <Route
-            path="validation_intervenant"
+            path="choisir_un_intervenant"
             element={
               <PrivateRoute isAllowed={infoUser.role === "administrateur"}>
                 <BackOfficeAdminInterValidation />
@@ -161,7 +149,7 @@ function App() {
             }
           />
           <Route
-            path="historique_missions"
+            path="historique_des_missions"
             element={
               <PrivateRoute
                 isAllowed={
@@ -191,7 +179,7 @@ function App() {
             }
           />
           <Route
-            path="modification_mission_intervenant"
+            path="changer_un_intervenant"
             element={
               <PrivateRoute isAllowed={infoUser.role === "administrateur"}>
                 <ModifInter />
@@ -199,7 +187,7 @@ function App() {
             }
           />
           <Route
-            path="lecture_message"
+            path="lecture_des_messages"
             element={
               <PrivateRoute isAllowed={infoUser.role === "administrateur"}>
                 <BackOfficeLectureMessage />
@@ -220,7 +208,17 @@ function App() {
           <Route path="formulaire_intervenant" element={<FormInterv />} />
         </Route>
       </Routes>
-      <ToastContainer />
+      <ToastContainer
+        position="bottom-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable={false}
+        pauseOnHover
+      />
     </div>
   );
 }

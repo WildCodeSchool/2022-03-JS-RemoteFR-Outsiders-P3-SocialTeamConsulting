@@ -34,56 +34,54 @@ function NavBarForm(showForm) {
   };
 
   return (
-    <div>
-      <form
-        action=""
-        method="post"
-        className="navbar-form_members"
-        onSubmit={handleSubmit}
-      >
-        <legend className="navbar-legend">Déjà membre</legend>
-        <div className="form-example">
-          <label htmlFor="email">
-            <p>Email :</p>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              required
-              onClick={() => showForm(true)}
-              onChange={handleChange}
-            />
-          </label>
-        </div>
-        <div className="form-example">
-          <label htmlFor="mdp">
-            <p>Mot de passe :</p>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              required
-              onChange={handleChange}
-            />
-          </label>
-        </div>
-        <div className="form-example">
-          <button className="button-blue navbar-input" type="submit">
-            Se connecter
-          </button>
-        </div>
-      </form>
-      {infoUser.email !== undefined ? (
-        <div
+    <div className="navbar-connect-container">
+      {infoUser.email !== undefined && infoUser.email !== null ? (
+        <button
           className="button-blue navbar-input"
+          type="button"
           onClick={() => Deconnexion(navigate, setInfoUser)}
-          role="button"
-          tabIndex={0}
         >
-          Se déconnecter
-        </div>
+          Se&nbsp;déconnecter
+        </button>
       ) : (
-        ""
+        <form
+          action=""
+          method="post"
+          className="navbar-form_members"
+          onSubmit={handleSubmit}
+        >
+          <legend className="navbar-legend">Déjà membre</legend>
+          <div className="form-example">
+            <label htmlFor="email">
+              <p>Email :</p>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                required
+                onClick={() => showForm(true)}
+                onChange={handleChange}
+              />
+            </label>
+          </div>
+          <div className="form-example">
+            <label htmlFor="mdp">
+              <p>Mot de passe :</p>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                required
+                onChange={handleChange}
+              />
+            </label>
+          </div>
+          <div className="form-example">
+            <button className="button-blue navbar-input" type="submit">
+              Connexion
+            </button>
+          </div>
+        </form>
       )}
     </div>
   );

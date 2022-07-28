@@ -27,6 +27,7 @@ function NavBarBackOffice() {
   if (infoUser.role === undefined) {
     return <div>Accès interdit !</div>;
   }
+
   useEffect(() => {
     const ENDPOINT = `/${infoUser.role}s/bymail/${infoUser.email}`;
 
@@ -62,28 +63,33 @@ function NavBarBackOffice() {
         </div>
 
         <div className="nav-part-two">
-          {DataLinks.filter((r) => r[infoUser.role]).map((el) => {
-            if (el.section === "Déconnexion") {
-              return (
-                <div>
-                  <ul>
-                    <NavLink to={el.link}>
-                      <div role="button" tabIndex={0} className="navbar-button">
-                        <li
-                          className="navbar-li_highlight"
-                          onClick={() => Deconnexion(navigate, setInfoUser)}
-                        >
-                          <h2>{el.section}</h2>
-                        </li>
-                      </div>
-                    </NavLink>
-                  </ul>
-                </div>
-              );
-            }
-            return (
-              <div>
-                <ul>
+          <ul className="navbar-list">
+            {infoUser.etat === "pré-inscrit" &&
+            infoUser.role !== "administrateur" ? (
+              <NavLink to="/back_office/mon_profil">
+                <li
+                  className="navbar-li_highlight"
+                  onClick={() => Deconnexion(navigate, setInfoUser)}
+                >
+                  <h2>Déconnexion</h2>
+                </li>
+              </NavLink>
+            ) : (
+              DataLinks.filter((r) => r[infoUser.role]).map((el) => {
+                if (el.section === "Déconnexion") {
+                  return (
+                    <div role="button" tabIndex={0} className="navbar-button">
+                      <li
+                        className="navbar-li_highlight"
+                        onClick={() => Deconnexion(navigate, setInfoUser)}
+                      >
+                        <h2>{el.section}</h2>
+                      </li>
+                    </div>
+                  );
+                }
+
+                return (
                   <NavLink to={el.link}>
                     <div role="button" tabIndex={0} className="navbar-button">
                       <li className="navbar-li_highlight">
@@ -91,10 +97,10 @@ function NavBarBackOffice() {
                       </li>
                     </div>
                   </NavLink>
-                </ul>
-              </div>
-            );
-          })}
+                );
+              })
+            )}
+          </ul>
         </div>
       </div>
 

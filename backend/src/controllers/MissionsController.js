@@ -2,9 +2,9 @@ const models = require("../models");
 const etat = require("../JSON/MissionStates.json");
 
 class MissionsController {
-  static browse = (req, res) => {
+  static browseMissionAccepte = (req, res) => {
     models.missions
-      .findAll()
+      .findAllMissionAccepte()
       .then(([rows]) => {
         res.send(rows);
       })
@@ -55,22 +55,6 @@ class MissionsController {
       .findAssoMissions(req.params.id)
       .then(([rows]) => {
         res.send(rows);
-      })
-      .catch((err) => {
-        console.error(err);
-        res.sendStatus(500);
-      });
-  };
-
-  static read = (req, res) => {
-    models.missions
-      .find(req.params.id)
-      .then(([rows]) => {
-        if (rows[0] == null) {
-          res.sendStatus(404);
-        } else {
-          res.send(rows[0]);
-        }
       })
       .catch((err) => {
         console.error(err);
@@ -149,7 +133,6 @@ class MissionsController {
       });
   };
 
-  // passe la mission de pourvue a acceptee
   static editAccepte = (req, res) => {
     const { id } = req.params;
     models.missions
@@ -167,20 +150,9 @@ class MissionsController {
       });
   };
 
-  static delete = (req, res) => {
-    models.missions
-      .delete(req.params.id)
-      .then(() => {
-        res.sendStatus(204);
-      })
-      .catch((err) => {
-        console.error(err);
-        res.sendStatus(500);
-      });
-  };
-
   static browseMissionsNotAccepted = (req, res) => {
     const userId = req.params.id;
+
     models.missions
       .findMyMissionsNotAccepted(userId)
       .then(([rows]) => {

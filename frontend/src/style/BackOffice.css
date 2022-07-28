@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  height: 15rem;
+  height: 9rem;
 }
 
 .profile-desc {
@@ -28,12 +28,13 @@
 
 .profile-desc h2 {
   position: relative;
-  font-size: 2rem;
-  color: white;
+  padding: 0 1rem;
+  font-size: clamp(1.5rem, 2vw, 2.5rem);
+  color: var(--color-black);
 }
 
 .app-backoffice-container {
-  padding: 20rem 1rem 0 1rem;
+  padding: 13rem 1rem 0 1rem;
   display: block;
 }
 
@@ -58,15 +59,15 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    height: 100vh;
-    width: 30vw;
+    width: 90%;
+    max-width: 400px;
   }
 
   .navbar-desktop-backoffice li {
     margin-top: 2rem;
     list-style: none;
     color: white;
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 2vw, 1.5rem);
     text-align: center;
     text-decoration: underline;
     text-underline-offset: 0.2rem;
@@ -88,7 +89,6 @@
   }
 
   .nav-part-one {
-    height: 30%;
     background-color: var(--color-highlight);
     border-radius: 20px 20px 0 0;
   }
@@ -126,7 +126,6 @@
     align-items: center;
     justify-content: center;
     background-color: var(--color-highlight);
-    color: white;
   }
 
   .navbar-desk-name {
@@ -135,8 +134,10 @@
 
   .navbar-desk-name h1 {
     position: relative;
-    color: white;
+    color: var(--color-black);
     margin-top: -6rem;
+    text-align: center;
+    font-size: clamp(1.5rem, 2vw, 2.5rem);
   }
 
   .navbar-desk-img-profile img {
@@ -150,8 +151,8 @@
 
   .nav-part-two {
     background-color: var(--color-highlight);
-    height: 60%;
     border-radius: 0px 0px 20px 20px;
-    padding-top: 2rem;
+    padding: 2rem 0;
   }
+
 }

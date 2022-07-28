@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { notifySuccess, notifyError, api } from "@services/services";
 import { useLocation } from "react-router-dom";
+import ProfilStatusModification from "./ProfilStatusModification";
 
 import "@style/App.css";
 import "@style/ProfilInterv.css";
@@ -38,80 +39,6 @@ export default function ProfilAsso() {
       [event.target.name]: event.target.value,
     });
   }
-
-  const handleStatus = (newStatus) => {
-    const ENDPOINTETAT = `/associations/etat/${association.id}`;
-    api
-      .put(ENDPOINTETAT, { newStatus })
-      .then(() => {
-        notifySuccess(`L'utilisateur à maintenant le status "${newStatus}"`);
-      })
-      .catch(() => {
-        notifyError("Une erreur est survenue lors de la mise à jour.");
-      });
-  };
-
-  const inscritButton = () => {
-    return (
-      <div
-        role="button"
-        tabIndex={0}
-        className="button-blue"
-        onClick={() => handleStatus("inscrit")}
-      >
-        Mettre l'utilisateur en status "inscrit"
-      </div>
-    );
-  };
-  const refuseButton = () => {
-    return (
-      <div
-        role="button"
-        tabIndex={0}
-        className="button-blue"
-        onClick={() => handleStatus("refusé")}
-      >
-        Refuser le pré-inscription de l'utilisateur
-      </div>
-    );
-  };
-  const banniButton = () => {
-    return (
-      <div
-        role="button"
-        tabIndex={0}
-        className="button-blue"
-        onClick={() => handleStatus("banni")}
-      >
-        Bannir l'utilisateur
-      </div>
-    );
-  };
-  const modifEtat = () => {
-    switch (association.etat) {
-      case "pré-inscrit":
-        return (
-          <div>
-            {inscritButton()} {refuseButton()} {banniButton()}
-          </div>
-        );
-
-      case "inscrit":
-        return <div>{banniButton()}</div>;
-
-      case "refusé":
-        return (
-          <div>
-            {inscritButton()} {banniButton()}
-          </div>
-        );
-
-      case "banni":
-        return <div>{inscritButton()}</div>;
-      default:
-        return "";
-    }
-  };
 
   return (
     <div>
@@ -171,7 +98,7 @@ export default function ProfilAsso() {
             <p>Ville</p>
             <input
               className="rules"
-              type="email"
+              type="text"
               name="ville"
               placeholder={association.ville}
               onChange={(e) => handleChange(e)}
@@ -194,9 +121,7 @@ export default function ProfilAsso() {
           </button>
         </div>
       </form>
-      <hr className="navbar-hr" />
-      <p>{`Cette association est actuellement ${association.etat}.`}</p>
-      {modifEtat()}
+      <ProfilStatusModification user={association} />
     </div>
   );
 }

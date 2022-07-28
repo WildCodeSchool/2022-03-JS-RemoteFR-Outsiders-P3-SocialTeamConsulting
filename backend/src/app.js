@@ -18,6 +18,10 @@ app.use(
 app.use(express.json());
 app.use(cookieParser());
 
+// Const for uploads directory
+const UPLOAD_DIR = path.join(__dirname, "../../backend/uploads");
+app.use(express.static(UPLOAD_DIR));
+
 // Serve the public folder for public resources
 app.use(express.static(path.join(__dirname, "../public")));
 
