@@ -19,10 +19,8 @@ app.use(express.json());
 app.use(cookieParser());
 
 // Const for uploads directory
-const UPLOAD_DIR = path.join(
-  "https://social-team-consulting-backend.remote-fr-3.wilders.dev/uploads"
-);
-app.use(express.static(UPLOAD_DIR));
+const UPLOAD_DIR = path.join(__dirname, "../uploads");
+app.use("/uploads", express.static(UPLOAD_DIR));
 
 // Serve the public folder for public resources
 app.use(express.static(path.join(__dirname, "../public")));

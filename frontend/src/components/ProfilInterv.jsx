@@ -48,13 +48,13 @@ export default function ProfilInterv() {
         );
       } else {
         setImageCV(
-          `https://social-team-consulting-backend.remote-fr-3.wilders.dev/uploads/${data[0].data.path}`
+          `${import.meta.env.VITE_BACKEND_URL}/uploads/${data[0].data.path}`
         );
         setImageAuto(
-          `https://social-team-consulting-backend.remote-fr-3.wilders.dev/uploads/${data[1].data.path}`
+          `${import.meta.env.VITE_BACKEND_URL}/uploads/${data[1].data.path}`
         );
         setImageCarteVitale(
-          `https://social-team-consulting-backend.remote-fr-3.wilders.dev/uploads/${data[2].data.path}`
+          `${import.meta.env.VITE_BACKEND_URL}/uploads/${data[2].data.path}`
         );
       }
     });
