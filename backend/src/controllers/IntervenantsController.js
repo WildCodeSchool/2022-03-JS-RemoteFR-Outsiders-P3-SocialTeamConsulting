@@ -142,7 +142,7 @@ class IntervenantController {
 
   static browsePath = (req, res) => {
     const { filename } = req.params;
-    res.status(200).json({ path: `${__dirname}/../../uploads/${filename}` });
+    res.status(200).json({ path: `${filename}` });
   };
 }
 

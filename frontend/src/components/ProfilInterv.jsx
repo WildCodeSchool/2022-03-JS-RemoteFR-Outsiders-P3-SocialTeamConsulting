@@ -47,9 +47,15 @@ export default function ProfilInterv() {
           "https://secu-jeunes.fr/wp-content/uploads/2016/09/Carte_Vitale_Une.jpg"
         );
       } else {
-        setImageCV(data[0].data.path);
-        setImageAuto(data[1].data.path);
-        setImageCarteVitale(data[2].data.path);
+        setImageCV(
+          `https://social-team-consulting-backend.remote-fr-3.wilders.dev/uploads/${data[0].data.path}`
+        );
+        setImageAuto(
+          `https://social-team-consulting-backend.remote-fr-3.wilders.dev/uploads/${data[1].data.path}`
+        );
+        setImageCarteVitale(
+          `https://social-team-consulting-backend.remote-fr-3.wilders.dev/uploads/${data[2].data.path}`
+        );
       }
     });
   }, [intervenant]);
